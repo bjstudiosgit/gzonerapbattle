@@ -7,6 +7,7 @@ export interface Battle {
   videoUrl?: string;
   views?: string;
   winner?: string;
+  isUnreleased?: boolean;
 }
 
 export const battles: Battle[] = [
@@ -99,5 +100,54 @@ export const battles: Battle[] = [
     videoUrl: "https://www.youtube.com/embed/OGagI2K6StY", 
     views: "9,962",
     winner: "roman"
+  },
+  { 
+    id: "10", 
+    mc1: "pr1nc3", 
+    mc2: "nattyebk", 
+    title: "PR1NC3 vs NattyEBK", 
+    date: "14 Mar 2026", 
+    views: "0",
+    winner: "nattyebk",
+    isUnreleased: true
+  },
+  { 
+    id: "11", 
+    mc1: "btizz", 
+    mc2: "cj-zino", 
+    title: "Btizz vs CJ Zino", 
+    date: "14 Mar 2026", 
+    views: "0",
+    winner: "cj-zino",
+    isUnreleased: true
+  },
+  { 
+    id: "12", 
+    mc1: "tapped24", 
+    mc2: "aj", 
+    title: "Tapped24 vs AJ", 
+    date: "14 Mar 2026", 
+    views: "0",
+    winner: "aj",
+    isUnreleased: true
+  },
+  { 
+    id: "13", 
+    mc1: "ryno", 
+    mc2: "tymeless", 
+    title: "Ryno vs Tymeless", 
+    date: "14 Mar 2026", 
+    views: "0",
+    winner: "tymeless",
+    isUnreleased: true
+  },
+  { 
+    id: "14", 
+    mc1: "deeno", 
+    mc2: "grams", 
+    title: "Deeno vs Grams", 
+    date: "14 Mar 2026", 
+    views: "0",
+    isUnreleased: true
   }
 ];

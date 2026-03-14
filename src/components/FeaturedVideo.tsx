@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export default function FeaturedVideo() {
   return (
-    <section className="relative w-full bg-black min-h-screen overflow-hidden flex flex-col items-center justify-center pt-20">
+    <section className="relative w-full bg-black min-h-[70vh] overflow-hidden flex flex-col items-center justify-center py-12">
       <div className="absolute inset-0 z-0">
         {/* Cinematic Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950/80 to-zinc-950 z-10 pointer-events-none" />
@@ -17,10 +17,10 @@ export default function FeaturedVideo() {
           transition={{ duration: 0.8 }}
           className="text-center mb-10 w-full"
         >
-          <h2 className="text-5xl md:text-7xl font-display italic uppercase mb-4 tracking-tighter">
+          <h2 className="text-3xl md:text-4xl font-display italic uppercase mb-4 tracking-tighter">
             The <span className="text-brand">G Zone</span> Experience
           </h2>
-          <p className="text-zinc-400 text-lg max-w-2xl mx-auto uppercase tracking-widest">
+          <p className="text-zinc-400 text-sm uppercase tracking-widest whitespace-nowrap">
             Witness the raw energy of the UK's most authentic battle league
           </p>
         </motion.div>
@@ -30,7 +30,7 @@ export default function FeaturedVideo() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative w-full max-w-5xl aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(242,125,38,0.15)] group"
+          className="relative w-full max-w-6xl aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(242,125,38,0.15)] group"
         >
           <iframe
             className="w-full h-full"

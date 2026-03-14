@@ -32,9 +32,10 @@ function Home() {
   return (
     <main>
       <FeaturedVideo />
+      <LeagueTable limit={5} />
+      <HostsAndJudges />
       <ApplySection />
       <RecentBattles />
-      <HostsAndJudges />
       <MCBios />
       <Events />
       <Merch />

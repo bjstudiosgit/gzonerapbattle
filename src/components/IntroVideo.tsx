@@ -1,15 +1,22 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Play, ChevronRight, Share2 } from "lucide-react";
 import { mcs } from "../data/mcs";
 
 export default function IntroVideo() {
   const [videoEnded, setVideoEnded] = useState(false);
   const [started, setStarted] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+    }
+  }, [started]);
 
   return (
-    <section className="relative w-full bg-black min-h-screen overflow-x-hidden">
-      {started && <audio autoPlay src="/gzoneintro.mp4" />}
+    <section className="relative w-full bg-black min-h-[90vh] overflow-x-hidden">
+      {started && <audio ref={audioRef} autoPlay src="/gzoneintro.mp4" />}
       {/* Shared Video Background */}
       <div className="absolute inset-0 z-0">
         <motion.div 
@@ -70,7 +77,7 @@ export default function IntroVideo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className="relative min-h-screen flex items-center py-24 z-30"
+            className="relative min-h-[80vh] flex items-center pt-32 pb-12 z-30"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
@@ -121,7 +128,7 @@ export default function IntroVideo() {
                   
                   <div className="mt-12 flex items-center gap-8">
                     <div>
-                      <div className="text-3xl font-display italic">11.1K</div>
+                      <div className="text-3xl font-display italic">11.4K</div>
                       <div className="text-zinc-500 text-[10px] uppercase tracking-widest">Subscribers</div>
                     </div>
                     <div className="w-px h-8 bg-zinc-800" />

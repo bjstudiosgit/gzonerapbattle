@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { battles as allBattles } from "../data/battles";
 import { mcs } from "../data/mcs";
-import { ArrowLeft, Play, Share2, Trophy } from "lucide-react";
+import { ArrowLeft, Play, Share2, Trophy, Clock } from "lucide-react";
 
 export default function BattleDetail() {
   const { id } = useParams<{ id: string }>();
@@ -36,8 +36,16 @@ export default function BattleDetail() {
               className="text-center"
             >
               <h1 className="text-5xl md:text-7xl font-display italic uppercase leading-tight mb-8">
-                {mc1?.name} <span className="text-brand">VS</span> {mc2?.name}
+                <Link to={`/mc/${mc1?.id}`} className="hover:text-brand transition-colors">{mc1?.name}</Link> <span className="text-brand">VS</span> <Link to={`/mc/${mc2?.id}`} className="hover:text-brand transition-colors">{mc2?.name}</Link>
               </h1>
+
+              {battle.isUnreleased && (
+                <div className="flex justify-center mb-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
+                    <Clock size={16} /> Unreleased Battle
+                  </div>
+                </div>
+              )}
               
               <div className="aspect-video bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group">
                 {battle.videoUrl ? (
@@ -49,19 +57,21 @@ export default function BattleDetail() {
                     allowFullScreen
                   />
                 ) : (
-                  <>
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-900 relative">
                     <img 
                       src={`https://picsum.photos/seed/${battle.id}/1280/720`} 
                       alt="Battle Thumbnail" 
-                      className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button className="w-24 h-24 bg-brand text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl shadow-brand/50">
-                        <Play size={40} fill="currentColor" />
-                      </button>
+                    <div className="relative z-10 text-center p-8">
+                      <div className="w-20 h-20 bg-brand/10 text-brand rounded-full flex items-center justify-center mx-auto mb-6 border border-brand/20">
+                        <Play size={32} className="ml-1" />
+                      </div>
+                      <h3 className="text-3xl font-display italic uppercase text-white mb-2">Video Coming Soon</h3>
+                      <p className="text-zinc-500 uppercase tracking-[0.2em] text-sm">The G Zone is processing the bars...</p>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             </motion.div>
@@ -88,7 +98,7 @@ export default function BattleDetail() {
                     </div>
                   )}
                   <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
-                    <div className="text-3xl font-display italic uppercase">{mc1?.name}</div>
+                    <Link to={`/mc/${mc1?.id}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
                   </div>
                 </div>
 
@@ -100,7 +110,7 @@ export default function BattleDetail() {
                     </div>
                   )}
                   <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
-                    <div className="text-3xl font-display italic uppercase">{mc2?.name}</div>
+                    <Link to={`/mc/${mc2?.id}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
                   </div>
                 </div>
               </div>

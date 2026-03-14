@@ -12,14 +12,6 @@ export default function MCBios() {
         <div className="flex items-center justify-between mb-16">
           <div className="max-w-xl">
             <h3 className="text-5xl font-display italic uppercase mb-6">The <span className="text-brand">GZone</span> MC's</h3>
-            <a 
-              href="https://www.eventbrite.com/e/the-gzone-rap-battle-league-tickets-1983773740660#location" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-brand text-black px-8 py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-sm hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(242,125,38,0.3)] hover:shadow-[0_0_30px_rgba(242,125,38,0.5)]"
-            >
-              Secure Your Tickets <ChevronRight size={18} />
-            </a>
           </div>
         </div>
 

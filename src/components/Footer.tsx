@@ -58,8 +58,7 @@ export default function Footer() {
             © 2024 The G Zone. All rights reserved.
           </p>
           <div className="flex gap-8 text-zinc-600 text-xs">
-            <span>Built for the culture.</span>
-            <span>Designed in the Zone.</span>
+            <span>Designed by BJ Studios, Manchester</span>
           </div>
         </div>
       </div>

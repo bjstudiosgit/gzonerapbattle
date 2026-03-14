@@ -84,7 +84,7 @@ export default function BattlesPage() {
                       className="group hover:bg-white/5 transition-all duration-300"
                     >
                       <td className="px-4 py-4">
-                        <span className="font-mono text-brand text-sm">1x{String(index + 1).padStart(2, '0')}</span>
+                        <Link to={`/battle/${battle.id}`} className="font-mono text-brand text-sm hover:underline">1x{String(index + 1).padStart(2, '0')}</Link>
                       </td>
                       <td className="px-4 py-4">
                         <Link to={`/battle/${battle.id}`} className="block group-hover:translate-x-1 transition-transform">

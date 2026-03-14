@@ -39,9 +39,9 @@ export const mcs: MC[] = [
   {
     id: "tapped24",
     name: "Tapped24",
-    battles: 2,
+    battles: 3,
     wins: 0,
-    losses: 2,
+    losses: 3,
     style: "Technical / Flow",
     image: "/tapped24.png",
     bio: "Tapped24 mixes disrespect, comedy and strong performance energy. His entertaining style and confident delivery make him a crowd-focused battler who thrives on reaction.",
@@ -56,9 +56,9 @@ export const mcs: MC[] = [
   {
     id: "pr1nc3",
     name: "PR1NC3",
-    battles: 1,
+    battles: 2,
     wins: 0,
-    losses: 1,
+    losses: 2,
     style: "Disrespect / Wordplay",
     image: "/princ3.png",
     bio: "The Prince of Punchlines. PR1NC3 delivers quick-witted bars packed with disrespect and clever wordplay. His high energy and sharp flows keep opponents under pressure, firing off punchlines with speed and precision.",
@@ -73,8 +73,8 @@ export const mcs: MC[] = [
   {
     id: "nattyebk",
     name: "NattyEBK",
-    battles: 0,
-    wins: 0,
+    battles: 1,
+    wins: 1,
     losses: 0,
     style: "Disrespect / Intensity",
     image: "/awaiting-photo.png",
@@ -90,8 +90,8 @@ export const mcs: MC[] = [
   {
     id: "tymeless",
     name: "Tymeless",
-    battles: 1,
-    wins: 0,
+    battles: 2,
+    wins: 1,
     losses: 0,
     style: "Dark bars / Aggressive",
     image: "/tymeless.png",
@@ -176,8 +176,8 @@ export const mcs: MC[] = [
   {
     id: "cj-zino",
     name: "CJ Zino",
-    battles: 1,
-    wins: 0,
+    battles: 2,
+    wins: 1,
     losses: 1,
     style: "Punchlines / Flow",
     image: "cjzino.png",
@@ -187,9 +187,9 @@ export const mcs: MC[] = [
   {
     id: "ryno",
     name: "Ryno",
-    battles: 1,
+    battles: 2,
     wins: 1,
-    losses: 0,
+    losses: 1,
     style: "Power / Presence",
     image: "/ryno.png",
     bio: "A powerhouse on the mic with an undeniable stage presence.",
@@ -198,9 +198,9 @@ export const mcs: MC[] = [
   {
     id: "btizz",
     name: "Btizz",
-    battles: 1,
+    battles: 2,
     wins: 1,
-    losses: 0,
+    losses: 1,
     style: "Flows / Jokes",
     image: "/btizz.png",
     bio: "Btizz mixes smooth flows with sharp humour. Known for jokes, creative setups and entertaining rounds, he balances comedy with clever bars to keep crowds locked in.",
@@ -235,6 +235,30 @@ export const mcs: MC[] = [
     isActive: true,
     weightClass: "Featherweight",
     height: "5'6\"",
+    location: "London"
+  },
+  {
+    id: "aj",
+    name: "AJ",
+    battles: 1,
+    wins: 1,
+    losses: 0,
+    style: "Aggressive / Punchlines",
+    image: "/awaiting-photo.png",
+    bio: "AJ brings high energy and sharp punchlines to the G Zone arena.",
+    isActive: true,
+    location: "London"
+  },
+  {
+    id: "grams",
+    name: "Grams",
+    battles: 0,
+    wins: 0,
+    losses: 0,
+    style: "Technical / Wordplay",
+    image: "/awaiting-photo.png",
+    bio: "Grams is a technical powerhouse known for intricate wordplay and sharp delivery. A new addition to the G Zone, he's ready to make his mark on the league.",
+    isActive: true,
     location: "London"
   }
 ];

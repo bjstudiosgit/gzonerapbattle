@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { TrendingUp, Minus } from "lucide-react";
+import { TrendingUp, Minus, Clock } from "lucide-react";
 import { mcs } from "../data/mcs";
+import { battles } from "../data/battles";
 
 interface LeagueTableProps {
   limit?: number;
@@ -32,6 +33,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
       battles: mc.battles,
       wins: mc.wins,
       losses: mc.losses,
+      unreleased: battles.filter(b => b.isUnreleased && (b.mc1 === mc.id || b.mc2 === mc.id)).length,
       change: "none",
       isDsq: false
     }));
@@ -44,6 +46,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
     battles: mc.battles,
     wins: mc.wins,
     losses: mc.losses,
+    unreleased: battles.filter(b => b.isUnreleased && (b.mc1 === mc.id || b.mc2 === mc.id)).length,
     change: "none",
     isDsq: true
   }));
@@ -101,7 +104,17 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                         <span className={`font-bold text-lg uppercase italic transition-colors ${mc.isDsq ? 'text-zinc-500 line-through' : 'group-hover/name:text-brand'}`}>{mc.name}</span>
                       </Link>
                     </td>
-                    <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.battles}</td>
+                    <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>
+                      <div className="flex items-center gap-2">
+                        {mc.battles}
+                        {mc.unreleased > 0 && (
+                          <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-brand/10 text-brand text-[10px] font-bold border border-brand/20">
+                            <Clock size={10} />
+                            {mc.unreleased} UNRELEASED
+                          </span>
+                        )}
+                      </div>
+                    </td>
                     <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.wins}</td>
                     <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.losses}</td>
                     <td className={`px-8 py-6 font-bold ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-100'}`}>{mc.points.toLocaleString()}</td>
