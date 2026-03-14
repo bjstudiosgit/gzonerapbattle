@@ -42,6 +42,7 @@ export default function MCProfile() {
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
+                  if (target.src.includes('awaiting-photo.png')) return;
                   target.src = `https://picsum.photos/seed/${mc.id}/400/500`;
                 }}
               />
@@ -178,6 +179,7 @@ export default function MCProfile() {
                             referrerPolicy="no-referrer" 
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
+                              if (target.src.includes('awaiting-photo.png')) return;
                               target.src = `https://picsum.photos/seed/${opponent?.id}/100/100`;
                             }}
                           />

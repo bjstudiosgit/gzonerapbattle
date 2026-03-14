@@ -1,4 +1,5 @@
 import { battles } from "../data/battles";
+import { mcs } from "../data/mcs";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Play, Eye, Calendar, Trophy } from "lucide-react";
@@ -30,7 +31,7 @@ export default function BattlesPage() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h1 className="text-sm font-bold text-brand uppercase tracking-[0.4em] mb-4">The Archive</h1>
+            <h1 className="text-sm font-bold text-brand uppercase tracking-[0.4em] mb-4 animate-on-air">In Progress</h1>
             <h2 className="text-6xl md:text-8xl font-display italic uppercase leading-none">
               Season <span className="text-brand">01</span>
             </h2>
@@ -69,48 +70,61 @@ export default function BattlesPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {battles.map((battle, index) => (
-                  <motion.tr 
-                    key={battle.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="group hover:bg-white/5 transition-all duration-300"
-                  >
-                    <td className="px-4 py-4">
-                      <span className="font-mono text-brand text-sm">1x{String(index + 1).padStart(2, '0')}</span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <Link to={`/battle/${battle.id}`} className="block group-hover:translate-x-1 transition-transform">
-                        <span className="font-display italic uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors">
-                          {battle.title}
+                {battles.map((battle, index) => {
+                  const mc1 = mcs.find(m => m.id === battle.mc1);
+                  const mc2 = mcs.find(m => m.id === battle.mc2);
+                  
+                  return (
+                    <motion.tr 
+                      key={battle.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      className="group hover:bg-white/5 transition-all duration-300"
+                    >
+                      <td className="px-4 py-4">
+                        <span className="font-mono text-brand text-sm">1x{String(index + 1).padStart(2, '0')}</span>
+                      </td>
+                      <td className="px-4 py-4">
+                        <Link to={`/battle/${battle.id}`} className="block group-hover:translate-x-1 transition-transform">
+                          <span className="font-display italic uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors flex items-center gap-2">
+                            <span className="flex items-center gap-1">
+                              {battle.winner === battle.mc1 && <Trophy size={16} className="text-brand" />}
+                              {mc1?.name || battle.mc1}
+                            </span>
+                            <span className="text-zinc-600 text-sm">VS</span>
+                            <span className="flex items-center gap-1">
+                              {mc2?.name || battle.mc2}
+                              {battle.winner === battle.mc2 && <Trophy size={16} className="text-brand" />}
+                            </span>
+                          </span>
+                        </Link>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center gap-2 text-zinc-400 text-xs">
+                          <Calendar size={12} className="opacity-50" />
+                          {battle.date || "TBD"}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center gap-2 text-zinc-100 font-mono text-xs">
+                          <span className="w-1 h-1 rounded-full bg-brand/50" />
+                          {battle.views || "0"}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest ${
+                          battle.videoUrl 
+                            ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
+                            : "bg-zinc-800 text-zinc-500 border border-white/5"
+                        }`}>
+                          {battle.videoUrl ? "Out Now" : "Upcoming"}
                         </span>
-                      </Link>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-2 text-zinc-400 text-xs">
-                        <Calendar size={12} className="opacity-50" />
-                        {battle.date || "TBD"}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-2 text-zinc-100 font-mono text-xs">
-                        <span className="w-1 h-1 rounded-full bg-brand/50" />
-                        {battle.views || "0"}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest ${
-                        battle.videoUrl 
-                          ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
-                          : "bg-zinc-800 text-zinc-500 border border-white/5"
-                      }`}>
-                        {battle.videoUrl ? "Out Now" : "Upcoming"}
-                      </span>
-                    </td>
-                  </motion.tr>
-                ))}
+                      </td>
+                    </motion.tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

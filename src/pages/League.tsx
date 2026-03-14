@@ -13,7 +13,7 @@ export default function League() {
           <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">Official Rankings</h1>
           <h2 className="text-6xl font-display italic uppercase">The G Zone <span className="text-brand">League</span></h2>
           <p className="text-zinc-400 mt-4 max-w-2xl">
-            The definitive leaderboard for the G Zone Rap Battle League. Rankings are calculated based on performance, battle activity, and crowd impact.
+            The definitive leaderboard for the G Zone Rap Battle League. We don't have rules like other platforms. Points are awarded as follows: 3 points for a win, 1 point for an appearance, and 0 points for a loss. DSQ means the MC has withdrawn from the league.
           </p>
         </div>
         

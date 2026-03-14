@@ -7,28 +7,32 @@ const products = [
     name: "G Zone Teddy Bear Lauren Tshirt",
     price: "£25",
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=500&h=600&auto=format&fit=crop",
-    tag: "New Drop"
+    tag: "Limited Drop",
+    soldOut: true
   },
   {
     id: 2,
     name: "G Zone hoody",
     price: "£45",
     image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=500&h=600&auto=format&fit=crop",
-    tag: "Best Seller"
+    tag: "Limited Drop",
+    soldOut: true
   },
   {
     id: 3,
     name: "G Zone Ladies Tshirt",
     price: "£25",
     image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=500&h=600&auto=format&fit=crop",
-    tag: "Limited"
+    tag: "Limited Drop",
+    soldOut: true
   },
   {
     id: 4,
     name: "G Zone Ladies Gym Wear",
     price: "£35",
     image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=500&h=600&auto=format&fit=crop",
-    tag: "Performance"
+    tag: "Limited Drop",
+    soldOut: true
   }
 ];
 
@@ -62,13 +66,23 @@ export default function Merch() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-black/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border border-white/10">
+                  <span className="bg-brand text-black text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border border-brand/20">
                     {product.tag}
                   </span>
                 </div>
+                {product.soldOut && (
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-red-500/90 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border border-red-500/20">
+                      Sold Out
+                    </span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button className="bg-brand text-black p-4 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                    <ShoppingBag size={24} />
+                  <button 
+                    disabled={product.soldOut}
+                    className={`${product.soldOut ? 'bg-zinc-800 text-zinc-400 cursor-not-allowed px-6 py-3 font-bold uppercase tracking-widest text-xs' : 'bg-brand text-black p-4'} rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform`}
+                  >
+                    {product.soldOut ? 'Sold Out' : <ShoppingBag size={24} />}
                   </button>
                 </div>
               </div>

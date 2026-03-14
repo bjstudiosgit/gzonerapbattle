@@ -9,17 +9,46 @@ interface LeagueTableProps {
 }
 
 export default function LeagueTable({ limit, showTitle = true }: LeagueTableProps) {
-  // Sort MCs by battle count for now as a proxy for ranking
-  let rankings = [...mcs]
-    .sort((a, b) => b.battles - a.battles)
+  const activeMcs = mcs.filter(mc => mc.id !== 'ldn-mikez');
+  const dsqMcs = mcs.filter(mc => mc.id === 'ldn-mikez');
+
+  const activeRankings = activeMcs
+    .sort((a, b) => {
+      const aPoints = (a.wins * 3) + a.battles;
+      const bPoints = (b.wins * 3) + b.battles;
+      if (bPoints !== aPoints) return bPoints - aPoints;
+      
+      // Tie-breaker: fewest losses
+      if (a.losses !== b.losses) return a.losses - b.losses;
+      
+      // Tie-breaker: most battles
+      return b.battles - a.battles;
+    })
     .map((mc, index) => ({
       rank: index + 1,
       id: mc.id,
       name: mc.name,
-      points: mc.battles * 100, // Placeholder points
+      points: (mc.wins * 3) + mc.battles,
       battles: mc.battles,
-      change: "none"
+      wins: mc.wins,
+      losses: mc.losses,
+      change: "none",
+      isDsq: false
     }));
+
+  const dsqRankings = dsqMcs.map(mc => ({
+    rank: "DSQ",
+    id: mc.id,
+    name: mc.name,
+    points: (mc.wins * 3) + mc.battles,
+    battles: mc.battles,
+    wins: mc.wins,
+    losses: mc.losses,
+    change: "none",
+    isDsq: true
+  }));
+
+  let rankings = [...activeRankings, ...dsqRankings];
 
   if (limit) {
     rankings = rankings.slice(0, limit);
@@ -43,6 +72,8 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Rank</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">MC Name</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Battles</th>
+                  <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Wins</th>
+                  <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Losses</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Points</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Trend</th>
                 </tr>
@@ -55,26 +86,28 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
+                    className={`border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer ${mc.isDsq ? 'opacity-40 grayscale' : ''}`}
                   >
                     <td className="px-8 py-6">
-                      <span className={`font-display italic text-2xl ${index < 3 ? 'text-brand' : 'text-zinc-400'}`}>
-                        {mc.rank < 10 ? `0${mc.rank}` : mc.rank}
+                      <span className={`font-display italic text-2xl ${mc.isDsq ? 'text-zinc-600' : (typeof mc.rank === 'number' && mc.rank < 4 ? 'text-brand' : 'text-zinc-400')}`}>
+                        {typeof mc.rank === 'number' && mc.rank < 10 ? `0${mc.rank}` : mc.rank}
                       </span>
                     </td>
                     <td className="px-8 py-6">
                       <Link to={`/mc/${mc.id}`} className="flex items-center gap-4 group/name">
-                        <div className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center font-bold text-brand group-hover/name:border-brand transition-colors">
+                        <div className={`w-10 h-10 rounded-full bg-zinc-800 border ${mc.isDsq ? 'border-zinc-700 text-zinc-600' : 'border-white/10 text-brand group-hover/name:border-brand'} flex items-center justify-center font-bold transition-colors`}>
                           {mc.name[0]}
                         </div>
-                        <span className="font-bold text-lg uppercase italic group-hover/name:text-brand transition-colors">{mc.name}</span>
+                        <span className={`font-bold text-lg uppercase italic transition-colors ${mc.isDsq ? 'text-zinc-500 line-through' : 'group-hover/name:text-brand'}`}>{mc.name}</span>
                       </Link>
                     </td>
-                    <td className="px-8 py-6 text-zinc-400 font-mono">{mc.battles}</td>
-                    <td className="px-8 py-6 font-bold text-zinc-100">{mc.points.toLocaleString()}</td>
+                    <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.battles}</td>
+                    <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.wins}</td>
+                    <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.losses}</td>
+                    <td className={`px-8 py-6 font-bold ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-100'}`}>{mc.points.toLocaleString()}</td>
                     <td className="px-8 py-6">
-                      {mc.change === "up" && <TrendingUp className="text-emerald-500" size={20} />}
-                      {mc.change === "none" && <Minus className="text-zinc-600" size={20} />}
+                      {mc.change === "up" && !mc.isDsq && <TrendingUp className="text-emerald-500" size={20} />}
+                      {(mc.change === "none" || mc.isDsq) && <Minus className="text-zinc-600" size={20} />}
                     </td>
                   </motion.tr>
                 ))}

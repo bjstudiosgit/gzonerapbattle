@@ -16,7 +16,7 @@ export default function MCBios() {
               href="https://www.eventbrite.com/e/the-gzone-rap-battle-league-tickets-1983773740660#location" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-brand font-bold uppercase tracking-[0.2em] text-sm hover:translate-x-2 transition-transform"
+              className="inline-flex items-center gap-2 bg-brand text-black px-8 py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-sm hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(242,125,38,0.3)] hover:shadow-[0_0_30px_rgba(242,125,38,0.5)]"
             >
               Secure Your Tickets <ChevronRight size={18} />
             </a>
@@ -42,6 +42,7 @@ export default function MCBios() {
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
+                       if (target.src.includes('awaiting-photo.png')) return;
                       target.src = `https://picsum.photos/seed/${mc.id}/400/500`;
                     }}
                   />

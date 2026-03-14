@@ -44,7 +44,11 @@ export default function RecentBattles() {
                 <div className="relative z-10 flex items-center justify-between gap-4">
                   <div className="flex-1 flex flex-col items-center text-center">
                     <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/10 mb-4 group-hover:border-brand/50 transition-colors">
-                      <img src={mc1?.image} alt={mc1?.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      <img src={mc1?.image} alt={mc1?.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src.includes('awaiting-photo.png')) return;
+                        target.src = `https://picsum.photos/seed/${mc1?.id}/100/100`;
+                      }} />
                     </div>
                     <span className="font-display italic uppercase text-xl">{mc1?.name}</span>
                   </div>
@@ -61,7 +65,11 @@ export default function RecentBattles() {
 
                   <div className="flex-1 flex flex-col items-center text-center">
                     <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/10 mb-4 group-hover:border-brand/50 transition-colors">
-                      <img src={mc2?.image} alt={mc2?.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      <img src={mc2?.image} alt={mc2?.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src.includes('awaiting-photo.png')) return;
+                        target.src = `https://picsum.photos/seed/${mc2?.id}/100/100`;
+                      }} />
                     </div>
                     <span className="font-display italic uppercase text-xl">{mc2?.name}</span>
                   </div>

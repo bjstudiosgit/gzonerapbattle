@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: "Battles", href: "/battles", icon: Play },
     { name: "Tickets", href: "/events", icon: Ticket },
     { name: "MCs", href: "/#mcs", icon: Users },
-    { name: "Hosts", href: "/#hosts", icon: Mic2 },
+    { name: "Staff", href: "/#staff", icon: Mic2 },
     { name: "League", href: "/league", icon: Trophy },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
   ];
@@ -24,7 +24,9 @@ export default function Navbar() {
       const id = href.substring(2);
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        // Calculate position accounting for the 80px (h-20) fixed navbar
+        const y = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
   };

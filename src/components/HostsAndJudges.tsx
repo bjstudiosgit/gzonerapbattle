@@ -3,16 +3,11 @@ import { Mic2, Gavel, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { hosts } from "../data/hosts";
 import { ringGirls } from "../data/ringgirls";
-
-const judges = [
-  { id: 1, name: "Judge Name", role: "Veteran MC", image: "https://picsum.photos/seed/judge1/400/400" },
-  { id: 2, name: "Judge Name", role: "Lyricist", image: "https://picsum.photos/seed/judge2/400/400" },
-  { id: 3, name: "Judge Name", role: "Battle Expert", image: "https://picsum.photos/seed/judge3/400/400" },
-];
+import { judges } from "../data/judges";
 
 export default function HostsAndJudges() {
   return (
-    <section id="hosts" className="py-24 bg-zinc-950 relative overflow-hidden">
+    <section id="staff" className="py-24 bg-zinc-950 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 skew-x-12 transform translate-x-1/2 pointer-events-none" />
       
@@ -82,16 +77,18 @@ export default function HostsAndJudges() {
                   viewport={{ once: true }}
                   className="group relative w-64 aspect-[3/4] flex-shrink-0 rounded-2xl overflow-hidden border border-white/5"
                 >
-                  <img 
-                    src={judge.image} 
-                    alt={judge.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p className="text-brand font-bold text-xs uppercase tracking-widest mb-1">{judge.role}</p>
-                    <h4 className="text-xl font-display italic uppercase">{judge.name}</h4>
-                  </div>
+                  <Link to={`/judge/${judge.id}`} className="block w-full h-full">
+                    <img 
+                      src={judge.image} 
+                      alt={judge.name} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                      <p className="text-brand font-bold text-xs uppercase tracking-widest mb-1">{judge.role}</p>
+                      <h4 className="text-xl font-display italic uppercase">{judge.name}</h4>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

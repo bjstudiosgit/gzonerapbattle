@@ -2,17 +2,11 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { battles as allBattles } from "../data/battles";
 import { mcs } from "../data/mcs";
-import { ArrowLeft, MessageSquare, ThumbsUp, Play, Share2 } from "lucide-react";
-import React, { useState } from "react";
+import { ArrowLeft, Play, Share2, Trophy } from "lucide-react";
 
 export default function BattleDetail() {
   const { id } = useParams<{ id: string }>();
   const battle = allBattles.find(b => b.id === id);
-  const [comment, setComment] = useState("");
-  const [comments, setComments] = useState<{ id: number; user: string; text: string; date: string }[]>([]);
-
-  const [votes, setVotes] = useState({ mc1: 0, mc2: 0 });
-  const [hasVoted, setHasVoted] = useState(false);
 
   if (!battle) {
     return (
@@ -24,29 +18,6 @@ export default function BattleDetail() {
 
   const mc1 = mcs.find(m => m.id === battle.mc1);
   const mc2 = mcs.find(m => m.id === battle.mc2);
-
-  const handleVote = (side: 'mc1' | 'mc2') => {
-    if (hasVoted) return;
-    setVotes(prev => ({ ...prev, [side]: prev[side] + 1 }));
-    setHasVoted(true);
-  };
-
-  const handleCommentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!comment.trim()) return;
-    const newComment = {
-      id: Date.now(),
-      user: "Guest User",
-      text: comment,
-      date: "Just now"
-    };
-    setComments([newComment, ...comments]);
-    setComment("");
-  };
-
-  const totalVotes = votes.mc1 + votes.mc2;
-  const mc1Percent = totalVotes > 0 ? Math.round((votes.mc1 / totalVotes) * 100) : 0;
-  const mc2Percent = totalVotes > 0 ? Math.round((votes.mc2 / totalVotes) * 100) : 0;
 
   return (
     <div className="min-h-screen pt-32 pb-24 bg-zinc-950">
@@ -95,11 +66,13 @@ export default function BattleDetail() {
               </div>
             </motion.div>
 
-            {/* Voting System */}
+            {/* Battle Result */}
             <section className="bg-zinc-900/50 p-8 rounded-3xl border border-white/5">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-display italic uppercase text-white">Who Won This Battle?</h2>
-                <p className="text-zinc-500 text-sm mt-2 uppercase tracking-widest">Cast your vote below</p>
+                <h2 className="text-2xl font-display italic uppercase text-white">Battle Result</h2>
+                <p className="text-zinc-500 text-sm mt-2 uppercase tracking-widest">
+                  {battle.winner ? "Official Judges' Decision" : "Awaiting Decision"}
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-8 relative">
@@ -107,140 +80,29 @@ export default function BattleDetail() {
                   VS
                 </div>
 
-                {/* MC1 Vote */}
-                <button 
-                  onClick={() => handleVote('mc1')}
-                  disabled={hasVoted}
-                  className={`relative group overflow-hidden rounded-2xl border transition-all p-8 text-center ${hasVoted ? (votes.mc1 >= votes.mc2 ? 'border-brand bg-brand/5' : 'border-white/5') : 'border-white/10 hover:border-brand/50 bg-zinc-900/30'}`}
-                >
-                  <div className="relative z-10">
-                    <div className="text-3xl font-display italic uppercase mb-2">{mc1?.name}</div>
-                    <motion.div 
-                      key={votes.mc1}
-                      initial={{ scale: 1.2, color: '#FF6321' }}
-                      animate={{ scale: 1, color: hasVoted ? '#FF6321' : '#FFFFFF' }}
-                      className="text-5xl font-bold mb-1"
-                    >
-                      {hasVoted ? `${mc1Percent}%` : votes.mc1}
-                    </motion.div>
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest">Votes</div>
-                  </div>
-                  {hasVoted && (
-                    <motion.div 
-                      initial={{ height: 0 }}
-                      animate={{ height: `${mc1Percent}%` }}
-                      className="absolute bottom-0 left-0 right-0 bg-brand/10 -z-0"
-                    />
-                  )}
-                </button>
-
-                {/* MC2 Vote */}
-                <button 
-                  onClick={() => handleVote('mc2')}
-                  disabled={hasVoted}
-                  className={`relative group overflow-hidden rounded-2xl border transition-all p-8 text-center ${hasVoted ? (votes.mc2 > votes.mc1 ? 'border-brand bg-brand/5' : 'border-white/5') : 'border-white/10 hover:border-brand/50 bg-zinc-900/30'}`}
-                >
-                  <div className="relative z-10">
-                    <div className="text-3xl font-display italic uppercase mb-2">{mc2?.name}</div>
-                    <motion.div 
-                      key={votes.mc2}
-                      initial={{ scale: 1.2, color: '#FF6321' }}
-                      animate={{ scale: 1, color: hasVoted ? '#FF6321' : '#FFFFFF' }}
-                      className="text-5xl font-bold mb-1"
-                    >
-                      {hasVoted ? `${mc2Percent}%` : votes.mc2}
-                    </motion.div>
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest">Votes</div>
-                  </div>
-                  {hasVoted && (
-                    <motion.div 
-                      initial={{ height: 0 }}
-                      animate={{ height: `${mc2Percent}%` }}
-                      className="absolute bottom-0 left-0 right-0 bg-brand/10 -z-0"
-                    />
-                  )}
-                </button>
-              </div>
-
-              {hasVoted && (
-                <div className="mt-12 space-y-4">
-                  <div className="flex justify-between text-xs uppercase tracking-widest font-bold">
-                    <span className="text-brand">{mc1?.name} {mc1Percent}%</span>
-                    <span className="text-brand">{mc2?.name} {mc2Percent}%</span>
-                  </div>
-                  <div className="h-4 bg-zinc-800 rounded-full overflow-hidden flex">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: `${mc1Percent}%` }}
-                      className="h-full bg-brand"
-                    />
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: `${mc2Percent}%` }}
-                      className="h-full bg-zinc-700"
-                    />
-                  </div>
-                </div>
-              )}
-
-              {hasVoted && (
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center text-zinc-500 text-xs mt-6 uppercase tracking-widest"
-                >
-                  Thanks for voting!
-                </motion.p>
-              )}
-            </section>
-
-            {/* Comment Section */}
-            <section className="space-y-8">
-              <div className="flex items-center gap-4">
-                <MessageSquare className="text-brand" />
-                <h2 className="text-2xl font-display italic uppercase text-white">Comments</h2>
-                <span className="text-zinc-500 font-mono text-sm">({comments.length})</span>
-              </div>
-
-              <form onSubmit={handleCommentSubmit} className="space-y-4">
-                <textarea 
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  placeholder="Leave your thoughts on this battle..."
-                  className="w-full bg-zinc-900 border border-white/10 rounded-2xl p-6 text-zinc-100 focus:outline-none focus:border-brand transition-colors min-h-[120px] resize-none"
-                />
-                <div className="flex justify-end">
-                  <button 
-                    type="submit"
-                    className="bg-brand text-black px-8 py-3 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform"
-                  >
-                    Post Comment
-                  </button>
-                </div>
-              </form>
-
-              <div className="space-y-6">
-                {comments.map((c) => (
-                  <motion.div 
-                    key={c.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="bg-zinc-900/30 p-6 rounded-2xl border border-white/5"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-brand uppercase">
-                          {c.user[0]}
-                        </div>
-                        <span className="font-bold text-zinc-100">{c.user}</span>
-                      </div>
-                      <span className="text-xs text-zinc-600 uppercase tracking-widest">{c.date}</span>
+                {/* MC1 Result */}
+                <div className={`relative overflow-hidden rounded-2xl border p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                  {battle.winner === mc1?.id && (
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                      <Trophy size={14} /> Official Winner
                     </div>
-                    <p className="text-zinc-400 leading-relaxed">
-                      {c.text}
-                    </p>
-                  </motion.div>
-                ))}
+                  )}
+                  <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
+                    <div className="text-3xl font-display italic uppercase">{mc1?.name}</div>
+                  </div>
+                </div>
+
+                {/* MC2 Result */}
+                <div className={`relative overflow-hidden rounded-2xl border p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                  {battle.winner === mc2?.id && (
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                      <Trophy size={14} /> Official Winner
+                    </div>
+                  )}
+                  <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
+                    <div className="text-3xl font-display italic uppercase">{mc2?.name}</div>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -271,7 +133,7 @@ export default function BattleDetail() {
             <div className="bg-brand/10 p-8 rounded-3xl border border-brand/20">
               <h3 className="text-xl font-display italic uppercase mb-4 text-brand">Support the Zone</h3>
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                Your votes and comments help us rank the MCs and keep the culture growing.
+                Watch the battles on YouTube and leave your comments there to support the culture.
               </p>
               <Link to="/merch" className="block text-center bg-brand text-black py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform">
                 Visit Merch Store
