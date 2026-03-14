@@ -1,0 +1,223 @@
+export interface MC {
+  id: string;
+  name: string;
+  nickname?: string;
+  battles: number;
+  wins: number;
+  style: string;
+  image: string;
+  bio: string;
+  isActive?: boolean;
+  weightClass?: string;
+  height?: string;
+  location?: string;
+  instagram?: string;
+  tiktok?: string;
+  youtube?: string;
+  quote?: string;
+}
+
+export const mcs: MC[] = [
+  {
+    id: "deeno",
+    name: "Deeno",
+    nickname: "The Viking",
+    battles: 1,
+    wins: 0,
+    style: "Disrespect / Versatility",
+    image: "/deeno.png",
+    bio: "The Viking of the GZone. Deeno brings raw power and commanding presence to every clash. Known for heavy disrespect, layered multi-syllabic writing and smooth flow switches, he combines versatility with aggression. Crowned with the unmistakable ginger beard, he steps into battles like a raider ready for war.",
+    isActive: true,
+    weightClass: "Light heavyweight",
+    height: "5'11\" (and a smidge)",
+    location: "Reading",
+    instagram: "https://instagram.com",
+    tiktok: "https://tiktok.com"
+  },
+  {
+    id: "tapped24",
+    name: "Tapped24",
+    battles: 2,
+    wins: 0,
+    style: "Technical / Flow",
+    image: "/tapped24.png",
+    bio: "Tapped24 mixes disrespect, comedy and strong performance energy. His entertaining style and confident delivery make him a crowd-focused battler who thrives on reaction.",
+    isActive: true,
+    weightClass: "Heavyweight Rapper",
+    height: "5'11\"",
+    location: "Southwest London (now Southampton)",
+    instagram: "https://instagram.com/tapped24_",
+    tiktok: "https://tiktok.com/@tapped24_",
+    youtube: "https://youtube.com/@tapped24"
+  },
+  {
+    id: "pr1nc3",
+    name: "PR1NC3",
+    battles: 1,
+    wins: 0,
+    style: "Disrespect / Wordplay",
+    image: "/princ3.png",
+    bio: "The Prince of Punchlines. PR1NC3 delivers quick-witted bars packed with disrespect and clever wordplay. His high energy and sharp flows keep opponents under pressure, firing off punchlines with speed and precision.",
+    isActive: true,
+    weightClass: "Middleweight",
+    height: "5'10\"",
+    location: "London",
+    instagram: "https://instagram.com/itzyaboy_pr1nc3",
+    tiktok: "https://tiktok.com/@itzyaboy_pr1nc3",
+    youtube: "https://youtube.com/@itzyaboy_pr1nc3"
+  },
+  {
+    id: "nattyebk",
+    name: "NattyEBK",
+    battles: 0,
+    wins: 0,
+    style: "Disrespect / Intensity",
+    image: "https://picsum.photos/seed/nattyebk/800/1000",
+    bio: "A true multi-weight battler bringing relentless intensity and sharp delivery to every clash. NattyEBK thrives on disrespect, pressure, and commanding stage presence, delivering aggressive rounds designed to overwhelm opponents.",
+    isActive: true,
+    weightClass: "Multi-Weight Specialist",
+    height: "6'0\"",
+    location: "Croydon, London",
+    instagram: "https://instagram.com/NattyOrNatz",
+    tiktok: "https://tiktok.com/@NattyOrNatz",
+    youtube: "https://youtube.com/@NattyEBK"
+  },
+  {
+    id: "tymeless",
+    name: "Tymeless",
+    battles: 1,
+    wins: 0,
+    style: "Dark bars / Aggressive",
+    image: "/tymeless.png",
+    bio: "Tymeless blends dark bars with aggressive flows and sharp humour. His style combines gritty delivery with punchlines that land hard while still keeping the crowd entertained.",
+    isActive: true,
+    weightClass: "Light heavyweight",
+    height: "6'0\"",
+    location: "Luton"
+  },
+  {
+    id: "roman",
+    name: "Roman",
+    battles: 2,
+    wins: 0,
+    style: "Flows / Stage Presence",
+    image: "/roman.png",
+    bio: "Roman brings heavyweight presence and authority to the stage. Known for strong flows, powerful delivery and direct punchlines, he controls the clash with energy and commanding stage presence.",
+    isActive: true,
+    weightClass: "Heavyweight",
+    height: "6'1\"",
+    location: "Essex"
+  },
+  {
+    id: "ldn-mikez",
+    name: "LDN Mikez",
+    battles: 2,
+    wins: 0,
+    style: "Street / Realism",
+    image: "/ldmmikez.png",
+    bio: "Bringing the London streets to the battle stage.",
+    isActive: false
+  },
+  {
+    id: "deluxx",
+    name: "Deluxx",
+    battles: 2,
+    wins: 0,
+    style: "Performance / Energy",
+    image: "/deluxx.png",
+    bio: "High energy performance that captures the crowd.",
+    isActive: true
+  },
+  {
+    id: "2mwad",
+    name: "2MWAD",
+    battles: 2,
+    wins: 0,
+    style: "Comedy / Fast Flows",
+    image: "/2mwad.png",
+    bio: "Unpredictable and entertaining, 2Mwad blends comedy with rapid-fire flows. His style keeps opponents guessing while his quick delivery and humour make every clash memorable.",
+    isActive: true,
+    weightClass: "76kg",
+    height: "5'9\"",
+    location: "Luton"
+  },
+  {
+    id: "renzo",
+    name: "Renzo",
+    battles: 1,
+    wins: 0,
+    style: "Aggressive / Direct",
+    image: "/renzo.png",
+    bio: "Direct and aggressive, Renzo doesn't pull any punches.",
+    isActive: false
+  },
+  {
+    id: "proty",
+    name: "Proty",
+    battles: 3,
+    wins: 0,
+    style: "Technical / Rapid",
+    image: "/proty.png",
+    bio: "The most active MC in the league. Rapid-fire delivery and technical precision.",
+    isActive: true
+  },
+  {
+    id: "cj-zino",
+    name: "CJ Zino",
+    battles: 1,
+    wins: 0,
+    style: "Punchlines / Flow",
+    image: "cjzino.png",
+    bio: "Combining heavy punchlines with a smooth flow.",
+    isActive: true
+  },
+  {
+    id: "ryno",
+    name: "Ryno",
+    battles: 2,
+    wins: 0,
+    style: "Power / Presence",
+    image: "/ryno.png",
+    bio: "A powerhouse on the mic with an undeniable stage presence.",
+    isActive: true
+  },
+  {
+    id: "btizz",
+    name: "Btizz",
+    battles: 1,
+    wins: 0,
+    style: "Flows / Jokes",
+    image: "/btizz.png",
+    bio: "Btizz mixes smooth flows with sharp humour. Known for jokes, creative setups and entertaining rounds, he balances comedy with clever bars to keep crowds locked in.",
+    isActive: true,
+    weightClass: "Featherweight",
+    height: "5'9\"",
+    location: "Wolverhampton"
+  },
+  {
+    id: "ricko",
+    name: "Ricko",
+    battles: 0,
+    wins: 0,
+    style: "Grime / Battle MC",
+    image: "https://picsum.photos/seed/ricko/800/1000",
+    bio: "A hybrid of grime and battle rap energy. Ricko brings raw MC pedigree into the pit, mixing grime delivery with battle-tested punchlines and heavy presence.",
+    isActive: true,
+    weightClass: "Heavyweight in Clashes",
+    height: "5'11\"",
+    location: "Blackpool"
+  },
+  {
+    id: "badee-harz",
+    name: "Badee Harz",
+    battles: 0,
+    wins: 0,
+    style: "Lyrical / Punchlines",
+    image: "/badee-harz.png",
+    bio: "A rising star in the scene with sharp lyrics and hard-hitting punchlines.",
+    isActive: true,
+    weightClass: "Featherweight",
+    height: "5'6\"",
+    location: "London"
+  }
+];
