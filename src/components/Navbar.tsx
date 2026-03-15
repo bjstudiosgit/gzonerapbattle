@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Ticket, ShoppingBag, Users, Trophy, Menu, X, Youtube, Instagram, Play, Mic2 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
@@ -18,15 +18,14 @@ export default function Navbar() {
 
   const isHome = location.pathname === "/";
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
     setIsOpen(false);
     if (isHome && href.startsWith("/#")) {
+      e.preventDefault();
       const id = href.substring(2);
       const element = document.getElementById(id);
       if (element) {
-        // Calculate position accounting for the 80px (h-20) fixed navbar
-        const y = element.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
@@ -51,7 +50,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.href}
-                  onClick={() => handleLinkClick(link.href)}
+                  onClick={(e) => handleLinkClick(e, link.href)}
                   className="text-zinc-400 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
                 >
                   <link.icon size={16} />
@@ -115,7 +114,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.href}
-                onClick={() => handleLinkClick(link.href)}
+                onClick={(e) => handleLinkClick(e, link.href)}
                 className="text-zinc-300 hover:text-orange-500 block px-3 py-4 rounded-md text-base font-medium flex items-center gap-3"
               >
                 <link.icon size={20} />

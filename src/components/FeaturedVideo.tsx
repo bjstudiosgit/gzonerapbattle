@@ -17,10 +17,13 @@ export default function FeaturedVideo() {
           transition={{ duration: 0.8 }}
           className="text-center mb-10 w-full"
         >
-          <h2 className="text-3xl md:text-4xl font-display italic uppercase mb-4 tracking-tighter">
+          <p className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
+            The Arena
+          </p>
+          <h2 className="text-5xl md:text-6xl font-display italic uppercase mb-4 tracking-tighter">
             The <span className="text-brand">G Zone</span> Experience
           </h2>
-          <p className="text-zinc-400 text-sm uppercase tracking-widest whitespace-nowrap">
+          <p className="text-zinc-400 text-sm uppercase tracking-widest max-w-2xl mx-auto">
             Witness the raw energy of the UK's most authentic battle league
           </p>
         </motion.div>

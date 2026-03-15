@@ -148,6 +148,6 @@ export const battles: Battle[] = [
     title: "Deeno vs Grams", 
     date: "14 Mar 2026", 
     views: "0",
-    isUnreleased: true
+    winner: "deeno"
   }
 ];

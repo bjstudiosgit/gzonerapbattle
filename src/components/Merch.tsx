@@ -38,11 +38,11 @@ const products = [
 
 export default function Merch() {
   return (
-    <section id="merch" className="py-24">
+    <section id="merch" className="py-24 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">Official Gear</h2>
-          <h3 className="text-5xl font-display italic uppercase leading-tight">
+          <h3 className="text-5xl md:text-6xl font-display italic uppercase leading-tight">
             Support <br />
             <span className="text-brand">Ginga Entertainment</span>
           </h3>

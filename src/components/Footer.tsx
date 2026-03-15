@@ -46,9 +46,6 @@ export default function Footer() {
             <h5 className="font-bold uppercase tracking-widest text-xs mb-6 text-zinc-300">Support</h5>
             <ul className="space-y-4 text-sm text-zinc-500">
               <li><a href="#" className="hover:text-brand transition-colors">Contact Us</a></li>
-              <li><a href="#" className="hover:text-brand transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-brand transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-brand transition-colors">FAQ</a></li>
             </ul>
           </div>
         </div>

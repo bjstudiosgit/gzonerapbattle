@@ -38,7 +38,7 @@ export default function MCProfile() {
               <img 
                 src={mc.image} 
                 alt={mc.name} 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -46,6 +46,15 @@ export default function MCProfile() {
                   target.src = `https://picsum.photos/seed/${mc.id}/400/500`;
                 }}
               />
+              
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center z-20">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand/40 via-transparent to-brand/40 mix-blend-overlay" />
+                <div className="relative px-8 py-4 border-2 border-brand bg-black/60 backdrop-blur-md rounded-2xl transform scale-90 group-hover:scale-100 transition-all duration-500 shadow-[0_0_30px_rgba(242,125,38,0.3)]">
+                  <span className="text-brand font-display italic uppercase text-3xl tracking-[0.2em] drop-shadow-md">Combatant</span>
+                </div>
+              </div>
+
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
             </div>
             

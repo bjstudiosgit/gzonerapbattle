@@ -28,15 +28,21 @@ export default function HostsAndJudges() {
     { id: "ringgirls", label: "Ring Girls", icon: <Heart size={16} /> },
   ];
 
+  const typeToPath: Record<string, string> = {
+    hosts: 'host',
+    judges: 'judge',
+    ringgirls: 'ringgirl'
+  };
+
   return (
-    <section id="staff" className="py-24 bg-zinc-950 relative overflow-hidden">
+    <section id="staff" className="py-24 bg-zinc-950 relative overflow-hidden scroll-mt-24">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 skew-x-12 transform translate-x-1/2 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">The Team Behind The Battle</h2>
-          <h3 className="text-4xl md:text-6xl font-display italic uppercase mb-8">Official <span className="text-brand">G Zone Crew</span></h3>
+          <h3 className="text-5xl md:text-6xl font-display italic uppercase mb-8">Official <span className="text-brand">G Zone Crew</span></h3>
           
           {/* Category Tabs */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
@@ -72,7 +78,7 @@ export default function HostsAndJudges() {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 bg-zinc-900"
               >
-                <Link to={`/${person.type.replace('s', '')}/${person.id}`} className="block w-full h-full">
+                <Link to={`/${typeToPath[person.type]}/${person.id}`} className="block w-full h-full">
                   <img 
                     src={person.image} 
                     alt={person.name} 
@@ -84,7 +90,7 @@ export default function HostsAndJudges() {
                   {/* Role Badge */}
                   <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-2">
                     <span className="text-brand">{person.icon}</span>
-                    <span className="text-[10px] font-bold text-white uppercase tracking-widest">{person.type.replace('s', '')}</span>
+                    <span className="text-[10px] font-bold text-white uppercase tracking-widest">{person.type.replace(/s$/, '')}</span>
                   </div>
 
                   <div className="absolute bottom-6 left-6 right-6">

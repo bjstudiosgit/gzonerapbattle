@@ -58,7 +58,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
   }
 
   return (
-    <section id="league" className="py-24">
+    <section id="league" className="py-24 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {showTitle && (
           <div className="text-center mb-16">
@@ -74,11 +74,10 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                 <tr className="border-b border-white/5 bg-zinc-900/80">
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Rank</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">MC Name</th>
-                  <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Battles</th>
+                  <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Appearances</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Wins</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Losses</th>
                   <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Points</th>
-                  <th className="px-8 py-6 text-xs font-bold uppercase tracking-widest text-zinc-500">Trend</th>
                 </tr>
               </thead>
               <tbody>
@@ -118,22 +117,23 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                     <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.wins}</td>
                     <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>{mc.losses}</td>
                     <td className={`px-8 py-6 font-bold ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-100'}`}>{mc.points.toLocaleString()}</td>
-                    <td className="px-8 py-6">
-                      {mc.change === "up" && !mc.isDsq && <TrendingUp className="text-emerald-500" size={20} />}
-                      {(mc.change === "none" || mc.isDsq) && <Minus className="text-zinc-600" size={20} />}
-                    </td>
                   </motion.tr>
                 ))}
               </tbody>
             </table>
           </div>
           {limit && limit < mcs.length && (
-            <div className="p-8 bg-zinc-900/30 text-center">
+            <div className="p-8 bg-zinc-900/30 text-center border-t border-white/5">
               <Link to="/league" className="text-brand font-bold uppercase tracking-widest text-sm hover:underline">
                 View Full League Table
               </Link>
             </div>
           )}
+          <div className="px-8 py-4 bg-zinc-950/50 border-t border-white/5">
+            <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold text-center">
+              Scoring: 3 Points per Win • 1 Point per Appearance • 0 Points per Loss
+            </p>
+          </div>
         </div>
       </div>
     </section>

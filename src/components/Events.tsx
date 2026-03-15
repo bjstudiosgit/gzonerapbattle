@@ -3,42 +3,34 @@ import { Calendar, MapPin, Ticket } from "lucide-react";
 
 const events = [
   {
-    id: 1,
-    title: "Season 1",
-    date: "Saturday, March 14, 2026",
-    location: "G ZONE HQ",
-    price: "£13.69",
-    image: "/gzonebattle.png"
-  },
-  {
     id: 2,
     title: "G ZONE: APRIL SHOWDOWN",
-    date: "April 2026 - Date tbc",
+    date: "April 2026 - Date TBC",
     location: "G ZONE HQ",
     price: "TBC",
-    image: "https://picsum.photos/seed/april/800/600"
+    image: "/gzonebattle.png"
   },
   {
     id: 3,
     title: "G ZONE: MAY MADNESS",
-    date: "May 2026 - Date tbc",
+    date: "May 2026 - Date TBC",
     location: "G ZONE HQ",
     price: "TBC",
-    image: "https://picsum.photos/seed/may/800/600"
+    image: "/gzonebattle.png"
   },
   {
     id: 4,
     title: "G ZONE: JUNE JUBILEE",
-    date: "June 2026 - Date tbc",
+    date: "June 2026 - Date TBC",
     location: "G ZONE HQ",
     price: "TBC",
-    image: "https://picsum.photos/seed/june/800/600"
+    image: "/gzonebattle.png"
   }
 ];
 
 export default function Events() {
   return (
-    <section id="events" className="relative py-24 overflow-hidden">
+    <section id="events" className="relative py-24 overflow-hidden scroll-mt-24">
       {/* Background with Gorilla Flow */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -59,11 +51,11 @@ export default function Events() {
             viewport={{ once: true }}
           >
             <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">Upcoming Battles</h2>
-            <h3 className="text-5xl font-display italic uppercase">Secure Your <span className="text-brand">Tickets</span></h3>
+            <h3 className="text-5xl md:text-6xl font-display italic uppercase">Upcoming <span className="text-brand">Events</span></h3>
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {events.map((event, index) => (
             <motion.div
               key={event.id}
@@ -81,13 +73,13 @@ export default function Events() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
-                <div className="absolute top-4 right-4 bg-brand text-black px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-brand/20">
+                <div className="absolute top-4 right-4 bg-zinc-900 text-brand px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest border border-brand/20">
                   {event.price}
                 </div>
               </div>
               
               <div className="p-6">
-                <h4 className={`text-xl font-display italic uppercase mb-4 group-hover:text-brand transition-colors ${event.title === "Season 1" ? "text-orange-500" : ""}`}>{event.title}</h4>
+                <h4 className="text-xl font-display italic uppercase mb-4 group-hover:text-brand transition-colors">{event.title}</h4>
                 
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-2 text-zinc-500 text-sm">
@@ -100,14 +92,9 @@ export default function Events() {
                   </div>
                 </div>
                 
-                <a 
-                  href="https://www.eventbrite.com/e/the-gzone-rap-battle-league-tickets-1983773740660#location"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-zinc-900 hover:bg-brand hover:text-black py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all inline-flex"
-                >
-                  <Ticket size={18} /> Buy Tickets
-                </a>
+                <div className="w-full bg-zinc-900/50 text-zinc-500 py-3 rounded-xl font-bold flex items-center justify-center gap-2 border border-white/5">
+                  Coming Soon
+                </div>
               </div>
             </motion.div>
           ))}
@@ -116,3 +103,4 @@ export default function Events() {
     </section>
   );
 }
+

@@ -8,7 +8,7 @@ export default function RecentBattles() {
   const recentBattles = [...battles].reverse().slice(0, 4);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="battles" className="relative py-24 overflow-hidden scroll-mt-24">
       {/* Background Flow */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-zinc-950 z-10" />
