@@ -43,7 +43,7 @@ export default function Hero() {
               <span className="animate-on-air">Latest Battle Out Now</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-display italic leading-[0.9] uppercase mb-6">
+            <h1 className="text-4xl md:text-6xl font-display italic leading-[0.9] uppercase mb-6 animate-on-air">
               Ginga <br />
               Entertainment <br />
               <span className="text-brand block text-2xl md:text-4xl mt-2">present the G Zone</span>

@@ -39,6 +39,7 @@ export const mcs: MC[] = [
   {
     id: "tapped24",
     name: "Tapped24",
+    nickname: "The Crowd Pleaser",
     battles: 3,
     wins: 0,
     losses: 3,
@@ -56,12 +57,13 @@ export const mcs: MC[] = [
   {
     id: "pr1nc3",
     name: "PR1NC3",
+    nickname: "Prince of Punchlines",
     battles: 2,
     wins: 0,
     losses: 2,
     style: "Disrespect / Wordplay",
     image: "/princ3.png",
-    bio: "The Prince of Punchlines. PR1NC3 delivers quick-witted bars packed with disrespect and clever wordplay. His high energy and sharp flows keep opponents under pressure, firing off punchlines with speed and precision.",
+    bio: "PR1NC3 brings pure disrespect, intricate wordplay, high energy, and effortless flows to every clash. He keeps opponents under constant pressure, firing off lethal punchlines with speed and precision.",
     isActive: true,
     weightClass: "Middleweight",
     height: "5'10\"",
@@ -256,8 +258,8 @@ export const mcs: MC[] = [
     wins: 0,
     losses: 1,
     style: "Technical / Wordplay",
-    image: "/awaiting-photo.png",
-    bio: "Grams is a technical powerhouse known for intricate wordplay and sharp delivery. A new addition to the G Zone, he's ready to make his mark on the league.",
+    image: "/grams.png",
+    bio: "A cold-blooded lyricist known for intricate wordplay and surgical delivery. After rising through the PenGame scene and overcoming controversy, Grams doesn't wait for permission—he takes the arena. Now in the G Zone, the rules are simple: no politics, no protection… just war.",
     isActive: true,
     location: "London"
   }

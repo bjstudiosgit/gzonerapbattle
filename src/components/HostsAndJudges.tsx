@@ -19,6 +19,7 @@ export default function HostsAndJudges() {
   const hostsAndRingGirls = [
     staffHosts[0], // Ginga Jay
     staffHosts[1], // Darren Stewart
+    staffHosts[2], // Passive
     staffRingGirls[0], // Jessica
   ];
 

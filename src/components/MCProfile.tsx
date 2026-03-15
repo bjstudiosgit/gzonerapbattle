@@ -21,8 +21,8 @@ export default function MCProfile() {
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to="/battles" className="inline-flex items-center gap-2 text-zinc-500 hover:text-brand transition-colors mb-12 uppercase tracking-widest text-xs font-bold">
-          <ArrowLeft size={16} /> Back to Battles
+        <Link to="/mcs" className="inline-flex items-center gap-2 text-zinc-500 hover:text-brand transition-colors mb-12 uppercase tracking-widest text-xs font-bold">
+          <ArrowLeft size={16} /> Back to MCs
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -122,11 +122,11 @@ export default function MCProfile() {
                 )}
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Trophy size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.wins} Wins</span>
+                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.wins}-{mc.losses} Record</span>
                 </div>
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Mic2 size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.battles} Battles</span>
+                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.battles === 1 ? "1 Battle" : `${mc.battles} Battles`}</span>
                 </div>
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Zap size={16} className="text-brand" />

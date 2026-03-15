@@ -38,5 +38,15 @@ export const hosts: Host[] = [
       "Striker / Taekwondo Black Belt"
     ],
     leagueRoleDescription: "Now stepping into the battle rap arena, Darren delivers the same intensity and competitive insight that defined his fighting career. His background at the highest level of combat sports gives him a unique perspective on the psychology of head-to-head competition—making him a natural presence on the G Zone stage."
+  },
+  {
+    id: "passive",
+    name: "Passive",
+    role: "Co-Host",
+    image: "/passive.png",
+    bio: "A true veteran of the battle rap scene, Passive brings years of experience and a sharp ear for lyricism to the stage. Having competed at the highest levels, he knows exactly what it takes to win over a crowd and dismantle an opponent. His insights are known for being direct, insightful, and uncompromising.",
+    fields: ["Veteran MC", "Lyricist"],
+    leagueRoleDescription: "As a co-host in the G Zone, Passive is responsible for bringing his battle rap expertise to the stage, providing insightful commentary and keeping the energy high.",
+    nickname: "The Veteran"
   }
 ];

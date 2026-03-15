@@ -28,7 +28,7 @@ export const battles: Battle[] = [
     title: "PR1NC3 vs Roman",
     date: "1 Jan 2026",
     videoUrl: "https://www.youtube.com/embed/QByqdZAF3L0",
-    views: "27.1K",
+    views: "21K",
     winner: "roman"
   },
   { 
@@ -68,7 +68,7 @@ export const battles: Battle[] = [
     title: "Renzo vs Proty",
     date: "19 Feb 2026",
     videoUrl: "https://www.youtube.com/embed/bZRy8jgPvwk",
-    views: "18.4K",
+    views: "8.9K",
     winner: "renzo"
   },
   { 
@@ -88,7 +88,7 @@ export const battles: Battle[] = [
     title: "2MWAD vs Ryno", 
     date: "19 Feb 2026",
     videoUrl: "https://www.youtube.com/embed/HfO3UR_Zeyk", 
-    views: "18.4K",
+    views: "19K",
     winner: "ryno"
   },
   { 
@@ -98,7 +98,7 @@ export const battles: Battle[] = [
     title: "Tapped24 vs Roman", 
     date: "4 Mar 2026", 
     videoUrl: "https://www.youtube.com/embed/OGagI2K6StY", 
-    views: "9,962",
+    views: "11K",
     winner: "roman"
   },
   { 
