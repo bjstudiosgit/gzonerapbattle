@@ -25,6 +25,7 @@ import BattlesPage from "./pages/BattlesPage";
 import EventsPage from "./pages/EventsPage";
 import MerchPage from "./pages/MerchPage";
 import ApplyPage from "./pages/ApplyPage";
+import MCsPage from "./pages/MCsPage";
 
 import FeaturedVideo from "./components/FeaturedVideo";
 
@@ -57,6 +58,7 @@ function Main() {
         <Route path="/ringgirl/:id" element={<RingGirlProfile />} />
         <Route path="/judge/:id" element={<JudgeProfile />} />
         <Route path="/league" element={<League />} />
+        <Route path="/mcs" element={<MCsPage />} />
         <Route path="/battles" element={<BattlesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/merch" element={<MerchPage />} />

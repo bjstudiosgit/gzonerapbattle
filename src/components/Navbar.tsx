@@ -10,7 +10,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Battles", href: "/battles", icon: Play },
     { name: "Tickets", href: "/events", icon: Ticket },
-    { name: "MCs", href: "/#mcs", icon: Users },
+    { name: "MCs", href: "/mcs", icon: Users },
     { name: "Staff", href: "/#staff", icon: Mic2 },
     { name: "League", href: "/league", icon: Trophy },
     { name: "Merch", href: "/merch", icon: ShoppingBag },

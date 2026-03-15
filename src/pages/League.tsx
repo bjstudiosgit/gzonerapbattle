@@ -7,7 +7,6 @@ import { Trophy, Medal } from "lucide-react";
 
 export default function League() {
   const top3 = mcs
-    .filter(mc => mc.id !== 'ldn-mikez')
     .sort((a, b) => {
       const aPoints = (a.wins * 3) + a.battles;
       const bPoints = (b.wins * 3) + b.battles;

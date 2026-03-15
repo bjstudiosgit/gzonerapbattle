@@ -11,8 +11,9 @@ export default function MCBios() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between mb-16">
           <div className="max-w-xl">
-            <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">The Combatants</h2>
+            <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">The Roster</h2>
             <h3 className="text-5xl md:text-6xl font-display italic uppercase mb-6">The <span className="text-brand">GZone</span> MC's</h3>
+            <p className="text-zinc-400 mt-4">Discover the battle rappers and MCs making waves in the UK battle rap scene.</p>
           </div>
         </div>
 
@@ -31,7 +32,7 @@ export default function MCBios() {
                   <img 
                     src={mc.image} 
                     alt={mc.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -50,14 +51,21 @@ export default function MCBios() {
                   <h4 className="text-lg font-display italic uppercase leading-none truncate group-hover:text-brand transition-colors">{mc.name}</h4>
                   <div className="flex items-center justify-between text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
                     <span className="flex items-center gap-1 text-brand"><Trophy size={10} /> {mc.wins}W</span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                      Profile <ChevronRight size={10} />
-                    </span>
                   </div>
                 </div>
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link 
+            to="/mcs" 
+            className="inline-flex items-center gap-2 px-8 py-4 bg-zinc-900 border border-white/10 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-brand hover:text-black hover:border-brand transition-all group"
+          >
+            View All MCs
+            <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>

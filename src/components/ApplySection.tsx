@@ -20,9 +20,9 @@ export default function ApplySection() {
           </h2>
 
           <p className="text-zinc-400 text-lg md:text-xl mb-16 leading-relaxed whitespace-pre-line">
-            The G Zone isn’t for the faint-hearted.{"\n"}
+            The G Zone is the premier UK battle rap league.{"\n"}
             No scripts. No safety nets.{"\n"}
-            Just raw bars, real crowd energy, and three rounds to prove yourself.
+            Just raw bars, real crowd energy, and three rounds to prove yourself in our underground rap battles.
           </p>
         </motion.div>
 

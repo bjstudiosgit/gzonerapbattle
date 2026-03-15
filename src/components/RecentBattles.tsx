@@ -20,9 +20,10 @@ export default function RecentBattles() {
           <div>
             <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">The Arena</h2>
             <h3 className="text-5xl font-display italic uppercase">Recent <span className="text-brand">Battles</span></h3>
+            <p className="text-zinc-400 mt-4">Watch the latest underground rap battles and MC clashes.</p>
           </div>
-          <Link to="/league" className="text-zinc-400 hover:text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 transition-colors">
-            View All Rankings <TrendingUp size={18} />
+          <Link to="/battles" className="text-zinc-400 hover:text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 transition-colors">
+            View All Battles <TrendingUp size={18} />
           </Link>
         </div>
 

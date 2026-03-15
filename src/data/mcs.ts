@@ -135,7 +135,7 @@ export const mcs: MC[] = [
     style: "Performance / Energy",
     image: "/deluxx.png",
     bio: "High energy performance that captures the crowd.",
-    isActive: true
+    isActive: false
   },
   {
     id: "2mwad",

@@ -48,14 +48,25 @@ export default function MCProfile() {
               />
               
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center z-20">
-                <div className="absolute inset-0 bg-gradient-to-t from-brand/40 via-transparent to-brand/40 mix-blend-overlay" />
-                <div className="relative px-8 py-4 border-2 border-brand bg-black/60 backdrop-blur-md rounded-2xl transform scale-90 group-hover:scale-100 transition-all duration-500 shadow-[0_0_30px_rgba(242,125,38,0.3)]">
-                  <span className="text-brand font-display italic uppercase text-3xl tracking-[0.2em] drop-shadow-md">Combatant</span>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20" />
 
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
+
+              {/* Jail Bars for Inactive MCs */}
+              {!mc.isActive && (
+                <>
+                  <div className="absolute inset-0 z-20 pointer-events-none">
+                    <div className="w-full h-full opacity-60" style={{
+                      backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 18%, #52525b 18%, #52525b 20%)',
+                    }} />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center z-30">
+                    <div className="bg-black/80 text-white px-8 py-4 border-2 border-white/10 rounded-2xl backdrop-blur-md">
+                      <span className="text-brand font-display italic uppercase text-4xl tracking-[0.2em]">LOCKED UP</span>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
             
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand rounded-full flex items-center justify-center font-display text-5xl text-black -rotate-12 z-20 shadow-xl">
@@ -165,7 +176,9 @@ export default function MCProfile() {
             </div>
 
             <div className="prose prose-invert max-w-none mb-12">
-              <h2 className="text-2xl font-display italic uppercase mb-4 text-white border-l-4 border-brand pl-4">Biography</h2>
+              <h2 className="text-2xl font-display italic uppercase mb-4 text-white border-l-4 border-brand pl-4">
+                {mc.isActive ? "Biography" : "Status: Locked Up"}
+              </h2>
               <p className="text-zinc-400 text-lg leading-relaxed">
                 {mc.bio}
               </p>

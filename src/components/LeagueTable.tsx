@@ -10,10 +10,7 @@ interface LeagueTableProps {
 }
 
 export default function LeagueTable({ limit, showTitle = true }: LeagueTableProps) {
-  const activeMcs = mcs.filter(mc => mc.id !== 'ldn-mikez');
-  const dsqMcs = mcs.filter(mc => mc.id === 'ldn-mikez');
-
-  const activeRankings = activeMcs
+  let rankings = mcs
     .sort((a, b) => {
       const aPoints = (a.wins * 3) + a.battles;
       const bPoints = (b.wins * 3) + b.battles;
@@ -35,23 +32,8 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
       losses: mc.losses,
       unreleased: battles.filter(b => b.isUnreleased && (b.mc1 === mc.id || b.mc2 === mc.id)).length,
       change: "none",
-      isDsq: false
+      isDsq: !mc.isActive
     }));
-
-  const dsqRankings = dsqMcs.map(mc => ({
-    rank: "DSQ",
-    id: mc.id,
-    name: mc.name,
-    points: (mc.wins * 3) + mc.battles,
-    battles: mc.battles,
-    wins: mc.wins,
-    losses: mc.losses,
-    unreleased: battles.filter(b => b.isUnreleased && (b.mc1 === mc.id || b.mc2 === mc.id)).length,
-    change: "none",
-    isDsq: true
-  }));
-
-  let rankings = [...activeRankings, ...dsqRankings];
 
   if (limit) {
     rankings = rankings.slice(0, limit);
@@ -100,7 +82,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                         <div className={`w-10 h-10 rounded-full bg-zinc-800 border ${mc.isDsq ? 'border-zinc-700 text-zinc-600' : 'border-white/10 text-brand group-hover/name:border-brand'} flex items-center justify-center font-bold transition-colors`}>
                           {mc.name[0]}
                         </div>
-                        <span className={`font-bold text-lg uppercase italic transition-colors ${mc.isDsq ? 'text-zinc-500 line-through' : 'group-hover/name:text-brand'}`}>{mc.name}</span>
+                        <span className={`font-bold text-lg uppercase italic transition-colors ${mc.isDsq ? 'text-zinc-500 line-through' : 'group-hover/name:text-brand'}`}>{mc.name} {mc.isDsq && <span className="text-[10px] not-italic text-zinc-600 ml-2 border border-zinc-800 px-1.5 py-0.5 rounded tracking-widest">LOCKED</span>}</span>
                       </Link>
                     </td>
                     <td className={`px-8 py-6 font-mono ${mc.isDsq ? 'text-zinc-600' : 'text-zinc-400'}`}>
