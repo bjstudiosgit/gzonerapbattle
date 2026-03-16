@@ -1,69 +1,81 @@
-import React, { useState, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, FormEvent } from "react";
 import { 
-  Upload, 
   Link as LinkIcon, 
   Instagram, 
   Youtube, 
   Music, 
-  CheckCircle2, 
   AlertCircle,
-  X,
   ChevronLeft,
-  Send
+  CheckCircle2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function ApplyPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [videoFile, setVideoFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const [role, setRole] = useState<"mc" | "ring-girl">("mc");
   const [formData, setFormData] = useState({
     mcName: "",
+    fullName: "",
     email: "",
-    location: "",
-    links: {
-      soundcloud: "",
-      instagram: "",
-      youtube: "",
-      other: ""
-    }
+    phone: "",
+    city: "",
+    battleExperience: "",
+    performanceStyle: "",
+    auditionLink: "",
+    instagram: "",
+    youtube: "",
+    otherLink: "",
+    message: "",
+    height: "",
+    age: "",
+    availability: ""
   });
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setVideoFile(e.target.files[0]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.target as HTMLFormElement;
+    const formDataObj = new FormData(form);
+    const data = Object.fromEntries(formDataObj.entries());
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/4a857a6e0e1936a70f12a8d6ffe2dc0a", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success === "true") {
+        setIsSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsUploading(true);
-    
-    // Simulate upload delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsUploading(false);
-    setIsSubmitted(true);
-  };
-
-  if (isSubmitted) {
+  if (isSuccess) {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full text-center p-12 bg-zinc-900 rounded-3xl border border-brand/20 shadow-2xl shadow-brand/5"
-        >
+        <div className="max-w-md w-full text-center p-12 bg-zinc-900 rounded-3xl border border-brand/20 shadow-2xl shadow-brand/5">
           <div className="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="text-brand" size={40} />
           </div>
-          <h1 className="text-3xl font-display italic uppercase text-white mb-4">Application Sent</h1>
+          <h1 className="text-3xl font-display italic uppercase text-white mb-4">Application Successful</h1>
           <p className="text-zinc-400 mb-8 leading-relaxed">
-            Your bars are in the system. Our team will review your audition. 
-            If you're lethal enough, we'll be in touch.
+            Your application has been received. If your bars are serious, we'll be in touch.
           </p>
           <Link 
             to="/" 
@@ -71,14 +83,13 @@ export default function ApplyPage() {
           >
             Back to Base
           </Link>
-        </motion.div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-      {/* Background Accents */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-brand/5 via-transparent to-transparent pointer-events-none" />
       
       <div className="max-w-3xl mx-auto relative z-10">
@@ -95,183 +106,154 @@ export default function ApplyPage() {
             Apply to the <span className="text-brand">G Zone</span>
           </h1>
           <p className="text-zinc-400 text-lg">
-            Upload your best 60-second freestyle. No beats, no edits. Just raw bars.
+            Join the ranks. Choose your path.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Basic Info */}
-          <section className="space-y-6">
-            <h2 className="text-xl font-display italic uppercase text-brand flex items-center gap-2">
-              <span className="w-8 h-px bg-brand/30" /> 01. Basic Info
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">MC Name</label>
-                <input 
-                  required
-                  type="text"
-                  placeholder="e.g. GHOST_FACE"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.mcName}
-                  onChange={e => setFormData({...formData, mcName: e.target.value})}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Email Address</label>
-                <input 
-                  required
-                  type="email"
-                  placeholder="contact@bars.com"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.email}
-                  onChange={e => setFormData({...formData, email: e.target.value})}
-                />
-              </div>
+          <input type="hidden" name="_subject" value="New G Zone Application" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="Role" value={role === "mc" ? "MC / Battle Rapper" : "Ring Girl / Event Model"} />
+
+          {/* Role Selection */}
+          <section className="space-y-4">
+            <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">I am applying as:</label>
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => setRole("mc")}
+                className={`py-4 rounded-2xl font-bold uppercase tracking-widest transition-all ${role === "mc" ? "bg-brand text-black" : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800"}`}
+              >
+                MC / Battle Rapper
+              </button>
+              <button
+                type="button"
+                onClick={() => setRole("ring-girl")}
+                className={`py-4 rounded-2xl font-bold uppercase tracking-widest transition-all ${role === "ring-girl" ? "bg-brand text-black" : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800"}`}
+              >
+                Ring Girl / Event Model
+              </button>
             </div>
           </section>
 
-          {/* Video Upload */}
+          {/* Dynamic Fields */}
           <section className="space-y-6">
-            <h2 className="text-xl font-display italic uppercase text-brand flex items-center gap-2">
-              <span className="w-8 h-px bg-brand/30" /> 02. Audition Video
-            </h2>
-            <div 
-              onClick={() => fileInputRef.current?.click()}
-              className={`
-                relative border-2 border-dashed rounded-3xl p-12 text-center cursor-pointer transition-all
-                ${videoFile ? 'border-brand bg-brand/5' : 'border-white/10 hover:border-brand/30 bg-zinc-900/50'}
-              `}
-            >
-              <input 
-                type="file" 
-                ref={fileInputRef}
-                className="hidden" 
-                accept="video/*"
-                onChange={handleFileChange}
-              />
-              
-              <AnimatePresence mode="wait">
-                {videoFile ? (
-                  <motion.div 
-                    key="file-selected"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-col items-center"
-                  >
-                    <div className="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mb-4">
-                      <CheckCircle2 className="text-brand" size={32} />
-                    </div>
-                    <p className="text-white font-bold mb-1">{videoFile.name}</p>
-                    <p className="text-zinc-500 text-sm">{(videoFile.size / (1024 * 1024)).toFixed(2)} MB</p>
-                    <button 
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setVideoFile(null);
-                      }}
-                      className="mt-4 text-xs uppercase tracking-widest text-zinc-500 hover:text-red-500 transition-colors flex items-center gap-1"
-                    >
-                      <X size={14} /> Remove Video
-                    </button>
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    key="no-file"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-col items-center"
-                  >
-                    <div className="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mb-4 text-zinc-500 group-hover:text-brand transition-colors">
-                      <Upload size={32} />
-                    </div>
-                    <p className="text-white font-bold mb-1">Click to upload video</p>
-                    <p className="text-zinc-500 text-sm">MP4, MOV or WEBM (Max 100MB)</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </section>
-
-          {/* Social Links */}
-          <section className="space-y-6">
-            <h2 className="text-xl font-display italic uppercase text-brand flex items-center gap-2">
-              <span className="w-8 h-px bg-brand/30" /> 03. Socials & Links
-            </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="relative">
-                <Instagram className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                <input 
-                  type="text"
-                  placeholder="Instagram URL"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.links.instagram}
-                  onChange={e => setFormData({...formData, links: {...formData.links, instagram: e.target.value}})}
-                />
+              {role === "mc" ? (
+                <>
+                  <div className="space-y-2">
+                    <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Name *</label>
+                    <input required name="MC Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.mcName} onChange={e => setFormData({...formData, mcName: e.target.value})} />
+                  </div>
+                </>
+              ) : (
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Full Name *</label>
+                  <input required name="Full Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} />
+                </div>
+              )}
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Email Address *</label>
+                <input required name="email" type="email" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
               </div>
-              <div className="relative">
-                <Music className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                <input 
-                  type="text"
-                  placeholder="SoundCloud URL"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.links.soundcloud}
-                  onChange={e => setFormData({...formData, links: {...formData.links, soundcloud: e.target.value}})}
-                />
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Phone Number *</label>
+                <input required name="Phone Number" type="tel" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
               </div>
-              <div className="relative">
-                <Youtube className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                <input 
-                  type="text"
-                  placeholder="YouTube URL"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.links.youtube}
-                  onChange={e => setFormData({...formData, links: {...formData.links, youtube: e.target.value}})}
-                />
-              </div>
-              <div className="relative">
-                <LinkIcon className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                <input 
-                  type="text"
-                  placeholder="Other Portfolio/Link"
-                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white placeholder:text-zinc-700"
-                  value={formData.links.other}
-                  onChange={e => setFormData({...formData, links: {...formData.links, other: e.target.value}})}
-                />
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">City *</label>
+                <input required name="City" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
               </div>
             </div>
+
+            {role === "mc" ? (
+              <>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Battle Experience *</label>
+                  <select required name="Battle Experience" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.battleExperience} onChange={e => setFormData({...formData, battleExperience: e.target.value})}>
+                    <option value="">Select experience</option>
+                    <option value="First battle">First battle</option>
+                    <option value="1-5 battles">1-5 battles</option>
+                    <option value="5+ battles">5+ battles</option>
+                    <option value="League veteran">League veteran</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Performance Style</label>
+                  <input name="Performance Style" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.performanceStyle} onChange={e => setFormData({...formData, performanceStyle: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Audition Video Link *</label>
+                  <input required name="Audition Video Link" type="url" placeholder="YouTube/TikTok/Drive link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.auditionLink} onChange={e => setFormData({...formData, auditionLink: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Short message / context about yourself</label>
+                  <textarea name="Message" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Instagram *</label>
+                  <input required name="Instagram" type="url" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Portfolio or modelling link</label>
+                  <input name="Portfolio Link" type="url" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.otherLink} onChange={e => setFormData({...formData, otherLink: e.target.value})} />
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Height</label>
+                    <input name="Height" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Age (Optional)</label>
+                    <input name="Age" type="number" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Availability</label>
+                  <input name="Availability" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.availability} onChange={e => setFormData({...formData, availability: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Short introduction message</label>
+                  <textarea name="Message" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+                </div>
+              </>
+            )}
+
+            {/* Common Socials for MCs */}
+            {role === "mc" && (
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="relative">
+                  <Instagram className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
+                  <input name="Instagram URL" type="url" placeholder="Instagram" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
+                </div>
+                <div className="relative">
+                  <Music className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
+                  <input name="SoundCloud URL" type="url" placeholder="SoundCloud" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.soundcloud} onChange={e => setFormData({...formData, soundcloud: e.target.value})} />
+                </div>
+                <div className="relative">
+                  <Youtube className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
+                  <input name="YouTube URL" type="url" placeholder="YouTube" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.youtube} onChange={e => setFormData({...formData, youtube: e.target.value})} />
+                </div>
+              </div>
+            )}
           </section>
 
           {/* Submit */}
           <div className="pt-8">
             <button 
-              disabled={isUploading || !videoFile}
-              className={`
-                w-full py-6 rounded-full font-bold uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3
-                ${isUploading || !videoFile 
-                  ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed' 
-                  : 'bg-brand hover:bg-brand-dark text-black shadow-xl shadow-brand/20 hover:scale-[1.02]'}
-              `}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-6 rounded-full font-bold uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3 bg-brand hover:bg-brand-dark text-black shadow-xl shadow-brand/20 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isUploading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                  Uploading Bars...
-                </>
-              ) : (
-                <>
-                  Submit Application <Send size={20} />
-                </>
-              )}
+              {isSubmitting ? "SUBMITTING..." : "SUBMIT APPLICATION →"}
             </button>
             
-            {!videoFile && (
-              <p className="text-center mt-4 text-zinc-600 text-xs uppercase tracking-widest flex items-center justify-center gap-2">
-                <AlertCircle size={14} /> Video audition is required to apply
-              </p>
-            )}
+            <p className="text-center mt-4 text-zinc-600 text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+              <AlertCircle size={14} /> Warning: Submitting your audition makes it public. Prepare for humiliation.
+            </p>
           </div>
         </form>
       </div>

@@ -15,33 +15,28 @@ export default function ApplySection() {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto"
         >
-          <h2 className="text-4xl md:text-7xl font-display italic uppercase mb-6 leading-tight md:whitespace-nowrap">
-            Think You’ve <span className="text-brand">Got Bars?</span>
+          <h2 className="text-2xl md:text-5xl font-display italic uppercase mb-6 leading-tight">
+            THINK YOU'VE GOT BARS? <br /> <span className="text-brand">WHO WE'RE LOOKING FOR</span>
           </h2>
 
-          <p className="text-zinc-400 text-lg md:text-xl mb-16 leading-relaxed whitespace-pre-line">
-            The G Zone is the premier UK battle rap league.{"\n"}
-            No scripts. No safety nets.{"\n"}
-            Just raw bars, real crowd energy, and three rounds to prove yourself in our underground rap battles.
+          <p className="text-zinc-400 text-lg md:text-xl mb-16 leading-relaxed max-w-3xl mx-auto">
+            We want MCs with hunger, lyrical precision, and the ability to command a crowd. 
+            We're also looking for charismatic Ring Girls and Event Models who can bring 
+            professionalism, energy, and a commanding presence to our live events.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
           {[
             {
-              icon: <Sword className="text-brand" size={32} />,
-              title: "No Scripts",
-              desc: "No ghostwriters. No scripts. Just raw, uncensored battles and MCs who come to win."
-            },
-            {
               icon: <Flame className="text-brand" size={32} />,
-              title: "Real Energy",
-              desc: "Big stage presence. Big reactions.\nIf the crowd goes silent… that’s on you."
+              title: "Ring Girls: We are looking for you?",
+              desc: "Bring your energy, charisma, and professionalism to our live events. We want models who can command the stage."
             },
             {
               icon: <Mic2 className="text-brand" size={32} />,
-              title: "No Crying",
-              desc: "If someone violates your entire bloodline, just rap back harder."
+              title: "MC's: We are looking for you",
+              desc: "We're hunting for the next generation of battle rap talent. If you have the bars and the hunger, step up."
             }
           ].map((point, idx) => (
             <motion.div
@@ -66,14 +61,16 @@ export default function ApplySection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
-          <Link 
-            to="/apply" 
-            className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-black px-12 py-5 rounded-full font-bold text-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-xl shadow-brand/20"
-          >
-            APPLY TO THE G ZONE <ChevronRight size={20} />
-          </Link>
+          <div className="flex justify-center mb-16">
+            <Link 
+              to="/apply" 
+              className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-black px-12 py-5 rounded-full font-bold text-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-xl shadow-brand/20"
+            >
+              ENTER THE RING <ChevronRight size={20} />
+            </Link>
+          </div>
 
-          <p className="mt-8 text-zinc-500 text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+          <p className="mt-12 text-zinc-500 text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2">
             <AlertTriangle size={14} className="text-brand" />
             Warning: Applying may result in public humiliation, viral moments, and sudden respect from the culture.
           </p>

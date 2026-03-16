@@ -25,6 +25,7 @@ import BattlesPage from "./pages/BattlesPage";
 import EventsPage from "./pages/EventsPage";
 import MerchPage from "./pages/MerchPage";
 import ApplyPage from "./pages/ApplyPage";
+import SuccessPage from "./pages/SuccessPage";
 import MCsPage from "./pages/MCsPage";
 
 import FeaturedVideo from "./components/FeaturedVideo";
@@ -53,6 +54,7 @@ function Main() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/apply" element={<ApplyPage />} />
+        <Route path="/success" element={<SuccessPage />} />
         <Route path="/mc/:id" element={<MCProfile />} />
         <Route path="/host/:id" element={<HostProfile />} />
         <Route path="/ringgirl/:id" element={<RingGirlProfile />} />
