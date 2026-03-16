@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import { motion } from "motion/react";
 import { 
   Link as LinkIcon, 
   Instagram, 
@@ -23,6 +24,7 @@ export default function ApplyPage() {
     auditionLink: "",
     instagram: "",
     youtube: "",
+    soundcloud: "",
     otherLink: "",
     message: "",
     height: "",
@@ -62,6 +64,8 @@ export default function ApplyPage() {
         >
           <input type="hidden" name="_subject" value="New G Zone Application" />
           <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" style={{ display: 'none' }} />
           <input type="hidden" name="_next" value={`${window.location.origin}/success`} />
           <input type="hidden" name="Role" value={role === "mc" ? "MC" : "Ring Girl"} />
 
@@ -93,13 +97,13 @@ export default function ApplyPage() {
                 <>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Name *</label>
-                    <input required name="MC Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.mcName} onChange={e => setFormData({...formData, mcName: e.target.value})} />
+                    <input required name="Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.mcName} onChange={e => setFormData({...formData, mcName: e.target.value})} />
                   </div>
                 </>
               ) : (
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Full Name *</label>
-                  <input required name="Full Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} />
+                  <input required name="Name" type="text" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} />
                 </div>
               )}
               <div className="space-y-2">
@@ -134,7 +138,7 @@ export default function ApplyPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Audition Video Link *</label>
-                  <input required name="Audition Video Link" type="url" placeholder="YouTube/TikTok/Drive link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.auditionLink} onChange={e => setFormData({...formData, auditionLink: e.target.value})} />
+                  <input required name="Audition Link" type="url" placeholder="YouTube/TikTok/Drive link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.auditionLink} onChange={e => setFormData({...formData, auditionLink: e.target.value})} />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Short message / context about yourself</label>
@@ -149,7 +153,7 @@ export default function ApplyPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest text-zinc-500 font-bold">Portfolio or modelling link</label>
-                  <input name="Portfolio Link" type="text" placeholder="Link to portfolio" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.otherLink} onChange={e => setFormData({...formData, otherLink: e.target.value})} />
+                  <input name="Portfolio" type="text" placeholder="Link to portfolio" className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.otherLink} onChange={e => setFormData({...formData, otherLink: e.target.value})} />
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -177,15 +181,15 @@ export default function ApplyPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="relative">
                   <Instagram className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                  <input name="Instagram URL" type="text" placeholder="Instagram handle or link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
+                  <input name="Instagram" type="text" placeholder="Instagram handle or link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
                 </div>
                 <div className="relative">
                   <Music className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                  <input name="SoundCloud URL" type="text" placeholder="SoundCloud link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.soundcloud} onChange={e => setFormData({...formData, soundcloud: e.target.value})} />
+                  <input name="SoundCloud" type="text" placeholder="SoundCloud link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.soundcloud} onChange={e => setFormData({...formData, soundcloud: e.target.value})} />
                 </div>
                 <div className="relative">
                   <Youtube className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-600" size={20} />
-                  <input name="YouTube URL" type="text" placeholder="YouTube link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.youtube} onChange={e => setFormData({...formData, youtube: e.target.value})} />
+                  <input name="YouTube" type="text" placeholder="YouTube link" className="w-full bg-zinc-900 border border-white/5 rounded-2xl pl-14 pr-6 py-4 focus:outline-none focus:border-brand/50 transition-colors text-white" value={formData.youtube} onChange={e => setFormData({...formData, youtube: e.target.value})} />
                 </div>
               </div>
             )}
