@@ -31,62 +31,6 @@ export default function ApplyPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    const form = e.target as HTMLFormElement;
-    const formDataObj = new FormData(form);
-    const data = Object.fromEntries(formDataObj.entries());
-    
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/4a857a6e0e1936a70f12a8d6ffe2dc0a", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success === "true") {
-        setIsSuccess(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (isSuccess) {
-    return (
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
-        <div className="max-w-md w-full text-center p-12 bg-zinc-900 rounded-3xl border border-brand/20 shadow-2xl shadow-brand/5">
-          <div className="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="text-brand" size={40} />
-          </div>
-          <h1 className="text-3xl font-display italic uppercase text-white mb-4">Application Successful</h1>
-          <p className="text-zinc-400 mb-8 leading-relaxed">
-            Your application has been received. If your bars are serious, we'll be in touch.
-          </p>
-          <Link 
-            to="/" 
-            className="inline-block bg-brand hover:bg-brand-dark text-black px-8 py-3 rounded-full font-bold uppercase tracking-widest transition-all"
-          >
-            Back to Base
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -110,9 +54,15 @@ export default function ApplyPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form 
+          action="https://formsubmit.co/4a857a6e0e1936a70f12a8d6ffe2dc0a" 
+          method="POST" 
+          className="space-y-8"
+          onSubmit={() => setIsSubmitting(true)}
+        >
           <input type="hidden" name="_subject" value="New G Zone Application" />
           <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value={`${window.location.origin}/success`} />
           <input type="hidden" name="Role" value={role === "mc" ? "MC / Battle Rapper" : "Ring Girl / Event Model"} />
 
           {/* Role Selection */}
