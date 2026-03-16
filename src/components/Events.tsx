@@ -9,7 +9,7 @@ const events = [
     date: "April 2026 - Date TBC",
     location: "G ZONE HQ",
     price: "TBC",
-    image: "/gzonebattle.png"
+    image: "/gzonebattleapril.png"
   },
   {
     id: 3,
@@ -17,15 +17,7 @@ const events = [
     date: "May 2026 - Date TBC",
     location: "G ZONE HQ",
     price: "TBC",
-    image: "/gzonebattle.png"
-  },
-  {
-    id: 4,
-    title: "G ZONE: JUNE JUBILEE",
-    date: "June 2026 - Date TBC",
-    location: "G ZONE HQ",
-    price: "TBC",
-    image: "/gzonebattle.png"
+    image: "/gzonebattlemay.png"
   }
 ];
 
@@ -60,7 +52,7 @@ export default function Events() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {events.map((event, index) => (
             <motion.div
               key={event.id}
