@@ -18,13 +18,13 @@ export default function FeaturedVideo() {
           className="text-center mb-10 w-full"
         >
           <p className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
-            The Arena
+            Welcome to the
           </p>
           <h2 className="text-5xl md:text-6xl font-display italic uppercase mb-4 tracking-tighter">
             The <span className="text-brand">G Zone</span> Experience
           </h2>
           <p className="text-zinc-400 text-sm uppercase tracking-widest max-w-2xl mx-auto">
-            Witness the raw energy of the UK's most authentic battle league
+            The UK’s most authentic uncensored rap battle scene
           </p>
         </motion.div>
 
