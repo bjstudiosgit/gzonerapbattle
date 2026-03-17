@@ -12,23 +12,35 @@ export interface Judge {
   tiktok?: string;
   youtube?: string;
   quote?: string;
+  isMystery?: boolean;
 }
 
 export const judges: Judge[] = [
   {
     id: "judge-2",
-    name: "Judge Name",
+    name: "Celebrity to be revealed",
     role: "Lyricist",
-    image: "https://picsum.photos/seed/judge2/400/400",
-    bio: "An expert in wordplay and complex rhyme schemes.",
-    fields: ["Lyricist"]
+    image: "/awaiting-photo.png",
+    bio: "A high-profile guest judge to be revealed soon. Stay tuned for the official announcement.",
+    fields: ["Lyricist"],
+    isMystery: true
   },
   {
     id: "judge-3",
-    name: "Judge Name",
+    name: "Celebrity to be revealed",
     role: "Battle Expert",
-    image: "https://picsum.photos/seed/judge3/400/400",
-    bio: "A battle rap historian and expert analyst.",
-    fields: ["Battle Expert"]
+    image: "/awaiting-photo.png",
+    bio: "A high-profile guest judge to be revealed soon. Stay tuned for the official announcement.",
+    fields: ["Battle Expert"],
+    isMystery: true
+  },
+  {
+    id: "mystery-judge",
+    name: "Celebrity to be revealed",
+    role: "Celebrity Guest",
+    image: "/awaiting-photo.png",
+    bio: "A high-profile celebrity guest judge to be revealed soon. Stay tuned for the official announcement.",
+    fields: ["Special Guest"],
+    isMystery: true
   }
 ];

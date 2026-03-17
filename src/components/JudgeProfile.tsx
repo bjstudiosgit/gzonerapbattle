@@ -61,8 +61,6 @@ export default function JudgeProfile() {
               </h1>
               <div className="flex items-center gap-3 text-brand font-bold uppercase tracking-[0.2em] text-sm mb-6">
                 <span>{judge.nickname || judge.role}</span>
-                <span className="text-zinc-700">•</span>
-                <span>G ZONE JUDGE</span>
               </div>
 
               {judge.quote && (
@@ -90,12 +88,6 @@ export default function JudgeProfile() {
                     <span className="font-bold uppercase tracking-widest text-[10px]">{field}</span>
                   </div>
                 ))}
-                <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
-                  <Gavel size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">
-                    G Zone Panel
-                  </span>
-                </div>
               </div>
 
               {(judge.instagram || judge.tiktok || judge.youtube) && (

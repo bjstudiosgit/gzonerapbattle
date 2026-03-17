@@ -85,8 +85,6 @@ export default function MCProfile() {
               </h1>
               <div className="flex items-center gap-3 text-brand font-bold uppercase tracking-[0.2em] text-sm mb-6">
                 <span>{mc.nickname || "THE GLADIATOR"}</span>
-                <span className="text-zinc-700">•</span>
-                <span>G ZONE COMBATANT</span>
               </div>
 
               {mc.quote && (
