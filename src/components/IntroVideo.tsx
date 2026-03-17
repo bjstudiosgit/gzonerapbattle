@@ -91,10 +91,10 @@ export default function IntroVideo() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                     </span>
-                    <span className="animate-on-air">Latest Battle Out Now</span>
+                    <span className="">Latest Battle Out Now</span>
                   </div>
                   
-                  <h1 className="text-4xl md:text-7xl font-display italic leading-[0.9] uppercase mb-2 tracking-tighter animate-on-air">
+                  <h1 className="text-4xl md:text-7xl font-display italic leading-[0.9] uppercase mb-2 tracking-tighter">
                     Ginga <br />
                     Entertainment <br />
                     <span className="text-brand block text-2xl md:text-4xl mt-2">present the G Zone</span>

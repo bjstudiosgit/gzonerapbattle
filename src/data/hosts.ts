@@ -20,7 +20,7 @@ export const hosts: Host[] = [
     id: "ginga-jay",
     name: "Ginga Jay",
     role: "Main Host",
-    image: "/ginjajay.png",
+    image: "/awaiting-photo.png",
     bio: "The main voice of Ginga Entertainment and the G Zone. Ginga Jay brings unmatched energy and charisma to the stage, keeping the crowd engaged and the battles flowing. As an entertainer first and foremost, he knows exactly how to set the mood for a high-stakes clash.",
     fields: ["Entertainer"]
   },

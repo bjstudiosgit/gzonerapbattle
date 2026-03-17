@@ -3,30 +3,24 @@ import { motion, AnimatePresence } from "motion/react";
 import { Mic2, Gavel, Heart, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { hosts } from "../data/hosts";
-import { ringGirls } from "../data/ringgirls";
 import { judges } from "../data/judges";
 
-type Category = "all" | "hosts" | "judges" | "ringgirls";
+type Category = "all" | "hosts" | "judges";
 
 export default function HostsAndJudges() {
   const staffHosts = hosts.map(h => ({ ...h, type: 'hosts' as const, icon: <Mic2 size={14} /> }));
-  const staffRingGirls = ringGirls.map(r => ({ ...r, type: 'ringgirls' as const, icon: <Heart size={14} /> }));
   const staffJudges = judges.map(j => ({ ...j, type: 'judges' as const, icon: <Gavel size={14} /> }));
 
-  // Reorder to put Jessica next to Darren
-  // Hosts: Ginga Jay, Darren Stewart
-  // Ring Girls: Jessica
+  // Hosts: Ginga Jay, Darren Stewart, Passive
   const hostsAndRingGirls = [
     staffHosts[0], // Ginga Jay
     staffHosts[1], // Darren Stewart
     staffHosts[2], // Passive
-    staffRingGirls[0], // Jessica
   ];
 
   const typeToPath: Record<string, string> = {
     hosts: 'host',
-    judges: 'judge',
-    ringgirls: 'ringgirl'
+    judges: 'judge'
   };
 
   const renderPerson = (person: any, index: number) => (

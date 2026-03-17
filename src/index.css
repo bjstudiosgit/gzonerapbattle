@@ -19,13 +19,6 @@
 }
 
 @layer utilities {
-  @keyframes on-air {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-  }
-  .animate-on-air {
-    animation: on-air 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

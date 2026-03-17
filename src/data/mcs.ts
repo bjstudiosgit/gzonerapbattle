@@ -232,7 +232,7 @@ export const mcs: MC[] = [
     wins: 0,
     losses: 0,
     style: "Lyrical / Punchlines",
-    image: "/awaiting-photo.png",
+    image: "/badee-harz.png",
     bio: "A rising star in the scene with sharp lyrics and hard-hitting punchlines.",
     isActive: true,
     weightClass: "Featherweight",
@@ -258,7 +258,7 @@ export const mcs: MC[] = [
     wins: 0,
     losses: 1,
     style: "Technical / Wordplay",
-    image: "/grams.png",
+    image: "/awaiting-photo.png",
     bio: "A cold-blooded lyricist known for intricate wordplay and surgical delivery. After rising through the PenGame scene and overcoming controversy, Grams doesn't wait for permission—he takes the arena. Now in the G Zone, the rules are simple: no politics, no protection… just war.",
     isActive: true,
     location: "London"

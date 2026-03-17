@@ -14,7 +14,6 @@ import RecentBattles from "./components/RecentBattles";
 import Footer from "./components/Footer";
 import MCProfile from "./components/MCProfile";
 import HostProfile from "./components/HostProfile";
-import RingGirlProfile from "./components/RingGirlProfile";
 import JudgeProfile from "./components/JudgeProfile";
 import HostsAndJudges from "./components/HostsAndJudges";
 import ApplySection from "./components/ApplySection";
@@ -57,7 +56,6 @@ function Main() {
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/mc/:id" element={<MCProfile />} />
         <Route path="/host/:id" element={<HostProfile />} />
-        <Route path="/ringgirl/:id" element={<RingGirlProfile />} />
         <Route path="/judge/:id" element={<JudgeProfile />} />
         <Route path="/league" element={<League />} />
         <Route path="/mcs" element={<MCsPage />} />

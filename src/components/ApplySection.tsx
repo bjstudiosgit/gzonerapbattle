@@ -21,22 +21,26 @@ export default function ApplySection() {
 
           <p className="text-zinc-400 text-lg md:text-xl mb-16 leading-relaxed max-w-3xl mx-auto">
             We want MCs with hunger, lyrical precision, and the ability to command a crowd. 
-            We're also looking for charismatic Ring Girls and Event Models who can bring 
-            professionalism, energy, and a commanding presence to our live events.
+            If you have the bars and the hunger, step up.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {[
             {
               icon: <Flame className="text-brand" size={32} />,
-              title: "Ring Girls: We are looking for you?",
-              desc: "Bring your energy, charisma, and professionalism to our live events. We want models who can command the stage."
+              title: "The Hunger",
+              desc: "We want MCs with the hunger to prove themselves in the pit. If you've got the drive to be the best, step up."
             },
             {
               icon: <Mic2 className="text-brand" size={32} />,
-              title: "MC's: We are looking for you",
-              desc: "We're hunting for the next generation of battle rap talent. If you have the bars and the hunger, step up."
+              title: "Lyrical Precision",
+              desc: "Bars, schemes, and technical excellence. We're looking for lyrical precision and wordplay that commands respect."
+            },
+            {
+              icon: <Sword className="text-brand" size={32} />,
+              title: "Stage Presence",
+              desc: "The ability to command a crowd and own the stage. We want performers who can handle the pressure of the G Zone."
             }
           ].map((point, idx) => (
             <motion.div
