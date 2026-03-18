@@ -4,33 +4,33 @@ import { ShoppingBag, Star } from "lucide-react";
 const products = [
   {
     id: 1,
-    name: "G Zone Teddy Bear Lauren Tshirt",
-    price: "£25",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=500&h=600&auto=format&fit=crop",
+    name: "Ginja Entertainment Unisex Tshirt (orange)",
+    price: "£45",
+    image: "/shop1-ginjaltd.png",
     tag: "Limited Drop",
     soldOut: true
   },
   {
     id: 2,
-    name: "G Zone hoody",
+    name: "Ginja Entertainment Unisex Tshirt (white)",
     price: "£45",
-    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=500&h=600&auto=format&fit=crop",
+    image: "/shop2-ginjaltdwhite.png",
     tag: "Limited Drop",
     soldOut: true
   },
   {
     id: 3,
-    name: "G Zone Ladies Tshirt",
-    price: "£25",
-    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=500&h=600&auto=format&fit=crop",
+    name: "Ginja Entertainment Unisex Tshirt",
+    price: "£45",
+    image: "/shop3-topgtshirt.png",
     tag: "Limited Drop",
     soldOut: true
   },
   {
     id: 4,
-    name: "G Zone Ladies Gym Wear",
-    price: "£35",
-    image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=500&h=600&auto=format&fit=crop",
+    name: "Ginja Entertainment Unisex Hoody",
+    price: "£45",
+    image: "/shop4-topghoody.png",
     tag: "Limited Drop",
     soldOut: true
   }
@@ -43,8 +43,8 @@ export default function Merch() {
         <div className="text-center mb-16">
           <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">Official Gear</h2>
           <h3 className="text-5xl md:text-6xl font-display italic uppercase leading-tight">
-            Support <br />
-            <span className="text-brand">Ginga Entertainment</span>
+            You missed it. <br />
+            <span className="text-brand">Sold out. Try our next drop!!</span>
           </h3>
         </div>
 

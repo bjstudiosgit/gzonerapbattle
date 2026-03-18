@@ -104,7 +104,7 @@ export default function IntroVideo() {
                   </div>
                   
                   <p className="text-zinc-400 text-lg max-w-xl mb-10 leading-relaxed">
-                    G Zone is where entertainment meets battle rap. The UK’s uncensored arena showcasing some of the best up-and-coming MCs, male and female. No scripts, no pens — just real clashes, raw energy, and moments you don’t want to miss.
+                    This site is currently under construction. We are working hard to bring you the full G Zone experience. Please check back frequently for updates!
                   </p>
                   
                   <div className="flex flex-wrap gap-4">

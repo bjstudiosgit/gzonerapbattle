@@ -91,8 +91,8 @@ export default function HostsAndJudges() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">The Team Behind The Battle</h2>
-          <h3 className="text-5xl md:text-6xl font-display italic uppercase mb-8">Official <span className="text-brand">G Zone Crew</span></h3>
+          <h3 className="text-5xl md:text-6xl font-display italic uppercase">Behind the <span className="text-brand">Chaos</span></h3>
+          <p className="text-zinc-400 mt-4">Meet the team running the UK's most uncensored arena.</p>
         </div>
 
         <motion.div 
@@ -103,7 +103,6 @@ export default function HostsAndJudges() {
         </motion.div>
 
         <div className="mt-12">
-          <h3 className="text-3xl font-display italic uppercase mb-8 text-center text-brand">Judges</h3>
           <motion.div 
             layout
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"

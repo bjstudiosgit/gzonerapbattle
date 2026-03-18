@@ -37,19 +37,16 @@ export default function Events() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="text-center mb-12">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">Upcoming Battles</h2>
             <h3 className="text-5xl md:text-6xl font-display italic uppercase">Upcoming <span className="text-brand">Events</span></h3>
             <p className="text-zinc-400 mt-4">Don't miss our next UK battle rap league events.</p>
           </motion.div>
-          <Link to="/events" className="text-zinc-400 hover:text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 transition-colors">
-            View All Events <TrendingUp size={18} />
-          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -95,6 +92,11 @@ export default function Events() {
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="mt-12 flex justify-center">
+          <Link to="/events" className="text-zinc-400 hover:text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 transition-colors">
+            View All Events <TrendingUp size={18} />
+          </Link>
         </div>
       </div>
     </section>

@@ -77,7 +77,7 @@ export default function Navbar() {
                   <Instagram size={20} />
                 </a>
                 <a 
-                  href="https://tiktok.com" 
+                  href="https://www.tiktok.com/@gzoneofficialclips" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-brand hover:bg-brand-dark text-black p-2 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
@@ -139,7 +139,7 @@ export default function Navbar() {
                 <Instagram size={24} />
               </a>
               <a 
-                href="https://tiktok.com" 
+                href="https://www.tiktok.com/@gzoneofficialclips" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-brand text-black p-3 rounded-xl transition-all flex items-center justify-center"

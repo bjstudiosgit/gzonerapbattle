@@ -15,13 +15,15 @@ export default function ApplySection() {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto"
         >
-          <h2 className="text-2xl md:text-5xl font-display italic uppercase mb-6 leading-tight">
-            THINK YOU'VE GOT BARS? <br /> <span className="text-brand">WHO WE'RE LOOKING FOR</span>
+          <h2 className="text-3xl md:text-6xl font-display italic uppercase mb-6 leading-tight">
+            <span className="bg-gradient-to-b from-white via-cyan-200 to-cyan-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(165,243,252,0.4)]">
+              THINK YOU’RE COLD?
+            </span>{" "}
+            <span className="text-brand">PROVE IT.</span>
           </h2>
 
           <p className="text-zinc-400 text-lg md:text-xl mb-16 leading-relaxed max-w-3xl mx-auto">
-            We want MCs with hunger, lyrical precision, and the ability to command a crowd. 
-            If you have the bars and the hunger, step up.
+            NOT EVERYONE BELONGS HERE. This isn’t open mic. The G-Zone is built for MCs who can write, perform, and hold their own under pressure. No gas. No hand-holding. No second chances. If you’ve got something real, step forward.
           </p>
         </motion.div>
 
@@ -29,18 +31,18 @@ export default function ApplySection() {
           {[
             {
               icon: <Flame className="text-brand" size={32} />,
-              title: "The Hunger",
-              desc: "We want MCs with the hunger to prove themselves in the pit. If you've got the drive to be the best, step up."
+              title: "THE STANDARD",
+              desc: "Write properly.\n\nIf your material doesn’t hold up, neither will you."
             },
             {
               icon: <Mic2 className="text-brand" size={32} />,
-              title: "Lyrical Precision",
-              desc: "Bars, schemes, and technical excellence. We're looking for lyrical precision and wordplay that commands respect."
+              title: "DELIVERY",
+              desc: "Clarity. Timing. Control.\n\nIf the crowd isn’t listening, you’ve already lost."
             },
             {
               icon: <Sword className="text-brand" size={32} />,
-              title: "Stage Presence",
-              desc: "The ability to command a crowd and own the stage. We want performers who can handle the pressure of the G Zone."
+              title: "PRESENCE",
+              desc: "Command the space.\n\nOr get moved out of it."
             }
           ].map((point, idx) => (
             <motion.div
@@ -49,13 +51,13 @@ export default function ApplySection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="p-8 bg-zinc-900/50 rounded-3xl border border-white/5 hover:border-brand/50 transition-all group text-left"
+              className="p-8 bg-zinc-900/50 rounded-3xl border border-white/5 hover:border-brand/50 transition-all group"
             >
-              <div className="mb-4 p-3 bg-brand/10 rounded-2xl w-fit group-hover:bg-brand/20 transition-colors">
+              <div className="mb-4 p-3 bg-brand/10 rounded-2xl w-fit group-hover:bg-brand/20 transition-colors mx-auto">
                 {point.icon}
               </div>
-              <h3 className="text-2xl font-display italic uppercase mb-2 text-white">{point.title}</h3>
-              <p className="text-zinc-500 leading-relaxed whitespace-pre-line">{point.desc}</p>
+              <h3 className="text-2xl font-display italic uppercase mb-2 text-white text-center">{point.title}</h3>
+              <p className="text-zinc-500 leading-relaxed whitespace-pre-line text-center">{point.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -70,7 +72,7 @@ export default function ApplySection() {
               to="/apply" 
               className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-black px-12 py-5 rounded-full font-bold text-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-xl shadow-brand/20"
             >
-              ENTER THE RING <ChevronRight size={20} />
+              REQUEST A SLOT <ChevronRight size={20} />
             </Link>
           </div>
 
