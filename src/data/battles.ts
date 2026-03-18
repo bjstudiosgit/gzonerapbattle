@@ -1,5 +1,6 @@
 export interface Battle {
   id: string;
+  slug: string;
   mc1: string;
   mc2: string;
   title: string;
@@ -13,6 +14,7 @@ export interface Battle {
 export const battles: Battle[] = [
   { 
     id: "1", 
+    slug: "deeno-vs-tapped24",
     mc1: "deeno",  
     mc2: "tapped24", 
     title: "Deeno vs Tapped24",
@@ -23,6 +25,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "2", 
+    slug: "pr1nc3-vs-roman",
     mc1: "pr1nc3", 
     mc2: "roman", 
     title: "PR1NC3 vs Roman",
@@ -33,6 +36,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "3", 
+    slug: "ldn-mikez-vs-deluxx",
     mc1: "ldn-mikez", 
     mc2: "deluxx", 
     title: "LDN Mikez vs Deluxx",
@@ -43,6 +47,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "4", 
+    slug: "ldn-mikez-vs-2mwad",
     mc1: "ldn-mikez", 
     mc2: "2mwad", 
     title: "LDN Mikez vs 2MWAD",
@@ -53,6 +58,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "5", 
+    slug: "cj-zino-vs-proty",
     mc1: "cj-zino", 
     mc2: "proty", 
     title: "CJ Zino vs Proty",
@@ -63,6 +69,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "6", 
+    slug: "renzo-vs-proty",
     mc1: "renzo", 
     mc2: "proty", 
     title: "Renzo vs Proty",
@@ -73,6 +80,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "7", 
+    slug: "deluxx-vs-btizz",
     mc1: "deluxx", 
     mc2: "btizz", 
     title: "Deluxx vs Btizz",
@@ -83,6 +91,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "8", 
+    slug: "2mwad-vs-ryno",
     mc1: "2mwad", 
     mc2: "ryno", 
     title: "2MWAD vs Ryno", 
@@ -93,6 +102,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "9", 
+    slug: "tapped24-vs-roman",
     mc1: "tapped24", 
     mc2: "roman", 
     title: "Tapped24 vs Roman", 
@@ -103,6 +113,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "10", 
+    slug: "pr1nc3-vs-nattyebk",
     mc1: "pr1nc3", 
     mc2: "nattyebk", 
     title: "PR1NC3 vs NattyEBK", 
@@ -113,6 +124,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "11", 
+    slug: "btizz-vs-cj-zino",
     mc1: "btizz", 
     mc2: "cj-zino", 
     title: "Btizz vs CJ Zino", 
@@ -123,6 +135,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "12", 
+    slug: "tapped24-vs-aj",
     mc1: "tapped24", 
     mc2: "aj", 
     title: "Tapped24 vs AJ", 
@@ -133,6 +146,7 @@ export const battles: Battle[] = [
   },
   { 
     id: "13", 
+    slug: "ryno-vs-tymeless",
     mc1: "ryno", 
     mc2: "tymeless", 
     title: "Ryno vs Tymeless", 
@@ -143,11 +157,13 @@ export const battles: Battle[] = [
   },
   { 
     id: "14", 
+    slug: "deeno-vs-grams",
     mc1: "deeno", 
     mc2: "grams", 
     title: "Deeno vs Grams", 
     date: "14 Mar 2026", 
     views: "0",
-    winner: "deeno"
+    winner: "deeno",
+    isUnreleased: true
   }
 ];

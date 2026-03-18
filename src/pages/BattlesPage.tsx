@@ -82,10 +82,10 @@ export default function BattlesPage() {
                       className="group hover:bg-white/5 transition-all duration-300"
                     >
                       <td className="px-6 py-6">
-                        <Link to={`/battle/${battle.id}`} className="font-mono text-brand text-sm hover:underline">1x{String(index + 1).padStart(2, '0')}</Link>
+                        <Link to={`/battle/${battle.slug}`} className="font-mono text-brand text-sm hover:underline">1x{String(index + 1).padStart(2, '0')}</Link>
                       </td>
                       <td className="px-6 py-6">
-                        <Link to={`/battle/${battle.id}`} className="block group-hover:translate-x-1 transition-transform">
+                        <Link to={`/battle/${battle.slug}`} className="block group-hover:translate-x-1 transition-transform">
                           <span className="font-display italic uppercase text-xl md:text-2xl text-zinc-100 group-hover:text-brand transition-colors flex items-center gap-3">
                             <span className="flex items-center gap-2">
                               {battle.winner === battle.mc1 && <Trophy size={18} className="text-brand" />}

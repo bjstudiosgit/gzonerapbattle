@@ -51,7 +51,7 @@ export default function League() {
                   transition={{ delay: index * 0.1 }}
                   className="bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:border-brand/30 transition-all"
                 >
-                  <Link to={`/mc/${mc.id}`} className="flex items-center gap-4 flex-1">
+                  <Link to={`/mc/${mc.slug}`} className="flex items-center gap-4 flex-1">
                     <div className="relative">
                       <div className={`w-12 h-12 rounded-xl bg-zinc-800 border ${index === 0 ? 'border-brand shadow-[0_0_15px_rgba(242,125,38,0.2)]' : 'border-white/10'} flex items-center justify-center font-bold text-brand text-xl italic`}>
                         {mc.name[0]}

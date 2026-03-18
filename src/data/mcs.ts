@@ -1,5 +1,6 @@
 export interface MC {
   id: string;
+  slug: string;
   name: string;
   nickname?: string;
   battles: number;
@@ -21,6 +22,7 @@ export interface MC {
 export const mcs: MC[] = [
   {
     id: "deeno",
+    slug: "deeno",
     name: "Deeno",
     nickname: "The Viking",
     battles: 2,
@@ -38,6 +40,7 @@ export const mcs: MC[] = [
   },
   {
     id: "tapped24",
+    slug: "tapped24",
     name: "Tapped24",
     nickname: "The Crowd Pleaser",
     battles: 3,
@@ -56,6 +59,7 @@ export const mcs: MC[] = [
   },
   {
     id: "pr1nc3",
+    slug: "pr1nc3",
     name: "PR1NC3",
     nickname: "Prince of Punchlines",
     battles: 2,
@@ -74,6 +78,7 @@ export const mcs: MC[] = [
   },
   {
     id: "nattyebk",
+    slug: "nattyebk",
     name: "NattyEBK",
     battles: 1,
     wins: 1,
@@ -91,6 +96,7 @@ export const mcs: MC[] = [
   },
   {
     id: "tymeless",
+    slug: "tymeless",
     name: "Tymeless",
     battles: 1,
     wins: 1,
@@ -105,6 +111,7 @@ export const mcs: MC[] = [
   },
   {
     id: "roman",
+    slug: "roman",
     name: "Roman",
     battles: 2,
     wins: 2,
@@ -119,6 +126,7 @@ export const mcs: MC[] = [
   },
   {
     id: "ldn-mikez",
+    slug: "ldn-mikez",
     name: "LDN Mikez",
     battles: 2,
     wins: 2,
@@ -130,6 +138,7 @@ export const mcs: MC[] = [
   },
   {
     id: "deluxx",
+    slug: "deluxx",
     name: "Deluxx",
     battles: 2,
     wins: 0,
@@ -141,6 +150,7 @@ export const mcs: MC[] = [
   },
   {
     id: "2mwad",
+    slug: "2mwad",
     name: "2MWAD",
     battles: 2,
     wins: 0,
@@ -155,6 +165,7 @@ export const mcs: MC[] = [
   },
   {
     id: "renzo",
+    slug: "renzo",
     name: "Renzo",
     battles: 1,
     wins: 1,
@@ -166,6 +177,7 @@ export const mcs: MC[] = [
   },
   {
     id: "proty",
+    slug: "proty",
     name: "Proty",
     battles: 2,
     wins: 1,
@@ -177,6 +189,7 @@ export const mcs: MC[] = [
   },
   {
     id: "cj-zino",
+    slug: "cj-zino",
     name: "CJ Zino",
     battles: 2,
     wins: 1,
@@ -188,6 +201,7 @@ export const mcs: MC[] = [
   },
   {
     id: "ryno",
+    slug: "ryno",
     name: "Ryno",
     battles: 2,
     wins: 1,
@@ -199,6 +213,7 @@ export const mcs: MC[] = [
   },
   {
     id: "btizz",
+    slug: "btizz",
     name: "Btizz",
     battles: 2,
     wins: 1,
@@ -213,6 +228,7 @@ export const mcs: MC[] = [
   },
   {
     id: "ricko",
+    slug: "ricko",
     name: "Ricko",
     battles: 0,
     wins: 0,
@@ -227,6 +243,7 @@ export const mcs: MC[] = [
   },
   {
     id: "badee-harz",
+    slug: "badee-harz",
     name: "Badee Harz",
     battles: 0,
     wins: 0,
@@ -241,6 +258,7 @@ export const mcs: MC[] = [
   },
   {
     id: "aj",
+    slug: "aj",
     name: "AJ",
     battles: 1,
     wins: 1,
@@ -253,6 +271,7 @@ export const mcs: MC[] = [
   },
   {
     id: "grams",
+    slug: "grams",
     name: "Grams",
     battles: 1,
     wins: 0,

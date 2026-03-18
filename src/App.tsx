@@ -54,7 +54,7 @@ function Main() {
         <Route path="/" element={<Home />} />
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/success" element={<SuccessPage />} />
-        <Route path="/mc/:id" element={<MCProfile />} />
+        <Route path="/mc/:slug" element={<MCProfile />} />
         <Route path="/host/:id" element={<HostProfile />} />
         <Route path="/judge/:id" element={<JudgeProfile />} />
         <Route path="/league" element={<League />} />
@@ -62,7 +62,7 @@ function Main() {
         <Route path="/battles" element={<BattlesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/merch" element={<MerchPage />} />
-        <Route path="/battle/:id" element={<BattleDetail />} />
+        <Route path="/battle/:slug" element={<BattleDetail />} />
       </Routes>
       <Footer />
     </div>

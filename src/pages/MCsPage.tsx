@@ -34,7 +34,7 @@ export default function MCsPage() {
                 transition={{ delay: index * 0.05 }}
                 className="group relative"
               >
-                <Link to={`/mc/${mc.id}`} className="block">
+                <Link to={`/mc/${mc.slug}`} className="block">
                   <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/5 bg-zinc-900">
                     <img 
                       src={mc.image} 
@@ -80,7 +80,7 @@ export default function MCsPage() {
                   transition={{ delay: index * 0.05 }}
                   className="group relative opacity-60 grayscale"
                 >
-                  <Link to={`/mc/${mc.id}`} className="block">
+                  <Link to={`/mc/${mc.slug}`} className="block">
                     <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/5 bg-zinc-900">
                       <img 
                         src={mc.image} 

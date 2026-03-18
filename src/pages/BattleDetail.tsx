@@ -5,8 +5,8 @@ import { mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock } from "lucide-react";
 
 export default function BattleDetail() {
-  const { id } = useParams<{ id: string }>();
-  const battle = allBattles.find(b => b.id === id);
+  const { slug } = useParams<{ slug: string }>();
+  const battle = allBattles.find(b => b.slug === slug);
 
   if (!battle) {
     return (
@@ -22,7 +22,7 @@ export default function BattleDetail() {
   return (
     <div className="min-h-screen pt-32 pb-24 bg-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to={`/mc/${mc1?.id}`} className="inline-flex items-center gap-2 text-zinc-500 hover:text-brand transition-colors mb-12 uppercase tracking-widest text-xs font-bold">
+        <Link to={`/mc/${mc1?.slug}`} className="inline-flex items-center gap-2 text-zinc-500 hover:text-brand transition-colors mb-12 uppercase tracking-widest text-xs font-bold">
           <ArrowLeft size={16} /> Back to MC Profile
         </Link>
 
@@ -36,7 +36,7 @@ export default function BattleDetail() {
               className="text-center"
             >
               <h1 className="text-5xl md:text-7xl font-display italic uppercase leading-tight mb-8">
-                <Link to={`/mc/${mc1?.id}`} className="hover:text-brand transition-colors">{mc1?.name}</Link> <span className="text-brand">VS</span> <Link to={`/mc/${mc2?.id}`} className="hover:text-brand transition-colors">{mc2?.name}</Link>
+                <Link to={`/mc/${mc1?.slug}`} className="hover:text-brand transition-colors">{mc1?.name}</Link> <span className="text-brand">VS</span> <Link to={`/mc/${mc2?.slug}`} className="hover:text-brand transition-colors">{mc2?.name}</Link>
               </h1>
 
               {battle.isUnreleased && (
@@ -98,7 +98,7 @@ export default function BattleDetail() {
                     </div>
                   )}
                   <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc1?.id}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
+                    <Link to={`/mc/${mc1?.slug}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@ export default function BattleDetail() {
                     </div>
                   )}
                   <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc2?.id}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
+                    <Link to={`/mc/${mc2?.slug}`} className="text-3xl font-display italic uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
                   </div>
                 </div>
               </div>
