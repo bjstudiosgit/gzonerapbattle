@@ -206,7 +206,7 @@ export default function MCProfile() {
                         </div>
                         <div>
                           <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-1">vs Opponent</div>
-                          <div className="text-xl font-display italic uppercase group-hover:text-brand transition-colors">{opponent?.name}</div>
+                          <Link to={`/mc/${opponent?.slug}`} className="text-xl font-display italic uppercase group-hover:text-brand transition-colors hover:underline decoration-brand/30 underline-offset-4">{opponent?.name}</Link>
                         </div>
                       </div>
                       <Link 

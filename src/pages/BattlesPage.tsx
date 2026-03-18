@@ -89,11 +89,15 @@ export default function BattlesPage() {
                           <span className="font-display italic uppercase text-xl md:text-2xl text-zinc-100 group-hover:text-brand transition-colors flex items-center gap-3">
                             <span className="flex items-center gap-2">
                               {battle.winner === battle.mc1 && <Trophy size={18} className="text-brand" />}
-                              {mc1?.name || battle.mc1}
+                              <Link to={`/mc/${mc1?.slug}`} className="hover:text-brand hover:underline underline-offset-4 transition-colors">
+                                {mc1?.name || battle.mc1}
+                              </Link>
                             </span>
                             <span className="text-zinc-600 text-sm">VS</span>
                             <span className="flex items-center gap-2">
-                              {mc2?.name || battle.mc2}
+                              <Link to={`/mc/${mc2?.slug}`} className="hover:text-brand hover:underline underline-offset-4 transition-colors">
+                                {mc2?.name || battle.mc2}
+                              </Link>
                               {battle.winner === battle.mc2 && <Trophy size={18} className="text-brand" />}
                             </span>
                           </span>

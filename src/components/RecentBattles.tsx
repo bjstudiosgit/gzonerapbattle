@@ -87,8 +87,8 @@ export default function RecentBattles() {
                     <span className="text-brand font-black text-[8px] tracking-[0.3em] uppercase mb-1 block">
                       Episode #{battle.id}
                     </span>
-                    <h4 className="text-xl font-display italic uppercase leading-none group-hover:text-brand transition-colors">
-                      {mc1?.name} <span className="text-brand/50">VS</span> {mc2?.name}
+                    <h4 className="text-xl font-display italic uppercase leading-none group-hover:text-brand transition-colors relative z-40">
+                      <Link to={`/mc/${mc1?.slug}`} className="hover:text-brand hover:underline underline-offset-4 transition-colors">{mc1?.name}</Link> <span className="text-brand/50">VS</span> <Link to={`/mc/${mc2?.slug}`} className="hover:text-brand hover:underline underline-offset-4 transition-colors">{mc2?.name}</Link>
                     </h4>
                   </div>
                   
