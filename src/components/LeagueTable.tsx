@@ -25,6 +25,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
     .map((mc, index) => ({
       rank: index + 1,
       id: mc.id,
+      slug: mc.slug,
       name: mc.name,
       points: (mc.wins * 3) + mc.battles,
       battles: mc.battles,
@@ -78,7 +79,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                       </span>
                     </td>
                     <td className="px-8 py-6">
-                      <Link to={`/mc/${mc.id}`} className="flex items-center gap-4 group/name">
+                      <Link to={`/mc/${mc.slug}`} className="flex items-center gap-4 group/name">
                         <div className={`w-10 h-10 rounded-full bg-zinc-800 border ${mc.isDsq ? 'border-zinc-700 text-zinc-600' : 'border-white/10 text-brand group-hover/name:border-brand'} flex items-center justify-center font-bold transition-colors`}>
                           {mc.name[0]}
                         </div>

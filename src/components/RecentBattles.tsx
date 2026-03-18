@@ -45,7 +45,7 @@ export default function RecentBattles() {
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/40 aspect-video lg:aspect-[3/4]"
               >
-                <Link to={`/battle/${battle.id}`} className="absolute inset-0 z-30" />
+                <Link to={`/battle/${battle.slug}`} className="absolute inset-0 z-30" />
                 
                 <div className="absolute inset-0 z-0">
                   {videoId ? (

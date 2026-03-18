@@ -31,18 +31,18 @@ export default function ApplySection() {
           {[
             {
               icon: <Flame className="text-brand" size={32} />,
-              title: "THE STANDARD",
-              desc: "Write properly.\n\nIf your material doesn’t hold up, neither will you."
+              title: "THE PEN",
+              desc: "Bars over everything.\n\nIf your material doesn't cut deep, you're just taking up space."
             },
             {
               icon: <Mic2 className="text-brand" size={32} />,
-              title: "DELIVERY",
-              desc: "Clarity. Timing. Control.\n\nIf the crowd isn’t listening, you’ve already lost."
+              title: "THE MIC",
+              desc: "Clarity. Impact. Soul.\n\nIf the crowd can't feel the weight of your words, you've already lost."
             },
             {
               icon: <Sword className="text-brand" size={32} />,
-              title: "PRESENCE",
-              desc: "Command the space.\n\nOr get moved out of it."
+              title: "THE STAGE",
+              desc: "Command the arena.\n\nThis isn't a rehearsal—it's the G Zone. Own the space or get moved out of it."
             }
           ].map((point, idx) => (
             <motion.div
@@ -51,13 +51,21 @@ export default function ApplySection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="p-8 bg-zinc-900/50 rounded-3xl border border-white/5 hover:border-brand/50 transition-all group"
+              className="p-8 bg-zinc-900/40 backdrop-blur-md rounded-3xl border border-white/5 hover:border-brand/40 transition-all group relative overflow-hidden"
             >
-              <div className="mb-4 p-3 bg-brand/10 rounded-2xl w-fit group-hover:bg-brand/20 transition-colors mx-auto">
-                {point.icon}
+              {/* Subtle background pattern */}
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] group-hover:opacity-[0.05] transition-opacity" />
+              
+              <div className="relative z-10">
+                <div className="mb-6 p-4 bg-brand/5 rounded-2xl w-fit group-hover:bg-brand/10 transition-colors mx-auto border border-brand/10">
+                  {point.icon}
+                </div>
+                <h3 className="text-2xl font-display italic uppercase mb-3 text-white text-center tracking-tight group-hover:text-brand transition-colors">{point.title}</h3>
+                <p className="text-zinc-500 leading-relaxed whitespace-pre-line text-center text-sm md:text-base">{point.desc}</p>
               </div>
-              <h3 className="text-2xl font-display italic uppercase mb-2 text-white text-center">{point.title}</h3>
-              <p className="text-zinc-500 leading-relaxed whitespace-pre-line text-center">{point.desc}</p>
+
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-brand/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
         </div>

@@ -5,8 +5,8 @@ import { battles as allBattles } from "../data/battles";
 import { ArrowLeft, Mic2, Trophy, Zap, Play, MapPin, Ruler, Weight, Instagram, Youtube, Quote } from "lucide-react";
 
 export default function MCProfile() {
-  const { id } = useParams<{ id: string }>();
-  const mc = mcs.find(m => m.id === id);
+  const { slug } = useParams<{ slug: string }>();
+  const mc = mcs.find(m => m.slug === slug);
 
   if (!mc) {
     return (
@@ -210,7 +210,7 @@ export default function MCProfile() {
                         </div>
                       </div>
                       <Link 
-                        to={`/battle/${battle.id}`}
+                        to={`/battle/${battle.slug}`}
                         className="bg-zinc-800 p-3 rounded-full hover:bg-brand hover:text-black transition-all"
                       >
                         <Play size={20} fill="currentColor" />

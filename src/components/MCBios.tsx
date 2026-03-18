@@ -41,7 +41,7 @@ export default function MCBios() {
               viewport={{ once: true }}
               className="group relative bg-zinc-950 hover:bg-zinc-900 transition-colors duration-300"
             >
-              <Link to={`/mc/${mc.id}`} className="block p-4">
+              <Link to={`/mc/${mc.slug}`} className="block p-4">
                 <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 border border-white/5">
                   <img 
                     src={mc.image} 
