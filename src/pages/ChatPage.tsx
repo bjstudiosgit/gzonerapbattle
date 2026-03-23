@@ -11,18 +11,18 @@ export default function ChatPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-display italic uppercase mb-4 tracking-tighter"
+            className="text-2xl md:text-4xl font-display italic uppercase mb-4 tracking-tighter"
           >
-            G-Zone <span className="text-brand">Fan Chat</span>
+            <span className="text-orange-500">GINJAHOO v1</span> WELCOME BACK TO 2003 📟
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-zinc-400 max-w-2xl mx-auto text-base md:text-lg"
+            className="text-zinc-400 max-w-2xl mx-auto text-base md:text-lg font-medium"
           >
-            we are working on this right now...
+            Search nothing. Say everything.
           </motion.p>
         </div>
 

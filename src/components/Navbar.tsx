@@ -39,7 +39,7 @@ export default function Navbar() {
             <Link to="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center font-display text-xl text-black italic">G</div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-xl tracking-tighter uppercase italic leading-none">The G Zone</span>
+                <span className="font-display text-xl tracking-tighter uppercase italic leading-none">The Savour</span>
                 <span className="text-[6px] text-zinc-400 uppercase tracking-wide font-medium mt-0.5">In Association with Peacock Gymnasium</span>
               </div>
             </Link>

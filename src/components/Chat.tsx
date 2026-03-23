@@ -21,7 +21,10 @@ export default function Chat() {
   const [messageText, setMessageText] = useState<string>("");
   const [isSending, setIsSending] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [onlineCount, setOnlineCount] = useState(0);
+  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const chatRef = useRef<HTMLDivElement>(null);
+  const channelRef = useRef<any>(null);
 
   useEffect(() => {
     const storedName = localStorage.getItem("gzone_chat_name");
@@ -30,16 +33,65 @@ export default function Chat() {
     }
     loadMessages();
 
-    const channel = supabase
-      .channel("chat")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "messages" },
-        (payload) => {
-          setMessages((prev) => [...prev, payload.new as Message]);
+    const userId = Math.random().toString(36);
+
+    const channel = supabase.channel("chat-room", {
+      config: {
+        presence: { key: userId },
+      },
+    });
+    
+    channelRef.current = channel;
+
+    channel.on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "messages" },
+      (payload) => {
+        setMessages((prev) => [...prev, payload.new as Message]);
+      }
+    );
+
+    // handle presence sync
+    channel.on("presence", { event: "sync" }, () => {
+      const state = channel.presenceState();
+      
+      const users = Object.values(state)
+        .flat()
+        .map((u: any) => u.username)
+        .filter(Boolean);
+
+      const uniqueUsers = [...new Set(users)];
+
+      setOnlineUsers(uniqueUsers);
+      setOnlineCount(uniqueUsers.length);
+    });
+
+    // join message (fires once on connect)
+    channel.on("presence", { event: "join" }, () => {
+      const chat = document.getElementById("chat");
+      if (chat) {
+        const msg = document.createElement("div");
+        msg.style.opacity = "0.5";
+        msg.style.fontSize = "12px";
+        msg.style.marginBottom = "12px";
+        msg.style.color = "#a1a1aa";
+        msg.innerText = "someone just joined...";
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+      }
+    });
+
+    channel.subscribe(async (status) => {
+      if (status === "SUBSCRIBED") {
+        const currentName = localStorage.getItem("gzone_chat_name");
+        if (currentName) {
+          await channel.track({ 
+            username: currentName,
+            online_at: new Date().toISOString() 
+          });
         }
-      )
-      .subscribe();
+      }
+    });
 
     return () => {
       supabase.removeChannel(channel);
@@ -70,13 +122,20 @@ export default function Chat() {
     }
   };
 
-  const handleJoin = (e: React.FormEvent) => {
+  const handleJoin = async (e: React.FormEvent) => {
     e.preventDefault();
     const name = inputUsername.trim().substring(0, 20);
     if (name) {
       setUsername(name);
       localStorage.setItem("gzone_chat_name", name);
       setErrorMsg(null);
+      
+      if (channelRef.current) {
+        await channelRef.current.track({
+          username: name,
+          online_at: new Date().toISOString()
+        });
+      }
     } else {
       setErrorMsg("Please enter a name to join.");
     }
@@ -146,7 +205,20 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col h-full w-full bg-black p-4">
+      <div className="flex justify-between items-center mb-1 px-2">
+        <span className="text-brand font-bold uppercase tracking-widest text-sm">Live Chat</span>
+        <div className="text-brand text-sm font-mono">
+          🔥 <span id="onlineCount">{onlineCount}</span> online
+        </div>
+      </div>
+      <div className="text-xs text-zinc-500 mb-2 px-2 text-right">
+        <span id="onlineUsers">
+          {onlineUsers.slice(0, 5).join(", ")}
+          {onlineUsers.length > 5 ? ` +${onlineUsers.length - 5}` : ""}
+        </span>
+      </div>
       <div
+        id="chat"
         ref={chatRef}
         className="flex-grow overflow-y-auto border border-white/10 p-4 bg-white/5 rounded-xl mb-4 scroll-smooth"
       >

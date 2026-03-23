@@ -44,7 +44,7 @@ export const mcs: MC[] = [
     id: "tapped24",
     slug: "tapped24",
     name: "Tapped24",
-    nickname: "The Crowd Pleaser",
+    nickname: "The devil",
     battles: 3,
     wins: 0,
     losses: 3,
