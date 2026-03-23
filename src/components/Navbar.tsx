@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Ticket, ShoppingBag, Users, Trophy, Menu, X, Youtube, Instagram, Play, Mic2 } from "lucide-react";
+import { Ticket, ShoppingBag, Users, Trophy, Menu, X, Youtube, Instagram, Play, Mic2, MessageSquare } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -9,9 +9,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Battles", href: "/battles", icon: Play },
-    { name: "Cyphers", href: "/#cyphers", icon: Mic2 },
     { name: "Tickets", href: "/events", icon: Ticket },
     { name: "MCs", href: "/mcs", icon: Users },
+    { name: "Chat", href: "/chat", icon: MessageSquare },
     { name: "Staff", href: "/#staff", icon: Mic2 },
     { name: "League", href: "/league", icon: Trophy },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
@@ -37,54 +37,54 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-display text-2xl text-black italic">G</div>
+              <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center font-display text-xl text-black italic">G</div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-2xl tracking-tighter uppercase italic leading-none">The G Zone</span>
-                <span className="text-[8px] text-zinc-400 uppercase tracking-widest font-medium mt-0.5">In Association with Peacock Gymnasium</span>
+                <span className="font-display text-xl tracking-tighter uppercase italic leading-none">The G Zone</span>
+                <span className="text-[6px] text-zinc-400 uppercase tracking-wide font-medium mt-0.5">In Association with Peacock Gymnasium</span>
               </div>
             </Link>
           </div>
           
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-4 flex items-baseline space-x-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-zinc-300 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
+                  className="text-zinc-300 hover:text-orange-500 px-2 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
                 >
                   <link.icon size={16} />
                   {link.name}
                 </Link>
               ))}
-              <div className="flex items-center gap-4 ml-4">
+              <div className="flex items-center gap-2 ml-2">
                 <a 
                   href="https://www.youtube.com/@gingajay" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-brand hover:bg-brand-dark text-black p-2 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
+                  className="bg-brand hover:bg-brand-dark text-black p-1.5 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
                   aria-label="Follow us on YouTube"
                 >
-                  <Youtube size={20} />
+                  <Youtube size={18} />
                 </a>
                 <a 
                   href="https://instagram.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-brand hover:bg-brand-dark text-black p-2 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
+                  className="bg-brand hover:bg-brand-dark text-black p-1.5 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
                   aria-label="Follow us on Instagram"
                 >
-                  <Instagram size={20} />
+                  <Instagram size={18} />
                 </a>
                 <a 
                   href="https://www.tiktok.com/@gzoneofficialclips" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-brand hover:bg-brand-dark text-black p-2 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
+                  className="bg-brand hover:bg-brand-dark text-black p-1.5 rounded-full transition-all transform hover:scale-105 flex items-center justify-center"
                   aria-label="Follow us on TikTok"
                 >
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
                   </svg>
                 </a>

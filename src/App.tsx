@@ -11,7 +11,6 @@ import Events from "./components/Events";
 import Merch from "./components/Merch";
 import MCBios from "./components/MCBios";
 import RecentBattles from "./components/RecentBattles";
-import Cyphers from "./components/Cyphers";
 import Footer from "./components/Footer";
 import MCProfile from "./components/MCProfile";
 import HostProfile from "./components/HostProfile";
@@ -27,6 +26,7 @@ import MerchPage from "./pages/MerchPage";
 import ApplyPage from "./pages/ApplyPage";
 import SuccessPage from "./pages/SuccessPage";
 import MCsPage from "./pages/MCsPage";
+import ChatPage from "./pages/ChatPage";
 
 import FeaturedVideo from "./components/FeaturedVideo";
 
@@ -55,7 +55,6 @@ function Home() {
       <HostsAndJudges />
       <ApplySection />
       <RecentBattles />
-      <Cyphers />
       <MCBios />
       <Events />
       <Merch />
@@ -80,6 +79,7 @@ function Main() {
         <Route path="/judge/:id" element={<JudgeProfile />} />
         <Route path="/league" element={<League />} />
         <Route path="/mcs" element={<MCsPage />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/battles" element={<BattlesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/merch" element={<MerchPage />} />
