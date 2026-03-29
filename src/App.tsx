@@ -30,9 +30,7 @@ import MapPage from "./pages/MapPage";
 import PrivacyPage from "./pages/PrivacyPage";
 
 import StaffPage from "./pages/StaffPage";
-import CyphersPage from "./pages/CyphersPage";
 import FeaturedVideo from "./components/FeaturedVideo";
-import CyphersSection from "./components/CyphersSection";
 import LostProperty from "./components/LostProperty";
 
 function ScrollToTop() {
@@ -60,7 +58,6 @@ function Home() {
       <RecentBattles />
       <MCBios />
       <Events limit={2} />
-      <CyphersSection />
       <Merch />
     </main>
   );
@@ -93,7 +90,6 @@ function Main() {
         <Route path="/battles" element={<BattlesPage />} />
         <Route path="/staff" element={<StaffPage />} />
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/cyphers" element={<CyphersPage />} />
         <Route path="/merch" element={<MerchPage />} />
         <Route path="/battle/:slug" element={<BattleDetail />} />
         <Route path="/privacy" element={<PrivacyPage />} />

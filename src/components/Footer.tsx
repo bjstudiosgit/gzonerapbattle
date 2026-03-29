@@ -38,7 +38,6 @@ export default function Footer() {
             <h5 className="font-bold uppercase tracking-widest text-[10px] mb-2 text-zinc-500">Platform</h5>
             <ul className="space-y-1 text-xs text-zinc-400">
               <li><Link to="/events" className="hover:text-brand transition-colors">Events</Link></li>
-              <li><Link to="/cyphers" className="hover:text-brand transition-colors">Cyphers</Link></li>
               <li><Link to="/#mcs" className="hover:text-brand transition-colors">MCs</Link></li>
               <li><Link to="/league" className="hover:text-brand transition-colors">League Table</Link></li>
               <li><Link to="/merch" className="hover:text-brand transition-colors">Merch Store</Link></li>

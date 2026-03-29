@@ -18,7 +18,7 @@ export default function IntroVideo() {
   }, [started]);
 
   return (
-    <section className="relative w-full bg-black min-h-[90vh] overflow-x-hidden">
+    <section className="relative w-full bg-black min-h-[70vh] overflow-x-hidden">
       {started && <audio ref={audioRef} autoPlay src="/gzoneintro.mp4" preload="metadata" />}
       {/* Shared Video Background */}
       <div className="absolute inset-0 z-0">
@@ -82,7 +82,7 @@ export default function IntroVideo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className="relative min-h-[80vh] flex items-center pt-32 pb-12 z-30"
+            className="relative min-h-[60vh] flex items-center pt-24 pb-8 z-30"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">

@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export default function FeaturedVideo() {
   return (
-    <section className="relative w-full bg-black min-h-[70vh] overflow-hidden flex flex-col items-center justify-center py-12">
+    <section className="relative w-full bg-black min-h-[40vh] overflow-hidden flex flex-col items-center justify-center py-6">
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Cinematic Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950/80 to-zinc-950 z-10 pointer-events-none" />
@@ -14,7 +14,7 @@ export default function FeaturedVideo() {
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
       </div>
 
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

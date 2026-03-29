@@ -22,9 +22,6 @@ export default function PrivacyPage() {
               <p>
                 Our Site promotes UK rap talent and includes features such as MC applications, chat rooms, newsletter sign‑ups and links to ticket and merchandise providers. We process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Guidance from the UK Information Commissioner’s Office (ICO) stresses that privacy notices must explain what data is collected, why it is collected, the lawful basis for processing, with whom it is shared, how long it is kept, and how individuals can exercise their rights.
               </p>
-              <p className="mt-4">
-                We may use modern technologies, including AI tools, to support content creation and website improvements. These tools are used internally and do not process personal user data.
-              </p>
               <p className="mt-4 italic text-sm">
                 We do not knowingly collect data from children under 13. If you are under 13, please do not submit any information to us.
               </p>
