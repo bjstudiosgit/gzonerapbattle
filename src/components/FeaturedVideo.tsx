@@ -1,6 +1,10 @@
 import { motion } from "motion/react";
+import { battles } from "../data/battles";
 
 export default function FeaturedVideo() {
+  const releasedBattles = battles.filter(b => !b.isUnreleased);
+  const latestBattle = releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null;
+
   return (
     <section className="relative w-full min-h-[40vh] overflow-hidden flex flex-col items-center justify-center py-12 md:py-24">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -16,10 +20,10 @@ export default function FeaturedVideo() {
           className="text-center mb-10 w-full"
         >
           <h2 className="text-3xl md:text-6xl font-display uppercase mb-6 tracking-tighter leading-tight text-brand">
-            Check out the latest battle vibe
+            Latest Battle Btizz VS CJ Zino out now!
           </h2>
           <p className="text-zinc-200 text-sm md:text-base font-medium tracking-normal max-w-2xl mx-auto">
-            New battles dropping every Thursday at 9pm on YouTube.
+            Season 1 Episode 1x13 - Oh gosh!
           </p>
         </motion.div>
 
@@ -32,7 +36,7 @@ export default function FeaturedVideo() {
         >
           <iframe
             className="w-full h-full border-0"
-            src="https://www.youtube-nocookie.com/embed/-bKXRy3RxoY"
+            src={latestBattle?.videoUrl || "https://www.youtube-nocookie.com/embed/-bKXRy3RxoY"}
             title="YouTube video player"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

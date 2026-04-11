@@ -16,10 +16,14 @@ export default function MCsPage() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between mb-16 md:mb-24 gap-12 text-center lg:text-left">
-          <div className="flex-1">
-            <h2 className="text-5xl md:text-9xl font-display uppercase leading-[0.8] mb-8">
-              The <span className="text-brand">Gzone</span> MC's
-            </h2>
+          <div className="flex-1 w-full">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand/20 to-transparent lg:hidden" />
+              <h2 className="text-4xl md:text-7xl font-display uppercase flex items-center gap-4 text-white">
+                <Zap className="text-brand animate-pulse" size={32} /> The Gzone Roster
+              </h2>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
+            </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed uppercase tracking-tight font-medium opacity-80 mx-auto lg:mx-0">
               The Gzone roster brings together battle-tested MCs from across the scene. 
               This is an arena where the talent comes first, the battles speak for themselves, and the crowd decides who truly runs the stage.
@@ -40,13 +44,6 @@ export default function MCsPage() {
 
         {/* Active MCs Grid */}
         <div className="mb-24">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
-            <h3 className="text-2xl md:text-4xl font-display uppercase flex items-center gap-4 text-white">
-              <Zap className="text-brand animate-pulse" size={24} /> The Active Roster
-            </h3>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
-          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
             {activeMcs.map((mc, index) => (
               <MCCard key={mc.id} mc={mc} index={index} />

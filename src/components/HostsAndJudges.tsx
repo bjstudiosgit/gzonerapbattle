@@ -50,8 +50,14 @@ export default function HostsAndJudges() {
           )}
         </div>
 
-        <div className="p-5 md:p-6 flex flex-col items-start gap-4 bg-zinc-950 flex-1">
+        <div className="p-5 md:p-6 flex flex-col items-start gap-4 bg-zinc-950 flex-1 relative">
           <h4 className="text-2xl md:text-3xl font-display uppercase leading-none text-white drop-shadow-[2px_2px_0px_rgba(242,125,38,1)] group-hover:text-brand group-hover:drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-300 transform group-hover:-translate-y-1">{person.name}</h4>
+          
+          {person.role === "Celebrity Guest" && (
+            <div className="absolute top-2 right-2 bg-brand text-black px-2 py-0.5 text-[7px] font-black uppercase tracking-widest border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              Celebrity
+            </div>
+          )}
           
           <div className="mt-auto flex w-full items-center justify-center gap-2 px-2 py-2 min-h-[44px] bg-brand text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-1 group-hover:rotate-0 transition-transform duration-300">
             <span className="shrink-0">{person.icon}</span>

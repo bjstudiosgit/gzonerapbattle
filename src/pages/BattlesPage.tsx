@@ -65,6 +65,8 @@ export default function BattlesPage() {
                 {battles.map((battle, index) => {
                   const mc1 = mcs.find(m => m.id === battle.mc1);
                   const mc2 = mcs.find(m => m.id === battle.mc2);
+                  const isDeenoVsGrams = battle.id === "14";
+                  const statusText = isDeenoVsGrams ? "In Production" : "Tickets On Sale";
                   
                   return (
                     <motion.tr 
@@ -78,7 +80,7 @@ export default function BattlesPage() {
                     >
                       <td className="px-6 py-6 md:px-10 md:py-10">
                         <span className="font-mono text-brand text-sm md:text-lg font-black opacity-40 group-hover:opacity-100 transition-opacity">
-                          {battle.episode || `1x${String(index + 1).padStart(2, '0')}`}
+                          {!battle.isUnreleased ? (battle.episode || `1x${String(index + 1).padStart(2, '0')}`) : ""}
                         </span>
                       </td>
                       <td className="px-6 py-6 md:px-10 md:py-10">
@@ -97,49 +99,38 @@ export default function BattlesPage() {
                             </div>
                           </div>
                           <div className="lg:hidden flex items-center gap-4 text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">
-                            <span className="flex items-center gap-1.5"><Calendar size={12} className="text-brand/40" /> {battle.isUnreleased ? "In post-production" : (battle.date || "Scheduled")}</span>
+                            <span className="flex items-center gap-1.5"><Calendar size={12} className="text-brand/40" /> {battle.isUnreleased ? statusText : (battle.date || "Scheduled")}</span>
                           </div>
                         </div>
                       </td>
                       <td className="hidden lg:table-cell px-10 py-10">
                         <div className="flex items-center gap-3 text-zinc-300 text-sm font-black uppercase tracking-widest">
                           <Calendar size={18} className="text-brand opacity-40" />
-                          {battle.isUnreleased ? <span className="text-brand underline decoration-brand/30 underline-offset-4">In Production</span> : (battle.date || "TBD")}
+                          {battle.isUnreleased ? <span className={`text-brand ${!isDeenoVsGrams ? "animate-pulse" : ""} underline decoration-brand/30 underline-offset-4`}>{statusText}</span> : (battle.date || "TBD")}
                         </div>
                       </td>
                       <td className="hidden sm:table-cell px-6 py-6 md:px-10 md:py-10 text-center">
                         <div className="inline-flex flex-col items-center gap-1 text-zinc-100 font-mono text-sm md:text-lg">
                           <span className="text-[10px] uppercase font-black tracking-tighter text-zinc-600">Views</span>
-                          <span className="group-hover:text-brand transition-colors">{battle.views || "---"}</span>
+                          <span className="group-hover:text-brand transition-colors">{!battle.isUnreleased ? (battle.views || "---") : "---"}</span>
                         </div>
                       </td>
                       <td className="px-6 py-6 md:px-10 md:py-10 text-right md:text-left">
-                        <span className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border ${
-                          battle.videoUrl 
-                            ? "bg-emerald-500 text-black border-emerald-400 shadow-emerald-500/20" 
-                            : "bg-zinc-800 text-zinc-400 border-white/10"
-                        }`}>
-                          {battle.videoUrl ? "Live Now" : "Coming Soon"}
-                        </span>
+                        <div className="flex flex-col md:flex-row items-end md:items-center gap-2">
+                          <span className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border ${
+                            battle.videoUrl 
+                              ? "bg-emerald-500 text-black border-emerald-400 shadow-emerald-500/20" 
+                              : "bg-red-900/50 text-red-500 border-red-900/50"
+                          }`}>
+                            {battle.videoUrl ? "Live Now" : "NOT LIVE"}
+                          </span>
+                        </div>
                       </td>
                     </motion.tr>
                   );
                 })}
               </tbody>
             </table>
-          </div>
-        </div>
-
-        {/* Global Footer Note */}
-        <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-10 p-10 md:p-16 border border-dashed border-white/10 rounded-[3rem] bg-zinc-900/10 backdrop-blur-sm relative overflow-hidden group">
-          <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          <div className="max-w-xl text-center md:text-left relative z-10">
-            <h4 className="text-white font-display text-3xl md:text-5xl uppercase mb-3 leading-none">WHO RUNS <br className="hidden md:block"/><span className="text-brand">THE ZONE</span></h4>
-            <GlobalDisclaimer className="text-[10px] md:text-sm uppercase tracking-[0.3em] font-black opacity-80 mt-6" />
-          </div>
-          <div className="flex items-center gap-4 bg-black/60 px-10 py-6 rounded-full border border-white/10 relative z-10 shadow-2xl">
-            <div className="w-3 h-3 rounded-full bg-brand animate-pulse shadow-[0_0_20px_rgba(242,125,38,1)]" />
-            <span className="text-sm md:text-lg font-black uppercase tracking-[0.4em] text-white">Live Phase</span>
           </div>
         </div>
       </div>

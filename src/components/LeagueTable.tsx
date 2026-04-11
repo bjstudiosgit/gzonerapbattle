@@ -145,19 +145,19 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                         </div>
                       </td>
                       <td className={`px-4 py-8 md:px-6 md:py-10 text-center font-mono text-sm md:text-lg font-black ${mc.isDsq ? 'text-zinc-700' : 'text-zinc-400'}`}>
-                        {mc.baseScore}
+                        {mc.battles === mc.unreleased ? "-" : mc.baseScore}
                       </td>
                       <td className={`px-4 py-8 md:px-6 md:py-10 text-center font-mono text-sm md:text-lg font-black ${mc.isDsq ? 'text-zinc-700' : 'text-brand'}`}>
-                        {mc.bonusScore > 0 ? (
+                        {mc.battles === mc.unreleased ? "-" : (mc.bonusScore > 0 ? (
                           <div className="inline-flex items-center gap-0.5">
                             <span className="text-xs">+</span>{mc.bonusScore}
                           </div>
                         ) : (
                           <span className="text-zinc-800">-</span>
-                        )}
+                        ))}
                       </td>
                       <td className={`px-6 py-8 md:px-10 md:py-10 text-center font-display text-2xl md:text-3xl bg-white/[0.02] ${isTop3 ? 'text-brand drop-shadow-[0_0_10px_rgba(242,125,38,0.3)]' : 'text-zinc-500'}`}>
-                        {mc.points.toLocaleString()}
+                        {mc.battles === mc.unreleased ? "-" : mc.points.toLocaleString()}
                       </td>
                     </motion.tr>
                   );

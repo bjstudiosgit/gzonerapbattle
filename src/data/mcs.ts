@@ -382,5 +382,21 @@ export const mcs: MC[] = [
     coordinates: [51.5074, -0.1278],
     instagram: "https://instagram.com",
     tiktok: "https://www.tiktok.com/@the.gzone.rbl"
+  },
+  {
+    id: "1flaymr",
+    slug: "1flaymr",
+    name: "1Flaymr",
+    battles: 0,
+    wins: 0,
+    losses: 0,
+    style: "Aggressive / Flow",
+    image: "/mc1flaymr.png",
+    bio: "A high-energy performer with aggressive flows and a sharp pen.",
+    isActive: true,
+    location: "London",
+    coordinates: [51.5074, -0.1278],
+    instagram: "https://instagram.com",
+    tiktok: "https://www.tiktok.com/@the.gzone.rbl"
   }
 ];

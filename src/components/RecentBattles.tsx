@@ -7,8 +7,8 @@ import { mcs } from "../data/mcs";
 export default function RecentBattles() {
   const recentBattles = [...battles]
     .filter(b => b.isPlaceholder)
-    .sort((a, b) => parseInt(a.id) - parseInt(b.id))
-    .slice(0, 4);
+    .sort((a, b) => parseInt(b.id) - parseInt(a.id))
+    .slice(0, 6);
 
   const getYouTubeId = (url?: string) => {
     if (!url) return null;
@@ -105,7 +105,12 @@ export default function RecentBattles() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
                 </div>
 
-                <div className="absolute top-4 left-4 z-20 flex gap-2">
+                <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                  {battle.isMainEvent && (
+                    <div className="bg-brand text-black px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-2xl border border-brand/50 self-start">
+                      Main Event
+                    </div>
+                  )}
                   <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-2xl border border-white/10 ${
                     battle.isUnreleased ? 'bg-[#f27d26] text-white shadow-orange-600/40' : 'bg-brand text-black shadow-brand/40'
                   }`}>

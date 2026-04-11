@@ -83,11 +83,18 @@ export default function BattleDetail() {
                 <Link to={`/mc/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="hover:text-brand transition-colors">{mc1?.name}</Link> <span className="text-brand">VS</span> <Link to={`/mc/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="hover:text-brand transition-colors">{mc2?.name}</Link>
               </h1>
 
-              {battle.isUnreleased && (
-                <div className="flex justify-center mb-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                    <Clock size={16} /> Unreleased Battle
-                  </div>
+              {(battle.isUnreleased || battle.isMainEvent) && (
+                <div className="flex justify-center gap-4 mb-8">
+                  {battle.isMainEvent && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand text-black font-black uppercase tracking-[0.2em] text-xs shadow-[0_0_20px_rgba(242,125,38,0.4)]">
+                      Main Event
+                    </div>
+                  )}
+                  {battle.isUnreleased && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
+                      <Clock size={16} /> Unreleased Battle
+                    </div>
+                  )}
                 </div>
               )}
               

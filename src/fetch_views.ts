@@ -11,7 +11,10 @@ async function fetchViews() {
     "Asvv9rzqXDI",
     "HfO3UR_Zeyk",
     "OGagI2K6StY",
-    "oUDDrQtoTHM"
+    "oUDDrQtoTHM",
+    "Omge-TNTrhQ",
+    "Rs3kTPbnUm4",
+    "-bKXRy3RxoY"
   ];
 
   for (const id of videoIds) {

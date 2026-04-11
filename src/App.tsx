@@ -14,7 +14,6 @@ import MCProfile from "./components/MCProfile";
 import HostProfile from "./components/HostProfile";
 import JudgeProfile from "./components/JudgeProfile";
 import HostsAndJudges from "./components/HostsAndJudges";
-import LeaguePreview from "./components/LeaguePreview";
 import League from "./pages/League";
 import BattleDetail from "./pages/BattleDetail";
 import BattlesPage from "./pages/BattlesPage";
@@ -30,6 +29,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import StaffPage from "./pages/StaffPage";
 import FeaturedVideo from "./components/FeaturedVideo";
 import LostProperty from "./components/LostProperty";
+import { UpcomingEventLanding } from "./components/UpcomingEventLanding";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -56,10 +56,10 @@ function Home() {
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
       <FeaturedVideo />
+      <UpcomingEventLanding />
       <HostsAndJudges />
       <RecentBattles />
       <MCBios />
-      <LeaguePreview />
     </main>
   );
 }
