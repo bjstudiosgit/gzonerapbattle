@@ -17,5 +17,8 @@ export default defineConfig(({ mode }) => {
       allowedHosts: true,
       hmr: false,
     },
+    build: {
+      sourcemap: true,
+    },
   };
 });
