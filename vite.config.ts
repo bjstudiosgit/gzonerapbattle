@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       hmr: false,
     },
     build: {
-      sourcemap: false,
+      sourcemap: true,
     },
   };
 });
