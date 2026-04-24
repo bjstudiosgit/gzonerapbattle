@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Play, Clock, Eye } from "lucide-react";
 import { battles } from "../data/battles";
 import { mcs } from "../data/mcs";
+import { portraitImage } from "../lib/images";
 
 export default function RecentBattles() {
   const recentBattles = [...battles]
@@ -73,24 +74,32 @@ export default function RecentBattles() {
                     <div className="w-full h-full relative flex overflow-hidden bg-zinc-900">
                       <div className="absolute inset-y-0 left-0 w-[55%] h-full overflow-hidden [clip-path:polygon(0_0,100%_0,85%_100%,0_100%)] z-10 border-r border-brand/20">
                         <img 
-                          src={mc1?.image} 
+                          src={portraitImage(mc1?.image, "card")} 
                           alt={mc1?.name} 
                           loading="lazy" 
                           decoding="async"
                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100" 
                           referrerPolicy="no-referrer" 
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = `https://picsum.photos/seed/${mc1?.id}/400/533`;
+                          }}
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500" />
                       </div>
                       
                       <div className="absolute inset-y-0 right-0 w-[55%] h-full overflow-hidden [clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] z-0">
                         <img 
-                          src={mc2?.image} 
+                          src={portraitImage(mc2?.image, "card")} 
                           alt={mc2?.name} 
                           loading="lazy" 
                           decoding="async"
                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100" 
                           referrerPolicy="no-referrer" 
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = `https://picsum.photos/seed/${mc2?.id}/400/533`;
+                          }}
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500" />
                       </div>

@@ -4,6 +4,7 @@ import { battles } from "../data/battles";
 import { calculateRankings } from "../lib/ranking";
 import { Link } from "react-router-dom";
 import { Trophy, ChevronRight, Medal } from "lucide-react";
+import { portraitImage } from "../lib/images";
 
 export default function LeaguePreview() {
   const calculatedRankings = calculateRankings(battles);
@@ -81,10 +82,18 @@ export default function LeaguePreview() {
                   }`}>
                     <div className="w-full h-full rounded-full overflow-hidden">
                       <img 
-                        src={mc.image} 
+                        src={portraitImage(mc.image, "avatar")} 
                         alt={mc.name} 
+                        width={128}
+                        height={128}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = `https://picsum.photos/seed/${mc.id}/128/128`;
+                        }}
                       />
                     </div>
                   </div>
