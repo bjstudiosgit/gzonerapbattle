@@ -5,6 +5,7 @@ import { battles } from "../data/battles";
 import { calculateRankings } from "../lib/ranking";
 import { Link } from "react-router-dom";
 import { Trophy, Shield, Zap, Target, ArrowDown, Activity, Medal, Star } from "lucide-react";
+import { portraitImage } from "../lib/images";
 
 export default function League() {
   const calculatedRankings = calculateRankings(battles, mcs);
@@ -199,10 +200,14 @@ export default function League() {
                 <div className="absolute inset-0 rounded-[3.5rem] overflow-hidden">
                 {mc.image && (
                   <img
-                    src={mc.image}
+                    src={portraitImage(mc.image, "profile")}
                     alt=""
                     aria-hidden="true"
                     className="absolute inset-0 h-full w-full object-cover grayscale opacity-35 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-50 group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://picsum.photos/seed/${mc.id}/600/800`;
+                    }}
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/25" />

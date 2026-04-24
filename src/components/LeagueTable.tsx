@@ -4,6 +4,7 @@ import { Clock, Trophy, Shield, Info, ArrowUpRight } from "lucide-react";
 import { mcs } from "../data/mcs";
 import { battles } from "../data/battles";
 import { calculateRankings } from "../lib/ranking";
+import { portraitImage } from "../lib/images";
 
 interface LeagueTableProps {
   limit?: number;
@@ -109,9 +110,17 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                           <div className={`relative w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-zinc-900 ${isTop3 ? 'border-brand/40 shadow-[0_0_20px_rgba(242,125,38,0.2)]' : 'border-white/5 group-hover/name:border-brand/30'}`}>
                             {mc.image ? (
                               <img 
-                                src={mc.image} 
+                                src={portraitImage(mc.image, "avatar")} 
                                 alt={mc.name}
+                                width={128}
+                                height={128}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover grayscale group-hover/name:grayscale-0 transition-all duration-700"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.src = `https://picsum.photos/seed/${mc.id}/128/128`;
+                                }}
                               />
                             ) : (
                               <div className="w-full h-full bg-zinc-800 flex items-center justify-center font-display text-xl md:text-2xl text-zinc-500">
