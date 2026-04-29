@@ -4,11 +4,11 @@ import { sortBattlesById } from "../lib/battleUtils";
 
 export default function FeaturedVideo() {
   const releasedBattles = sortBattlesById(battles.filter(b => !b.isUnreleased));
-  const latestBattle = releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null;
-  const latestBattleEmbedSrc = latestBattle?.videoUrl
-    ? latestBattle.videoUrl.includes("watch?v=")
-      ? latestBattle.videoUrl.replace("watch?v=", "embed/")
-      : latestBattle.videoUrl
+  const featuredBattle = battles.find(b => b.slug === "deeno-vs-grams") ?? (releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null);
+  const featuredBattleEmbedSrc = featuredBattle?.videoUrl
+    ? featuredBattle.videoUrl.includes("watch?v=")
+      ? featuredBattle.videoUrl.replace("watch?v=", "embed/")
+      : featuredBattle.videoUrl
     : "https://www.youtube-nocookie.com/embed/-bKXRy3RxoY";
 
   return (
@@ -46,7 +46,7 @@ export default function FeaturedVideo() {
           <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(242,125,38,0.25)] bg-[#050505]">
             <iframe
               className="w-full h-full border-0"
-              src={latestBattleEmbedSrc}
+              src={featuredBattleEmbedSrc}
               title="YouTube video player"
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -58,7 +58,7 @@ export default function FeaturedVideo() {
             <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] pointer-events-none" />
 
             {/* WANTED Stamp Overlay */}
-            {latestBattle?.isWanted && (
+            {featuredBattle?.isWanted && (
               <div className="absolute top-8 right-8 z-30 pointer-events-none">
                 <motion.div
                   initial={{ opacity: 0, scale: 2, rotate: 15 }}
