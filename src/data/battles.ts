@@ -144,7 +144,7 @@ export const battles: Battle[] = [
     "bonusPoints": 1
   },
   {
-    "id": "13",
+    "id": "11",
     "slug": "ryno-vs-tymeless",
     "mc1": "ryno",
     "mc2": "tymeless",
@@ -182,7 +182,7 @@ export const battles: Battle[] = [
     ]
   },
   {
-    "id": "11",
+    "id": "13",
     "slug": "btizz-vs-cj-zino",
     "mc1": "btizz",
     "mc2": "cj-zino",
