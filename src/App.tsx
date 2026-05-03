@@ -39,6 +39,7 @@ const BattleDetail = lazy(() => import("./pages/BattleDetail"));
 const LostProperty = lazy(() => import("./components/LostProperty"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
+const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -62,6 +63,14 @@ function RouteFallback() {
   return (
     <div className="min-h-[60vh] pt-44 flex items-center justify-center">
       <div className="h-10 w-10 rounded-full border-2 border-brand/20 border-t-brand animate-spin" />
+    </div>
+  );
+}
+
+function StandaloneRouteFallback() {
+  return (
+    <div className="min-h-[100dvh] bg-black flex items-center justify-center">
+      <div className="h-10 w-10 rounded-full border-2 border-zinc-800 border-t-orange-500 animate-spin" />
     </div>
   );
 }
@@ -91,6 +100,7 @@ function Main() {
   const location = useLocation();
   const [showAtmosphere, setShowAtmosphere] = useState(false);
   const [showFooter, setShowFooter] = useState(false);
+  const isStandaloneVoteLive = location.pathname === "/vote/live";
 
   useEffect(() => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -125,20 +135,20 @@ function Main() {
         <meta name="description" content="The Gzone Rap Battle League - Where reputations are built or buried. Watch the best MCs clash in the UK's premier battle rap arena." />
       </Helmet>
       <ScrollToTop />
-      {showAtmosphere && (
+      {showAtmosphere && !isStandaloneVoteLive && (
         <Suspense fallback={null}>
           <ArenaAtmosphere />
         </Suspense>
       )}
-      <Navbar />
+      {!isStandaloneVoteLive && <Navbar />}
       
-      {location.pathname === '/' && location.hash === '' && (
+      {!isStandaloneVoteLive && location.pathname === '/' && location.hash === '' && (
         <Suspense fallback={null}>
           <IntroVideo />
         </Suspense>
       )}
       
-      <Suspense fallback={<RouteFallback />}>
+      <Suspense fallback={isStandaloneVoteLive ? <StandaloneRouteFallback /> : <RouteFallback />}>
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/apply" element={<ApplyPage />} />
@@ -159,10 +169,11 @@ function Main() {
           <Route path="/lost-property" element={<LostProperty />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/vote" element={<VotePage />} />
+          <Route path="/vote/live" element={<VoteLivePage />} />
         </Routes>
       </Suspense>
       
-      {showFooter && (
+      {showFooter && !isStandaloneVoteLive && (
         <Suspense fallback={null}>
           <Footer />
         </Suspense>

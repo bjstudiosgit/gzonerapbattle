@@ -208,7 +208,7 @@ export default function VotePage() {
             id="nav-vote"
             className={`px-4 py-1.5 flex items-center gap-2 text-[10px] uppercase font-black transition-all rounded-sm ${view === 'voter' ? 'bg-zinc-100 text-black' : 'text-zinc-400 hover:text-white'}`}
           >
-            <Vote size={12} /> Voter
+            <Vote size={12} /> Vote Now
           </button>
           <button 
             onClick={() => setView('display')}
@@ -222,7 +222,7 @@ export default function VotePage() {
             id="nav-admin"
             className={`px-4 py-1.5 flex items-center gap-2 text-[10px] uppercase font-black transition-all rounded-sm ${view === 'admin' ? 'bg-zinc-100 text-black' : 'text-zinc-400 hover:text-white'}`}
           >
-            <Settings size={12} /> Console
+            <Settings size={12} /> Admin Login
           </button>
         </nav>
       </header>
@@ -277,8 +277,8 @@ function VoterView({ battles, votedBattles, user, authError, onLogin }: { battle
       <div className="h-[80vh] flex flex-col items-center justify-center p-12 text-center">
         <div className="bg-zinc-900 border border-zinc-800 p-12 shadow-2xl max-w-md">
           <LogIn size={48} className="mx-auto mb-6 text-orange-500 opacity-50" />
-          <h2 className="text-2xl font-black uppercase text-white mb-4 italic">Identity Required</h2>
-          <p className="text-sm text-zinc-400 mb-8 lowercase">This arena uses verified voting protocols. Please sign in with Google to cast your vote.</p>
+          <h2 className="text-2xl font-black text-white mb-4 italic">You must login to vote</h2>
+          <p className="text-sm text-zinc-400 mb-8">To help keep voting fair, please sign in before casting your vote.</p>
           {authError && (
             <div className="mb-6 p-4 bg-red-600/20 border border-red-500 text-red-400 text-[10px] font-bold uppercase tracking-widest leading-relaxed">
               !! ERROR: {authError} !!
@@ -289,7 +289,7 @@ function VoterView({ battles, votedBattles, user, authError, onLogin }: { battle
               onClick={onLogin}
               className="w-full bg-orange-500 text-white px-8 py-4 font-black uppercase italic skew-btn-left hover:bg-orange-400 flex items-center justify-center gap-3 transition-all"
             >
-              <LogIn size={20} /> Verify with Google
+              <LogIn size={20} /> Sign in with Google
             </button>
             <p className="text-[9px] text-zinc-600 uppercase font-bold tracking-widest">
               Problems? ensure pop-ups are permitted for this domain
@@ -540,7 +540,7 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
     return (
       <div className="h-[60vh] flex flex-col items-center justify-center text-center">
         <div className="bg-zinc-900 border border-zinc-800 p-12 shadow-2xl max-w-xl">
-          <h2 className="text-3xl font-black uppercase italic text-red-500 mb-4 tracking-tighter">Connection Error</h2>
+          <h2 className="text-3xl font-black uppercase italic text-red-500 mb-4 tracking-tighter">You are not logged in.</h2>
           <p className="text-zinc-400 mb-8 lowercase font-mono text-sm">{authError}</p>
           <button 
             onClick={onLogin}
@@ -820,7 +820,7 @@ function DisplayView({ battles }: { battles: Battle[] }) {
                     exit={{ y: 20, opacity: 0 }}
                     className="inline-block bg-orange-500 text-white px-12 py-3 text-3xl font-black uppercase italic tracking-tighter shadow-[0_0_40px_rgba(249,115,22,0.4)]"
                 >
-                    Voting Results
+                    Voting in progress!
                 </motion.div>
             ) : (
                 <motion.div 
@@ -829,7 +829,7 @@ function DisplayView({ battles }: { battles: Battle[] }) {
                     exit={{ y: 20, opacity: 0 }}
                     className="inline-block bg-white text-black px-12 py-3 text-3xl font-black uppercase italic tracking-tighter shadow-[0_0_40px_rgba(255,255,255,0.2)]"
                 >
-                    Voting Results
+                    Voting in progress!
                 </motion.div>
             )}
         </AnimatePresence>

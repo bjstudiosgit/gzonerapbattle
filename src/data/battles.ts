@@ -79,7 +79,7 @@ export const battles: Battle[] = [
     "title": "CJ Zino vs Proty",
     "date": "15 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/T0zo6YgfxB4",
-    "views": "9.9K",
+    "views": "10.0K",
     "winner": "proty"
   },
   {
@@ -112,7 +112,7 @@ export const battles: Battle[] = [
     "title": "2MWAD vs Ryno",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/HfO3UR_Zeyk",
-    "views": "23.3K",
+    "views": "23.4K",
     "winner": "ryno",
     "props": [
       { name: "NFA Document from Police", user: "Ryno", icon: "📄" }
@@ -126,7 +126,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Roman",
     "date": "4 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OGagI2K6StY",
-    "views": "14.6K",
+    "views": "14.8K",
     "winner": "roman",
     "props": [
       { name: "Screenshots of text messages", user: "Roman", icon: "📱" },
@@ -141,7 +141,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs AJNA",
     "date": "19 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oUDDrQtoTHM",
-    "views": "11.3K",
+    "views": "11.4K",
     "winner": "ajna",
     "bonusPoints": 1,
     "props": [
@@ -222,7 +222,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Grams",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/9gkXN1ZJeP8",
-    "views": "5.7K",
+    "views": "6.2K",
     "winner": "tapped24",
     "isUnreleased": false,
     "isPlaceholder": false,
