@@ -33,15 +33,15 @@ export default function LostPropertyPreview() {
                 <div className="text-[9px] uppercase tracking-[0.25em] text-zinc-500 font-black">Items left behind</div>
               </div>
               <div className="rounded-xl border border-white/10 bg-zinc-950/70 p-4">
-                <div className="text-3xl font-display text-brand">S1</div>
+                <div className="text-3xl font-display text-brand">Season 1</div>
                 <div className="text-[9px] uppercase tracking-[0.25em] text-zinc-500 font-black">Most Wanted</div>
               </div>
             </div>
             <Link
               to="/lost-property"
-              className="inline-flex items-center gap-3 bg-brand text-black px-6 py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white transition-colors"
+              className="inline-flex max-w-sm items-center justify-between gap-3 bg-brand text-black px-6 py-4 rounded-xl font-black text-left text-xs sm:text-sm leading-snug hover:bg-white transition-colors"
             >
-              View Lost Property
+              Lost property still waiting to be collected
               <ArrowRight size={16} />
             </Link>
           </div>

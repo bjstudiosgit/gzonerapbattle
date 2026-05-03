@@ -28,7 +28,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "49.7K",
+    "views": "49.8K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -88,7 +88,7 @@ export const battles: Battle[] = [
     "title": "Renzo vs Proty",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/bZRy8jgPvwk",
-    "views": "9.6K",
+    "views": "9.7K",
     "winner": "renzo"
   },
   {
@@ -206,7 +206,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Grams",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OuVeBAU1OQQ",
-    "views": "17.2K",
+    "views": "17.5K",
     "winner": "deeno",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -220,7 +220,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Grams",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/9gkXN1ZJeP8",
-    "views": "3.8K",
+    "views": "5.7K",
     "winner": "tapped24",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -329,5 +329,5 @@ export const battles: Battle[] = [
   }
 ];
 
-export const lastUpdated = "2 May 2026";
+export const lastUpdated = "3 May 2026";
 
