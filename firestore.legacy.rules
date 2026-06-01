@@ -1,0 +1,145 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    // Pre-authorized admin: bradleyjsmithuk@gmail.com
+    function isAdmin() {
+      return isEmailVerified() && (
+        request.auth.token.email == 'bradleyjsmithuk@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    function isValidAdmin(data) {
+      return data.keys().hasAll(['email', 'addedBy', 'addedAt'])
+        && data.keys().size() == 3
+        && data.email is string && data.email.size() <= 100
+        && data.addedBy == request.auth.uid
+        && data.addedAt == request.time;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Battle Validation ---
+    function isValidBattle(data) {
+      return data.keys().hasAll(['title', 'artistA', 'artistB', 'status', 'votesA', 'votesB', 'createdAt', 'updatedAt'])
+        && data.keys().size() == 8
+        && data.title is string && data.title.size() <= 200
+        && data.artistA is string && data.artistA.size() <= 100
+        && data.artistB is string && data.artistB.size() <= 100
+        && data.status in ['pending', 'active', 'finished']
+        && data.votesA is int && data.votesA >= 0
+        && data.votesB is int && data.votesB >= 0
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // --- Vote Validation ---
+    function isValidVote(data) {
+      return data.keys().hasAll(['battleId', 'voterId', 'choice', 'timestamp'])
+        && data.keys().size() == 4
+        && isValidId(data.battleId)
+        && data.voterId == request.auth.uid
+        && data.choice in ['A', 'B']
+        && data.timestamp == request.time;
+    }
+
+    // --- Application Validation ---
+    function isValidMinimalApplication(data) {
+      return data.keys().hasOnly(['name', 'email', 'status', 'createdAt'])
+        && data.keys().hasAll(['name', 'email', 'status', 'createdAt'])
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 100
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && data.status == 'new'
+        && data.createdAt is timestamp;
+    }
+
+    function isValidExpandedApplication(data) {
+      return data.keys().hasOnly(['fullName', 'mcName', 'email', 'phone', 'city', 'battleExperience', 'auditionLink', 'instagram', 'youtube', 'about', 'status', 'createdAt'])
+        && data.keys().hasAll(['fullName', 'mcName', 'email', 'phone', 'city', 'battleExperience', 'auditionLink', 'instagram', 'youtube', 'about', 'status', 'createdAt'])
+        && data.fullName is string && data.fullName.size() >= 1 && data.fullName.size() <= 100
+        && data.mcName is string && data.mcName.size() >= 1 && data.mcName.size() <= 100
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && data.phone is string && data.phone.size() >= 3 && data.phone.size() <= 50
+        && data.city is string && data.city.size() >= 1 && data.city.size() <= 100
+        && data.battleExperience in ['First battle', '1-5 battles', '5+ battles', 'League veteran']
+        && data.auditionLink is string && data.auditionLink.size() <= 500
+        && data.instagram is string && data.instagram.size() <= 200
+        && data.youtube is string && data.youtube.size() <= 500
+        && data.about is string && data.about.size() <= 2000
+        && data.status == 'new'
+        && data.createdAt is timestamp;
+    }
+
+    // --- Rules ---
+
+    match /applications/{applicationId} {
+      allow create: if isValidMinimalApplication(incoming()) || isValidExpandedApplication(incoming());
+    }
+
+    match /admins/{email} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && isValidAdmin(incoming()) && email == incoming().email;
+      allow delete: if isAdmin() && email != 'bradleyjsmithuk@gmail.com';
+    }
+
+    match /battles/{battleId} {
+      allow read: if true;
+
+      allow create: if isAdmin() && isValidBattle(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && incoming().votesA == 0
+        && incoming().votesB == 0;
+
+      allow delete: if isAdmin();
+
+      allow update: if (
+        (isAdmin() && isValidBattle(incoming()) && incoming().updatedAt == request.time) ||
+        // Atomicity: Increment count when a new vote is detected
+        (isSignedIn() && isValidBattle(incoming()) && (
+          (incoming().diff(existing()).affectedKeys().hasOnly(['votesA', 'updatedAt']) &&
+           incoming().votesA == existing().votesA + 1 &&
+           get(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'A') ||
+          (incoming().diff(existing()).affectedKeys().hasOnly(['votesB', 'updatedAt']) &&
+           incoming().votesB == existing().votesB + 1 &&
+           get(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'B')
+        ))
+      );
+    }
+
+    match /votes/{voteId} {
+      allow get: if isSignedIn() && resource.data.voterId == request.auth.uid;
+      allow list: if false;
+
+      allow create: if isSignedIn()
+        && voteId == request.auth.uid + '_' + incoming().battleId
+        && isValidVote(incoming())
+        && get(/databases/$(database)/documents/battles/$(incoming().battleId)).data.status == 'active'
+        && existsAfter(/databases/$(database)/documents/battles/$(incoming().battleId));
+    }
+  }
+}
