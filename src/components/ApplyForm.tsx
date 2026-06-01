@@ -166,7 +166,7 @@ export default function ApplyForm() {
         {isLoading ? "Saving..." : "Submit Application"}
       </button>
 
-      {isSuccess && <p role="status" className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-200">Application saved successfully.</p>}
+      {isSuccess && <p role="status" className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-200">Application received. We'll review your submission and be in touch if you're selected for a GZone battle.</p>}
       {error && <p role="alert" className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">{error}</p>}
     </form>
   );
