@@ -109,7 +109,7 @@ export const battles: Battle[] = [
     "title": "2MWAD vs Ryno",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/HfO3UR_Zeyk",
-    "views": "24.4K",
+    "views": "24.7K",
     "winner": "ryno",
     "props": [
       { name: "NFA Document from Police", user: "Ryno", icon: "📄" }
@@ -173,7 +173,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs NattyEBK",
     "date": "2 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Rs3kTPbnUm4",
-    "views": "8.3K",
+    "views": "8.7K",
     "winner": "nattyebk",
     "episode": "1x12",
     "props": [
@@ -262,7 +262,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "20.1K",
+    "views": "20.9K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
