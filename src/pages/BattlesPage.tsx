@@ -2,7 +2,7 @@ import { battles, lastUpdated } from "../data/battles";
 import type { ReactNode } from "react";
 import { mcs } from "../data/mcs";
 import { Link, useNavigate } from "react-router-dom";
-import { Play, Eye, Calendar, Trophy, Star, Sparkles } from "lucide-react";
+import { Play, Eye, Calendar, Trophy, Star } from "lucide-react";
 import { calculateTotalViews, sortBattlesById } from "../lib/battleUtils";
 
 function ScheduleLink({ href, children }: { href: string; children: ReactNode }) {
@@ -121,17 +121,12 @@ export default function BattlesPage() {
                   const scheduleText = battle.ticketUrl ? "Tickets On Sale" : "Coming Soon";
                   const scheduleLink = battle.ticketUrl || "/events";
                   const shouldShowComingSoon = !battle.videoUrl;
-                  const isChristmasSpecial = battle.slug === "deeno-vs-tapped24";
                   
                   return (
                     <tr 
                       key={battle.id}
                       onClick={() => navigate(`/battle/${battle.slug}`)}
-                      className={`group transition-all duration-300 cursor-pointer ${
-                        isChristmasSpecial
-                          ? "bg-gradient-to-r from-red-950/20 via-emerald-950/20 to-red-950/20 hover:from-red-950/30 hover:via-emerald-950/30 hover:to-red-950/30"
-                          : "hover:bg-white/[0.03]"
-                      }`}
+                      className="group hover:bg-white/[0.03] transition-all duration-300 cursor-pointer"
                     >
                       <td className="px-6 py-6 md:px-10 md:py-10">
                         <span className="font-mono text-brand text-sm md:text-lg font-black opacity-40 group-hover:opacity-100 transition-opacity">
@@ -140,21 +135,6 @@ export default function BattlesPage() {
                       </td>
                       <td className="px-6 py-6 md:px-10 md:py-10">
                         <div className="flex flex-col gap-2">
-                          {isChristmasSpecial && (
-                            <div className="mb-1 flex flex-wrap items-center gap-3">
-                              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-[0.22em] text-emerald-300">
-                                <Sparkles size={12} className="text-yellow-300" />
-                                Christmas Day Special
-                              </span>
-                              <span aria-hidden="true" className="flex min-w-24 flex-1 items-center gap-1">
-                                <span className="h-1.5 w-1.5 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.9)]" />
-                                <span className="h-px flex-1 bg-gradient-to-r from-red-400 via-emerald-300 to-yellow-300 shadow-[0_0_8px_rgba(110,231,183,0.75)]" />
-                                <span className="h-1.5 w-1.5 rounded-full bg-yellow-300 shadow-[0_0_8px_rgba(253,224,71,0.9)]" />
-                                <span className="h-px flex-1 bg-gradient-to-r from-yellow-300 via-red-400 to-emerald-300 shadow-[0_0_8px_rgba(248,113,113,0.75)]" />
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(110,231,183,0.9)]" />
-                              </span>
-                            </div>
-                          )}
                           {isTwoVsTwo ? (
                             <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] grid-rows-2 items-center gap-x-3 gap-y-1 font-display uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors">
                               <div className="text-right truncate">{leftPair[0]}</div>
