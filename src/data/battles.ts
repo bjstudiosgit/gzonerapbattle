@@ -27,7 +27,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "51.2K",
+    "views": "51.4K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -262,7 +262,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "20.0K",
+    "views": "20.1K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -315,5 +315,5 @@ export const battles: Battle[] = [
   },
 ];
 
-export const lastUpdated = "31 May 2026";
+export const lastUpdated = "1 Jun 2026";
 

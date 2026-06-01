@@ -2,7 +2,7 @@ import { Zap, Ticket, Play, Sword } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
-    { text: "BREAKING NEWS! TYMELESS TAKES OUT THE VIKING", type: "live" },
+    { text: "BREAKING NEWS! TYMELESS BEHEADS THE VIKING", type: "live" },
     { text: "LATEST: TYMELESS DEFEATED DEENO", type: "live" },
     { text: "LATEST: ROMAN DEFEATED RYNO", type: "live" },
     { text: "LATEST: DEENO DEFEATED BADEE HARZ", type: "live" },
