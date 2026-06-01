@@ -67,7 +67,29 @@ service cloud.firestore {
         && data.timestamp == request.time;
     }
 
+    // --- Application Validation ---
+    function isValidApplication(data) {
+      return data.keys().hasOnly(['fullName', 'mcName', 'email', 'phone', 'city', 'battleExperience', 'auditionLink', 'instagram', 'youtube', 'about', 'status', 'createdAt'])
+        && data.keys().hasAll(['fullName', 'mcName', 'email', 'phone', 'city', 'battleExperience', 'auditionLink', 'instagram', 'youtube', 'about', 'status', 'createdAt'])
+        && data.fullName is string && data.fullName.size() >= 1 && data.fullName.size() <= 100
+        && data.mcName is string && data.mcName.size() >= 1 && data.mcName.size() <= 100
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && data.phone is string && data.phone.size() >= 3 && data.phone.size() <= 50
+        && data.city is string && data.city.size() >= 1 && data.city.size() <= 100
+        && data.battleExperience in ['First battle', '1-5 battles', '5+ battles', 'League veteran']
+        && data.auditionLink is string && data.auditionLink.size() <= 500
+        && data.instagram is string && data.instagram.size() <= 200
+        && data.youtube is string && data.youtube.size() <= 500
+        && data.about is string && data.about.size() <= 2000
+        && data.status == 'new'
+        && data.createdAt is timestamp;
+    }
+
     // --- Rules ---
+
+    match /applications/{applicationId} {
+      allow create: if isValidApplication(incoming());
+    }
 
     match /admins/{email} {
       allow read: if isAdmin();
