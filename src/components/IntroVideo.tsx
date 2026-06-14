@@ -125,7 +125,7 @@ export default function IntroVideo() {
                   
                   <div className="mt-5 pt-4 md:mt-16 md:pt-8 border-t border-white/10 grid grid-cols-5 md:flex items-start justify-center md:justify-start gap-2 md:gap-8 xl:gap-10">
                     <div className="group text-center md:text-left">
-                      <div className="text-xl md:text-4xl font-display text-white group-hover:text-brand transition-colors">13.1K</div>
+                      <div className="text-xl md:text-4xl font-display text-white group-hover:text-brand transition-colors">13.2K</div>
                       <div className="text-zinc-500 text-[8px] md:text-[10px] uppercase tracking-[0.2em] font-bold mt-1">Subscribers</div>
                     </div>
                     <div className="w-px h-10 bg-white/10 hidden md:block" />

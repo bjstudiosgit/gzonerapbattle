@@ -18,7 +18,9 @@ export const parseViews = (viewStr: string | undefined): number => {
 
 export const calculateTotalViews = (battles: Battle[]): string => {
   const totalViewsNum = battles.reduce((acc, b) => acc + parseViews(b.views), 0);
-  return totalViewsNum >= 1000 
-    ? (totalViewsNum / 1000).toFixed(1) + "K" 
-    : totalViewsNum.toString();
+  if (totalViewsNum >= 1000) {
+    const totalInThousands = totalViewsNum / 1000;
+    return `${totalInThousands >= 100 ? Math.round(totalInThousands) : totalInThousands.toFixed(1)}K`;
+  }
+  return totalViewsNum.toString();
 };

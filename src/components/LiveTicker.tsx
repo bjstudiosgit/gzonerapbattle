@@ -3,8 +3,8 @@ import { BookOpen, Zap, Ticket, Play, Sword } from "lucide-react";
 export default function LiveTicker() {
   const items = [
     { text: "BREAKING NEWS! TYMELESS BEHEADS THE VIKING", type: "live" },
+    { text: "NEW DROP: NATTYEBK VS Z.K OUT NOW ON YOUTUBE", type: "live" },
     { text: "LATEST RESULT: NATTYEBK DEFEATED Z.K", type: "live" },
-    { text: "NEW DROP: 1FLAYMR VS CJ ZINO OUT NOW ON YOUTUBE", type: "live" },
     { text: "THE BARS HAVE BEEN BROKEN DOWN: FULL BATTLE WRITE-UPS NOW LIVE", type: "editorial" },
     { text: "TYMELESS VS DEENO: THE AFTERMATH IS LIVE", type: "editorial" },
     { text: "JUNE CARD LOCKED IN: FIVE NEW CLASHES", type: "upcoming" },

@@ -81,14 +81,14 @@ const events = [
     title: "G ZONE: MAY MADNESS",
     date: "31st May 2026",
     location: "G ZONE HQ",
-    price: "VIDEOS COMING SOON",
+    price: "VIDEOS OUT NOW",
     image: mayMadnessEventImage,
-    description: "May Madness is complete. Battle videos from the card are coming soon.",
+    description: "May Madness is complete. NattyEBK vs Z.K and C.J Zino vs 1 Flaymah are out now.",
     isCompleted: true,
     card: [
-      { episode: "1x19", mc1: "Deeno", mc2: "Tymeless" },
-      { episode: "1x20", mc1: "C.J Zino", mc2: "1 Flaymah" },
-      { episode: "1x21", mc1: "Natty EBK", mc2: "Z.K" },
+      { episode: "1x19", mc1: "C.J Zino", mc2: "1 Flaymah" },
+      { episode: "1x20", mc1: "Natty EBK", mc2: "Z.K" },
+      { episode: "1x21", mc1: "Deeno", mc2: "Tymeless" },
     ]
   },
   {

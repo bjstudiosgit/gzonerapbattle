@@ -1472,6 +1472,30 @@ export default function BattleDetail() {
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
+                  Clash Summary
+                </h2>
+                <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                    CJ-Zino and 1Flaymr delivered a clash built around two sharply different identities. 1Flaymr brought Jamaican-influenced cadence, repeated fire slogans, aggression, and performance energy, while CJ answered with more structured counter-writing aimed directly at dismantling the flame persona.
+                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                    1Flaymr&apos;s strongest moments came through character and delivery. Fire, smoke, burning, and gunshot imagery gave his rounds a consistent sound and made phrases such as everything burn function as crowd hooks. CJ&apos;s clearest material challenged the old Friction name, the mask, online toughness, and the claim that the flame could not be extinguished.
+                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                    The battle&apos;s strongest technical sequence came from CJ&apos;s Hunger Games scheme, connecting Katniss, Mockingjay, Snow, fire, and the arena. In contrast, 1Flaymr relied on force, repetition, and a distinctive persona to keep the room engaged even when individual punches were less clearly structured.
+                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                    The crowd call in the available footage is unclear, but the official battle record awards the win to 1Flaymr. The clash remains a clear contrast between stronger performance identity and cleaner direct counter-writing.
+                  </p>
+                </div>
+              </section>
+            )}
+
+            {battle.slug === 'cj-zino-vs-1flaymr' && (
+              <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                  <span className="w-8 h-1 bg-brand" />
                   Performance Analysis
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1495,9 +1519,100 @@ export default function BattleDetail() {
               </section>
             )}
 
+            {battle.slug === 'nattyebk-vs-zk' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">NattyEBK returned for his second GZone battle against debutant Z.K from Grimsby. The clash created a clear contrast between Natty&apos;s aggression, disrespect, shock value, and direct attacks and Z.K&apos;s more controlled, researched, and structured writing.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Natty produced the more explosive moments and grew stronger as the battle progressed. Z.K kept his material clearer and used references around image, finances, music, hygiene, social media, and Grimsby pride to make the contest competitive.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">The result was decided by crowd reaction rather than a formal panel. Z.K&apos;s cleaner second round kept the battle close, but Natty&apos;s room control and stronger third round secured the crowd decision.</p>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Performance Analysis
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">NattyEBK</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Natty performed with aggression and confidence from the start, framing Z.K as an opponent he had been assigned to eliminate. His first round attacked Z.K&apos;s name, travel, money, teeth, religion, and image while using the previous Prince battle to establish momentum.</p>
+                        <p>The second round introduced social-media research and darker family material. His third was the strongest performance round, combining the twins angle, EBK identity, accusations presented as battle material, and faster flow pockets that earned larger reactions.</p>
+                        <p>Impact and room control were Natty&apos;s main strengths. Some material was extremely harsh and loosely structured, but his presence and stronger finish carried the crowd.</p>
+                      </div>
+                    </article>
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Z.K</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Z.K delivered a strong, controlled debut built around direct research. He attacked Natty&apos;s image, haircut, girlfriend, finances, music, home life, and name through references including BBK, CCJs, Mickey Mouse, Dimzy, and Grimsby.</p>
+                        <p>His second round was his strongest, using cultural, football, gaming, and grime references to build connected themes. The third continued the image and hygiene pressure with varied pop-culture and technology references.</p>
+                        <p>Structure and clarity were Z.K&apos;s strengths. His writing was often easier to follow, but it did not create the same room-shaking impact as Natty&apos;s closing round.</p>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Notable Bars
+                  </h2>
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                    {[
+                      ["NattyEBK", [
+                        ["Ginger J is irritating, gave me Z.K to eliminate him.", "Natty frames the matchup as an assignment and immediately places Z.K beneath him."],
+                        ["What I done to Prince, man's doing to you.", "His previous GZone win becomes evidence that Z.K is the next opponent in a continuing run."],
+                        ["Z.K, you need to go get a car, 'cause I heard that you came here bumping train.", "A simple travel and money angle used to question whether Z.K carries himself like a serious opponent."],
+                        ["Z.K, why is your name Z.K? When have you ever swung that blade?", "Natty challenges the authenticity of Z.K's stage name and the dangerous image it suggests."],
+                        ["If you scrape your teeth with your finger, all that we see is plaque.", "A direct visual hygiene punch that supports Natty's wider appearance attack."],
+                        ["You're like a dog on the Fourth of July, tucking your tail when things go boom.", "Fireworks imagery presents Z.K as someone who panics when pressure becomes real."],
+                        ["You got twins, so do I, but our twins ain't alike.", "A dark third-round flip turns family language into threat imagery."],
+                        ["I got all the G's up on my side, but none of us might even like this guy.", "Natty uses crowd-control writing to isolate Z.K and claim the GZone room as his territory."]
+                      ]],
+                      ["Z.K", [
+                        ["You think I come to GZone to lose? You must be confused.", "Z.K opens his debut by rejecting the idea that he has arrived as an easy opponent."],
+                        ["Got a haircut like Mickey Mouse.", "An instantly recognisable visual comparison makes Natty's appearance look cartoonish."],
+                        ["Not EBK, you're not levels like BBK.", "The Boy Better Know reference questions the level and credibility of Natty's EBK identity."],
+                        ["Kicked out his house for his CCJs after CCJs.", "County Court Judgments sharpen Z.K's wider angle about Natty's finances and stability."],
+                        ["Turkey dinosaurs and chips, because you don't know about peas and rice.", "A cultural food comparison questions the authenticity of the image Natty presents."],
+                        ["I believe in Ginger Jesus, but after the clash you'll be needing Christ.", "A local GZone reference becomes a religious punch about Natty needing rescue after the battle."],
+                        ["I typed his name on YouTube. What did I see? This lemon was playing on Tekken.", "Z.K uses Natty's online content to contrast gaming with the dangerous image he presents."],
+                        ["I grew up listening to Wiley, you grew up listening to them.", "Z.K invokes a foundational grime figure to claim deeper musical roots and credibility."],
+                        ["Saturday night, your girl's looking like Cher Lloyd, Sunday morning, Sirius Black.", "A pop-culture comparison creates one of Z.K's clearest comic appearance punches."],
+                        ["You still send porn over Bluetooth.", "An outdated technology reference makes Natty appear immature and behind the times."]
+                      ]]
+                    ].map(([name, bars]) => (
+                      <article key={name as string} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                        <h3 className="text-2xl font-display uppercase text-brand mb-6">{name as string}</h3>
+                        <div className="space-y-4">
+                          {(bars as string[][]).map(([quote, explanation]) => (
+                            <div key={quote} className="rounded-xl border border-white/10 bg-white/[0.025] p-5">
+                              <blockquote className="text-white font-bold leading-relaxed mb-3">
+                                &ldquo;{quote}&rdquo;
+                              </blockquote>
+                              <p className="text-zinc-400 leading-relaxed font-light">{explanation}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+
             {battle.slug !== 'deeno-vs-tapped24' && (
               <>
-                {battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+                {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
                     <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
@@ -2788,6 +2903,10 @@ export default function BattleDetail() {
                 "PR1NC3 brought aggressive delivery and direct attacks, but NattyEBK showed stronger composure, cleaner responses, and the more convincing overall presence.",
                 "The closing crowd call was described as clear, and the official battle record gives NattyEBK the win."
               ]],
+              ["nattyebk-vs-zk", [
+                "NattyEBK brought aggression, shock value, direct personals, and stronger room-commanding moments, while newcomer Z.K answered with clearer structure, researched angles, Grimsby pride, and varied cultural references.",
+                "Z.K's cleaner writing kept the battle close, particularly in round two, but NattyEBK's intensity, crowd impact, and stronger closing round carried the audience decision. The archive records NattyEBK as the winner, 2-1."
+              ]],
               ["btizz-vs-cj-zino", [
                 "BTizz started with high energy and broad attack angles, but CJ-Zino built the clearer narrative through originality, hygiene, credibility, and flow-theft pressure.",
                 "CJ's sharper later rounds and stronger room control gave him the decisive momentum. The official record awards CJ-Zino the win."
@@ -3672,7 +3791,49 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {battle.slug === 'nattyebk-vs-zk' && (
+              <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
+                <h3 className="text-xl font-display uppercase mb-6 text-white">
+                  Key Technical Highlights by MC
+                </h3>
+                {[
+                  {
+                    mc: "NattyEBK",
+                    highlights: [
+                      ["Best round", "Round three."],
+                      ["Strongest trait", "Aggression and room control."],
+                      ["Best angle", "Z.K being unfit to stand against him in GZone."],
+                      ["Biggest reaction", "The third-round flow switch and rising crowd energy."],
+                      ["Main weakness", "Some of the harshest material was loosely structured."]
+                    ]
+                  },
+                  {
+                    mc: "Z.K",
+                    highlights: [
+                      ["Best round", "Round two."],
+                      ["Strongest trait", "Clear writing and structured references."],
+                      ["Best angle", "Natty's image, finances, and credibility."],
+                      ["Key references", "BBK, CCJs, Virgil van Dijk, Tekken, Wiley, and Pokemon."],
+                      ["Main weakness", "Less explosive than Natty in the live room."]
+                    ]
+                  }
+                ].map(({ mc, highlights }) => (
+                  <div key={mc} className="mb-8 last:mb-0">
+                    <h4 className="text-brand font-display uppercase text-lg mb-3">{mc}</h4>
+                    <div className="divide-y divide-white/10">
+                      {highlights.map(([label, detail]) => (
+                        <div key={label} className="py-3 first:pt-0 last:pb-0">
+                          <h5 className="text-white text-sm font-bold mb-1">{label}</h5>
+                          <p className="text-zinc-400 text-xs leading-relaxed">{detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

@@ -43,7 +43,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs Roman",
     "date": "1 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/QByqdZAF3L0",
-    "views": "23.3K",
+    "views": "23.4K",
     "winner": "roman"
   },
   {
@@ -100,7 +100,7 @@ export const battles: Battle[] = [
     "title": "Deluxx vs Btizz",
     "date": "25 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Asvv9rzqXDI",
-    "views": "5.5K",
+    "views": "5.6K",
     "winner": "btizz",
     "episode": "1x7"
   },
@@ -157,7 +157,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Tymeless",
     "date": "26 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Omge-TNTrhQ",
-    "views": "13.5K",
+    "views": "13.7K",
     "winner": "tymeless",
     "props": [
       { "name": "Alleged photo of Ryno kissing a man", "user": "Tymeless", "icon": "📸" },
@@ -269,7 +269,7 @@ export const battles: Battle[] = [
     "title": "Badee Harz vs Deeno",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "23.7K",
+    "views": "24.8K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -280,7 +280,7 @@ export const battles: Battle[] = [
     "episode": "1x17"
   },
   {
-    "id": "20",
+    "id": "21",
     "slug": "deeno-vs-tymeless",
     "mc1": "deeno",
     "mc2": "tymeless",
@@ -294,7 +294,7 @@ export const battles: Battle[] = [
     ],
     "isUnreleased": true,
     "isPlaceholder": false,
-    "episode": "1x20"
+    "episode": "1x21"
   },
   {
     "id": "19",
@@ -304,23 +304,25 @@ export const battles: Battle[] = [
     "title": "1Flaymr vs CJ Zino",
     "date": "31 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/BKAVkMglg3Q",
-    "views": "348",
+    "views": "4.0K",
     "winner": "1flaymr",
     "isUnreleased": false,
     "isPlaceholder": false,
     "episode": "1x19"
   },
   {
-    "id": "21",
+    "id": "20",
     "slug": "nattyebk-vs-zk",
     "mc1": "nattyebk",
     "mc2": "zk",
     "title": "NattyEBK vs Z.K",
     "date": "31 May 2026",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/ayTTSuKB168",
+    "views": "422",
     "winner": "nattyebk",
     "isUnreleased": false,
     "isPlaceholder": false,
-    "episode": "1x21"
+    "episode": "1x20"
   },
   {
     "id": "22",
@@ -384,5 +386,5 @@ export const battles: Battle[] = [
   },
 ];
 
-export const lastUpdated = "7 Jun 2026";
+export const lastUpdated = "14 Jun 2026";
 

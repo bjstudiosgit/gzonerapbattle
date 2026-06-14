@@ -86,7 +86,7 @@ export const UpcomingEventLanding = () => {
                   <div className="text-lg font-display uppercase">C.J Zino <span className="text-brand/40 italic text-sm">VS</span> 1 Flaymah</div>
                 </div>
                 <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
-                  <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-2">Grudge Match</div>
+                  <div className="text-[10px] text-brand font-black uppercase tracking-widest mb-2">Out Now</div>
                   <div className="text-lg font-display uppercase">Natty EBK <span className="text-brand/40 italic text-sm">VS</span> Z.K</div>
                 </div>
               </div>
