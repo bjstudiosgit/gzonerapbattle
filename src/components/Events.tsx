@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Calendar, MapPin, Star, Ticket } from "lucide-react";
+import { Calendar, MapPin, Star, Ticket, Trophy } from "lucide-react";
 import { flyerImage } from "../lib/images";
+import { battles } from "../data/battles";
+import { mcs } from "../data/mcs";
 
 const defaultEventImage = "/gzonebattlemay.png";
 const aprilShowdownEventImage = flyerImage("/flyers/26thAprilall.png", "event");
@@ -156,11 +158,72 @@ const events = [
 
 type EventItem = (typeof events)[number];
 
+// Normalize a name for fuzzy matching: lowercase, strip punctuation/spacing/leetspeak.
+function normalizeName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[·.·'']/g, "")
+    .replace(/0/g, "o")
+    .replace(/1/g, "i")
+    .replace(/3/g, "e")
+    .replace(/4/g, "a")
+    .replace(/5/g, "s")
+    .replace(/7/g, "t")
+    .replace(/[^a-z]/g, "");
+}
+
+// Map every event matchup (by display name) to a winner display name, using the battles data.
+// Returns "mc1" | "mc2" | null per matchup.
+function resolveWinners(event: EventItem): Record<number, "mc1" | "mc2" | null> {
+  const result: Record<number, "mc1" | "mc2" | null> = {};
+  if (!event.card) return result;
+
+  // Build an index of battles keyed by normalized MC pair.
+  const battleIndex = battles
+    .filter((b) => b.winner)
+    .map((b) => {
+      const mc1Name = normalizeName(mcs.find((m) => m.id === b.mc1)?.name || b.mc1);
+      const mc2Name = normalizeName(mcs.find((m) => m.id === b.mc2)?.name || b.mc2);
+      const winnerName = normalizeName(mcs.find((m) => m.id === b.winner)?.name || b.winner);
+      return { mc1Name, mc2Name, winnerName, episode: b.episode };
+    });
+
+  event.card.forEach((match, i) => {
+    const n1 = normalizeName(match.mc1);
+    const n2 = normalizeName(match.mc2);
+    const pairKey = [n1, n2].sort().join("|");
+
+    // Prefer matching on episode, then fall back to the opponent pair.
+    const hit = battleIndex.find(
+      (b) =>
+        (match.episode && b.episode === match.episode) ||
+        [b.mc1Name, b.mc2Name].sort().join("|") === pairKey ||
+        n1 === b.mc1Name ||
+        n1 === b.mc2Name ||
+        n2 === b.mc1Name ||
+        n2 === b.mc2Name
+    );
+
+    if (!hit) {
+      result[i] = null;
+    } else if (hit.winnerName === n1 || (hit.winnerName && n1.includes(hit.winnerName))) {
+      result[i] = "mc1";
+    } else if (hit.winnerName === n2 || (hit.winnerName && n2.includes(hit.winnerName))) {
+      result[i] = "mc2";
+    } else {
+      result[i] = null;
+    }
+  });
+
+  return result;
+}
+
 function EventCard({ event, index, isCompleted = false }: { event: EventItem; index: number; isCompleted?: boolean }) {
   const images = "images" in event ? event.images : undefined;
   const [imageIndex, setImageIndex] = useState(0);
   const activeImage = images?.[imageIndex] || event.image;
   const isFlyerImage = activeImage.startsWith("/flyers/");
+  const winners = isCompleted ? resolveWinners(event) : {};
 
   useEffect(() => {
     if (!images || images.length < 2) return;
@@ -222,16 +285,42 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
         )}
 
         {event.card && (
-          <div className="mb-8 space-y-2 bg-black/40 p-4 rounded-2xl border border-white/5">
+          <div className="mb-8 bg-black/40 p-4 rounded-2xl border border-white/5">
             <div className="text-[10px] text-brand font-black uppercase tracking-widest mb-3 border-b border-brand/20 pb-2">Full Battle Card</div>
-            {event.card.map((match, i) => (
-              <div key={i} className={`flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-wider ${match.isMain ? 'text-white' : 'text-zinc-400'}`}>
-                <span className={`${match.isMain ? 'text-brand' : ''} truncate`}>{match.mc1}</span>
-                <span className="text-brand/40 mx-2 italic">VS</span>
-                <span className={`${match.isMain ? 'text-brand' : ''} truncate ml-auto text-right`}>{match.mc2}</span>
-                {match.isMain && <span className="ml-2 text-[8px] bg-brand text-black px-1.5 py-0.5 rounded font-black">MAIN</span>}
-              </div>
-            ))}
+            <div className="space-y-2">
+              {event.card.map((match, i) => {
+                const winnerSide = winners[i];
+                return (
+                  <div
+                    key={i}
+                    className={`flex items-center gap-2 rounded-lg px-3 py-2 border ${
+                      match.isMain
+                        ? "bg-brand/10 border-brand/40"
+                        : "bg-white/[0.03] border-white/5"
+                    }`}
+                  >
+                    <span className={`flex-1 min-w-0 text-right text-xs md:text-sm font-display uppercase tracking-tight leading-tight ${match.isMain ? "text-brand" : "text-white"}`}>
+                      {match.mc1}
+                      {winnerSide === "mc1" && (
+                        <Trophy size={12} className="inline-block ml-1.5 text-yellow-500 fill-yellow-500 shrink-0" />
+                      )}
+                    </span>
+                    <span className="shrink-0 text-brand/40 italic text-[9px] font-black tracking-widest">VS</span>
+                    <span className={`flex-1 min-w-0 text-left text-xs md:text-sm font-display uppercase tracking-tight leading-tight ${match.isMain ? "text-brand" : "text-white"}`}>
+                      {winnerSide === "mc2" && (
+                        <Trophy size={12} className="inline-block mr-1.5 text-yellow-500 fill-yellow-500 shrink-0" />
+                      )}
+                      {match.mc2}
+                    </span>
+                    {match.isMain ? (
+                      <span className="shrink-0 text-[8px] bg-brand text-black px-1.5 py-0.5 rounded font-black tracking-widest">MAIN</span>
+                    ) : match.episode ? (
+                      <span className="shrink-0 text-[8px] text-zinc-600 font-black tracking-widest">{match.episode}</span>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 

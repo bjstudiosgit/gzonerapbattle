@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { Star, AlertCircle } from "lucide-react";
 import { mcs } from "../data/mcs";
 import MCCard from "../components/MCCard";
+import MCCarousel from "../components/MCCarousel";
 
 import { calculateRankings } from "../lib/ranking";
 import { battles } from "../data/battles";
@@ -84,13 +84,16 @@ export default function MCsPage() {
           </div>
         </div>
 
-        {/* Active MCs Grid */}
+        {/* Active MCs Carousel */}
         <div className="mb-16 md:mb-24">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
-            {activeMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index} rank={getDisplayRank(mc.id)} points={getPoints(mc.id)} />
-            ))}
-          </div>
+          <MCCarousel
+            items={activeMcs.map((mc) => ({
+              type: "mc" as const,
+              mc,
+              rank: getDisplayRank(mc.id),
+              points: getPoints(mc.id),
+            }))}
+          />
         </div>
 
         {/* Inactive / Wasted Section */}
