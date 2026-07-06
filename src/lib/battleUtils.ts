@@ -1,0 +1,26 @@
+import { Battle } from "../data/battles";
+
+export const sortBattlesById = (battles: Battle[]): Battle[] => {
+  return [...battles].sort((a, b) => Number(a.id) - Number(b.id));
+};
+
+export const parseViews = (viewStr: string | undefined): number => {
+  if (!viewStr) return 0;
+  const clean = viewStr.replace(/,/g, "").toUpperCase();
+  if (clean.endsWith("K")) {
+    return parseFloat(clean.replace("K", "")) * 1000;
+  }
+  if (clean.endsWith("M")) {
+    return parseFloat(clean.replace("M", "")) * 1000000;
+  }
+  return parseInt(clean) || 0;
+};
+
+export const calculateTotalViews = (battles: Battle[]): string => {
+  const totalViewsNum = battles.reduce((acc, b) => acc + parseViews(b.views), 0);
+  if (totalViewsNum >= 1000) {
+    const totalInThousands = totalViewsNum / 1000;
+    return `${totalInThousands >= 100 ? Math.round(totalInThousands) : totalInThousands.toFixed(1)}K`;
+  }
+  return totalViewsNum.toString();
+};
