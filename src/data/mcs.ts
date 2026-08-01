@@ -394,6 +394,18 @@ export const mcs: MC[] = [
     debutTier: "standard"
   },
   {
+    id: "afrodon",
+    slug: "afrodon",
+    name: "Afrodon",
+    battles: 0,
+    wins: 0,
+    losses: 0,
+    style: "To Be Announced",
+    image: "/afrodon.png",
+    bio: "Afrodon joined the Gzone roster for the first Freestyle League battle against Deeno.",
+    isActive: true
+  },
+  {
     id: "tricky",
     slug: "tricky",
     name: "Trickyy",

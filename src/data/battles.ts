@@ -13,6 +13,7 @@ export interface Battle {
   isMainEvent?: boolean;
   isWanted?: boolean;
   episode?: string;
+  league?: "season1" | "freestyle";
   summary?: string;
   ticketUrl?: string;
   flyer?: string;
@@ -340,59 +341,46 @@ export const battles: Battle[] = [
   },
   {
     "id": "22",
-    "slug": "badee-harz-vs-1flaymr",
-    "mc1": "badee-harz",
-    "mc2": "1flaymr",
-    "title": "Badee Harz vs 1Flaymr",
-    "date": "1 Aug 2026",
-    "isUnreleased": true,
-    "isPlaceholder": false,
-    "episode": "1x22",
-    "ticketUrl": "/events",
-    "flyer": "/flyers/august-2026-badee-harz-vs-1flaymah.jpeg"
-  },
-  {
-    "id": "23",
     "slug": "deeno-vs-btizz",
     "mc1": "deeno",
     "mc2": "btizz",
     "title": "Deeno vs Btizz",
     "date": "1 Aug 2026",
-    "isUnreleased": true,
+    "winner": "deeno",
     "isPlaceholder": false,
-    "episode": "1x23",
-    "ticketUrl": "/events",
+    "episode": "1x22",
     "flyer": "/flyers/august-2026-deeno-vs-btizz.jpeg"
   },
   {
-    "id": "24",
+    "id": "23",
     "slug": "zk-vs-cj-zino",
     "mc1": "zk",
     "mc2": "cj-zino",
     "title": "Z.K vs CJ Zino",
     "date": "1 Aug 2026",
-    "isUnreleased": true,
+    "winner": "zk",
     "isPlaceholder": false,
-    "episode": "1x24",
-    "ticketUrl": "/events",
+    "episode": "1x23",
     "flyer": "/flyers/august-2026-zk-vs-cj-zino.jpeg"
   },
   {
-    "id": "25",
-    "slug": "tricky-vs-roman",
-    "mc1": "tricky",
-    "mc2": "roman",
-    "title": "Tricky vs Roman",
+    "id": "24",
+    "slug": "deeno-vs-afrodon",
+    "mc1": "deeno",
+    "mc2": "afrodon",
+    "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
-    "isUnreleased": true,
+    "winner": "deeno",
     "isPlaceholder": false,
-    "episode": "1x25",
-    "ticketUrl": "/events",
-    "flyer": "/flyers/august-2026-tricky-vs-roman.jpeg"
+    "episode": "Fx1",
+    "league": "freestyle"
   },
 ];
 
-export const lastUpdated = "18 Jul 2026";
+export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
+export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
+
+export const lastUpdated = "1 Aug 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

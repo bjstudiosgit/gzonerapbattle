@@ -2,17 +2,26 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Clock, Trophy, Info, ArrowUpRight, Star } from "lucide-react";
 import { mcs } from "../data/mcs";
-import { battles } from "../data/battles";
+import { seasonOneBattles, type Battle } from "../data/battles";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { portraitImage } from "../lib/images";
 
 interface LeagueTableProps {
   limit?: number;
   showTitle?: boolean;
+  battleList?: Battle[];
+  sectionId?: string;
+  footerLabel?: string;
 }
 
-export default function LeagueTable({ limit, showTitle = true }: LeagueTableProps) {
-  const calculatedRankings = calculateRankings(battles, mcs);
+export default function LeagueTable({
+  limit,
+  showTitle = true,
+  battleList = seasonOneBattles,
+  sectionId = "league",
+  footerLabel = "Season Official 2026",
+}: LeagueTableProps) {
+  const calculatedRankings = calculateRankings(battleList, mcs);
   
   let rankings = calculatedRankings
     .map((rankData) => {
@@ -28,7 +37,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
         battles: rankData.battles,
         wins: rankData.wins,
         losses: rankData.losses,
-        unreleased: battles.filter(b => b.isUnreleased && !b.ticketUrl && (b.mc1 === rankData.id || b.mc2 === rankData.id)).length,
+        unreleased: battleList.filter(b => b.isUnreleased && !b.ticketUrl && (b.mc1 === rankData.id || b.mc2 === rankData.id)).length,
         isDsq: mcData ? !mcData.isActive : false
       };
     });
@@ -38,7 +47,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
   }
 
   return (
-    <section id="league" className="py-16 md:py-24 scroll-mt-24 relative overflow-hidden">
+    <section id={sectionId} className="py-16 md:py-24 scroll-mt-24 relative overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[80%] h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none z-0 opacity-40" />
       
@@ -217,7 +226,7 @@ export default function LeagueTable({ limit, showTitle = true }: LeagueTableProp
                 </Link>
               ) : (
                 <div className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-700">
-                  Season Official 2026
+                  {footerLabel}
                 </div>
               )}
             </div>

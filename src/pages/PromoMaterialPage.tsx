@@ -26,23 +26,9 @@ const augustFlyers: PromoFlyer[] = [
     direct: true,
   },
   {
-    id: "badee-harz-1flaymah",
-    title: "Badee-Harz VS 1-Flaymah",
-    src: "/flyers/august-2026-badee-harz-vs-1flaymah.jpeg",
-    aspect: "aspect-[4/5]",
-    direct: true,
-  },
-  {
     id: "zk-cj-zino",
     title: "Z.K VS C.J Zino",
     src: "/flyers/august-2026-zk-vs-cj-zino.jpeg",
-    aspect: "aspect-[4/5]",
-    direct: true,
-  },
-  {
-    id: "tricky-roman",
-    title: "Tricky VS Roman",
-    src: "/flyers/august-2026-tricky-vs-roman.jpeg",
     aspect: "aspect-[4/5]",
     direct: true,
   },

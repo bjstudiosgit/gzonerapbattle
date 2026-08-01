@@ -1,13 +1,13 @@
 import { motion } from "motion/react";
 import { mcs } from "../data/mcs";
-import { battles } from "../data/battles";
+import { seasonOneBattles } from "../data/battles";
 import { calculateRankings } from "../lib/ranking";
 import { Link } from "react-router-dom";
 import { Trophy, ChevronRight, Medal } from "lucide-react";
 import { portraitImage } from "../lib/images";
 
 export default function LeaguePreview() {
-  const calculatedRankings = calculateRankings(battles);
+  const calculatedRankings = calculateRankings(seasonOneBattles);
 
   const getTierColors = (rankValue: number) => {
     switch(rankValue) {

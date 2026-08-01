@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Calendar, MapPin, Ticket } from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const battleCard = [
   ["Deeno", "Btizz"],
-  ["Badee Harz", "1-Flaymah"],
   ["Z.K", "C.J Zino"],
-  ["Tricky", "Roman"],
+  ["Deeno", "Afrodon"],
 ];
 
 const eventFlyers = [
   { src: "/flyers/august-2026-likkle-man.jpeg", alt: "Gzone Royal Rumble with special guest host Likkle Man" },
   { src: "/flyers/august-2026-deeno-vs-btizz.jpeg", alt: "Deeno vs Btizz event flyer" },
-  { src: "/flyers/august-2026-badee-harz-vs-1flaymah.jpeg", alt: "Badee Harz vs 1-Flaymah event flyer" },
   { src: "/flyers/august-2026-zk-vs-cj-zino.jpeg", alt: "Z.K vs C.J Zino event flyer" },
-  { src: "/flyers/august-2026-tricky-vs-roman.jpeg", alt: "Tricky vs Roman event flyer" },
 ];
 
 export default function RoyalRumbleLanding() {
@@ -94,7 +91,7 @@ export default function RoyalRumbleLanding() {
           <div className="order-1 w-full lg:order-2 lg:w-1/2">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <h2 className="mb-4 text-[clamp(0.75rem,1.35vw,1.25rem)] font-black uppercase tracking-[0.16em] text-white md:mb-6">
-                Gzone <span className="text-brand">Royal Rumble</span> - the date is locked
+                Gzone <span className="text-brand">Royal Rumble</span> - event complete
               </h2>
               <h3 className="mb-6 font-display text-4xl uppercase leading-[1.02] tracking-tight sm:text-5xl md:mb-8 md:text-7xl">
                 1st August 2026
@@ -102,7 +99,7 @@ export default function RoyalRumbleLanding() {
               </h3>
 
               <p className="mb-8 text-base font-medium leading-relaxed text-zinc-400 md:text-lg">
-                Experience live rap battles, exclusive performances and nonstop Gzone energy, hosted by Ginja Jay and celebrity guest Likkle Man. Tickets are just £12 plus booking fee, and the full event will stream live exclusively on the Gzone YouTube channel.
+                The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, and Deeno vs Afrodon are now in production, with videos coming soon.
               </p>
 
               <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -121,10 +118,10 @@ export default function RoyalRumbleLanding() {
               </div>
 
               <Link
-                to="/events"
+                to="/battles"
                 className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand px-6 py-4 font-display text-xl uppercase text-black transition-colors hover:bg-white"
               >
-                Event Details &amp; Tickets <Ticket size={20} />
+                Coming Soon <Clock size={20} />
               </Link>
             </motion.div>
           </div>

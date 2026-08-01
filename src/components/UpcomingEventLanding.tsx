@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 const flyers = [
   "/flyers/august-2026-likkle-man.jpeg",
   "/flyers/august-2026-deeno-vs-btizz.jpeg",
-  "/flyers/august-2026-badee-harz-vs-1flaymah.jpeg",
   "/flyers/august-2026-zk-vs-cj-zino.jpeg",
-  "/flyers/august-2026-tricky-vs-roman.jpeg",
 ];
 
 const slideVariants = {

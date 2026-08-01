@@ -1,4 +1,4 @@
-import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Images, Vote } from "lucide-react";
+import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Images, Vote, Mic2 } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Tickets", href: "/events", icon: Ticket },
     { name: "Battles", href: "/battles", icon: Play },
+    { name: "Freestyle", href: "/freestyle", icon: Mic2 },
     { name: "League", href: "/league", icon: Trophy },
     { name: "Who's Who", href: "/battles/mc", icon: Users },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
@@ -56,7 +57,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="hidden md:flex flex-1 justify-end">
+          <div className="hidden 2xl:flex flex-1 justify-end">
             <div className="ml-8 flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => (
                 <Link
@@ -64,7 +65,7 @@ export default function Navbar() {
                   to={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   onMouseEnter={() => soundManager.playHover()}
-                  className={`relative px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center gap-2 group/nav
+                  className={`relative shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center gap-2 group/nav
                     ${location.pathname === link.href ? 'text-brand bg-brand/10' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
                 >
                   <link.icon size={12} className={location.pathname === link.href ? 'text-brand' : 'text-zinc-500 group-hover/nav:text-brand transition-colors'} />
@@ -99,7 +100,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
+          <div className="2xl:hidden flex items-center gap-3">
             <a 
               href="https://www.tiktok.com/@the.gzone.rbl" 
               target="_blank" 
@@ -124,7 +125,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-          <div className="md:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-6rem)]">
+          <div className="2xl:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-6rem)]">
             <div className="px-4 py-8 space-y-2">
               {navLinks.map((link) => (
                 <Link

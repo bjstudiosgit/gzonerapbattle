@@ -83,11 +83,11 @@ function Home() {
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
       <RoyalRumbleLanding />
-      <MerchSection showShopAll={false} />
       <UpcomingEventLanding />
       <FeaturedVideo />
       <LostPropertyPreview />
       <RecentBattles />
+      <MerchSection showShopAll={false} />
       <MCBios />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <GlobalDisclaimer className="text-center text-sm md:text-base" />
@@ -160,6 +160,7 @@ function Main() {
           <Route path="/battles/mc" element={<MCsPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/battles" element={<BattlesPage />} />
+          <Route path="/freestyle" element={<BattlesPage variant="freestyle" />} />
           <Route path="/staff" element={<StaffPage />} />
           <Route path="/merch" element={<MerchPage />} />
           <Route path="/promo" element={<PromoMaterialPage />} />

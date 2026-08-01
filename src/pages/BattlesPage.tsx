@@ -1,4 +1,4 @@
-import { battles, lastUpdated } from "../data/battles";
+import { freestyleBattles, lastUpdated, seasonOneBattles } from "../data/battles";
 import type { ReactNode } from "react";
 import { mcs } from "../data/mcs";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,9 +30,10 @@ function ScheduleLink({ href, children }: { href: string; children: ReactNode })
   );
 }
 
-export default function BattlesPage() {
+export default function BattlesPage({ variant = "season1" }: { variant?: "season1" | "freestyle" }) {
   const navigate = useNavigate();
-  const orderedBattles = sortBattlesById(battles);
+  const isFreestyle = variant === "freestyle";
+  const orderedBattles = sortBattlesById(isFreestyle ? freestyleBattles : seasonOneBattles);
   const totalViewsStr = calculateTotalViews(orderedBattles);
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;
   const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && !battle.ticketUrl).length;
@@ -51,7 +52,11 @@ export default function BattlesPage() {
           <div className="flex-1 w-full">
             <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6 mb-8 md:mb-12">
               <h2 className="text-[clamp(2rem,10vw,3rem)] md:text-7xl font-display uppercase text-white tracking-tighter leading-[0.95] whitespace-normal md:whitespace-nowrap">
-                Season 1 <br className="md:hidden" /><span className="text-brand">"Most Wanted"</span>
+                {isFreestyle ? (
+                  <>Freestyle <br className="md:hidden" /><span className="text-brand">League</span></>
+                ) : (
+                  <>Season 1 <br className="md:hidden" /><span className="text-brand">"Most Wanted"</span></>
+                )}
               </h2>
               <div className="flex items-center gap-2 md:gap-3 scale-75 md:scale-100 origin-center md:origin-left">
                 {[...Array(5)].map((_, i) => (
@@ -59,7 +64,11 @@ export default function BattlesPage() {
                 ))}
               </div>
             </div>
-            <p className="text-zinc-400 text-[0.95rem] md:text-lg max-w-full md:max-w-3xl leading-[1.6] md:leading-relaxed tracking-tight font-medium opacity-80 mx-auto lg:mx-0">The archive of high-stakes collisions. Every clash recorded here is a piece of Gzone history, where the UK's top-tier MCs settled scores and established dominance. Review the impact, track the views, and relive the battles that defined the "Most Wanted" division.</p>
+            <p className="text-zinc-400 text-[0.95rem] md:text-lg max-w-full md:max-w-3xl leading-[1.6] md:leading-relaxed tracking-tight font-medium opacity-80 mx-auto lg:mx-0">
+              {isFreestyle
+                ? "The official archive of Gzone Freestyle League clashes. Follow every off-the-top battle, result, release, and moment from the Freestyle division."
+                : "The archive of high-stakes collisions. Every clash recorded here is a piece of Gzone history, where the UK's top-tier MCs settled scores and established dominance. Review the impact, track the views, and relive the battles that defined the \"Most Wanted\" division."}
+            </p>
           </div>
           
           {/* Dashboard Stats */}
@@ -76,7 +85,7 @@ export default function BattlesPage() {
             <div className="bg-zinc-900/60 backdrop-blur-xl border border-white/10 p-5 md:p-6 rounded-[2rem] flex-1 md:min-w-[280px] shadow-2xl group hover:border-brand/30 transition-colors">
               <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-400 mb-5">
                 <Play size={16} className="text-brand" />
-                <span className="text-[10px] uppercase tracking-widest font-black">Season 1 In Progress</span>
+                <span className="text-[10px] uppercase tracking-widest font-black">{isFreestyle ? "Freestyle League" : "Season 1 In Progress"}</span>
               </div>
               <div className="grid grid-cols-3 gap-4 md:gap-6 text-center md:text-left">
                 <div>
@@ -105,6 +114,7 @@ export default function BattlesPage() {
                 const mc2 = mcs.find(m => m.id === battle.mc2);
                 const mc1Name = mc1?.name || battle.mc1;
                 const mc2Name = mc2?.name || battle.mc2;
+                const isInProduction = !battle.videoUrl && !battle.ticketUrl;
 
                 return (
                   <button
@@ -125,7 +135,7 @@ export default function BattlesPage() {
                       </div>
                       <div className="text-zinc-500">
                         Status: <span className={`ml-1 ${battle.videoUrl ? "text-emerald-400" : "text-brand"}`}>
-                          {battle.videoUrl ? "Live" : "Coming Soon"}
+                          {battle.videoUrl ? "Live" : isInProduction ? "In Production" : "Coming Soon"}
                         </span>
                       </div>
                     </div>
@@ -157,7 +167,8 @@ export default function BattlesPage() {
                   const isTwoVsTwo = leftPair.length === 2 && rightPair.length === 2;
                   const scheduleText = battle.date || "Coming Soon";
                   const scheduleLink = battle.ticketUrl || "/events";
-                  const shouldShowComingSoon = !battle.videoUrl;
+                  const isInProduction = !battle.videoUrl && !battle.ticketUrl;
+                  const shouldShowComingSoon = battle.isUnreleased && Boolean(battle.ticketUrl);
                   
                   return (
                     <tr 
@@ -230,7 +241,7 @@ export default function BattlesPage() {
                               ? "bg-emerald-500 text-black border-emerald-400 shadow-emerald-500/20" 
                               : "bg-zinc-900 border-zinc-700 text-zinc-500"
                           }`}>
-                            {battle.videoUrl ? "Live Now" : "Coming Soon"}
+                            {battle.videoUrl ? "Live Now" : isInProduction ? "In Production" : "Coming Soon"}
                           </span>
                         </div>
                       </td>

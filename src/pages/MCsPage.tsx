@@ -6,11 +6,11 @@ import { StaffCard } from "../components/HostsAndJudges";
 import StaffPage from "./StaffPage";
 
 import { calculateRankings } from "../lib/ranking";
-import { battles } from "../data/battles";
+import { seasonOneBattles } from "../data/battles";
 import { hosts } from "../data/hosts";
 
 export default function MCsPage() {
-  const rankings = calculateRankings(battles, mcs);
+  const rankings = calculateRankings(seasonOneBattles, mcs);
   
   // Sort active MCs based on their calculated rank
   const activeMcs = mcs

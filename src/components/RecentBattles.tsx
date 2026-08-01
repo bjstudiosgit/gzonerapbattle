@@ -16,8 +16,7 @@ export default function RecentBattles() {
     "1x21",
     "1x22",
     "1x23",
-    "1x24",
-    "1x25",
+    "Fx1",
   ]);
 
   const recentBattles = [...battles]
@@ -62,6 +61,7 @@ export default function RecentBattles() {
             const mc2Name = mc2?.name || titleMc2 || battle.mc2;
             const videoId = getYouTubeId(battle.videoUrl);
             const isLive = Boolean(battle.videoUrl);
+            const isInProduction = !isLive && !battle.ticketUrl;
             
             return (
               <motion.div
@@ -152,7 +152,7 @@ export default function RecentBattles() {
                       : "bg-[#f27d26] text-white shadow-orange-600/40"
                   }`}>
                     {isLive ? <Play size={10} strokeWidth={3} /> : <Clock size={10} strokeWidth={3} />}
-                    {isLive ? "Live Now" : "Coming Soon"}
+                    {isLive ? "Live Now" : isInProduction ? "In Production" : "Coming Soon"}
                   </div>
                 </div>
 

@@ -32,6 +32,9 @@ export default function BattleDetail() {
 
   const mc1 = mcs.find(m => m.id === battle.mc1);
   const mc2 = mcs.find(m => m.id === battle.mc2);
+  const leagueName = battle.league === "freestyle" ? "Freestyle League" : "Season 1";
+  const archivePath = battle.league === "freestyle" ? "/freestyle" : "/battles";
+  const archiveLabel = battle.league === "freestyle" ? "Freestyle" : "Battles";
 
   // Helper to extract YouTube ID from embed URL
   const getYouTubeId = (url: string | undefined) => {
@@ -113,9 +116,9 @@ export default function BattleDetail() {
     <div className="min-h-screen pt-24 md:pt-32 pb-16 lg:pb-24 relative overflow-hidden">
       <Helmet>
         <title>{battle.title} | Gzone Rap Battle</title>
-        <meta name="description" content={`Watch ${mc1?.name} vs ${mc2?.name} from Gzone Rap Battle League Season 1.`} />
+        <meta name="description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
         <meta property="og:title" content={`${battle.title} | Gzone Rap Battle`} />
-        <meta property="og:description" content={`Watch ${mc1?.name} vs ${mc2?.name} from Gzone Rap Battle League Season 1.`} />
+        <meta property="og:description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
         {socialImage && <meta property="og:image" content={socialImage} />}
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -131,11 +134,11 @@ export default function BattleDetail() {
       )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
-          to="/battles" 
-          aria-label="Back to Battles"
+          to={archivePath}
+          aria-label={`Back to ${archiveLabel}`}
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-6 md:mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to battles
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to {archiveLabel}
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
@@ -2998,8 +3001,14 @@ export default function BattleDetail() {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">League</span>
-                  <span className="text-orange-500 font-bold">Season 1</span>
+                  <span className="text-orange-500 font-bold">{leagueName}</span>
                 </div>
+                {battle.episode && (
+                  <div className="flex justify-between items-center py-3 border-b border-white/5">
+                    <span className="text-zinc-400 text-xs uppercase tracking-widest">Battle ID</span>
+                    <span className="text-orange-500 font-bold">{battle.episode}</span>
+                  </div>
+                )}
               </div>
               <button 
                 aria-label="Share this battle"

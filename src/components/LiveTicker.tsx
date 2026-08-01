@@ -1,14 +1,15 @@
-import { BookOpen, Zap, Ticket, Play, Sword } from "lucide-react";
+import { BookOpen, Zap, Ticket, Play, Sword, ShoppingBag } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
-    { text: "BREAKING NEWS! TYMELESS BEHEADS THE VIKING", type: "live" },
-    { text: "NEW DROP: NATTYEBK VS Z.K OUT NOW ON YOUTUBE", type: "live" },
-    { text: "LATEST RESULT: NATTYEBK DEFEATED Z.K", type: "live" },
+    { text: "LATEST RESULT: DEENO DEFEATED BTIZZ - 1X22", type: "live" },
+    { text: "LATEST RESULT: Z.K DEFEATED C.J ZINO - 1X23", type: "live" },
+    { text: "LATEST FREESTYLE RESULT: DEENO DEFEATED AFRODON - FX1", type: "live" },
+    { text: "LEAGUE UPDATE: AFRODON JOINS THE GZONE LEAGUE", type: "editorial" },
     { text: "THE BARS HAVE BEEN BROKEN DOWN: FULL BATTLE WRITE-UPS NOW LIVE", type: "editorial" },
     { text: "TYMELESS VS DEENO: THE AFTERMATH IS LIVE", type: "editorial" },
-    { text: "ROYAL RUMBLE LOCKED IN: 1ST AUGUST AT PEACOCKS BOXING", type: "upcoming" },
-    { text: "1ST AUGUST TICKETS £12 ON EVENTBRITE", type: "ticket" },
+    { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
+    { text: "ROYAL RUMBLE VIDEOS COMING SOON", type: "upcoming" },
     { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
   ];
 
@@ -30,6 +31,7 @@ export default function LiveTicker() {
             )}
 
             {item.type === "ticket" && <Ticket size={14} className="animate-bounce" />}
+            {item.type === "merch" && <ShoppingBag size={14} />}
             {item.type === "editorial" && <BookOpen size={14} />}
             {item.type === "live" && (item.text.includes("DEFEATED") ? (
               <Sword size={14} className="fill-current" />

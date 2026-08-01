@@ -1,14 +1,14 @@
 import { motion } from "motion/react";
 import LeagueTable from "../components/LeagueTable";
 import { mcs } from "../data/mcs";
-import { battles } from "../data/battles";
+import { freestyleBattles, seasonOneBattles } from "../data/battles";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { Link } from "react-router-dom";
 import { Shield, Target, ArrowDown, Activity, Medal, Star } from "lucide-react";
 import { portraitImage } from "../lib/images";
 
 export default function League() {
-  const calculatedRankings = calculateRankings(battles, mcs);
+  const calculatedRankings = calculateRankings(seasonOneBattles, mcs);
   const topScore = calculatedRankings[0]?.totalScore ?? 0;
 
   const top3 = calculatedRankings
@@ -226,7 +226,29 @@ export default function League() {
           viewport={{ once: true }}
           className="mt-10 md:mt-14 relative"
         >
-          <LeagueTable showTitle={false} />
+          <LeagueTable showTitle={false} battleList={seasonOneBattles} />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 md:mt-24 relative"
+        >
+          <div className="text-center mb-2 md:mb-4">
+            <p className="text-brand text-[10px] md:text-xs font-black uppercase tracking-[0.4em] mb-4">
+              Freestyle Division
+            </p>
+            <h3 className="text-4xl md:text-7xl font-display uppercase tracking-tighter">
+              Freestyle <span className="text-brand">League</span>
+            </h3>
+          </div>
+          <LeagueTable
+            showTitle={false}
+            battleList={freestyleBattles}
+            sectionId="freestyle-league"
+            footerLabel="Freestyle Official 2026"
+          />
         </motion.div>
       </div>
     </div>

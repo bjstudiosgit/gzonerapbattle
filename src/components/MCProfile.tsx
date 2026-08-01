@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { mcs } from "../data/mcs";
-import { battles as allBattles } from "../data/battles";
+import { battles as allBattles, seasonOneBattles } from "../data/battles";
 import { ArrowLeft, Mic2, Trophy, Zap, Play, MapPin, Weight, Instagram, Youtube, Quote, Crown, Facebook, Mail, Music, Star } from "lucide-react";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { portraitImage } from "../lib/images";
@@ -21,10 +21,14 @@ export default function MCProfile() {
     );
   }
 
-  const rankings = calculateRankings(allBattles, mcs);
+  const rankings = calculateRankings(seasonOneBattles, mcs);
   const mcRanking = rankings.find(r => r.id === mc.id);
+  const overallRecord = calculateRankings(allBattles, mcs).find(r => r.id === mc.id);
   const rank = mcRanking?.rank || 0;
   const points = mcRanking?.totalScore || 0;
+  const wins = overallRecord?.wins ?? mc.wins;
+  const losses = overallRecord?.losses ?? mc.losses;
+  const battleCount = overallRecord?.battles ?? mc.battles;
   const isWasted = mc.isActive === false;
 
   const starCount = getRankStars(rank);
@@ -114,9 +118,9 @@ export default function MCProfile() {
             
             <div
               className="absolute -bottom-4 right-0 md:-bottom-6 md:-right-6 w-20 h-20 md:w-32 md:h-32 bg-brand rounded-full flex items-center justify-center font-display text-xl md:text-3xl text-black -rotate-12 z-20 shadow-xl"
-              aria-label={`${mc.wins} wins, ${mc.losses} losses`}
+              aria-label={`${wins} wins, ${losses} losses`}
             >
-              {mc.wins}W : {mc.losses}L
+              {wins}W : {losses}L
             </div>
           </motion.div>
 
@@ -199,11 +203,11 @@ export default function MCProfile() {
                 )}
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Trophy size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.wins}-{mc.losses} Record</span>
+                  <span className="font-bold uppercase tracking-widest text-[10px]">{wins}-{losses} Record</span>
                 </div>
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Mic2 size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.battles === 1 ? "1 Battle" : `${mc.battles} Battles`}</span>
+                  <span className="font-bold uppercase tracking-widest text-[10px]">{battleCount === 1 ? "1 Battle" : `${battleCount} Battles`}</span>
                 </div>
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Zap size={16} className="text-brand" />

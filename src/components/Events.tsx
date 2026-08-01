@@ -10,9 +10,7 @@ const mayMadnessEventImage = flyerImage("/flyers/tymelessvsdeeno.png", "event");
 const augustEventImages = [
   "/flyers/august-2026-likkle-man.jpeg",
   "/flyers/august-2026-deeno-vs-btizz.jpeg",
-  "/flyers/august-2026-badee-harz-vs-1flaymah.jpeg",
   "/flyers/august-2026-zk-vs-cj-zino.jpeg",
-  "/flyers/august-2026-tricky-vs-roman.jpeg",
 ];
 
 const events = [
@@ -105,16 +103,15 @@ const events = [
     title: "G ZONE: ROYAL RUMBLE",
     date: "1st August 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "£12",
+    price: "IN PRODUCTION",
     image: augustEventImages[0],
     images: augustEventImages,
-    description: "Experience live rap battles, exclusive performances and nonstop Gzone energy, hosted by Ginja Jay and celebrity guest Likkle Man. Tickets are just £12 plus booking fee, and the full event will stream live exclusively on the Gzone YouTube channel.",
-    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-league-sat-1st-aug-tickets-1991061205664",
+    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, and Deeno vs Afrodon are now in production, with videos coming soon.",
+    isCompleted: true,
     card: [
-      { episode: "1x22", mc1: "Badee Harz", mc2: "1Flaymah" },
-      { episode: "1x23", mc1: "Deeno", mc2: "Btizz", isMain: true },
-      { episode: "1x24", mc1: "Tricky", mc2: "Roman" },
-      { episode: "1x25", mc1: "Z.K", mc2: "C.J Zino" },
+      { episode: "1x22", mc1: "Deeno", mc2: "Btizz", isMain: true },
+      { episode: "1x23", mc1: "Z.K", mc2: "C.J Zino" },
+      { episode: "Fx1", mc1: "Deeno", mc2: "Afrodon" },
     ]
   },
   {
@@ -308,7 +305,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              Tickets for GZone events are available now on Eventbrite. Choose your event, book your spot, and be there live when the battles go down.
+              Royal Rumble is complete and the latest battles are now in production. Follow the archive as releases go live and watch for the next GZone event.
             </p>
           </motion.div>
         </div>
