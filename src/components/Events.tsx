@@ -113,7 +113,7 @@ const events = [
     price: "IN PRODUCTION",
     image: augustEventImages[0],
     images: augustEventImages,
-    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, and Deeno vs Afrodon are now in production, with videos coming soon.",
+    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz is out now, while Z.K vs C.J Zino and Deeno vs Afrodon remain in production.",
     isCompleted: true,
     card: [
       { episode: "1x22", mc1: "Deeno", mc2: "Btizz", isMain: true },

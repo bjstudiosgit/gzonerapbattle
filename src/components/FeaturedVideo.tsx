@@ -36,7 +36,7 @@ export default function FeaturedVideo() {
               featuredBattle.episode ? (
                 <>
                   <span>Episode {featuredBattle.episode}</span>
-                  {" "}Deeno brings home-ground pressure while Tymeless fires back with sharp comedy, creative props and crowd-winning performance.
+                  {" "}{featuredBattle.title} is now live in the Gzone arena.
                 </>
               ) : (
                 <>{featuredBattle.title} is now live in the Gzone arena.</>

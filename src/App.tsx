@@ -82,9 +82,9 @@ function Home() {
 
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
+      <FeaturedVideo />
       <RoyalRumbleLanding />
       <UpcomingEventLanding />
-      <FeaturedVideo />
       <LostPropertyPreview />
       <RecentBattles />
       <MerchSection showShopAll={false} />

@@ -256,6 +256,106 @@ export default function BattleDetail() {
               </div>
             </section>
 
+            {battle.slug === 'deeno-vs-btizz' && battle.props && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Deeno vs Btizz arrived earlier than the room expected. Btizz was introduced as the roster climber, while Deeno entered under his self-declared GZone-king identity. Across three rounds, the clash became a contest between Deeno&apos;s opponent-specific angle construction and Btizz&apos;s changing flows, live confidence, and attempt to turn GZone history back on the home favourite.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Deeno made round one personal immediately. The Oliver Twist setup linked Btizz&apos;s repeated requests for the battle to the neglected-child and absent-parent angle, while the clothing and hygiene material reused CJ Zino&apos;s earlier criticism as supporting evidence. A mistaken &ldquo;Tap 22&rdquo; call in the room also gave Deeno an opening to reshape the line into a live Catch-22 punch.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Btizz answered by presenting his previous GZone clashes as a climb through the roster. Deluxx, CJ Zino, and 1Flaymr all became part of his résumé before he attacked Deeno&apos;s king claim through the loss to TymeLess. His Mission: Impossible, Benji Dunn, and Simon Pegg sequence also evolved a visual comparison TymeLess had already used against Deeno into a connected film scheme.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Round two made the battle increasingly self-referential. Deeno reversed Btizz&apos;s repeated murder language through &ldquo;red rum&rdquo;, challenged his authenticity, and attacked the flows and gimmicks behind his rise. Btizz changed cadence, deliberately mirrored Deeno&apos;s delivery, revisited the lemon motif from Deeno&apos;s loss to TymeLess, and continued trying to turn Deeno&apos;s home platform into his own territory.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Deeno&apos;s third was the most complete narrative round. He anticipated the copied flow, said he had &ldquo;flipped the script&rdquo;, used a Google Maps screenshot of Btizz&apos;s modest family home and a photograph of a headstone inscribed with &ldquo;Btizz&rdquo;, then presented adoption papers to prove he was going to &ldquo;father&rdquo; Btizz. Ben 10, Blade, Batman, Robin, Bruce Wayne, two-day preparation, and Blu-ray references gave the round a clearer technical route around the visual props.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light">
+                      Btizz closed with another flow-heavy round built around taking the crown, making himself comfortable in Deeno&apos;s house, Lego bricks, Family Guy, and rapid internal-rhyme pockets. Repeated restarts and crowd interruptions weakened the shape of the round, while Deeno&apos;s visual sequence left the cleaner final impression. The first audience call was close enough for the host to repeat it; the official battle record awards the win to Deeno.
+                    </p>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10">
+                  <h2 className="text-3xl font-display uppercase text-white mb-8">Evidence: Props Used</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {battle.props.map((prop) => (
+                      <div key={`${prop.user}-${prop.name}`} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-950/70 p-5">
+                        <div className="w-16 h-16 shrink-0 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700">
+                          <span className="text-2xl">{prop.icon}</span>
+                        </div>
+                        <div>
+                          <p className="text-white font-bold">{prop.name}</p>
+                          <p className="text-zinc-500 text-sm uppercase tracking-widest">Used by {prop.user}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Deeno", "Personal framing", "Deeno connects Btizz's repeated requests for the matchup to Oliver Twist, neglect, and absent-parent material. He then uses CJ Zino's earlier clothing criticism and the live Tap 22 mistake to make the round feel researched but still reactive."],
+                      ["Round 1 — Btizz", "Résumé and record rebuttal", "Btizz names Deluxx, CJ Zino, and 1Flaymr to present himself as a rising problem, then rejects the Deeno 3-0 and king narrative by pointing to TymeLess. Film, cartoon, disappearance, and territory references keep the round moving through varied pockets."],
+                      ["Round 2 — Deeno", "Scheme reversal", "Deeno challenges Btizz's road claims and roster status before turning the repeated murder language into red rum, literally reversing the word. The Jamaican-AI and Rayman Rabbid material then shifts the round toward identity and visual comedy."],
+                      ["Round 2 — Btizz", "Cadence switch and inherited angles", "Btizz addresses earlier booking problems, claims the clash as a test against himself, copies Deeno's cadence, and reuses the lemon image from TymeLess's win. The round is designed to show adaptation rather than one fixed flow."],
+                      ["Round 3 — Deeno", "Prebuttal, props, and payoff", "Deeno predicts the copied flow and frames his answer as a script flip. The house screenshot, headstone photograph, and adoption papers turn the family, death, and father-son angles into visible evidence. He presents the papers as proof that he will “father” Btizz and becomes someone Btizz can rely on."],
+                      ["Round 3 — Btizz", "Crown challenge and extended freestyle energy", "Btizz continues the house takeover, crown, Lego, Family Guy, and appearance schemes through faster internal rhymes. The energy remains high, but several restarts and arguments over wording make the round less controlled than Deeno's closing structure."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Catch-22 from Tap 22", "After the room mistakenly says Tap 22, Deeno returns with Catch-22. The change is small but clearly live, turning an interruption into material."],
+                      ["CJ Zino's clothing angle", "Deeno explicitly cites CJ's claim that Btizz never changes clothes. An earlier opponent's angle is reused as corroboration rather than repeated as a standalone insult."],
+                      ["Btizz's résumé recap", "Deluxx, CJ Zino, and 1Flaymr are folded into Btizz's opening. He converts the archive into a progress report: two recorded wins, one disputed loss, and a claim that Deeno is the next step."],
+                      ["TymeLess as the record rebuttal", "Btizz answers Deeno's king and 3-0 language by reminding the room that TymeLess beat him. The reference attacks status with an official previous result rather than a hypothetical threat."],
+                      ["Murder becomes red rum", "Btizz repeatedly uses murder as a signature word. Deeno says he will flip the scheme and spill red rum, using the word written backwards to turn Btizz's own language against him."],
+                      ["Borrowed flow becomes deliberate mirroring", "CJ Zino and Deluxx had already challenged Btizz's originality and linked his delivery to Tapped24. Here Btizz openly imitates Deeno's cadence, Deeno acknowledges that he did it well, and then begins round three by saying he knew the copy was coming. A previous weakness becomes an intentional battle tactic and then a prebuttal."],
+                      ["The lemon scheme returns", "TymeLess used repeated lemons and a squeezing payoff in his win over Deeno. Btizz brings lemons back and says Deeno can lose to them again, turning the most memorable prop from that clash into inherited pressure."],
+                      ["Simon Pegg develops into a film scheme", "TymeLess had used Simon Pegg and Shaun of the Dead as a visual comparison. Btizz keeps the lookalike angle but connects it to Mission: Impossible and Benji Dunn, developing the reference instead of merely repeating the name."],
+                      ["House ownership keeps changing hands", "TymeLess previously said Deeno's throne was not secure and claimed the house. Btizz first turns Deeno's yard into a palace, then says he has his feet up and feels cosy. The repeated house language tracks a wider GZone challenge to Deeno's authority."],
+                      ["Father-and-son banter becomes structure", "Both men call the other their son between rounds. Deeno physically presents adoption papers to say he will “father” Btizz, so spontaneous banter becomes the organising relationship of the closing round."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+
             {/* Clash Summary for Deeno vs Tapped24 */}
             {battle.slug === 'deeno-vs-tapped24' && (
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -336,39 +436,105 @@ export default function BattleDetail() {
 
             {/* Clash Summary for Deeno vs TymeLess */}
             {battle.slug === 'deeno-vs-tymeless' && (
-              <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Episode 21 was a main-event contest over who could control GZone itself. Deeno opened as the established home figure, while TymeLess arrived with the official win over Ryno already behind him. Across three rounds, Deeno tried to defend his status through tailored name flips and direct pressure; TymeLess answered by turning live circumstances, earlier clashes, physical props, and the people in the room into one connected performance.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Deeno&apos;s first round declared GZone &ldquo;my house&rdquo; before moving through security, the recent headlock controversy, TymeLess&apos; family, age, grey hair, battle record, and public image. TymeLess began his reply by pretending that his own stomach was hurting, briefly convincing the room before revealing that the complaint was a setup. Crohn&apos;s disease, IBS, locked toilets, taking the piss, the blocked toilet, and a plunger then developed toward the larger claim that Deeno&apos;s chair at GZone was not a throne.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Round two separated their approaches. Deeno built his cleanest connected sequence through GTA, Big Smoke, CJ, a final mission, game over, and no replay, while also revisiting parenting and racism allegations previously used against TymeLess. TymeLess answered through visual character writing: Keith Lemon became a recurring physical motif, his own grey hair became a silver-fox rebuttal, and Deeno was compared with Ginga Jay, Prince Harry, Paul Scholes, Weasley, Simon Pegg, Shaun of the Dead, and the Sugar Puff Monster.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      Deeno&apos;s third returned to TymeLess&apos; identity. Time, no reverse, William, smoking, cereal and serial-killer sounds, Thriller, and Smithers gave the round its strongest tailored writing. He also tried to answer the fruit gimmick with a lemonade line, but the restart weakened the rebuttal. TymeLess then reversed Deeno&apos;s parenting attack by addressing Deeno&apos;s son as a new stepfather, promising to provide for him, and saying that his real father was dead.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">
+                      TymeLess extended the closing round through the Kelly, Machine Gun Kelly, R. Kelly, Miss Trunchbull, and 125 sequences before revealing a third lemon. The final &ldquo;get lemon, get squeezed&rdquo; punch paid off a visual idea that had been introduced, repeated, interrupted, and carried through the full battle rather than used for one isolated reaction.
+                    </p>
+                    <p className="text-zinc-300 leading-relaxed font-light">
+                      The crowd awarded the battle to TymeLess. Deeno produced strong individual schemes and defended his platform position with conviction, but TymeLess had the clearer three-round identity: a fake sickness setup became a toilet narrative and throne challenge, the ginger comparisons became a sustained character portrait, and the lemons became the image later opponents would reuse as shorthand for Deeno&apos;s defeat.
+                    </p>
+                  </div>
+                </section>
 
-                <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
-                  <span className="w-8 h-1 bg-brand" />
-                  Clash Summary
-                </h2>
-                <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Deeno entered the main event with home-platform confidence, using TymeLess&apos; name, age, appearance, and GZone history to build time flips, gaming references, and status attacks. His strongest moments came through the Big Smoke and CJ scheme, the no-replay concept, the William name flip, and the Thriller reference.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    TymeLess created the stronger overall performance through comic timing, the running toilet and throne scheme, lemon props, visual comparisons, and crowd control. The battle became a performance piece rather than a standard exchange, and the final crowd call awarded the win to TymeLess.
-                  </p>
-                </div>
-
-                <div className="mt-12 p-6 bg-zinc-950 border-2 border-brand/30 rounded-xl shadow-lg">
-                  <h3 className="text-brand font-display uppercase tracking-widest text-sm mb-4">Evidence: Props Used</h3>
-                  <div className="grid gap-4 sm:grid-cols-3">
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10">
+                  <h2 className="text-3xl font-display uppercase text-white mb-8">Evidence: Props Used</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {battle.props?.map((prop) => (
-                      <div key={prop.name} className="flex items-center gap-4">
+                      <div key={prop.name} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-950/70 p-5">
                         <div className="w-16 h-16 shrink-0 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700">
                           <span className="text-2xl">{prop.icon}</span>
                         </div>
                         <div>
                           <p className="text-white font-bold">{prop.name}</p>
-                          <p className="text-zinc-400 text-sm">Used by {prop.user}</p>
+                          <p className="text-zinc-500 text-sm uppercase tracking-widest">Used by {prop.user}</p>
                         </div>
                       </div>
                     ))}
                   </div>
-                </div>
-              </section>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Deeno", "Home advantage and personal pressure", "Deeno begins by claiming GZone as his house. Security, the recent headlock incident, TymeLess's family, age, grey hair, public image, and limited battle history support the argument that the visitor does not belong at the centre of Deeno's platform."],
+                      ["Round 1 — TymeLess", "Fake stomach complaint becomes a throne challenge", "TymeLess pretends that his own stomach hurts and lets the room believe him before revealing the trick. Crohn's disease, IBS, locked toilets, taking the piss, the blocked toilet, and the plunger then become a planned narrative about Deeno. The chair and toilet imagery finishes as a status attack: GZone is not Deeno's throne or his exclusive house."],
+                      ["Round 2 — Deeno", "Gaming structure and inherited accusations", "Deeno's strongest connected writing moves through GTA, Big Smoke, CJ, the final mission, game over, and no replay. Parenting pressure and the three-K accusation also revisit angles already used against TymeLess in the Ryno clash."],
+                      ["Round 2 — TymeLess", "Visual identity and room involvement", "Keith Lemon and the physical fruit props lead into a sustained ginger-comparison run. TymeLess flips grey hair into a silver-fox boast, involves Ginga Jay in the performance, and uses British film, football, royal, fantasy, and cereal references to keep the imagery immediate."],
+                      ["Round 3 — Deeno", "Name flips and an attempted fruit rebuttal", "Time, no reverse, William, smoking, cereal, serial killer, Thriller, and Smithers return the focus to TymeLess's identity. Deeno tries to answer the running gimmick with lemonade, but the stumble and restart stop the line from fully reversing the prop pressure."],
+                      ["Round 3 — TymeLess", "Parenting reversal and three-round payoff", "TymeLess addresses Deeno's son as a new stepfather and turns Deeno's own parenting attack back on him. Kelly, Machine Gun Kelly, R. Kelly, Miss Trunchbull, and 125 carry the round to the third-lemon reveal and the final squeezing payoff."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["TymeLess tricks the room with a fake complaint", "TymeLess claims that his own stomach is hurting and says he will try his best, allowing the room to accept the apparent weakness. He then reveals the misdirection with the Crohn's disease line and continues through IBS, squeezing, toilets, the plunger, taking the piss, and the GZone chair. The sequence is a performed setup, not a response to Deeno admitting illness."],
+                      ["Ryno's TymeLess angles are inherited", "Ryno had already used TymeLess's real name William, time travel, parenting criticism, and racism allegations in Episode 11. Deeno develops those routes through the spliff line, no-reverse writing, the weekday question, and the three-K accusation rather than introducing them as new discoveries."],
+                      ["TymeLess brings the Ryno clash back into the room", "TymeLess explicitly invokes Ryno while changing flow, and Deeno later dismisses TymeLess's bars through Ryno's dance. The previous clash therefore supplies both a cadence reference and local evidence inside Episode 21."],
+                      ["Prop performance evolves from Episode 11", "Against Ryno, TymeLess used socks, underwear, a toothbrush, soap, and Pot Noodle to make an alleged living situation visible. The plunger, photograph, and three lemons refine the same tactic: physical objects organise the round instead of appearing only at the finish."],
+                      ["The Tapped24 and Grams incident remains active", "Both battlers reference the headlock and security controversy from Episode 15. Deeno says he would react if anyone tried it on him; TymeLess addresses Grams and imagines the headlock being applied to Deeno. A recent physical incident becomes shared battle-world context."],
+                      ["Deeno's home claim becomes a throne rebuttal", "Deeno had already called GZone his home and said he ran it in the Badee Harz clash. Here he opens with the same house claim, but TymeLess joins the toilet and chair images to argue that Deeno's seat is not a throne before claiming the house for himself."],
+                      ["Age pressure is reversed into the silver fox", "Deeno mocks TymeLess for rapping with grey hair. TymeLess concedes the visible fact but changes its meaning: Deeno is a scruffy ginger fox, while he is the silver fox. The rebuttal is stronger because it absorbs the attack instead of denying it."],
+                      ["Ginga Jay becomes part of the scheme", "The ginger comparison expands from Deeno to host Ginga Jay. Reloads and live reactions are folded into the material, making the room appear to confirm TymeLess's visual argument rather than simply watch it."],
+                      ["Parenting pressure changes direction", "Deeno asks why TymeLess does not see his children on weekdays, echoing the Ryno clash. TymeLess later speaks directly to Deeno's son, casts himself as the new stepfather, promises to provide for him, and declares the real father dead. An inherited angle becomes a direct third-round reversal."],
+                      ["The lemon has setup, counter and payoff", "Keith Lemon starts as an appearance comparison, becomes a sequence of physical lemons, survives Deeno's attempted lemonade rebuttal, and finishes with the third-lemon squeezing line. Episode 22 then reuses the fruit as shorthand for the official loss."],
+                      ["Simon Pegg develops in Episode 22", "TymeLess uses Simon Pegg and Shaun of the Dead as a visual comparison. Btizz later preserves Simon Pegg but links him to Mission: Impossible and Benji Dunn, turning the inherited image into a connected film scheme."],
+                      ["House, throne and result become Btizz's evidence", "Btizz uses TymeLess's official win to challenge Deeno's king claim, brings the lemons back, and develops the house dispute into palace, feet-up, cosy, and crown material. Episode 21 is therefore the source battle for several of Episode 22's strongest callbacks."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
             )}
 
             {battle.slug === 'deeno-vs-tapped24' && (
@@ -414,20 +580,54 @@ export default function BattleDetail() {
                   Clash Summary
                 </h2>
                 <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The main event at the G-Zone Rap Battle League saw Deeno and Grams step into the arena for a high-pressure and deeply personal clash. With Grams entering from the sidelines in a surprise moment, the battle immediately carried the weight of something bigger than a standard matchup, quickly becoming one of the standout moments on the platform.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Across three rounds, both MCs leaned heavily into direct confrontation, with sharp personals, lifestyle angles, and constant back-and-forth pressure. Deeno positioned himself as the home-grown presence, using crowd energy and platform control to his advantage, while Grams responded with relentless attacks on identity, image, and authenticity.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    As the battle progressed, the intensity continued to build, with neither side backing off. The clash stayed consistent in energy throughout, driven by strong crowd reactions and a clear sense of rivalry between both battlers.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    By the final round, the atmosphere in the room was fully locked in, with the decision ultimately left to the crowd. While no formal judges’ ruling closed the battle, it stood out as a defining and highly talked-about moment within the G-Zone arena.
-                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 14 was built around a genuine preparation imbalance. Deeno was introduced for a matchup with 2 Man, but Grams emerged as the surprise opponent. Grams could attack a known target with prepared material; Deeno had to abandon the expected clash, absorb the reveal, and build a large part of his response from live observation, existing scene knowledge, and freestyle recovery.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Grams used the surprise immediately. Deeno&apos;s Viking name, weight, speech, drinking, parenting, treatment of women, race identity, clothes, credibility, and claim to leadership were attacked through Odin, Arthur, Harry Potter, Shrek, Scooby-Doo, Ed Sheeran, glass-house imagery, and the argument that Deeno was being marketed as something he was not.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Deeno acknowledged that the switch had rattled him, but made adaptation the point of his performance. Grams became weed, weight, weighing, age, outsider, Pen Game, and comeback material. Rather than pretending every line was prepared, Deeno repeatedly identified the freestyle process and used the home room as support while he assembled opponent-specific attacks.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">The middle rounds exposed the tradeoff. Grams had the cleaner anti-Viking and image schemes, while Deeno&apos;s stops and moments of uncertainty gave future opponents a visible &ldquo;mind went blank&rdquo; angle. At the same time, recovering in public strengthened a different part of Deeno&apos;s identity: GZone as his home and a place he could still command without a prepared opponent.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">The third widened Deeno&apos;s response beyond Grams. Platform status, other scene names, fatherhood, and the idea that he had helped build or guide GZone became part of the close. That father-figure posture later develops into the adoption-paper performance against Btizz, while the home claim becomes a central dispute with Badee Harz, TymeLess, and Btizz.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light">The final crowd check and official GZone record awarded the battle to Deeno; the host reinforced the result by calling GZone his home. Grams created the surprise and landed the cleaner pre-written deconstruction, but Deeno&apos;s adaptation, freestyle recovery, home-room command, and stronger final positioning carried the decision.</p>
                 </div>
               </section>
+            )}
+
+            {battle.slug === 'deeno-vs-grams' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4"><span className="w-8 h-1 bg-brand" />Round Structure</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Grams", "The ambush defines the target", "Grams uses the surprise advantage to attack the Viking identity, weight, speech, drinking, parenting, women, clothes, and credibility through prepared fantasy, celebrity, and visual comparisons."],
+                      ["Round 1 — Deeno", "Shock turns into live construction", "Deeno admits the replacement affected him, then starts building from Grams' name, weed, weight, age, outsider status, scene history, and what he can observe in the room rather than hiding the freestyle process."],
+                      ["Round 2 — Grams", "Anti-Viking case and image pressure", "Odin, Arthur, Harry Potter, Shrek, Scooby-Doo, Ed Sheeran, glass houses, women, and marketing language argue that Deeno's stage character and leadership image are manufactured."],
+                      ["Round 2 — Deeno", "Freestyle recovery and home support", "Stops and uncertainty expose the preparation gap, but Deeno repeatedly restarts through opponent-specific name flips, platform references, and direct acknowledgement that he is creating material live."],
+                      ["Round 3 — Grams", "Prepared detail against the comeback", "Grams maintains pressure on image, authenticity, family, and the Viking claim, trying to make the surprise itself proof that Deeno cannot perform when the expected script disappears."],
+                      ["Round 3 — Deeno", "Status, fatherhood, and the wider scene", "Deeno broadens from Grams to GZone, other names, outsider status, and a father-figure role, turning survival of the ambush into a claim that his platform position is larger than one prepared clash."]
+                    ].map(([round, focus, detail]) => <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6"><p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p><h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3><p className="text-zinc-400 leading-relaxed font-light">{detail}</p></article>)}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4"><span className="w-8 h-1 bg-brand" />Rebuttals, Callbacks &amp; Evolving Material</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["The opponent switch is the battle's first fact", "Deeno expected 2 Man and received Grams. The preparation gap explains both Grams' cleaner tailored schemes and Deeno's visible stops; it is not merely background to the performance."],
+                      ["Freestyling becomes an explicit defence", "Grams tells Deeno that he is not a freestyler; Deeno repeatedly identifies that he is working live. Instead of denying the imbalance, he asks the room to value adaptation as a separate battle skill."],
+                      ["The house claim continues Episode 1", "Deeno had already called GZone his house against Tapped24. The host closes Episode 14 by saying this is his home, turning a self-declared slogan into the event's explanation for why the crowd supports his recovery."],
+                      ["Grams creates the mind-blank angle", "The stops are visible enough that Badee Harz later says Deeno's mind went blank against Grams and calls his next stumble another choke. A weakness exposed by surprise becomes reusable performance history."],
+                      ["The anti-Viking route becomes established", "Grams uses Odin, Arthur, fantasy characters, image, and marketing to argue that Deeno is not a Viking. Later opponents inherit the idea that the name is branding open to authenticity tests."],
+                      ["Pen Game and GZone begin to collide", "Deeno treats Grams as an outsider using GZone for a comeback. In Episode 15 Tapped expands the same pressure into a full Pen Game versus GZone loyalty war."],
+                      ["Grams carries the result directly forward", "The next episode opens with Tapped accusing Grams of damaging his Pen Game legacy through repeated deaths. Episode 14 is not left as a standalone loss; it becomes the status setup for the following booking."],
+                      ["Home ownership changes hands in Episode 15", "After the host calls GZone Deeno's home, Grams tells Tapped that it is his home now. Tapped rejects that claim through go-home and fuck-Pen-Game refrains, showing the territory language evolving immediately."],
+                      ["Fatherhood expands from private to platform", "Deeno and Tapped attacked each other's parenting in Episode 1. Against Grams, Deeno widens the posture into being a father figure around GZone, connecting family authority with platform authority."],
+                      ["The father role reaches adoption papers", "Against Btizz in Episode 22, Deeno presents adoption papers and says he will father his opponent. The prop is an exaggerated later form of the father-figure status he begins making explicit here."],
+                      ["Freestyle recovery becomes part of Deeno's defence", "Badee later cites the stumble, but Deeno again answers disruption by saying he can freestyle and using my house to reset. Episode 14 establishes both the vulnerability and the method used to survive it."],
+                      ["The official win preserves two truths", "Grams has the preparation advantage and cleaner anti-character writing; Deeno visibly struggles but adapts and takes the crowd. The archive can acknowledge both without reversing the official Deeno result."]
+                    ].map(([title, detail]) => <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6"><h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3><p className="text-zinc-400 leading-relaxed font-light">{detail}</p></article>)}
+                  </div>
+                </section>
+              </>
             )}
 
             {/* Clash Summary for Deeno vs Badee Harz */}
@@ -440,24 +640,12 @@ export default function BattleDetail() {
                   Clash Summary
                 </h2>
                 <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The clash between Deeno &ldquo;The Viking&rdquo; and Badee Harz at The GZone Rap Battle League unfolded as a volatile and deeply personal main event, defined less by layered lyricism and more by outright character destruction. From the outset, the tone was hostile and unfiltered, with both MCs abandoning subtlety in favour of direct, often uncomfortable confrontation.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Across three rounds, the battle leaned heavily into personals, with each artist dissecting the other&apos;s private life in brutal detail. Deeno&apos;s approach centred on relentless attacks toward Badee&apos;s family, children, and background, while also targeting her appearance and credibility within the scene. In response, Badee mirrored this intensity, focusing on Deeno&apos;s upbringing, mental state, and alleged behaviour, creating a back-and-forth that rarely strayed from deeply personal accusations.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    A dominant feature of the clash was the sheer level of escalation. What began as typical battle rap insults quickly spiralled into allegations of misconduct, substance abuse, and moral failings from both sides. This pushed the battle into a space that felt less performative and more confrontational, with each round raising the stakes in terms of severity and shock value rather than technical complexity.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Stylistically, the contrast was less about delivery and more about persistence. Deeno maintained a loud, commanding presence, attempting to overwhelm through repetition and directness, while Badee relied on sharp rebuttals and sustained pressure, frequently calling out perceived weaknesses and inconsistencies. The clash wasn&apos;t clean or polished, it was messy, raw, and at times chaotic, amplified further by technical issues and a noticeable stumble from Deeno during the second round.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    By the final round, the battle had reached peak intensity, with both MCs fully committed to their angles despite the disorder surrounding the performance. The crowd remained engaged throughout, though reactions hinted at division, particularly as accusations and personal digs continued to dominate over structured writing.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    In the end, the decision was handed to Deeno by the host and crowd, despite his mid-battle lapse. The result reflected not a flawless performance, but a combination of presence, experience, and control of the room. The clash stands as one of the more extreme examples within The GZone catalogue, remembered for its raw hostility, escalating tension, and unapologetically personal tone.
-                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 17 placed established GZone figure Deeno &ldquo;The Viking&rdquo; against debutant Badee Harz in the final battle of the event. Deeno framed the booking as an intruder entering his territory, returning repeatedly to &ldquo;my house,&rdquo; &ldquo;this is my home,&rdquo; and the claim that Badee was a groupie rather than a recognised battler. Badee treated the same matchup as an arrival opportunity and promised to take over GZone rather than accept newcomer status.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Deeno&apos;s first round established the hierarchy argument through Badee&apos;s age, body, profile, children, family, alleged scene relationships, and the Jasmine / Jafar baby-father scheme. The most important line was not the harshest personal but &ldquo;this is my home, but still I run this,&rdquo; continuing the house language heard against Tapped24 and around the surprise Grams battle. Badee answered through casino and life gambling, hair loss, Deeno&apos;s record against women, his siblings, Spain, jail claims, the Grams stumble, and her &ldquo;baddest on GZone&rdquo; declaration.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Round two became a clash over who had the right to define the other. Deeno used Viking training, a country-knowledge test, Harley Coleman, human-flag imagery, Finding Nemo&apos;s Darla, family and parenting insults, and an accusation about Badee using the N-word. Repeated restarts and a stumble disrupted the round, but he recovered through freestyle comments and the crowd-facing &ldquo;my house&rdquo; refrain.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Badee&apos;s second attacked Deeno&apos;s relationships, finances, home life, parents, children, alleged conduct, and claimed status as a veteran. She used B-A-D-double-E as audible self-branding and said Deeno&apos;s Grams performance had already shown him choking under pressure. The accusations on both sides remain statements made for a battle, not verified facts about either performer.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">The final round introduced the clearest physical theatre. Deeno produced a bag described in the battle data as a 0.1-gram rock of crack and connected it to Badee&apos;s family; Badee&apos;s bag of ashes entered the exchange around Ryno and a previous event. Deeno moved through Fizz from The Tweenies, Little Mix, nobody call-and-response, Dobby, Honey G, a 125cc motorbike, and the claim that the show was his. Badee then revealed that information used for the N-word angle had been deliberately planted, called the material fake, challenged Deeno&apos;s second-round choke, used D-E-N-O / Renzo / friend-zone sounds, and called for AJ next.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light">The final audience checks and host announcement gave the battle to Deeno. Badee made a confident debut and her planted-information rebuttal gave the third a genuine strategic turn, but Deeno&apos;s repeated home-platform framing, wider reference range, prop moment, and stronger familiarity with the room survived the second-round disruption. The official GZone record awards Deeno the win.</p>
                 </div>
 
                 <div className="mt-12 p-6 bg-zinc-950 border-2 border-brand/30 rounded-xl shadow-lg">
@@ -477,6 +665,63 @@ export default function BattleDetail() {
                   </div>
                 </div>
               </section>
+            )}
+
+            {battle.slug === 'deeno-vs-badee-harz' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Deeno", "Newcomer status and home advantage", "Deeno questions why Badee is rapping, calls her a groupie, and uses age, body, children, family, Jasmine, Jafar, Tarzan, alleged scene relationships, and platform profile to argue that the visitor is several levels below him."],
+                      ["Round 1 — Badee Harz", "Women's record and debut declaration", "Casino and life gambling lead into hair loss, Deeno's previous female opponents, a promised hat trick, siblings, AJ, 2MWAD, Spain, the Grams stumble, jail claims, and the baddest-on-GZone statement."],
+                      ["Round 2 — Deeno", "Viking training, facts, and recovery", "Deeno uses the Viking as trainer, Badee's stage image, parenting, Harley Coleman, country questions, the human flag, Darla, and a racism accusation. Restarts and a stumble break momentum before he recovers through freestyle comments and the my-house refrain."],
+                      ["Round 2 — Badee Harz", "Information, finances, and self-branding", "Badee attacks Deeno's relationships, money, furniture, borrowing, parents, children, alleged conduct, status, and the Grams choke, then spells B-A-D-double-E to make the debut identity audible."],
+                      ["Round 3 — Deeno", "Shock writing, props, and crowd hooks", "Tweenies, Little Mix, nobody call-and-response, single-mum framing, Dobby, Ryno, ashes, the 0.1-gram crack prop, Honey G, shin pads, scruffy knees, the deep voice, and a 125cc motorbike produce the most theatrical round."],
+                      ["Round 3 — Badee Harz", "Planted information and takeover close", "Badee says the N-word information was planted and fake, returns to Deeno's choke, then uses anxiety, grief, family gathering, D-E-N-O, Renzo, friend zone, appearance, status, and AJ next to end on an expansion beyond the current opponent."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["The house claim starts at the beginning", "Deeno called GZone his house against Tapped24 in Episode 1, and the host described the Grams clash as his home in Episode 14. In Episode 17 Deeno turns the language into a repeated status argument: this is my home, but still I run this."],
+                      ["Grams supplies Badee's performance evidence", "Badee says Deeno's mind went blank against Grams and later says he choked the second round. She does not dispute Deeno's official win; she uses a visible performance weakness from Episode 14 to predict another failure under pressure."],
+                      ["Deeno repeats the freestyle recovery", "The surprise Grams booking forced Deeno into freestyle-heavy recovery. When the second round breaks down here, he tells the room he can freestyle and uses the my-house refrain to regain control. The recovery method becomes part of his platform identity."],
+                      ["Badee constructs a women's hat trick", "Badee names Kusha and Shami before adding herself as a third woman who will beat Deeno. The transcript preserves the claim as her battle argument; it should not be confused with a complete official record supplied by the Season 1 archive."],
+                      ["Planted information creates the strongest rebuttal", "Deeno calls Badee racist over an N-word story in round two. Badee says in the third that she deliberately finessed the information, that the story was fake, and that her child's father wrote the words. The reveal is presented as her explanation inside the battle, not independently verified proof."],
+                      ["Physical evidence becomes a two-prop exchange", "Deeno's bag representing 0.1 gram of crack and Badee's bag of ashes turn family and drug imagery into objects the room can see. They continue the season's growing use of documents, screenshots, clothing, hygiene items, and other props as battle evidence."],
+                      ["Ryno is pulled into the ash scheme", "Deeno says Ryno was bringing the ash and refers to Badee's previous appearance at an event before producing the crack prop. The exchange uses a person already active in the league to make the object feel like shared room history."],
+                      ["Deeno names the recurring single-mum matchup", "In the third Deeno says he is always battling single mothers. The line recognises that parenthood and gender have become recurring routes in his clashes, while Badee reverses the pressure by attacking his own ability as a father."],
+                      ["Badee turns debut into future matchmaking", "The first round says AJ and 2MWAD do not want the clash; the third says Badee is ready for AJ next. Naming the next opponent changes the performance from survival against Deeno into a claimed place on the wider roster."],
+                      ["Renzo's friend-zone sound is repurposed", "Renzo branded himself through Renzo / friend zone in Episode 6. Badee joins D-E-N-O, Renzo, and friend zone in her final round, applying an established GZone sound pattern to Deeno rather than repeating it as Renzo's self-promotion."],
+                      ["Fatherhood remains a two-way vulnerability", "Tapped24 and Deeno attacked each other's parenting in Episode 1. Deeno now targets Badee through her children, while Badee answers through Deeno's children, parents, and father figure. The same authority he claims over the house is tested through responsibility at home."],
+                      ["Episode 17 sets up the later territory war", "Deeno's home-and-run-this argument is expanded against TymeLess in Episode 21 and disputed again by Btizz in Episode 22. Those later opponents do not invent the house motif; they answer a claim Deeno has been repeating since the season began."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
             )}
 
             {/* Clash Summary for 2MWAD vs Ryno */}
@@ -607,21 +852,12 @@ export default function BattleDetail() {
                   Clash Summary
                 </h2>
                 <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The main event at The GZone Rap Battle League saw Marni Gramz and Tapped 24 step into the ring for one of the most volatile and emotionally charged clashes in league history. With genuine tension between both MCs from the opening seconds, the battle carried the energy of a real grudge match and quickly became one of the most talked-about moments the platform has produced.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Across three rounds, both battlers came with an aggressive and highly personal approach, pushing well beyond standard battle rap disrespect into deeply targeted angles and direct confrontation. Marni Gramz applied relentless pressure with personal attacks aimed at Tapped 24's home life, relationships, and credibility, while Tapped 24 responded with explosive crowd-control, sharp rebuttals, and heavy personal material of his own.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    A standout moment came in the later rounds when Tapped 24 introduced printed screenshots and visual props to strengthen his angle, drawing one of the loudest reactions of the night and visibly frustrating his opponent. The battle also saw surprise involvement from Badee Harz during one of the rounds, adding to the theatre and chaos inside the room.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    As the clash escalated, the atmosphere became increasingly hostile, eventually boiling over into a physical altercation that forced security and the hosts to intervene. Proceedings were halted and a ten-minute break was called to restore order before the event could continue.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    By the end of the battle, the host turned to the crowd for the verdict, leaving the decision to audience reaction. Guest judge Denzel Bentley praised Tapped 24 for "ripping the room," but regardless of result, the battle went down as one of the rawest, most explosive, and most unforgettable clashes in GZone history.
-                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 15 matched two battlers trying to reverse difficult records. Grams returned immediately after his official loss to Deeno, while Tapped24 had official losses to Deeno, Roman, and AJNA. The booking therefore carried two simultaneous status questions: whether Grams could move from Pen Game into GZone, and whether Tapped could finally convert an established presence into a recorded win.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Grams&apos; first round attacked Georgie, parenting, the home, physical condition, and Tapped&apos;s relationship to responsibility. Tapped answered through Grams&apos; Pen Game legacy, repeated losses, age, finances, employment, family structure, Birmingham, John Cena, and the claim that Grams was neither him nor Deeno. Frequent sound resets made the opening longer and more fragmented than either written round intended.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Round two produced the line that became league history. The event introduction had already joked about MMA, grappling, headlocks, and elbows; Grams then opened with &ldquo;I put him in a headlock&rdquo; before moving through press-ups, Georgie, children, cats, hygiene, employment, clothes, image, and property. Tapped escalated through the AJ loss dispute, cats, Grams&apos; home, Badee Harz, Pen Game, and wider platform status.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">The final changed from a personal battle into a platform war. Tapped told Grams to go home; Grams answered that GZone was his home now; Tapped repeatedly declared &ldquo;fuck Pen Game&rdquo; and presented himself as defending GZone. He then said he was bringing screenshots back—a direct evolution from the text-message screenshots used against Roman—and displayed an Instagram image as the basis of a serious allegation. Badee&apos;s pink underwear was also used as a physical scene-drama prop.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Special guest Denzel Bentley gave the battle to Tapped24, saying that Tapped had ripped the room while acknowledging that Grams had performed well. A physical altercation followed the decision, prompting security intervention, a host statement against violence, and a ten-minute event break. The confrontation and headlock controversy became material in Episodes 19 and 21, but it happened after Bentley had already announced his choice.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light">The host then conducted separate crowd checks, and the official GZone record also awards the win to Tapped24. Grams built the more consistent money, parenting, Georgie, and image case; Tapped created the larger final-round narrative, stronger visual moments, and clearer platform allegiance. Allegations tied to the screenshots are documented as battle claims, not verified facts.</p>
                 </div>
 
                 <div className="mt-12 p-6 bg-zinc-950 border-2 border-brand/30 rounded-xl shadow-lg">
@@ -641,6 +877,63 @@ export default function BattleDetail() {
                   </div>
                 </div>
               </section>
+            )}
+
+            {battle.slug === 'tapped24-vs-grams' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Grams", "Georgie, parenting, and home life", "Grams attacks Tapped's relationship, children, role as man of the house, physical condition, and public image. Bouncy delivery and direct address to Georgie establish responsibility as the standard by which he will judge Tapped."],
+                      ["Round 1 — Tapped24", "Pen Game record and adult status", "Tapped uses Grams' old platform legacy, losses, age, money, employment, lack of children, Birmingham tension, John Cena, and the Marnie murder-case refrain to argue that the older opponent has achieved less."],
+                      ["Round 2 — Grams", "Headlock line and connected lifestyle case", "I put him in a headlock leads into press-ups, Georgie, parenting, cats, hygiene, employment, benefits, clothes, free products, image management, High School Musical, and mortgage pressure."],
+                      ["Round 2 — Tapped24", "AJ rebuttal and GZone hierarchy", "Tapped disputes the AJ loss, attacks Grams' cats and home, brings Badee into the room, returns to age and Pen Game status, and positions himself with Deeno above an outsider trying to transfer platforms."],
+                      ["Round 3 — Grams", "Relationship appeal and credibility", "Grams speaks directly to Georgie, returns to parenting and money, contrasts truth with Tapped's fast flow, and cites the AJ battle to argue that Tapped's GZone image has already failed under pressure."],
+                      ["Round 3 — Tapped24", "Platform war, screenshots, and shock close", "Fuck Pen Game, both group chats, snake, Tottenham, GZone ownership, the Instagram screenshot, serious unverified allegations, Grams' mother, cancer, and hair form the largest but darkest final-round escalation."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Both records create urgency", "Grams enters after losing to Deeno, while Tapped has official losses to Deeno, Roman, and AJNA. The winner will record a first Season 1 victory; the loser will give future opponents another result to weaponise."],
+                      ["Grams' surprise battle becomes a weakness", "Tapped treats the Deeno loss as another death in a damaged Pen Game legacy. Unlike Badee in Episode 17, he focuses less on Deeno's stumble and more on Grams arriving at GZone with an unsuccessful record."],
+                      ["AJ's decision is argued in real time", "Grams says Tapped was harassed by AJ. Tapped answers that GZone made him lose but that he did not really lose, attempting to replace the official Episode 10 result with his own technical reading before it can define this matchup."],
+                      ["You are not me or Deeno creates a hierarchy", "Tapped places himself beside the man who beat both him and Grams. The statement is not a record comparison; it uses Deeno as the established GZone level against which a Pen Game arrival is measured."],
+                      ["The screenshot tactic explicitly returns", "Roman and Tapped both used text-message screenshots in Episode 9. Tapped says he is bringing screenshots back in the third, now using an Instagram image. A previous defensive evidence tactic becomes an offensive allegation."],
+                      ["Badee becomes a prop before her own battle", "Tapped references Grams allegedly trying to move to Badee and uses Badee's pink underwear as theatre. Badee later battles Deeno in Episode 17, so the prop places her inside GZone storylines before her formal clash."],
+                      ["The headlock is foreshadowed by the introduction", "Before round one the host jokes with fighters about MMA, grappling, headlocks, and elbows. Grams later says I put him in a headlock, and the post-decision altercation turns the word from a bar into a lasting security controversy."],
+                      ["The incident travels into Episodes 19 and 21", "CJ uses don't-pass-me-a-Gram, I'll-headlock-on-you against 1Flaymr. Deeno and TymeLess both reference the incident in their clash, debating how Deeno would react and addressing Grams directly. Episode 15 becomes shared league history."],
+                      ["Go home becomes a fight over GZone", "Tapped tells Grams to return to Pen Game; Grams answers that GZone is his home now. Tapped's fuck-Pen-Game refrain then reframes the battle as defence of platform territory, anticipating later house and throne disputes."],
+                      ["Both-group-chat membership becomes divided loyalty", "Tapped argues that appearing in both Pen Game and GZone chats makes Grams a snake. The personal booking is expanded into a question about whether an artist can transfer scenes without carrying old allegiance."],
+                      ["Denzel Bentley decides before the altercation", "The guest explicitly selects Tapped and says he ripped the room while crediting Grams. The physical confrontation follows that choice, so it should be treated as aftermath rather than part of the judging criteria."],
+                      ["Tapped's first win changes later status claims", "The official result gives Tapped his first Season 1 win and supplies evidence for later self-ranking. The method also leaves consequences: screenshots, platform loyalty, and the headlock incident all remain available to future opponents."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
             )}
 
             {/* Clash Summary for PR1NC3 vs NattyEBK */}
@@ -744,23 +1037,69 @@ export default function BattleDetail() {
                 </h2>
 
                 <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The clash between 1Flama and BTizz at The GZone Rap Battle League marked a high-energy encounter between a bold newcomer and a more calculated, sceptical opponent. From the opening moments, the battle carried a tense but competitive atmosphere, driven by two completely different styles and approaches to the craft.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    Across three rounds, both MCs leaned into direct confrontation and personal angles. 1Flama delivered an aggressive, fire-themed performance built on intensity, repetition, and presence, using his masked identity and Jamaican-influenced persona to create a sense of danger and unpredictability. In contrast, BTizz took a more analytical route, focusing on dismantling his opponent’s image with mockery, wordplay, and repeated challenges to his authenticity.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    A key dynamic throughout the battle was BTizz’s continued questioning of 1Flama’s persona, particularly the mask and claimed background, which became a central talking point in the clash. Meanwhile, 1Flama relied on energy and intimidation, escalating his delivery as the rounds progressed and keeping pressure on through constant verbal attacks and crowd-directed moments.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    As the battle moved into the final round, the intensity peaked, with both MCs fully committing to their angles—1Flama doubling down on raw aggression and presence, while BTizz closed with a series of direct rebuttals and dismissive “cap” accusations. The contrast in styles made for a back-and-forth contest that kept the room engaged throughout.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    By the end of the clash, no clear decision was declared on the spot, with the hosts leaving the outcome to audience reaction and online voting. The battle stood out as a strong showcase of contrasting approaches, making it one of the more debated and talked-about performances within The GZone lineup.
-                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 16 was a two-round clash between 1Flaymr, making his formal GZone debut, and Btizz, returning after official losses to Deluxx and CJ-Zino. The new character had already been previewed at the end of Episode 13 through &ldquo;One Flamer,&rdquo; &ldquo;everything burn,&rdquo; and &ldquo;fire for that.&rdquo; Here those phrases became a complete performance identity built around fire, Jamaican cadence, a balaclava, and the claim that no opponent could extinguish him.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">1Flaymr&apos;s first round introduced forest fires, Avatar&apos;s Fire Nation, lighter and spray-can denial, Jamaican identity, imitation, location, bacon, lullaby, and the hidden face. Btizz answered by entering the same cultural and elemental world: plantain, dustbin, Friction, &ldquo;fire for that&rdquo; call-and-response, cold bars, an ice zone, GTA, name spelling, Jamaican food, and crowd participation all made the newcomer&apos;s branding the object of the attack.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">The second round expanded 1Flaymr&apos;s world through bang refrains, Prince and Natty, Moses and the Red Sea, landlord and eviction, smoke, the balaclava reveal, snowman, December, and firebender. Removing the mask was important: he first treated the face as private, then owned the visual himself with &ldquo;I cover my ugly face, that&apos;s why I wear the bally,&rdquo; preventing the reveal from belonging entirely to Btizz.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Btizz&apos;s final reply was the clearer complete counter. Hygiene, claimed Jamaican authenticity, rice and beans, stolen-flow pressure, B-for-bars and T-for-teacher, Gangnam Style, Sizzla, the Jamaican flag, Magnum, cornmeal, spawn kills, Postman Pat, and repeated &ldquo;cap&rdquo; accusations all argued that the mask, accent, fire, and danger were constructed. The contrast was not simply fire against cold; it was character invention against character exposure.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light mb-8">Several phrases outlived the result. Btizz&apos;s &ldquo;fully extinguished&rdquo; ending became the accepted summary of the battle, while Friction and the removed balaclava became reusable angles. In Episode 19 CJ adopted the same verdict, and 1Flaymr explicitly named Btizz as its source before arguing that a flame still returning to battle could never have been extinguished.</p>
+                  <p className="text-zinc-300 leading-relaxed font-light">The closing reaction and official GZone record awarded the battle to Btizz, his first recorded Season 1 win. 1Flaymr created one of the season&apos;s clearest debut identities, but Btizz controlled the room more consistently, simplified his counters, and supplied the phrase that defined the clash afterward.</p>
                 </div>
               </section>
+            )}
+
+            {battle.slug === 'btizz-vs-1flaymr' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — 1Flaymr", "A complete character arrives", "Forest fire, everything burn, Avatar's Fire Nation, no lighter, no spray can, Jamaican identity, imitation, location, bacon, lullaby, and the hidden face establish the flame as sound, image, origin story, and threat at once."],
+                      ["Round 1 — Btizz", "Cold counters and crowd participation", "Plantain, dustbin, Friction, fire-for-that chants, ice-zone writing, GTA, name spelling, food, family, and hygiene enter 1Flaymr's own cultural and elemental world rather than allowing the debut to define every term."],
+                      ["Round 2 — 1Flaymr", "Expansion and mask removal", "Prince and Natty, repeated bangs, Moses and the Red Sea, landlord and eviction, smoke, total attack lists, the balaclava reveal, snowman, December, firebender, CJ-Zino, and Deeno widen the character from one opponent to the roster."],
+                      ["Round 2 — Btizz", "Authenticity case and final verdict", "Hygiene, fake-Jamaican pressure, rice and beans, flow criticism, B-for-bars and T-for-teacher, Gangnam Style, Sizzla, flag-colour teeth, Magnum, cornmeal, spawn kills, Postman Pat, cap, and fully extinguished close the case."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["The debut begins in Episode 13", "After CJ beat Btizz, 1Flaymr appeared in the closing footage announcing One Flamer, everything burn, and fire for that. Episode 16 converts that preview into full rounds, making the character's origin part of the preceding battle's aftermath."],
+                      ["Btizz needs a result of his own", "Btizz enters after official losses to Deluxx and CJ-Zino. Facing a debutant gives him a different role: instead of defending status against an established opponent, he must prove that experience can expose a new character before it gains momentum."],
+                      ["Fire for that changes ownership", "1Flaymr used fire for that in the Episode 13 preview. Btizz turns it into call-and-response for punches against him, making the newcomer's own slogan generate reaction for the opponent."],
+                      ["Cold answers heat inside the battle", "Btizz says his bars are cold and places himself in an ice zone. 1Flaymr later returns with hot flow, snowman, December, and firebender language. The elemental contrast develops through answer and counter rather than isolated metaphors."],
+                      ["The balaclava becomes shared evidence", "1Flaymr first tells the room that why he hides his face is none of their business, then removes the bally and owns the appearance joke himself. Btizz attacks the concealment; CJ later reuses the revealed face as evidence against the rebrand."],
+                      ["Friction survives every rebrand", "Btizz identifies the earlier Friction name in round one. Episode 19 CJ repeats it, while 1Flaymr replies that the reason for changing his name is private. One short reveal becomes a continuing authenticity angle."],
+                      ["Jamaican identity creates both style and vulnerability", "1Flaymr's cadence, Jamaican declaration, Fire Nation energy, and food language make the debut distinct. Btizz responds through plantain, rice and beans, Sizzla, flag colours, Magnum, and cornmeal, arguing that the presentation is imitation rather than identity."],
+                      ["The mask defence evolves into self-awareness", "I cover my ugly face, that's why I wear the bally concedes the visible attack before Btizz can present it as discovery. In Episode 19 the same self-awareness is no longer enough: CJ says taking it off fooled everyone."],
+                      ["Roster names make the debut immediately local", "PR1NC3, Natty, AJ, CJ-Zino, Deeno, Darren, and other GZone figures appear throughout. The fire character is introduced as part of an existing league world, not as a detached performance imported from elsewhere."],
+                      ["Fully extinguished becomes the official memory", "Btizz's closing phrase compresses two rounds of cold, authenticity, hygiene, and crowd-control writing into a verdict the room can repeat. The official win gives that slogan authority beyond the individual bar."],
+                      ["Episode 19 reopens the verdict", "CJ adopts fully extinguished against 1Flaymr and adds Friction and the exposed face. 1Flaymr explicitly says Btizz originated the phrase, calls CJ a helper, and argues that the flame's return proves the earlier ending was not permanent."],
+                      ["The result completes Btizz's first recovery", "After losses to Deluxx and CJ, Btizz wins by defining the newcomer's identity more effectively than the newcomer can protect it. That recovered status is what later lets 1Flaymr challenge CJ's Btizz win and connect Episodes 13, 16, and 19."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
             )}
 
             {/* Clash Summary for Btizz vs CJ Zino */}
@@ -1202,17 +1541,19 @@ export default function BattleDetail() {
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">Grams</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Grams entered as a surprise opponent, immediately changing the energy of the episode. The battle was originally introduced as Deeno the Viking versus 2 Man, but Grams appeared instead, turning the clash into a surprise main-event-style moment.</p>
-                      <p>His performance was confident, disrespectful, and built around making Deeno look out of place. Grams attacked Deeno's weight, image, speech, drinking, parenting, race identity, Viking persona, and credibility. He also used fantasy and pop-culture imagery, linking Deeno to Vikings, Odin, Arthur, Harry Potter, Shrek, Scooby-Doo, and Ed Sheeran.</p>
-                      <p>Grams' biggest strength was presence. He came in like he had planned the ambush, controlled the surprise, and made the battle feel like a takeover. His material kept returning to a clear argument: Deeno is not really a Viking, not really dangerous, and not built for the platform he claims to run.</p>
+                      <p>Grams entered with the decisive preparation advantage. The opponent reveal made his first written lines feel like an ambush, and he immediately used Deeno's reaction as evidence that the established home figure could be removed from his preferred conditions.</p>
+                      <p>The writing had a coherent anti-character route. Weight, speech, drinking, parenting, treatment of women, race identity, clothes, Odin, Arthur, Harry Potter, Shrek, Scooby-Doo, Ed Sheeran, and glass-house imagery all argued that the Viking and leader presentation was marketing rather than reality.</p>
+                      <p>Presence was his strongest quality. Grams made the surprise feel like a takeover and repeatedly challenged Deeno's ability to freestyle. His prepared references were naturally cleaner than the opponent's live construction, especially when he stayed on Viking authenticity and public image.</p>
+                      <p>The weakness was conversion. Grams exposed real performance uncertainty but could not stop Deeno turning the preparation imbalance into a resilience test for the home crowd. The official decision went against him, and Tapped used that loss as immediate status pressure in Episode 15.</p>
                     </div>
                   </article>
                   <article className="bg-zinc-950/70 border border-brand/30 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">Deeno</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Deeno had the harder job because he was clearly thrown off by the surprise. He admitted the situation rattled him slightly, but still came back with a strong freestyle-heavy response. The room could see he had not prepared for Grams specifically, yet he still created several sharp angles.</p>
-                      <p>His best material attacked Grams as an outsider to GZone, someone overlooked elsewhere, and someone using GZone for a comeback. He also flipped Grams' name through weight, weed, and weighing imagery. His third round widened the target, calling out multiple names from the wider scene and framing himself as the father figure of the platform.</p>
-                      <p>Deeno's biggest issue was the room. GZone is clearly his home, but Grams' surprise entrance created a novelty moment that Grams used well. Deeno fought back strongly, but Grams had the stronger room control and took the crowd decision.</p>
+                      <p>Deeno had the harder technical task because his prepared opponent did not appear. He admitted being rattled and allowed the room to see the construction process, making the battle partly a test of whether imperfect live adaptation could compete with tailored written rounds.</p>
+                      <p>His cleanest recovery routes came from what was immediately available: Grams as weed, weight and weighing; age; Pen Game history; outsider status; the surprise itself; and the idea that GZone was being used for a comeback. Those angles sound less polished but more visibly responsive.</p>
+                      <p>The third widened the purpose of the round. Other scene names, home-platform status, and the father-figure position made the battle about Deeno's role in GZone rather than only whether he could outwrite Grams without preparation.</p>
+                      <p>The weakness was control: stops and uncertainty created the mind-blank angle Badee later reused. The strength was recovery. The final crowd call and official archive award Deeno the win, with the host explicitly framing GZone as his home; the earlier claim that Grams took the crowd decision was incorrect.</p>
                     </div>
                   </article>
                 </div>
@@ -1314,17 +1655,19 @@ export default function BattleDetail() {
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">1Flaymr</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>1Flaymr came in as a newcomer with a clear identity: fire, smoke, Jamaican energy, patois delivery, and chaos. His performance used Avatar, burning, heat, smoke, and Fire Nation language to make the flame concept feel fully branded.</p>
-                      <p>His strongest quality was character. He was loud, animated, unpredictable, and committed to the fire persona, while his rhythm and accent pattern gave him a different sound from most of the roster.</p>
-                      <p>The weakness was clarity. Some material lost impact through delivery, mic level, and repetition. His clearest moments were the Fire Nation, forest fire, firebender, Red Sea and Moses, landlord and eviction notice, and snowman ideas.</p>
+                      <p>1Flaymr arrived with more than a theme. Fire controlled the name, slogans, delivery, imagery, posture, and promised effect on the room. Forest fires, everything burn, Fire Nation, firebender, heat, smoke, snowman, and December made the two rounds feel like a designed character introduction.</p>
+                      <p>The Jamaican cadence and balaclava added sound and appearance to the writing. This made the debut instantly recognisable but also gave Btizz clear surfaces to attack. Plantain, Sizzla, the flag, rice and beans, Magnum, cornmeal, the hidden face, and Friction could all be aimed at the same presentation.</p>
+                      <p>Round two showed useful adaptation. The mask came off, the appearance joke was owned before Btizz could control it, and Moses, landlord, eviction, Prince, Natty, CJ-Zino, and Deeno widened the material beyond generic fire. Hot flow, snowman, and December also answered Btizz's cold and ice-zone framing.</p>
+                      <p>The weakness was clarity. Rapid patois-led passages, mic levels, repetition, and threat lists sometimes hid the setups. The character survived the loss and later won against CJ, but on this night Btizz made the room repeat the opponent's defining image as a losing verdict.</p>
                     </div>
                   </article>
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">BTizz</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>BTizz responded like the more experienced GZone battler. He used stronger crowd control, sharper insults, and direct attacks to undermine the flame persona, questioning 1Flaymr&apos;s authenticity, image, hygiene, and credibility.</p>
-                      <p>His performance was clearer and more controlled. Crowd chants, name spelling, food references, scene callouts, and repeated fire flips kept pressure on 1Flaymr while turning the newcomer&apos;s central identity against him.</p>
-                      <p>BTizz&apos;s biggest advantage was live-room command. He knew when to simplify, repeat, and involve the crowd. The closing &ldquo;fully extinguished&rdquo; framing supported the crowd&apos;s decision in his favour.</p>
+                      <p>Btizz performed as the sceptic examining a debut in real time. Instead of building a separate persona, he treated every part of 1Flaymr's presentation as evidence: fire could be cooled, Jamaican identity could be tested, a mask could hide insecurity, and a new name could be traced back to Friction.</p>
+                      <p>The first reply established the method through plantain, dustbin, Lego, fire-for-that, ice-zone writing, GTA, food, hygiene, and B-to-I-to-Z-Z crowd involvement. The strongest move was appropriation: the opponent's own slogan became the room's reaction cue for Btizz.</p>
+                      <p>The final reply expanded the authenticity case through rice and beans, Sizzla, the Jamaican flag, Gangnam Style, Magnum, cornmeal, Postman Pat, spawn kills, and repeated cap accusations. Some material was crude or allegation-led, but the route remained easier to follow than 1Flaymr's denser passages.</p>
+                      <p>Live-room command was the winning difference. Btizz simplified, paused, repeated, involved the crowd, and ended with &ldquo;fully extinguished,&rdquo; a phrase concise enough to become the official memory of the battle. The result gave him his first Season 1 win after Deluxx and CJ-Zino.</p>
                     </div>
                   </article>
                 </div>
@@ -1388,31 +1731,104 @@ export default function BattleDetail() {
             )}
 
             {battle.slug === 'ryno-vs-roman' && (
-              <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
-                  <span className="w-8 h-1 bg-brand" />
-                  Performance Analysis
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Roman</h3>
-                    <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Roman entered with cleaner structure and more controlled angle work. His performance framed Ryno as fake, unstable, homeless, morally questionable, and far less dangerous than his image suggests.</p>
-                      <p>His biggest strength was making the battle personal without losing shape. Ryno&apos;s name, housing, family, children, allegations, and public image became repeated pressure points, supported by deliberate pacing and strong crowd control.</p>
-                      <p>The best material mixed character attacks with wordplay. Rhino facts, Romans arriving squad-deep, relegation, Heady One and sofa imagery, hotel allegations, and the zero risk, zero gain, one million views sequence made the round feel like a case being built.</p>
-                    </div>
-                  </article>
-                  <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Ryno</h3>
-                    <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Ryno brought aggression, intensity, and direct personal retaliation. His material was darker and more chaotic, targeting Roman&apos;s ex, family, mother, size, relationships, grief, and allegations.</p>
-                      <p>Emotional pressure was his strongest weapon. When focused, especially after the first-round restart and through parts of the later rounds, his writing had bite and was clearly intended to make Roman uncomfortable.</p>
-                      <p>The issue was control. Ryno had moments, but Roman sounded more prepared and composed. Some delivery felt rushed or unstable, leaving Roman with the cleaner structure and stronger overall command.</p>
-                    </div>
-                  </article>
-                </div>
-              </section>
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 18 matched two battlers carrying very different records. Roman had official wins over PR1NC3 and Tapped24, giving him an unbeaten two-battle GZone run. Ryno had beaten 2MWAD before losing to TymeLess, and much of the material used against him in those earlier appearances—housing instability, Leicester, allegations, family, and credibility—returned here in a more concentrated form.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Roman opened by predicting that Ryno would blame him for the death of his former partner, undercutting an angle Tapped24 had already used in Episode 9 before Ryno could deliver it. He then joined serious allegations with rhino facts, mud, solitary animals, Romans arriving as a squad, Heady One, sofa-surfing, a supposed shed, Leicester accommodation, football relegation, and a Ryan Winfield / windshield name flip.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Ryno used the predicted partner angle anyway, then attacked Roman&apos;s breath, hygiene, drinking, body, children, grief, and name. &ldquo;R to the O, M-M-A to the N&rdquo; supplied a repeated cadence, while &ldquo;my bars rip you apart&rdquo; stated the craft comparison directly. Mic adjustment and a false start made the opening feel less controlled than Roman&apos;s already completed case.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Round two pushed Roman&apos;s main narrative hardest. Housing, a claimed move from one partner to another, vaping, a hotel allegation, criminal-case language, views without bookings, and &ldquo;zero risk, zero gain&rdquo; built toward a status question: what had Ryno&apos;s visibility actually produced? Ryno rejected the visual comparison and repeated &ldquo;homeless not anymore,&rdquo; before moving through Roman&apos;s crooked hat, no-scope, precision, delivery criticism, Deeno, family grief, and a deliberately awkward imitation of another flow.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Roman&apos;s third returned to pending-case and NFA language, then moved through GZone names, age and grooming allegations, Bug&apos;s Life, the 5&apos;3&quot; ego, keys, the sunflower lanyard, sat-nav, hashtag, and an English-team / English-tea racism construction. Ryno answered with ROM road lines, Maximus Decimus Meridius, Toy Story&apos;s Sid, a direct rebuttal to Roman&apos;s old &ldquo;toughest warriors&rdquo; claim, family shock material, and an admission that the round was not written as well as he wanted.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light">The battle contains repeated allegations about sexual conduct, criminal cases, parenting, race, relationships, and housing. They are documented here as claims and rebuttals made inside a battle, not verified facts. The transcript preserves a final audience check for Ryno but does not provide a complete comparative vote; the official GZone record awards Roman the win. His advantage was not simply darker content, but a clearer three-round case and more reliable control.</p>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — Roman", "Prediction, animal facts, and housing", "Roman predicts the deceased-partner attack, then builds through allegations, hands-in-pockets, Wotsit, homeless rhinos using mud, solitary rhinos against squad-deep Romans, Heady One, sofa-surfing, a shed, Leicester, relegation, and the Ryan Winfield / windshield flip."],
+                      ["Round 1 — Ryno", "Emotional retaliation and name cadence", "Ryno delivers the partner angle Roman predicted, then moves through breath, hygiene, drinking, body, family, children, grief, R-to-the-O spelling, and the claim that his bars cause more damage. A false start and mic adjustment interrupt the escalation."],
+                      ["Round 2 — Roman", "A complete credibility case", "Housing and road life lead into vaping, hotel and case allegations, relationship comparisons, views, fame, bookings, stage presence, David Blaine, and age. The route asks whether Ryno's public attention has produced stability or a real career."],
+                      ["Round 2 — Ryno", "Denial, delivery criticism, and disorder", "The photo comparison and homelessness are denied before no-scope, precision, third-degree burns, Roman's articulation, Deeno, family grief, violence, and a mocked flow enter the round. Strong individual ideas are weakened by irregular pacing and an incomplete close."],
+                      ["Round 3 — Roman", "NFA language, proof challenge, and status", "Roman returns to allegation and case language, then uses GZone references, Bug's Life, the 5'3 ego, age allegations, timepiece, house keys, sunflower lanyard, sat-nav, hashtag, relationship initials, English teams, and English tea."],
+                      ["Round 3 — Ryno", "Roman history and final counterattack", "Ryno uses ROM road-marking, Gladiator's Maximus, Toy Story's Sid, Roman's previous warrior claim, family and illness shock, artistic credibility, and street status. He maintains hostility but openly concedes that the writing is not at the level he wanted."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Roman predicts the Episode 9 attack", "Tapped24 repeatedly attacked Roman over his former partner in Episode 9. Roman opens Episode 18 by saying he already knows Ryno will claim that he killed his ex. The prediction removes surprise from material the room has heard before."],
+                      ["Ryno uses the predicted route anyway", "Ryno begins his reply with the former-partner angle Roman has just announced. The content is severe, but the lack of transformation lets Roman's prediction frame it as inherited material rather than a new discovery."],
+                      ["The toughest-warriors boast is challenged", "Roman told Tapped that he had gone to war with the toughest warriors. Ryno quotes the idea in round three, reduces the résumé to Prince and Tapped, and calls the boast cap. A status line from Episode 9 becomes evidence against Roman."],
+                      ["Homelessness begins before TymeLess", "2MWAD made Ryno's alleged homelessness a central Episode 8 angle. Ryno won that clash, but the subject remained available. Roman's housing case therefore continues pressure that has followed Ryno across most of his GZone run."],
+                      ["TymeLess supplies Roman's detailed route", "Episode 11 joined homelessness to Leicester, stairs, absent friends, clothes, hygiene supplies, food, and criminal allegations. Roman returns to Leicester, sofas, roads, keys, housing proof, NFA language, and case claims, refining the same portrait into a three-round argument."],
+                      ["Homeless not anymore is reused verbatim", "Ryno told TymeLess he was not homeless anymore and repeats almost the same defence against Roman. Roman anticipates the answer by minimising the claimed new home as a shed and later demanding that Ryno show his keys."],
+                      ["The proof tactic changes form", "TymeLess physically presented socks, underwear, a toothbrush, soap, and Pot Noodle in Episode 11. Roman brings no prop, but asks for keys and uses specific locations and a visual relationship comparison. The evidential style remains while the delivery moves back into words."],
+                      ["NFA and allegation language is inherited", "TymeLess argued that an NFA did not prove innocence; Roman returns to NFA and pending-case language. Ryno's answers—dead the rapist bars, no case, and you faked this—continue the same defence. None of the claims are independently verified here."],
+                      ["Ryno keeps calling beyond the opponent", "After beating 2MWAD, Ryno called for Deeno next. Against Roman he again says he should have been clashing with Deens, preserving a longer attempt to frame the scheduled opponent as below the battle he deserves."],
+                      ["Roman's record becomes part of the rebuttal", "Roman enters with wins over PR1NC3 and Tapped24, so the warrior image has an official basis. Ryno does not deny those results; he attacks their value, arguing that the names do not justify Roman's grand description."],
+                      ["Roman nameplay develops across the battle", "Ryno starts with rhythmic spelling, then reaches more tailored constructions through ROM road lines and Maximus Decimus Meridius. The material evolves from a chant into Roman Empire and Gladiator references, although the later delivery is less controlled."],
+                      ["The official result rewards consolidation", "Most of Roman's central topics existed before Episode 18, but he consolidates them into a clearer case than either earlier opponent. Ryno's rebuttals identify the repetition, yet they rarely replace the old narrative with a stronger new one. The official Roman win preserves that distinction."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Performance Analysis
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Roman</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Roman treated the matchup as a character case rather than a collection of unrelated insults. Housing, sexual-conduct allegations, family, online visibility, career progress, age, race, and credibility recur across the rounds, allowing each new reference to reinforce a portrait already established.</p>
+                        <p>His opening prediction was strategically important. By announcing the deceased-partner attack before Ryno said it, Roman exposed how much material could be inherited from the Tapped battle. Rhino mud, solitary animals, squad-deep Romans, Heady One, the shed, Leicester, relegation, and windshield then kept the round varied without leaving the central case.</p>
+                        <p>Round two was his strongest complete construction. A claimed visual downgrade, unstable housing, vaping, a hotel allegation, views, bookings, stage demand, and David Blaine all served the same question: what measurable progress sits behind Ryno&apos;s public image? The &ldquo;zero risk, zero gain, one million views&rdquo; sequence gave the argument its clearest summary.</p>
+                        <p>Roman&apos;s weakness was the reliance on extreme and sometimes ableist allegation material. Several points came from routes already used by 2MWAD or TymeLess, and not every claim became technical writing. His edge was consolidation, pacing, and composure. He made repeated history sound like one prepared three-round prosecution and earned the official win.</p>
+                      </div>
+                    </article>
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Ryno</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Ryno&apos;s approach was immediate retaliation. Roman&apos;s former partner, mother, body, drinking, children, grief, delivery, artistic status, and street image became targets, with repeated threats and dark family material intended to prevent Roman from controlling the emotional temperature.</p>
+                        <p>His cleanest ideas were usually shorter: R-to-the-O spelling, bars ripping Roman apart, homeless not anymore, hat at half past six, no-scope focus, precision, third-degree burns, ROM road lines, Maximus Decimus Meridius, and the direct challenge to the &ldquo;toughest warriors&rdquo; résumé.</p>
+                        <p>Ryno did recognise the inherited case. He told Roman to stop the rapist bars, denied homelessness, rejected the visual comparison, and later listed gay, rapist, and homeless as claims Roman had faked. The problem was development: &ldquo;homeless not anymore&rdquo; repeated the TymeLess defence, while Roman had already advanced to the shed and key-proof counters.</p>
+                        <p>Control decided the performance. The opening needed a restart and mic adjustment, round two lost shape, and the third included an admission that the writing was not strong enough. Ryno&apos;s aggression created individual moments, but Roman&apos;s connected case remained easier for the room to follow and harder for the rebuttals to replace.</p>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+              </>
             )}
 
             {battle.slug === 'tapped24-vs-grams' && (
@@ -1426,17 +1842,19 @@ export default function BattleDetail() {
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">Grams</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Grams entered with confident, bouncy delivery and a clear plan: attack Tapped24&apos;s image, parenting, relationship, money, platform loyalty, and appearance. His strongest later work built fuller angles around Georgie, Tapped&apos;s children, clothes, finances, footwear, and Pen Game history.</p>
-                      <p>His biggest strength was turning Tapped&apos;s real-life image into a connected case. Clothes, freebies, CSA debt, work, tube travel, and image investment supported the money angle, while Georgie became the emotional centre of the relationship narrative.</p>
-                      <p>The weakness was control. Reloads, interruptions, props, crowd noise, and tension disrupted the structure. Grams looked most dangerous when the writing stayed focused rather than being pulled into the room&apos;s chaos.</p>
+                      <p>Grams built the more consistent lifestyle case. Georgie, children, parenting, cats, employment, benefits, clothing, free products, image, transport, property, and mortgage pressure all measured Tapped's dangerous public character against adult responsibility.</p>
+                      <p>Direct address was his strongest device. Speaking to Georgie made the relationship angle visible in the room, while I put him in a headlock, ten press-ups, Tapped/not tapped in, Tiny T, addressed/dress, Zac Efron, and Hitch gave the heavier case short repeatable punches.</p>
+                      <p>His Pen Game position created both authority and vulnerability. Grams could argue from longer scene experience, but Tapped used prior losses and the immediate Deeno result to portray that history as decline. Saying GZone was his home now gave the transfer confidence but also opened the platform-loyalty counter.</p>
+                      <p>The weakness was control. Reloads, sound problems, crowd debate, props, and rising tension repeatedly interrupted the writing. Grams remained competitive enough for Denzel Bentley to praise his performance, but the guest judge said Tapped had ripped the room and selected him.</p>
                     </div>
                   </article>
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-display uppercase text-brand mb-6">Tapped24</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>Tapped24 responded like someone defending his GZone position. He targeted Grams&apos; Pen Game history, age, family structure, relationship, mother, platform loyalty, and allegations, repeatedly framing him as a rejected outsider.</p>
-                      <p>Escalation was his strongest weapon. Each round became more personal, culminating in a Pen Game versus GZone platform war that gave the performance a larger narrative than individual insults.</p>
-                      <p>Tapped produced the bigger shock moments and appeared to take the room with the final round. The guest judge awarded him the battle, and the heated closing reaction supported the official result.</p>
+                      <p>Tapped performed as someone defending a GZone position despite entering without an official win. Pen Game legacy, repeated losses, age, money, work, family structure, Birmingham, cats, Badee, and the AJ result all argued that Grams' experience did not make him higher status.</p>
+                      <p>Rebuttal and revision were central. Grams cited the AJ loss; Tapped said the platform made him lose but that he had not really lost. Grams claimed GZone as home; Tapped answered through both group chats, snake, defending ours, and the first emphatic fuck-Pen-Game statement on the stage.</p>
+                      <p>The third was his strongest complete round. Tottenham made Pen Game's decline visual, the returned screenshot connected to Episode 9, the Instagram image created a claimed evidence sequence, and platform loyalty gave the personal allegations a larger structure. The claims remain unverified battle material.</p>
+                      <p>Tapped produced the bigger room swing and Denzel Bentley explicitly chose him before the later altercation. Security involvement and the headlock fallout made the battle infamous, but the official result rests on the performed rounds and the guest decision already announced.</p>
                     </div>
                   </article>
                 </div>
@@ -1528,55 +1946,104 @@ export default function BattleDetail() {
             )}
 
             {battle.slug === 'cj-zino-vs-1flaymr' && (
-              <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
-                  <span className="w-8 h-1 bg-brand" />
-                  Clash Summary
-                </h2>
-                <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    CJ-Zino and 1Flaymr delivered a clash built around two sharply different identities. 1Flaymr brought Jamaican-influenced cadence, repeated fire slogans, aggression, and performance energy, while CJ answered with more structured counter-writing aimed directly at dismantling the flame persona.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    1Flaymr&apos;s strongest moments came through character and delivery. Fire, smoke, burning, and gunshot imagery gave his rounds a consistent sound and made phrases such as everything burn function as crowd hooks. CJ&apos;s clearest material challenged the old Friction name, the mask, online toughness, and the claim that the flame could not be extinguished.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The battle&apos;s strongest technical sequence came from CJ&apos;s Hunger Games scheme, connecting Katniss, Mockingjay, Snow, fire, and the arena. In contrast, 1Flaymr relied on force, repetition, and a distinctive persona to keep the room engaged even when individual punches were less clearly structured.
-                  </p>
-                  <p className="text-zinc-300 leading-relaxed font-light mb-8">
-                    The crowd call in the available footage is unclear, but the official battle record awards the win to 1Flaymr. The clash remains a clear contrast between stronger performance identity and cleaner direct counter-writing.
-                  </p>
-                </div>
-              </section>
-            )}
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 19 brought together two characters whose previous battles were already connected. 1Flaymr returned from his official loss to Btizz in Episode 16, where the debuting fire persona had been declared &ldquo;fully extinguished.&rdquo; CJ-Zino arrived with an official win over that same Btizz in Episode 13 and treated the new booking as proof that he belonged among the league&apos;s leading names.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">1Flaymr opened by restoring the complete performance identity: &ldquo;CJ, don&apos;t run,&rdquo; &ldquo;everything burn,&rdquo; gunshot sounds, Jamaican cadence, rum, fire, and a widening list of GZone targets. CJ&apos;s reply was built to put that character on trial. &ldquo;Fully extinguished&rdquo; came directly from the Btizz clash, while Katniss, Catching Fire, Mockingjay, President Snow, and the Hunger Games arena turned the inherited verdict into the round&apos;s cleanest connected scheme.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Round two made the battle&apos;s lineage explicit. 1Flaymr answered that the flame could never be extinguished, acknowledged CJ&apos;s win over Btizz, and accused CJ of helping the room blow the flame out in Episode 16. CJ returned to material already visible in that debut—the Friction name, the removed balaclava, Jamaican presentation, and fire branding—while also referencing the recent Grams headlock controversy and claiming he could earn a reload without borrowing a flow.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">The third round sharpened the contrast. 1Flaymr dismissed questions about changing his name as nobody else&apos;s business, then moved through Guinness, rapid internal rhymes, gunshot rhythm, cemetery language, and an &ldquo;in loving memory of CJ&rdquo; finish. CJ immediately mirrored the wording with &ldquo;why I&apos;m battling today—mind your business,&rdquo; before returning to Friction, the uncovered face, online toughness, stamping out fire, and whether 1Flaymr was built for the ring.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">The clash therefore works as more than performance against writing. 1Flaymr argues that survival itself defeats the previous verdict: if he can return, hold the room, and keep the slogans alive, he was never extinguished. CJ argues that repetition proves the opposite: the new name, mask, flame language, and cadence are branding that can be traced, exposed, and dismantled.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light">The transcript records separate crowd checks but does not preserve their relative volume clearly enough to reconstruct the room decision from text alone. The official GZone battle record awards the win to 1Flaymr. CJ produced the cleaner counter-writing, but 1Flaymr&apos;s persistence, recognisable character, direct rebuttal to the Episode 16 loss, and stronger performance hooks produced the recorded result.</p>
+                  </div>
+                </section>
 
-            {battle.slug === 'cj-zino-vs-1flaymr' && (
-              <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
-                  <span className="w-8 h-1 bg-brand" />
-                  Performance Analysis
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">1Flaymr</h3>
-                    <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>1Flaymr arrived with a fully branded performance built around fire, smoke, burning, gunshot-style delivery, Jamaican cadence, and high-energy repetition. His identity was clear from the opening: the flame could not be extinguished.</p>
-                      <p>Character was his greatest strength. Patois-style delivery, repeated slogans, and fire imagery gave him a sound unlike the rest of the roster and turned phrases such as everything burn into crowd hooks.</p>
-                      <p>The weakness was clarity. Some sections became repetitive or difficult to catch through the delivery and mic levels. His strongest moments simplified the concept and let the persona carry it.</p>
-                    </div>
-                  </article>
-                  <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">CJ-Zino</h3>
-                    <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                      <p>CJ-Zino brought the more structured battle writing and attacked 1Flaymr&apos;s entire fire identity directly. His central argument was that the flame had already been fully extinguished and he was there to finish the job.</p>
-                      <p>The Hunger Games, Katniss, Mockingjay, and Snow sequence gave CJ the cleanest technical section. He also challenged the old Friction name, mask image, authenticity, delivery, and online toughness.</p>
-                      <p>Direct counter-writing was his biggest strength. Rather than trying to out-shout 1Flaymr, CJ repeatedly returned to the idea that fire branding means little if the opponent can put it out.</p>
-                    </div>
-                  </article>
-                </div>
-              </section>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — 1Flaymr", "The fire identity returns", "CJ-don't-run and everything-burn refrains organise a round built from gunshot sounds, rum, Heung-min Son, Wayans, Satan, empty-bank and empty-house attacks, and threats toward the wider roster. Repetition makes the character immediately readable after the Btizz loss."],
+                      ["Round 1 — CJ-Zino", "Inherited verdict becomes a film scheme", "CJ begins from Btizz's fully-extinguished conclusion, then develops Catching Fire, Katniss Everdeen, Mockingjay, President Snow, and the Hunger Games arena. Appearance, attraction, clout, cannabis, and flow criticism broaden the case against 1Flaymr."],
+                      ["Round 2 — 1Flaymr", "Rebuttal and league-history argument", "The flame is declared impossible to extinguish. CJ becomes a DJ whose head will spin, his Btizz win is challenged, and CJ's presence during Episode 16 is reframed as assistance in blowing out the flame rather than an independent achievement."],
+                      ["Round 2 — CJ-Zino", "Mask, headlock, and status pressure", "CJ says he witnessed 1Flaymr being brought onto the stage, invokes Grams and the headlock controversy, attacks the removed balaclava, presentation, relationships, family, and acting, then closes by claiming he can earn reloads without relying on a flow and belongs in GZone's top five."],
+                      ["Round 3 — 1Flaymr", "Name defence and death sequence", "Questions about the former Friction name are dismissed as private business. Guinness, kicking, gunshot rhythm, Freddy, Blackberry, cemetery language, no-action accusations, and the repeated declaration that CJ is dead drive a long performance-led close."],
+                      ["Round 3 — CJ-Zino", "Immediate echo and final deconstruction", "CJ mirrors the mind-your-business line, returns to Friction and the uncovered face, calls the danger an online act, and joins Judas, devils, fire, history, the ring, and final physical-threat imagery into one last attempt to end the character rather than merely trade slogans."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Fully extinguished belongs to Episode 16", "Btizz ended the 1Flaymr clash by repeating fully extinguished. CJ adopts that exact verdict in Episode 19, and 1Flaymr explicitly reminds the room that Btizz said it. The phrase is inherited battle history, not a new CJ discovery."],
+                      ["Survival becomes 1Flaymr's rebuttal", "Against Btizz, the flame persona ended under an extinguished verdict. Here 1Flaymr repeatedly says it can never be extinguished. Returning with the same identity turns continued presence into the answer, even before an individual punch lands."],
+                      ["CJ's Btizz win becomes disputed evidence", "CJ officially beat Btizz in Episode 13 and brings the status of that win into this matchup. 1Flaymr acknowledges it but reframes CJ as a helper who joined Btizz and the room in trying to blow out the flame."],
+                      ["Friction is established history, not a reveal", "Btizz already named Friction during Episode 16, and 1Flaymr used the old name openly enough for the room to know it. CJ returns to the identity because it weakens the rebrand, while 1Flaymr answers that the reason for changing it is nobody else's business."],
+                      ["The balaclava angle survives its own removal", "1Flaymr removed the balaclava against Btizz and explained the covered face himself. CJ now says taking it off fooled everyone, changing the object from mystery branding into evidence that the intimidating image was constructed."],
+                      ["Fire Nation becomes a tighter slogan system", "Episode 16 introduced forest fires, Avatar, Fire Nation, firebender, snowman, and smoke. Episode 19 trims that world into short repeated cues—everything burn, fully active, gunshots, and the flame cannot be extinguished—designed for faster crowd recognition."],
+                      ["CJ continues his flow-authorship argument", "CJ accused Btizz of taking Tapped24's flow in Episode 13. Against 1Flaymr he says he does not need a flow to get a reload. The wording changes, but originality and control of cadence remain part of how CJ measures an opponent."],
+                      ["The Grams headlock enters another clash", "CJ's don't-pass-me-a-Gram, I'll-headlock-on-you line draws on the physical controversy from Tapped24 versus Grams. As in Episode 21, the incident becomes shared GZone history that later battlers can use without explaining the full event again."],
+                      ["The first-round roster list expands the threat", "CJ, Btizz, Roman, Ryno, Tapped24, Darren, Jay, and Z.K are pulled into 1Flaymr's performance. The list makes the battle a public relaunch after Episode 16 rather than a private argument with CJ alone."],
+                      ["CJ mirrors the live wording in round three", "1Flaymr says the reason for his name change is none of CJ's business. CJ opens his answer with a closely matched why-am-I-battling-today, mind-your-business construction, immediately taking the opponent's defensive phrase and making it sound like his own setup."],
+                      ["CJ's top-five claim advances Episode 13", "After beating Btizz, CJ called for PR1NC3 next. Here he names himself among GZone's top five. The target has evolved from getting the next opponent to defining his position within the whole roster."],
+                      ["The official result changes the future meaning", "The site records 1Flaymr as the winner, so fully extinguished can no longer function as a settled ending. Later uses of the fire identity now carry both the Btizz defeat and the CJ comeback, making repetition part of an evolving record rather than static branding."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Performance Analysis
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">1Flaymr</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>1Flaymr performed as if Episode 16 had not ended the character but made it more necessary. &ldquo;Everything burn,&rdquo; &ldquo;fully active,&rdquo; gunshot noises, patois-led cadence, and repeated commands gave the crowd fixed points to recognise even when the surrounding writing became dense or the sound needed adjustment.</p>
+                        <p>The first round was a relaunch. He moved from CJ to Btizz, Roman, Ryno, Tapped24, Darren, Jay, and Z.K, making one opponent the doorway to the whole roster. Heung-min Son, rum, Wayans, Satan, bank-account imagery, empty rooms, and the burn-up list supplied variety without abandoning the core voice.</p>
+                        <p>His most important writing came in round two, where he directly confronted &ldquo;fully extinguished.&rdquo; By naming Btizz as the source, acknowledging CJ&apos;s role around that clash, and insisting the flame was still present, 1Flaymr turned a previous losing slogan into the central rebuttal of a new battle. The argument is simple, but it depends on the archive and therefore rewards viewers following the season.</p>
+                        <p>The weakness remained clarity and control. Long repeated sections, mic checks, restarts, and sound-led phrasing sometimes made individual punches difficult to separate. His strongest moments used short hooks, direct eye contact, and physical conviction. Those qualities gave the character enough continuity and room impact to support the official win.</p>
+                      </div>
+                    </article>
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">CJ-Zino</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>CJ-Zino wrote the more explicit deconstruction. Rather than inventing a separate theme, he accepted 1Flaymr&apos;s fire world and filled it with counters: Catching Fire, Katniss, Mockingjay, Snow, the arena, stamping out fire, and the verdict that the flame had already been extinguished.</p>
+                        <p>The first round was his clearest technical passage. The Hunger Games chain stayed readable because every reference served the same purpose. Friction, the mask, attraction, cannabis, clout, and flow then widened the argument from the flame itself to the person allegedly hidden behind the branding.</p>
+                        <p>CJ also used league continuity well. The Btizz result supplied authority, the Friction and balaclava angles came from 1Flaymr&apos;s debut, and the Grams headlock line used a recent GZone incident as shorthand. His &ldquo;I don&apos;t need to get a flow to get a reload&rdquo; claim continued the concern with borrowed cadences that he had already aimed at Btizz.</p>
+                        <p>His weakness was conversion. The writing often exposed more about the opponent than 1Flaymr&apos;s material exposed about him, but some longer personals and broken performance passages diluted the cleaner schemes. The third-round &ldquo;mind your business&rdquo; echo showed fast awareness; the battle as a whole needed more moments that turned that intelligence into an unmistakable room swing.</p>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+              </>
             )}
 
             {battle.slug === 'nattyebk-vs-zk' && (
@@ -1588,26 +2055,82 @@ export default function BattleDetail() {
                     Clash Summary
                   </h2>
                   <div className="prose prose-invert prose-zinc max-w-none prose-lg">
-                    <p className="text-zinc-300 leading-relaxed font-light mb-8">NattyEBK returned for his second GZone battle against debutant Z.K from Grimsby. The clash created a clear contrast between Natty&apos;s aggression, disrespect, shock value, and direct attacks and Z.K&apos;s more controlled, researched, and structured writing.</p>
-                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Natty produced the more explosive moments and grew stronger as the battle progressed. Z.K kept his material clearer and used references around image, finances, music, hygiene, social media, and Grimsby pride to make the contest competitive.</p>
-                    <p className="text-zinc-300 leading-relaxed font-light mb-8">The result was decided by crowd reaction rather than a formal panel. Z.K&apos;s cleaner second round kept the battle close, but Natty&apos;s room control and stronger third round secured the crowd decision.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 20 matched NattyEBK, returning after his official win over PR1NC3, with debutant Z.K from Grimsby. Natty approached the clash as the next stage of an established run, repeatedly presenting Prince as the first body and Z.K as the next. Z.K treated the debut as a chance to prove that longer experience, clearer writing, and grime knowledge could overcome Natty&apos;s aggression and home-room momentum.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Natty&apos;s first round framed the booking as an elimination assignment. Z.K&apos;s name, train journey, money, teeth, breath, religion, image, and claimed danger were attacked through direct statements and abrupt flow pockets. The Prince result supplied continuity, while references to Ryno and Badee Harz pulled wider league tensions into the round as battle allegations rather than verified claims.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Z.K answered with the more controlled opening. Mickey Mouse, Dimzy, BBK, CCJs, social-media bars, floorboards, rats, fleas, food, Natty&apos;s girlfriend, and the Natty/Nathan/Steve identity sequence created a researched character portrait. Several routes came from Natty&apos;s first battle: PR1NC3 had already used Mickey Mouse and hygiene props against Natty, and Z.K returned to the same visual and credibility weaknesses.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Round two moved from insults into claimed evidence. Natty stopped the beat and presented a screenshot and photograph to support allegations about Z.K&apos;s online behaviour, then escalated through family, death, washing, dating, and a Z.K-out-the-case weapon flip. Z.K kept the cleaner technical route through Batman and Robin, Grimsby-to-London movement, food and cultural identity, Virgil van Dijk, Arsenal, Central Cee, Tekken, Wiley, and the lemon comparison.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Natty&apos;s third produced the battle&apos;s largest momentum shift. Twins became both family and weapon language, GZone support became a claim to the throne, the house invasion led into the Canada Goose six, and &ldquo;just killed Prince, now Z.K&apos;s next&rdquo; completed the two-battle progression. Z.K closed with a more controlled sequence around Natty&apos;s flow, Cher Lloyd, Sirius Black, Pokémon, Mewtwo, Bluetooth, Kindle, Pringle, shingles, hygiene, and online relevance.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light">The crowd awarded the battle to NattyEBK. Z.K&apos;s second round and clearer construction made the debut competitive, but Natty&apos;s physical evidence sequence, stronger third-round escalation, flow changes, and ability to claim the room produced the more decisive final impression.</p>
                   </div>
+                </section>
 
-                  <div className="mt-12 p-6 bg-zinc-950 border-2 border-brand/30 rounded-xl shadow-lg">
-                    <h3 className="text-brand font-display uppercase tracking-widest text-sm mb-6">Evidence: Props Used</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {battle.props?.map((prop) => (
-                        <div key={`${prop.user}-${prop.name}`} className="flex items-center gap-4">
-                          <div className="w-16 h-16 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700 shrink-0">
-                            <span className="text-2xl">{prop.icon}</span>
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-white font-bold">{prop.name}</p>
-                            <p className="text-zinc-400 text-xs">Used by {prop.user}</p>
-                          </div>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10">
+                  <h2 className="text-3xl font-display uppercase text-white mb-8">Evidence: Props Used</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {battle.props?.map((prop) => (
+                      <div key={`${prop.user}-${prop.name}`} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-950/70 p-5">
+                        <div className="w-16 h-16 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700 shrink-0">
+                          <span className="text-2xl">{prop.icon}</span>
                         </div>
-                      ))}
-                    </div>
+                        <div className="min-w-0">
+                          <p className="text-white font-bold">{prop.name}</p>
+                          <p className="text-zinc-500 text-sm uppercase tracking-widest">Used by {prop.user}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — NattyEBK", "Elimination framing and direct pressure", "Natty treats Z.K as the opponent assigned after Prince. The stage name, train journey, money, teeth, breath, religion, image, and claimed danger are attacked through short direct pockets designed for immediate room reaction."],
+                      ["Round 1 — Z.K", "Research and character construction", "Z.K answers through Mickey Mouse, Dimzy, BBK, CCJs, social-media research, floorboards, rats, fleas, food, Natty's relationship, and the Natty/Nathan/Steve sequence. The approach is less explosive but more consistently connected."],
+                      ["Round 2 — NattyEBK", "Physical evidence and escalation", "Natty stops the beat to present a screenshot and photograph connected to allegations about Z.K's online behaviour. Family, death, hygiene, dating, directness, and the Z.K-out-the-case weapon flip then push the round toward shock and confrontation."],
+                      ["Round 2 — Z.K", "Cultural references and technical control", "Batman and Robin, Grimsby-to-London movement, food and cultural identity, Virgil van Dijk, Arsenal, Central Cee, Tekken, Wiley, and the lemon comparison give Z.K his clearest and most varied round."],
+                      ["Round 3 — NattyEBK", "Twins, throne, and roster progression", "Twins move from family language into paired-weapon imagery. Natty claims the GZone room, refuses to let Z.K take his throne, invades the house, lands the Canada Goose six, and completes the progression from Prince to Z.K."],
+                      ["Round 3 — Z.K", "Flow criticism and technology imagery", "Z.K closes through Natty's cadence, AJ Tracey, Cher Lloyd, Sirius Black, Pokémon, Mewtwo, Bluetooth, Kindle, Pringle, shingles, hygiene, and online output. The writing remains controlled but cannot overturn Natty's larger third-round reaction."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Prince becomes Natty's first recorded body", "Natty opens with what he did to Prince and closes with just killed Prince, now Z.K's next. Episode 12 is converted from a past result into the first step of a continuing roster run."],
+                      ["Mickey Mouse travels from Prince to Z.K", "PR1NC3 opened against Natty with a Mickey Mouse comparison. Z.K repeats the image through Natty's haircut, using an earlier opponent's visual read as inherited pressure rather than presenting it as a new discovery."],
+                      ["Hygiene pressure changes hands", "PR1NC3 used Natty's breath as a major Episode 12 angle and physically presented Listerine. Natty now attacks Z.K's breath, plaque, teeth, washing, and dating, redirecting a weakness previously used against him."],
+                      ["The evidence tactic escalates", "Episode 12 used hygiene products as visible proof of an insult. In Episode 20 Natty stops the beat, hands over a screenshot and photograph, and asks the room to inspect them. The physical-object tactic moves from comedy into claimed online evidence."],
+                      ["Z.K challenges the EBK identity", "BBK supplies an established grime benchmark against which Z.K measures EBK. The comparison attacks both Natty's initials and the musical level he claims, making the stage name part of the credibility debate."],
+                      ["Natty turns Z.K into a weapon", "Natty first asks when Z.K has ever swung the blade suggested by his name. In round two he imagines backing his own Z.K out of a case, changing the opponent from an allegedly false weapon into the weapon Natty controls."],
+                      ["The Ryno and Badee allegation enters the archive", "Natty names Ryno and Badee Harz together inside a racism accusation. The page records this as battle material and league-world positioning, not as verified fact about either performer."],
+                      ["Directness becomes a style argument", "Natty says Z.K will come with jokes that say nothing while he is more direct. Z.K's clearer references and Natty's confrontational statements make that contrast visible across the battle rather than leaving it as a simple boast."],
+                      ["The throne motif appears before Episode 21", "Natty says he will not let Z.K take his throne and claims the GZone side. In the next episode Deeno and TymeLess turn house, chair, and throne into the central territorial dispute. The shared language shows a season-wide status contest, although the transcript does not prove a direct callback."],
+                      ["A lemon appears before the three-prop scheme", "Z.K calls Natty a lemon while discussing a Tekken video. TymeLess uses three physical lemons against Deeno in Episode 21. The proximity is notable, but the available transcripts do not establish that TymeLess was deliberately quoting Z.K."],
+                      ["Ginga Jay becomes part of successive battles", "Z.K invokes Ginger Jesus as a GZone-specific reference. TymeLess then turns Ginga Jay's appearance and reloads into a larger performance device in Episode 21, developing the host from named reference into active room evidence."],
+                      ["The crowd decision preserves the style contrast", "Z.K's cleaner construction keeps the result competitive, especially in round two. Natty's props, confrontation, flow change, and stronger final escalation produce the crowd call, reinforcing impact over technical neatness on the night."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
                   </div>
                 </section>
 
@@ -1621,17 +2144,19 @@ export default function BattleDetail() {
                     <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                       <h3 className="text-2xl font-display uppercase text-brand mb-6">NattyEBK</h3>
                       <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                        <p>Natty performed with aggression and confidence from the start, framing Z.K as an opponent he had been assigned to eliminate. His first round attacked Z.K&apos;s name, travel, money, teeth, religion, and image while using the previous Prince battle to establish momentum.</p>
-                        <p>The second round introduced social-media research and darker family material. His third was the strongest performance round, combining the twins angle, EBK identity, accusations presented as battle material, and faster flow pockets that earned larger reactions.</p>
-                        <p>Impact and room control were Natty&apos;s main strengths. Some material was extremely harsh and loosely structured, but his presence and stronger finish carried the crowd.</p>
+                        <p>Natty performed as someone extending an existing run rather than beginning again. Prince was named at the start and finish, allowing Natty to frame Z.K as the second opponent in a sequence he expected to complete. That progression gave the clash a simple competitive story even when individual passages became chaotic.</p>
+                        <p>His first round relied on direct pressure: Z.K&apos;s stage name, train journey, finances, teeth, breath, religion, appearance, and claimed danger. The hygiene route is especially important because PR1NC3 had used breath and Listerine against Natty; here Natty redirects the same kind of visible embarrassment toward a new opponent.</p>
+                        <p>The second round changed the atmosphere by introducing a screenshot and photograph as claimed evidence. Natty stopped the beat and made the objects part of the confrontation before moving into family, death, washing, dating, and weapon material. The allegations remain claims made inside a battle, not independently verified facts.</p>
+                        <p>Round three was his strongest complete performance. Twins, paired weapons, GZone support, the throne claim, house invasion, Canada Goose, the Prince-to-Z.K progression, and a faster flow pocket all moved toward a decisive close. His main weakness was control: repeated stops and extreme personals could obscure the cleaner stage-name and progression writing, but his escalation and room impact carried the vote.</p>
                       </div>
                     </article>
                     <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                       <h3 className="text-2xl font-display uppercase text-brand mb-6">Z.K</h3>
                       <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                        <p>Z.K delivered a strong, controlled debut built around direct research. He attacked Natty&apos;s image, haircut, girlfriend, finances, music, home life, and name through references including BBK, CCJs, Mickey Mouse, Dimzy, and Grimsby.</p>
-                        <p>His second round was his strongest, using cultural, football, gaming, and grime references to build connected themes. The third continued the image and hygiene pressure with varied pop-culture and technology references.</p>
-                        <p>Structure and clarity were Z.K&apos;s strengths. His writing was often easier to follow, but it did not create the same room-shaking impact as Natty&apos;s closing round.</p>
+                        <p>Z.K delivered a composed debut built around research and recognisable reference points. Rather than trying to match Natty&apos;s hostility immediately, he constructed a character through Mickey Mouse, Dimzy, BBK, CCJs, social media, alleged home conditions, food, relationships, music, and the Natty/Nathan/Steve identity sequence.</p>
+                        <p>Some pressure was inherited intelligently. PR1NC3 had already compared Natty with Mickey Mouse and attacked his hygiene; Z.K repeated the visual comparison while broadening the credibility case through debt, online clips, gaming, grime knowledge, and a claim that Natty&apos;s dangerous presentation did not match his life.</p>
+                        <p>Round two was Z.K&apos;s clearest technical round. Batman and Robin, Grimsby-to-London movement, peas and rice, Virgil van Dijk, Arsenal, Central Cee, Tekken, Wiley, and the lemon image moved across culture, sport, games, and grime without losing the opponent-specific thread.</p>
+                        <p>The third continued the flow critique through AJ Tracey, Cher Lloyd, Sirius Black, Pokémon, Mewtwo, Bluetooth, Kindle, Pringle, shingles, and hygiene. Z.K&apos;s strength was clarity and range; his weakness was conversion. The references were often easier to follow than Natty&apos;s writing, but they did not become a final narrative or room moment strong enough to overturn Natty&apos;s third.</p>
                       </div>
                     </article>
                   </div>
@@ -1646,26 +2171,38 @@ export default function BattleDetail() {
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
                     {[
                       ["NattyEBK", [
-                        ["Ginger J is irritating, gave me Z.K to eliminate him.", "Natty frames the matchup as an assignment and immediately places Z.K beneath him."],
-                        ["What I done to Prince, man's doing to you.", "His previous GZone win becomes evidence that Z.K is the next opponent in a continuing run."],
-                        ["Z.K, you need to go get a car, 'cause I heard that you came here bumping train.", "A simple travel and money angle used to question whether Z.K carries himself like a serious opponent."],
-                        ["Z.K, why is your name Z.K? When have you ever swung that blade?", "Natty challenges the authenticity of Z.K's stage name and the dangerous image it suggests."],
-                        ["If you scrape your teeth with your finger, all that we see is plaque.", "A direct visual hygiene punch that supports Natty's wider appearance attack."],
+                        ["Ginger J is irritating — gave me Z.K to eliminate him.", "Natty frames the matchup as an assignment from the host and immediately places Z.K beneath him in the roster."],
+                        ["What I done to Prince, man's doing to you ... Just killed Prince, now Z.K's next.", "The official Episode 12 result becomes a two-part progression. Natty names Prince in the opening and returns to him in the third to present Z.K as the next recorded body."],
+                        ["Z.K, you need to go get a car, 'cause I heard that you came here bumping train. You're broke — let me just fix you change.", "Train, broke, and change connect travel with money. The sound chain makes a basic financial attack more structured."],
+                        ["Z.K, why is your name Z.K? When have you ever swung that blade?", "Natty challenges whether the stage name's weapon implication matches Z.K's real image."],
+                        ["Ryno's a racist, so is Badee — it's not ironic they made an alliance.", "Natty brings two other GZone artists into a character accusation. It is recorded as battle material and league-world positioning, not a verified claim."],
+                        ["If you scrape your teeth with your finger, all that we see is plaque. Go to the dentist — Darren can't save you if he can't fix that.", "The direct hygiene punch also reverses the breath and Listerine pressure PR1NC3 had used against Natty in Episode 12."],
+                        ["How you on Facebook talking about your body hurting from taking a shit? Taking pictures of your boy's bum — GZone, please tell me what is this?", "Natty stops the beat and presents physical material to the room. The impact comes from claimed evidence and confrontation; the underlying allegation is not independently verified."],
+                        ["You've been rapping for fourteen years; somehow man's still bigger than you.", "Time served is turned against Z.K: longevity means little if the newcomer to GZone has already built the larger profile."],
+                        ["If I back my Z.K out of the case, Z.K will be the first out of the room.", "The opponent's name changes into a weapon Natty controls. Backing it out of a case makes both the object and the threatened reaction visible."],
                         ["You're like a dog on the Fourth of July, tucking your tail when things go boom.", "Fireworks imagery presents Z.K as someone who panics when pressure becomes real."],
-                        ["You got twins, so do I, but our twins ain't alike.", "A dark third-round flip turns family language into threat imagery."],
-                        ["I got all the G's up on my side, but none of us might even like this guy.", "Natty uses crowd-control writing to isolate Z.K and claim the GZone room as his territory."]
+                        ["You come with jokes, you say nothing — I'm more direct.", "Natty states the battle's stylistic contrast plainly: Z.K builds comic references while Natty aims for confrontation and immediate meaning."],
+                        ["You got twins, so do I, but our twins ain't alike. I got twin Z.Ks right on my side.", "Family language is redirected into paired-weapon imagery, making the opponent's name part of Natty's third-round threat structure."],
+                        ["I got all the G's on my side ... You think that I'm letting him take my throne?", "Natty turns crowd support into a claim of ownership and status on the GZone platform."],
+                        ["I walk in your house like who's going to stop me? Never you ... Man's giving him six like Canada Goose.", "The house-invasion setup establishes Z.K's helplessness before a Canada Goose reference closes the threat. The transcript preserves the brand punch but does not make every part of the numerical connection fully clear."]
                       ]],
                       ["Z.K", [
-                        ["You think I come to GZone to lose? You must be confused.", "Z.K opens his debut by rejecting the idea that he has arrived as an easy opponent."],
-                        ["Got a haircut like Mickey Mouse.", "An instantly recognisable visual comparison makes Natty's appearance look cartoonish."],
-                        ["Not EBK, you're not levels like BBK.", "The Boy Better Know reference questions the level and credibility of Natty's EBK identity."],
+                        ["You think I come to GZone to lose? You must be confused.", "Z.K opens his debut by rejecting the idea that he has travelled to serve as an easy opponent."],
+                        ["Got a haircut like Mickey Mouse.", "PR1NC3 had already called Natty a Mickey Mouse figure in Episode 12. Z.K preserves the visual read but applies it specifically to the haircut."],
+                        ["When it gets too close it gets stinky — coming like a wet-wipe version of Dimzy.", "The grime comparison attacks Natty's sound and hygiene at once, presenting him as a weaker imitation rather than an original artist."],
+                        ["Not EBK — you're not levels like BBK.", "Boy Better Know supplies an established grime benchmark against which Z.K measures and diminishes Natty's EBK identity."],
                         ["Kicked out his house for his CCJs after CCJs.", "County Court Judgments sharpen Z.K's wider angle about Natty's finances and stability."],
+                        ["You don't want to see what's under his floorboards — bare rats and fleas.", "The alleged home condition supports Z.K's larger hygiene, money, and instability portrait."],
+                        ["Should I call you Natty or Nathan? You look like a random guy called Steve.", "The name progression strips away the EBK persona and replaces it with deliberately ordinary identities."],
                         ["Turkey dinosaurs and chips, because you don't know about peas and rice.", "A cultural food comparison questions the authenticity of the image Natty presents."],
-                        ["I believe in Ginger Jesus, but after the clash you'll be needing Christ.", "A local GZone reference becomes a religious punch about Natty needing rescue after the battle."],
-                        ["I typed his name on YouTube. What did I see? This lemon was playing on Tekken.", "Z.K uses Natty's online content to contrast gaming with the dangerous image he presents."],
-                        ["I grew up listening to Wiley, you grew up listening to them.", "Z.K invokes a foundational grime figure to claim deeper musical roots and credibility."],
-                        ["Saturday night, your girl's looking like Cher Lloyd, Sunday morning, Sirius Black.", "A pop-culture comparison creates one of Z.K's clearest comic appearance punches."],
-                        ["You still send porn over Bluetooth.", "An outdated technology reference makes Natty appear immature and behind the times."]
+                        ["I believe in Ginger Jesus, but after the clash you'll be needing Christ.", "Host Ginga Jay becomes a local religious reference before Z.K predicts that Natty will need rescue."],
+                        ["You got a haircut like Virgil van Dijk's.", "The footballer's distinctive tied-back hair supplies another immediate visual comparison."],
+                        ["I typed his name on YouTube. What did I see? This lemon was playing on Tekken.", "Online research contrasts gaming content with Natty's dangerous image. Lemon marks him as disappointing rather than formidable."],
+                        ["I grew up listening to Wiley; you grew up listening to them.", "Z.K invokes a foundational grime figure to claim deeper musical roots and separate his influences from Natty's."],
+                        ["This one's called Natty-the-nip flow, 'cause you're coming like a local gigolo.", "Z.K names and imitates a cadence to turn flow criticism into something the room can hear rather than merely accept."],
+                        ["Saturday night, your girl's looking like Cher Lloyd; Sunday morning, Sirius Black.", "Two recognisable hair images describe an overnight visual deterioration and give Z.K one of his cleanest comic comparisons."],
+                        ["You were at home with Pokémon cards, getting gassed over Mewtwo. You still send porn over Bluetooth.", "Pokémon and outdated file sharing combine childish and technologically dated images to undermine Natty's adult street persona."],
+                        ["I'm writing bars while you're reading books on Kindle ... Why is your face the same shape as a Pringle? Music-wise, he ain't got one single — face is fucked from acne and shingles.", "Kindle, Pringle, single, and shingles form a sustained end-rhyme chain across writing, appearance, music output, and skin." ]
                       ]]
                     ].map(([name, bars]) => (
                       <article key={name as string} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
@@ -1697,9 +2234,12 @@ export default function BattleDetail() {
                       Performance Analysis
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {(battle.slug === 'deeno-vs-tymeless' ? [
-                        ["Deeno", "Deeno entered as the GZone regular with the bigger home-platform presence. He immediately framed the clash as a test of whether TymeLess belonged at the centre of the platform, attacking his age, image, battle history, and public persona.|His most effective writing was tailored. The repeated time flips gave the rounds a clear route, while the no-replay, no-reverse, William and Thriller ideas connected the opponent's identity directly to the punches. GTA, Big Smoke, CJ, Michael Jackson, The Simpsons, and Smithers added recognisable reference points.|Deeno's delivery stayed forceful even when the room became noisy. He performed like someone defending home territory, widened individual bars into GZone status claims, and kept enough authority to make every round competitive.|The weakness was selection. Some heavier personal material pulled attention away from the cleaner name flips and character writing. At his best, Deeno was concise, specific, and confident; when he overextended an angle, TymeLess had room to turn it into comedy."],
-                        ["TymeLess", "TymeLess built the stronger complete performance. Rather than treating the clash as a sequence of isolated punches, he created running stories around the venue, Deeno's throne claim, ginger imagery, and the lemon props.|The toilet scheme gave round one an immediate identity. Taking a live situation and extending it through locked toilets, taking the piss, the GZone chair, and throne imagery showed strong angle control and gave the crowd an easy narrative to follow.|His visual writing was the decisive contrast. Keith Lemon, Prince Harry, Paul Scholes, Weasley, Simon Pegg, the Sugar Puff Monster, the leprechaun, and the silver-fox comparison turned Deeno into a recurring comic character. The references were simple, fast, and highly performable.|TymeLess also controlled reaction better. He knew when to pause, repeat, involve Ginger Jay, return to a prop, or let an image sit. That combination of structure, humour, and room awareness gave him the larger moments and ultimately carried the crowd decision."]
+                      {(battle.slug === 'deeno-vs-btizz' ? [
+                        ["Deeno", "Deeno treated the clash as a chance to defend his GZone position against a fast-rising opponent. His material was more battle-specific than general: Btizz's requests for the booking, family history, previous opponents, clothes, claimed road image, copied flows, and place on the roster all fed the same argument that the climb had reached its limit.|Adaptation was Deeno's strongest quality. Catch-22 grew from the live Tap 22 mistake, red rum reversed Btizz's murder language, and the third-round opening predicted the copied cadence before turning it into the flipped-script setup. Those moments made the performance feel responsive rather than sealed inside pre-written rounds.|The third was his clearest complete structure. The Google Maps screenshot, headstone photograph, and adoption papers established visual pressure; presenting himself as Btizz's new father turned the between-round exchange into a complete adoption narrative. The Ben 10, Blade, Batman, Robin, Bruce Wayne, two-day, and Blu-ray references supplied connected technical payoffs around it.|The weakness was excess. Some family and death material was intentionally cruel, and repeated stops around the props interrupted momentum. Even so, Deeno built the stronger closing narrative and left the cleaner final impression for the crowd."],
+                        ["Btizz", "Btizz performed like someone trying to prove that climbing the roster was not accidental. He used Deluxx, CJ Zino, and 1Flaymr as résumé markers, rejected Deeno's king status through the TymeLess result, and repeatedly reframed the home platform as territory he could occupy.|Flow variation and self-awareness were his biggest strengths. He moved between direct punches, faster internal-rhyme pockets, crowd-facing repetition, and an explicit imitation of Deeno's cadence. Because CJ and Deluxx had previously criticised him for borrowing flows, making the imitation obvious changed it from a hidden weakness into a deliberate provocation.|His best connected writing came through Mission: Impossible, Benji Dunn, and Simon Pegg; the repeated house takeover; the lemon callback to TymeLess; and the later Lego, Family Guy, and crown material. These references made the clash feel part of an evolving GZone story rather than an isolated battle.|The weakness was control. Several passages were overpacked or hard to follow, and the third round needed repeated restarts after crowd interruptions and disputes over wording. Btizz remained dangerous through energy and adaptability, but his closing material did not resolve as cleanly as Deeno's prop-led third." ]
+                      ] : battle.slug === 'deeno-vs-tymeless' ? [
+                        ["Deeno", "Deeno treated the main event as a defence of territory. The opening house claim, security language, headlock reference, age pressure, and dismissal of TymeLess's battle record all argued that the visitor did not belong above the established GZone figure.|His best writing was tailored and connected. GTA, Big Smoke, CJ, final mission, game over, and replay formed the clearest second-round scheme, while time, no reverse, William, Froot Loops, Special K, Cheerio and serial killer gave the third a strong opponent-specific route.|Episode 11 supplied part of his research. Ryno had already used William, time concepts, parenting criticism, and racism allegations against TymeLess; Deeno changed the wording but reused those established pressure points. The weekday question also created the opening for TymeLess's later stepfather reversal.|Deeno remained forceful through a noisy battle, but stops and material selection weakened his control. The lemonade line was a genuine attempt to answer the fruit props, yet the stumble prevented it from replacing TymeLess's motif. His clean technical peaks kept the clash competitive, but they did not connect across all three rounds as completely as TymeLess's performance."],
+                        ["TymeLess", "TymeLess built the stronger complete performance by treating the clash as one developing story rather than a collection of isolated punches. He first pretended that his own stomach was hurting and let the room believe him, then exposed the complaint as the setup for a toilet scheme about Deeno. The toilet became Deeno's false throne, and the throne became a challenge to ownership of GZone.|His strongest battle instinct was transformation. Grey hair became the silver fox, the recent Tapped24 and Grams incident became headlock material, Ryno's flow became part of the toilet cadence, and Deeno's parenting attack became a third-round stepfather performance aimed directly at Deeno's son.|The visual writing gave every round recognisable anchors. The plunger completed the opening narrative; Keith Lemon expanded into three physical lemons; and Prince Harry, Paul Scholes, Weasley, Simon Pegg, Shaun of the Dead, the Sugar Puff Monster and Ginga Jay turned Deeno's appearance into a recurring character.|TymeLess controlled reaction better through pauses, reloads, repetition, room involvement, misdirection, and delayed payoff. The third lemon resolved material introduced much earlier, while the crowd decision confirmed that the connected performance had outweighed Deeno's stronger individual technical passages."]
                       ] : [[mc1?.name || battle.mc1, ""], [mc2?.name || battle.mc2, ""]]).map(([name, analysis]) => (
                         <article key={name} className="min-h-40 bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                           <h3 className="text-2xl font-display uppercase text-brand mb-6">{name}</h3>
@@ -1721,17 +2261,19 @@ export default function BattleDetail() {
                       <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                         <h3 className="text-2xl font-display uppercase text-brand mb-6">Deeno</h3>
                         <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                          <p>Deeno opened with the confidence of someone treating GZone as his own house. He immediately attacked Badee as a newcomer, questioning why she was rapping and framing her as a groupie rather than a serious battler.</p>
-                          <p>His performance used body, family, partner, and baby-dad angles alongside platform-status pressure. He repeatedly argued that there were levels between them and positioned himself as the established name.</p>
-                          <p>His strongest angle was home-platform authority. The writing was most effective when the personal attacks connected to status, platform history, or name flips; some of the graphic shock material overpowered those cleaner ideas.</p>
+                          <p>Deeno performed as the established figure policing access to his platform. The first round&apos;s age, body, groupie, children, Jasmine, Jafar, Tarzan, and profile attacks all supported the same hierarchy: Badee had entered his house without earning equal status.</p>
+                          <p>The house language was his clearest long-term writing. It had appeared against Tapped24 and around the Grams surprise; here &ldquo;my house&rdquo; becomes a recovery cue as well as a claim. When rounds are restarted or the room interrupts, repeating it lets Deeno reset himself and remind the audience who normally controls the space.</p>
+                          <p>His range widened after the stumble. Country facts, human flag, Darla, Tweenies, Little Mix, Dobby, Honey G, the 125cc motorbike, nobody call-and-response, Ryno, the ashes, and the crack prop gave the later rounds more visual anchors than the opening personals.</p>
+                          <p>The weakness was excess and reliability. Graphic family, disability, illness, and sexual material often overpowered the cleaner schemes, while round two exposed the same loss of control Badee had cited from Grams. Deeno recovered through freestyling, familiarity with the room, the prop exchange, and repeated territorial framing strongly enough to take the crowd decision.</p>
                         </div>
                       </article>
                       <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
                         <h3 className="text-2xl font-display uppercase text-brand mb-6">Badee Harz</h3>
                         <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
-                          <p>Badee entered as the newcomer but did not perform like someone intimidated by the moment. She went directly at Deeno&apos;s image, appearance, record against women, family, jail claims, and platform reputation.</p>
-                          <p>Her best strength was directness. She attacked recognisable details and created a clear self-branding moment by calling herself the baddest on GZone, turning the battle into an arrival statement.</p>
-                          <p>Her strongest narrative challenged Deeno&apos;s history with female opponents. That made the clash feel bigger than a debut: Badee presented herself as another woman capable of giving him problems in the ring.</p>
+                          <p>Badee entered as a newcomer but wrote toward continuation. Deeno&apos;s record with women, AJ, 2MWAD, the baddest-on-GZone declaration, and the final call for AJ next all present this battle as the first step of a roster run rather than a one-off appearance.</p>
+                          <p>Her first round was strongest when it used visible or archived material: casino gambling, hair loss, named female opponents, siblings, Spain, the Grams stumble, and jail claims. B-A-D-double-E later supplied a simple identity hook that the room could carry through the heavier personal content.</p>
+                          <p>The planted-information reveal was her best strategic moment. After Deeno used an N-word story to call her racist, Badee said she had finessed his information, that the setup was fake, and that her child&apos;s father wrote the words. Whether or not the account can be verified, she turned Deeno&apos;s research into evidence that he could be manipulated.</p>
+                          <p>Her weakness was the same escalation that affected Deeno. Long passages of allegations, family material, disability insults, and threats sometimes buried the more crafted gambling, article, family-gathering, Renzo, and friend-zone ideas. She made a forceful debut, but Deeno retained more control of the room and received the official decision.</p>
                         </div>
                       </article>
                     </div>
@@ -1750,31 +2292,46 @@ export default function BattleDetail() {
                         {
                           mc: "1Flaymr",
                           entries: [
-                            ["CJ don't run", "A simple pressure opener telling CJ that he cannot hide, dodge, or escape the clash."],
-                            ["1Flaymr, everything burn", "The core slogan of his identity: his presence turns the whole room into fire."],
-                            ["Kick like Heung-min Son", "The Tottenham forward's sharp finishing and powerful strike become an impact comparison."],
-                            ["Rather spill your blood than spill my rum", "Caribbean drinking imagery is converted into a memorable battle threat that fits his persona."],
-                            ["This time me have a full clip", "A weapon metaphor saying he arrived fully loaded with material rather than incomplete rounds."],
-                            ["CJ get burn up, Roman get burn up, Ryno get burn up", "The attack expands beyond CJ and presents the flame as a threat to the wider GZone roster."],
-                            ["Turn CJ into a DJ, cause Zino head get spin", "DJs spin records, while 1Flaymr says his opponent's head will spin. A clean role and name-based visual."],
-                            ["This flame can't get extinguished", "His strongest rebuttal to the recurring fully extinguished narrative: he is still present and battling."],
-                            ["Take off the top like a bottle of Guinness", "A recognisable product image turns opening a bottle into a direct threat."],
-                            ["CJ full of chat, no action", "A concise character attack arguing that CJ's confidence is stronger online or verbally than in reality."]
+                            ["CJ, don't run — you are going to die when I raise my gun. 1Flaymr, everything burn.", "The opening establishes the two performance anchors: CJ is ordered to stay in front of the attack, while the burn slogan restores the identity that Btizz had supposedly extinguished."],
+                            ["Come attack and get shot — kick like Heung-min Son, put the lyrics on a beat like drum.", "Son supplies the kicking image, while shot, Son, and drum move from football impact into musical rhythm."],
+                            ["Rather spill your blood than spill my rum.", "A short preference bar connects threat language with the Jamaican and Caribbean presentation at the centre of 1Flaymr's character."],
+                            ["Me and them are no brothers like the Wayans them.", "The famous acting family gives 1Flaymr a compact way to reject any alliance with CJ and the people around him."],
+                            ["Me no care if you're badder than demon, 'cause me badder than Satan and them.", "The comparison deliberately escalates beyond a demon to the figure presented as commanding them, matching the exaggerated scale of the performance."],
+                            ["CJ get burn up, Roman get burn up, Ryno get burn up — everybody get burn up.", "The fire spreads beyond the scheduled opponent and turns the first round into a relaunch aimed at the wider GZone roster."],
+                            ["Look at your bank account: nothing in there. Fridge empty, kitchen empty, open up your brain — nothing in there.", "One repeated answer connects finances, living conditions, and intelligence. The structure is simple enough for each new location to create another payoff."],
+                            ["Turn CJ into a DJ, 'cause Zino's head will get spin.", "DJ record-spinning becomes the visual for CJ's head. It is one of 1Flaymr's cleanest opponent-specific constructions."],
+                            ["You look like the Lord never died on the cross, 'cause your face look like sin.", "The cross and sin supply a religious frame for an appearance attack, with CJ presented as the reason sacrifice failed."],
+                            ["You win Btizz, now you feel like you're big.", "CJ's official Episode 13 result is acknowledged and immediately reduced to overconfidence rather than accepted as proof of rank."],
+                            ["In the Btizz clash them man said, 'fully extinguished' — and CJ was a helper.", "1Flaymr identifies Btizz as the source of the phrase and recasts CJ as part of a group effort against him, making the previous battle the subject of the rebuttal."],
+                            ["This flame can't get extinguished.", "The entire comeback is condensed into one denial. Its force comes from the fact that the room already knows the Btizz verdict being answered."],
+                            ["Take off the top like a bottle of Guinness.", "Opening a familiar stout bottle becomes a threat to remove CJ's head, while the drink keeps the bar inside 1Flaymr's established cultural presentation."],
+                            ["Hold your head like a ball and kick it.", "The body-part threat is simplified into a football action, returning to the kicking imagery used in the first round."],
+                            ["Dead and buried, send all of them into the cemetery ... CJ full of chat, no action.", "The repeated end sounds carry a long death sequence before it resolves into the round's clearest character accusation: CJ's speech is not matched by action."],
+                            ["CJ in a funeral bed ... in loving memory of CJ.", "1Flaymr closes by converting the battle into a memorial scene, completing the repeated dead-CJ refrain with a final inscription-like image."]
                           ]
                         },
                         {
                           mc: "CJ-Zino",
                           entries: [
-                            ["Fully extinguished", "CJ immediately attacks the foundation of 1Flaymr's fire persona by declaring that the flame is already out."],
-                            ["Real name Friction", "The previous stage name is used to strip away the current rebrand and question its authenticity."],
-                            ["Catching fire, I got Katniss Everdeen", "Katniss and the title Catching Fire begin CJ's strongest connected Hunger Games scheme."],
-                            ["Mockingjay", "The next Hunger Games reference extends the sequence while also allowing CJ to mock his opponent."],
-                            ["Burn out the flame, let Snow just rain", "President Snow and literal cold weather combine to extinguish the fire theme cleanly."],
-                            ["We're in the heart of the Hunger Games", "CJ turns the battle ring into the fictional arena, completing the scene around the reference chain."],
-                            ["Lay off the trees if you can't see potential", "Trees can mean weed, while clouded judgement explains why 1Flaymr cannot recognise CJ's ability."],
-                            ["You took off that bally and everyone's fooled", "The balaclava and mystery image are attacked as visual branding that lost its intimidation once revealed."],
-                            ["I don't need to get a flow to get a reload", "CJ claims he can earn a crowd pull-up without depending on a particular flow pattern."],
-                            ["You're only bad when you're typing", "A modern credibility punch arguing that 1Flaymr's online toughness does not transfer to the live room."]
+                            ["You unveiled your face last time — let's say you're fully extinguished, catfish.", "CJ joins the balaclava reveal to Btizz's ending. Catfish argues that the face behind the constructed image did not match what the branding promised."],
+                            ["Real name Friction.", "The former stage name was already exposed in Episode 16. Repeating it strips the relaunch back to an identity the room knew before One Flame."],
+                            ["Catching fire — I got Katniss Everdeen.", "Katniss and the second Hunger Games title begin CJ's strongest connected counter to the flame persona."],
+                            ["It's a crazy thing that he's Mockingjay.", "Mockingjay extends the franchise chain while the surface wording also presents 1Flaymr as someone copying or mocking another figure."],
+                            ["Burn out the flame, let Snow just rain.", "President Snow becomes literal cold weather capable of putting out the fire, allowing the fictional antagonist to serve CJ's central battle argument."],
+                            ["We're in the heart of the Hunger Games.", "The GZone ring becomes the arena, completing a scheme in which both the characters and environment belong to the same fictional world."],
+                            ["Lay off the trees if you can't see potential.", "Trees refer to cannabis, while impaired vision explains why 1Flaymr supposedly cannot recognise CJ's ability."],
+                            ["How did I lose to a guy that flows like that? ... Fully extinguished, time to die today.", "CJ points back to the official Episode 16 loss and treats Btizz's verdict as already proven, combining technical criticism with battle-record pressure."],
+                            ["I swear I was on stage when Tiz brought you.", "CJ places himself at 1Flaymr's GZone introduction, giving the later Friction, mask, and extinguished angles the perspective of an eyewitness."],
+                            ["Don't pass me a Gram — I'll headlock on you.", "Gram and Grams connect the line to the Tapped24 and Grams incident, turning recent league controversy into a concise physical callback."],
+                            ["Took off that bally and everyone's fooled.", "The balaclava removal is used against 1Flaymr: revealing the face did not authenticate the persona but exposed how much the intimidation depended on concealment."],
+                            ["On my mum's life, One Flame is an actor.", "CJ summarises the authenticity case directly, treating the accent, mask, threats, and fire identity as a performed role rather than real character."],
+                            ["I don't need to get a flow to get a reload — I do it to give these people a boost.", "After accusing Btizz of borrowed flows in Episode 13, CJ presents crowd response as something he can create without depending on somebody else's cadence."],
+                            ["I'm top five in the GZone — best believe it.", "The claim advances CJ's position after the Btizz win: he is no longer only asking for a next opponent but ranking himself within the platform."],
+                            ["You're only bad when you're typing, actually.", "Online confidence is separated from live credibility, challenging whether the dangerous presentation survives face-to-face contact."],
+                            ["Judas will stamp out fire; devil's at work, but he tried entice us.", "Religious betrayal and devil imagery are redirected toward the flame, giving CJ another route for presenting fire as something corrupt that must be put out."],
+                            ["Bare face, no mystery.", "The removed mask no longer creates suspense. CJ argues that the visual reveal has left no hidden danger for the audience to imagine."],
+                            ["You want to know why I'm battling today? Mind your business.", "CJ immediately echoes 1Flaymr's answer about changing his name, taking the opponent's phrasing and using it as the opening of his own response."],
+                            ["You're a dickhead with no heart; your balls ain't built for the ring.", "The closer reduces the whole persona to a test of live courage: branding and online threats mean nothing if the performer is not suited to direct battle pressure."]
                           ]
                         }
                       ].map(({ mc, entries }) => (
@@ -2071,7 +2628,7 @@ export default function BattleDetail() {
                             ["Your tendencies to force yourself on people go unnoticed, but I clocked it", "A serious character accusation that establishes Roman's morally focused attack from the opening."],
                             ["You get hands on, put them hands back in your pockets", "Hands on is turned into a direct warning to keep his hands to himself."],
                             ["You sausage-looking Wotsit", "Orange snack imagery makes Ryno look soft, strange, and cartoonish."],
-                            ["Homeless rhinos hate the sun, they put mud on them to block it", "A real rhino behaviour fact is linked to Ryno's name and Roman's recurring housing angle."],
+                            ["Homeless rhinos hate the sun, they put mud on them to block it", "Roman presents the animal fact as research, then bends homeless into the housing route already used against Ryno by 2MWAD and TymeLess."],
                             ["Rhinos tend to walk alone, but Romans always turn up squadded", "Both identities are flipped at once: the solitary rhino against an organised Roman force."],
                             ["This clash is over. Take your pen and pad, you joker", "Roman dismisses Ryno like a teacher ending a student's lesson while keeping the focus on writing."],
                             ["We should call him Heady One, caught he sleeps on Marge's sofa", "A UK-rap reference supports the sofa-surfing and unstable-housing narrative."],
@@ -2092,17 +2649,17 @@ export default function BattleDetail() {
                             ["Your face is ageing, it's flaking, mate", "A visual appearance attack following the broader status and career pressure."],
                             ["Your ego is 5'3", "Ryno's projected confidence is reduced to a deliberately small measurement."],
                             ["Slap on the wrist like a timepiece", "A watch sits on the wrist, while a slap on the wrist means receiving only light punishment."],
-                            ["Show me your keys if you've really got a house", "A grounded challenge asking for visual proof against the recurring housing claims."],
+                            ["Show me your keys if you've really got a house", "After Ryno repeatedly says he is no longer homeless, Roman demands a visible object as proof. The challenge echoes the evidence-led style TymeLess used in Episode 11."],
                             ["Where's your sunflower lanyard?", "A disability-coded insult referencing the UK's hidden-disability sunflower scheme."],
                             ["Cross lines like a hashtag", "Hashtag lines create a modern visual for crossing boundaries, written lines, and other line-based meanings."],
                             ["Your ex-girl is SDL, but she looks like an STD", "An acronym is crudely flipped into a disease insult aimed at Ryno's relationship."],
-                            ["He only loves English teams / English tea", "Football and tea become evidence inside Roman's closing nationalism and racism angle."]
+                            ["He only loves English teams / English tea", "Football and tea supply the word association Roman uses to construct a closing nationalism and racism accusation; the rhyme is battle material, not evidence of the claim."]
                           ]
                         },
                         {
                           mc: "Ryno",
                           entries: [
-                            ["You think he's blessed when he killed off his ex", "Ryno opens with a heavy accusation-style angle around Roman's deceased former partner."],
+                            ["You think he's blessed when he killed off his ex", "Ryno opens with the deceased-partner accusation Roman predicted moments earlier, an angle already used against Roman by Tapped24 in Episode 9."],
                             ["Where's your new girl? She's next for death", "Death-related partner disrespect designed to shock and destabilise Roman."],
                             ["I know you got AIDS on your breath", "A crude disease and hygiene insult aimed at Roman's image."],
                             ["You smell like you piss in the bed", "A hygiene and humiliation bar making Roman sound childish and dirty."],
@@ -2115,7 +2672,7 @@ export default function BattleDetail() {
                             ["Change your name, don't change the blame", "Roman may alter branding or identity, but Ryno says responsibility remains."],
                             ["It's the drinking that tore her apart", "Ryno links Roman's alleged drinking to relationship damage and tragedy."],
                             ["Dead that. Rapist bars. Better dead that", "A rebuttal telling Roman to stop the allegation package driving his rounds."],
-                            ["Homeless not anymore", "Ryno directly rejects Roman's repeated housing angle as outdated."],
+                            ["Homeless not anymore", "Ryno rejects the housing angle, but the wording closely repeats the defence he gave TymeLess in Episode 11 rather than replacing it with new proof."],
                             ["Why is your hat at half past six?", "Clock-hand imagery makes Roman's crooked hat into a lighter visual roast."],
                             ["The truth is, I didn't go from this to that", "A direct rebuttal denying Roman's visual or status downgrade comparison."],
                             ["Smoking Roman like roaches", "A roach is the end of a spliff, turning the opponent into something smoked down completely."],
@@ -2123,7 +2680,7 @@ export default function BattleDetail() {
                             ["With precision, I bin him", "Controlled accuracy is connected to disposing of Roman like rubbish."],
                             ["You're not marking, you're slurping and burning your words", "A performance critique accusing Roman of stumbling and failing to articulate clearly."],
                             ["This verse is worse than third-degree burns", "Severe burn imagery becomes a scale for the damage caused by Ryno's verse."],
-                            ["I should have been clashing with Deens", "Ryno presents Roman as a lower-value opponent than the matchup he believes he deserves."],
+                            ["I should have been clashing with Deens", "Ryno presents Roman as a lower-value opponent and renews the Deeno callout he made after beating 2MWAD in Episode 8."],
                             ["There's more deceased on your family tree", "Grief-based family disrespect continuing the battle's extremely dark direction."],
                             ["Who's this boring, awkward-talking, falcon-warring prick?", "A clustered opener attacking Roman's delivery and presenting him as strange and stiff."],
                             ["If I draw him, it'll floor him", "Draw can mean pulling a weapon, with floor him supplying the physical payoff."],
@@ -2132,7 +2689,7 @@ export default function BattleDetail() {
                             ["Lines through ROM like I'm paving roads", "ROM from Roman's name is crossed with road-marking lines for a cleaner name punch."],
                             ["Maximus Decimus Meridius", "The Gladiator character supplies a Roman Empire reference tailored to Roman's name."],
                             ["Looking like Sid at a toy store", "Toy Story's destructive child becomes a creepy visual comparison for Roman."],
-                            ["I hope that your mum gets cancer", "Pure illness-based family shock material rather than technical writing."],
+                            ["Thought you went to war with the toughest of warriors — who's that, just Prince and Tapped? That's cap.", "Ryno quotes Roman's Episode 9 boast, reduces the résumé to PR1NC3 and Tapped24, and uses an earlier status claim as the setup for a rebuttal."],
                             ["You ain't been artist, bro, you're not out on the roads", "A closing identity attack claiming Roman lacks credibility as both an artist and street figure."]
                           ]
                         }
@@ -2314,6 +2871,7 @@ export default function BattleDetail() {
                         {
                           mc: "1Flaymr",
                           entries: [
+                            ["From now, everything burn up", "The slogan previewed after Episode 13 becomes the debut's central promise. It is broad enough to cover the opponent, the room, and later roster callouts."],
                             ["You can't extinguish forest fires", "The opening identity bar presents 1Flaymr as a blaze too large for BTizz to control."],
                             ["If I was in Avatar, I would be the Fire Nation", "Avatar's Fire Nation supplies instantly recognisable firebending and military-power imagery."],
                             ["I don't need no lighter, I don't need no spray can", "He claims the flame comes naturally from him rather than from tools or props."],
@@ -2365,7 +2923,8 @@ export default function BattleDetail() {
                             ["One shot leave you dead on the floor eating cornmeal", "Violence and Caribbean food imagery combine to continue the battle's cultural-reference pattern."],
                             ["Spawn kills", "A gaming term for eliminating a player immediately after they reappear, suggesting the debut ends before it begins."],
                             ["They got me battling Postman Pat", "The children's television comparison makes the masked newcomer look cartoonish rather than dangerous."],
-                            ["All of this shit that man says is cap", "BTizz closes by summarising his main argument: the Jamaican, badman, and flame personas are exaggerated or fake."]
+                            ["All of this shit that man says is cap", "BTizz closes by summarising his main argument: the Jamaican, badman, and flame personas are exaggerated or fake."],
+                            ["Fully extinguished", "Two words compress the cold counters, authenticity attacks, and crowd control into a final verdict. CJ and 1Flaymr both return to the phrase in Episode 19 because it became the battle's lasting summary."]
                           ]
                         }
                       ].map(({ mc, entries }) => (
@@ -2407,6 +2966,8 @@ export default function BattleDetail() {
                             ["I'm not Epstein, but it's peaking island", "A dark Jeffrey Epstein reference designed for shock and discomfort rather than clean technical writing."],
                             ["This is my home, but still I run this", "One of Deeno's strongest narrative bars, framing GZone as his territory and Badee as the visitor."],
                             ["I'll put you straight inside a blunt", "A conventional smoke bar meaning that Deeno intends to dominate or 'smoke' Badee in the clash."],
+                            ["I know Ryno's bringing the ash ... I've got a point-one rock of crack, and this resembles both of your dads", "The two physical bags enter one connected family and drug scheme. The prop makes the punch visible, while the underlying family claim remains battle material."],
+                            ["You put on a deep voice way too much, out here sounding like a motorbike ... You look like a 125", "Badee's performed voice becomes the sound of a small 125cc motorcycle, connecting an audible mannerism to an immediate visual and status comparison."],
                             ["Nobody knows this battle rap hoe", "A harsh profile attack supporting his claim that Badee has not earned comparable status."],
                             ["This is the way that battle rap goes", "A framing line used to justify the personal level of disrespect once someone enters the format."]
                           ]
@@ -2417,7 +2978,7 @@ export default function BattleDetail() {
                             ["Oi Deeno, why do you look like a pedo?", "An extreme character insult intended to damage Deeno's image, not a factual claim or technical piece of wordplay."],
                             ["You will lose this battle like you lose bread to the casino / Don't be gambling with your life", "A connected gambling scheme that moves from losing money to risking himself in the battle."],
                             ["You're losing your hair", "A direct, visible appearance attack targeting Deeno's hairline."],
-                            ["How many Ls have you had against girls? / Kusha, Shami and me as well / I'mma just make this a hat trick", "Badee uses named opponents as evidence and presents herself as completing a pattern of women defeating Deeno."],
+                            ["How many Ls have you had against girls? / Kusha, Shami and me as well / I'mma just make this a hat trick", "Badee cites named opponents and presents herself as completing a pattern of women defeating Deeno. It is her résumé argument, not a complete official record supplied by this archive."],
                             ["You look like your brother", "A family and appearance shot whose impact relies on the room recognising the comparison."],
                             ["AJ don't wanna clash, 2Mad don't wanna clash", "Badee names scene figures to position herself as the person willing to step into the matchup."],
                             ["I got them shook in the ring without throwing a hook", "A clean ring-and-music double meaning: a hook can be a boxing punch or a section of a song."],
@@ -2428,6 +2989,10 @@ export default function BattleDetail() {
                             ["Don't believe you went jail", "A direct challenge to the authenticity of Deeno's claimed backstory and street credibility."],
                             ["I'm able to say your bro's unstable", "A harsh family and disability-based attack built around the able/unstable wording."],
                             ["I'm the baddest bitch on GZone / Time for them to know about Harz", "Badee's central branding moment turns the debut into a declaration that she belongs on the platform."],
+                            ["I finessed your info ... the moment you entered, it was fake", "Badee says she deliberately planted the information behind Deeno's N-word angle. The reveal turns his research into a trap, although her explanation remains a claim made inside the clash."],
+                            ["You know you choked that second round and there was no hope", "Badee connects the current stumble to her earlier Grams reference, making performance reliability a repeated case rather than a single interruption."],
+                            ["D-E-N-O, why'd you move like Renzo? ... That's why they put you in the friend zone", "The spelling moves into Renzo and friend zone, repurposing the name sound Renzo used for his own branding in Episode 6."],
+                            ["I just landed in GZone, promise I'm gonna take over ... I'm ready for AJ next", "Badee closes beyond the current result, treating the debut as entry to the roster and naming the next matchup she wants."],
                             ["This ginger prick talking shit, he don't know about bars", "An appearance insult combined with a direct challenge to Deeno's writing ability."]
                           ]
                         }
@@ -2898,80 +3463,77 @@ export default function BattleDetail() {
                       Notable Bars
                     </h2>
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                      {((battle.slug === 'deeno-vs-tymeless' ? [
+                      {((battle.slug === 'deeno-vs-btizz' ? [
                         ["Deeno", [
-                          ["You've only had one clash three times.", "A status angle arguing that TymeLess' career feels repetitive rather than progressive."],
-                          ["I can't bark like TymeLess.", "Deeno acknowledges TymeLess' loud delivery while mocking the persona."],
-                          ["Young Pete and Bas rapping with grey hairs.", "A clean UK rap comparison targeting TymeLess' age and appearance."],
-                          ["Outside the GZone, Tyme is broke.", "A simple time-name flip turned into a money and status attack."],
-                          ["They gave me TymeLess like he's someone to worry about.", "Deeno dismisses the booking as less threatening than advertised."],
-                          ["It's game over for you, no replay.", "Gaming language says TymeLess gets no second attempt."],
-                          ["GTA, it's a final mission — Big Smoke or CJ.", "A Grand Theft Auto: San Andreas reference that frames the clash as a boss-level ending."],
-                          ["Beans and Universal Credit he's living off.", "A grounded low-income and survival-mode status attack."],
-                          ["When it's my time, there is no reverse.", "A clean TymeLess name flip: Deeno's moment cannot be undone."],
-                          ["Put William in a spliff, bill it up.", "TymeLess' real name becomes a direct piece of smoking wordplay."],
-                          ["TymeLess ain't no Thriller.", "The Michael Jackson reference says TymeLess is neither frightening nor iconic."],
-                          ["You look like Smithers.", "The Simpsons character supplies an instantly recognisable comic comparison."],
-                          ["Who wants a war with me?", "Deeno widens the challenge beyond TymeLess and reinforces his GZone status."],
-                          ["Country side is where I build a country line.", "Location and hustle imagery are joined through a countryside/county-line flip."],
-                          ["Most Wanted, spin him, then replay.", "Deeno connects the season branding to a replay command, making the attack feel built for the platform."],
-                          ["Which one dies: Big Smoke or CJ?", "The San Andreas characters turn the final-mission scheme into a direct choice between two outcomes."],
-                          ["Got shit bars, no flows and clichés.", "A concise technical dismissal of TymeLess' writing and delivery."],
-                          ["Trying to call shots when you know I run this shit.", "Deeno converts the battle into a platform-authority argument."],
-                          ["Are we gonna keep to the raps, or are we gonna keep to the facts?", "The line sets up a switch from performance claims to real-world credibility pressure."],
-                          ["With your bars, you're not fighting back.", "A direct assessment that frames TymeLess' material as unable to answer Deeno's pressure."],
-                          ["Call yourself TymeLess — how silly. If you've got time, drop it quickly.", "A tailored name flip that turns having time into an instruction to deliver immediately."],
-                          ["TymeLess is in a Beta Squad — Yung Filly.", "A UK pop-culture reference linking Beta Squad and Yung Filly. It acts as the setup for Deeno's following bread and status line."],
-                          ["Yung Filly, see I've got the most bread in city.", "Deeno carries the Yung Filly reference into a money boast, claiming greater status through having the most bread."],
-                          ["I'll pay for your funeral, bro — no pity.", "Deeno extends the death framing with a cold financial punchline."],
-                          ["Time means everything about life.", "The setup broadens the opponent's name into a larger concept before Deeno claims his own moment."],
-                          ["Cheerio mate, I'm a serial killer.", "A playful greeting sound is flipped into a violent character claim."],
-                          ["That explains why you look like Smithers.", "The Simpsons comparison supplies a clear visual payoff."],
-                          ["You've been dropped like a hundred times.", "Battle history and repeated defeats become evidence for Deeno's status argument."],
-                          ["You're on thin ice — drop the lines.", "Thin-ice danger is combined with the demand to deliver bars."],
-                          ["Who wants work?", "A short open challenge that widens Deeno's target to the rest of the roster."],
-                          ["When I drop this Tyme.", "The opponent's name is folded into a compact finishing threat."],
-                          ["Why don't you see your kids on weekdays?", "Deeno shifts into a parenting angle, questioning TymeLess' presence and responsibility away from the stage."],
-                          ["Why do you spell okay with three K's?", "The spelling becomes a KKK-style accusation aimed at TymeLess' character and alleged views."],
-                          ["Your bars are dead like Rhino's dance.", "A local GZone reference compares TymeLess' writing to a memorable Rhino moment and dismisses both as ineffective."],
-                          ["Your baby mum looks like Miss Rachel.", "Deeno uses the recognisable children's presenter as a visual comparison inside his family angle."]
+                          ["You're the GZone's Oliver Twist; you kept begging and begging and begging.", "Oliver Twist's famous request for more is connected to Btizz repeatedly asking for the battle. The orphan reference also introduces Deeno's wider absent-parent and neglected-child angle."],
+                          ["This clash here is a Catch-22.", "The room had just mistakenly said Tap 22. Deeno turns that live wording into Catch-22, making the interruption part of the bar rather than simply restarting."],
+                          ["When CJ said you don't change your clothes, we know that it's facts.", "Deeno cites CJ Zino's earlier clothing and hygiene attack on Btizz. The callback presents a previous opponent's material as evidence that the criticism has followed Btizz across clashes."],
+                          ["You might be number three on the roster, but outside of here you're an unknown.", "A status attack that concedes Btizz's internal ranking while arguing that his name has not travelled beyond GZone."],
+                          ["This guy's always talking about murders; I'll flip your scheme and spill your red rum.", "Red rum is murder written backwards. Deeno literally reverses Btizz's repeated murder language and turns the opponent's signature word into a rebuttal."],
+                          ["Btizz wants to be Jamaican so bad he AIs himself with dreadlocks.", "The line attacks Btizz's Jamaican-influenced performance style through an alleged AI image, arguing that the identity is constructed rather than natural."],
+                          ["You look like a Rayman Rabbid with rabies.", "The Ubisoft character supplies an exaggerated visual comparison, while Rabbid, rabies, and the repeated R sounds create a compact sound pattern."],
+                          ["See, I knew he'd take my flow, but see, I flipped the script.", "Deeno begins round three by claiming he anticipated Btizz's cadence imitation. The line works as a prebuttal and makes the copied flow the setup for Deeno's answer."],
+                          ["Family house is also sad — it went from this to this.", "The line was performed with a Google Maps screenshot of Btizz's modest family home. The visual prop makes the lifestyle angle immediate instead of leaving it as an unsupported description."],
+                          ["Your name is Ben... show this child is a monster: Ben 10.", "Btizz's first name becomes Ben 10, while the cartoon's transformations supply the child-and-monster payoff."],
+                          ["I've got a blade too — Wesley Snipes.", "Wesley Snipes played Blade, so the actor's name completes a direct weapon-and-film reference."],
+                          ["I'll batter man or rob him and leave that Bruce Wayne.", "The delivery folds batter man, rob him, and bruised into Batman, Robin, and Bruce Wayne. It is one of Deeno's clearest multi-part phonetic chains."],
+                          ["I didn't need no two-week prep; I could have smoked Btizz with less than two days and sold the copies on Blu-rays.", "Two-week, two days, and Blu-ray maintain the same sound while turning short preparation into a boast about how easily the battle could be packaged and sold."],
+                          ["Do you want to sign these adoption papers, so you've got someone that you can rely on?", "The between-round son jokes become a complete fatherhood angle. Deeno physically presents adoption papers as proof that he intends to “father” Btizz, paying off the earlier absent-parent material."],
+                          ["I don't care if I win or lose, as long as Btizz is a bit suicidal.", "The closer replaces normal judging criteria with emotional damage. Its force comes from cruelty and commitment to the battle's dark family-and-death narrative rather than intricate wordplay."]
+                        ]],
+                        ["Btizz", [
+                          ["Deluxx got murdered, CJ should have got murdered, Flame extinguished — turned my victim.", "Btizz converts his previous GZone opponents into a résumé. Deluxx and 1Flaymr represent recorded wins, while saying CJ should have been murdered disputes the loss and keeps the climb narrative intact."],
+                          ["All I hear is Deeno's house and Deeno 3-0. No — TymeLess killed him, bro.", "A direct record rebuttal: Btizz answers Deeno's king language with the official loss to TymeLess rather than accepting the undefeated-home-ruler image."],
+                          ["They said my mission's impossible, they said that Benji's done, and you look like Simon Pegg.", "Benji Dunn is Simon Pegg's Mission: Impossible character. Btizz develops the lookalike joke into a connected actor, character, and franchise scheme."],
+                          ["This is your yard — turn that into my palace.", "The home advantage is reversed. Btizz does not merely say he can survive in Deeno's space; he claims he can upgrade and rule it."],
+                          ["Before you start vanishing, doing like Madeleine; sink or swim, Deeno, start paddling.", "The dark disappearance reference moves into water language, linking vanishing, sinking, swimming, and paddling in one continuous threat."],
+                          ["Three times you backed out the clash; two of them times you didn't want war.", "Btizz brings booking history into the round and presents earlier cancellations as avoidance, giving his aggression a real storyline rather than a generic threat."],
+                          ["It's not me versus Deeno, it's me versus me.", "A self-competition boast that places Btizz's own ceiling above the opponent and supports his claim that each clash shows a different version of him."],
+                          ["Lemons are sour like lime... you will lose it to lemons.", "TymeLess's repeated lemon props were central to his win over Deeno. Btizz reuses the fruit as shorthand for that loss and tries to make the old visual angle active again."],
+                          ["Kachow, Kapow, Krakow, crack house.", "Cars, comic-book impact language, the Polish city, and drug-house imagery are linked through a fast multi-syllabic sound chain."],
+                          ["This is my house; I keep my feet up, broski, just know that I'm cosy.", "The territory angle progresses from entering Deeno's yard to behaving like the owner. Feet up and cosy make the takeover visual and casual."],
+                          ["Can't we flip bricks round here? Deeno, welcome to my Lego land.", "Bricks move from street and construction language into Lego. The scheme makes Btizz the builder and Deeno a figure trapped inside the world he controls."],
+                          ["Deeno, no one's afraid of you now... I'm first in the roster, I'm taking the crown.", "Btizz closes his central status argument by moving from contender to number one and treating Deeno's crown as the prize for winning the clash."],
+                          ["It's unholy that you look like Sam Smith if he hit roids.", "The song-title cue and celebrity comparison create a simple visual punch, exaggerating Deeno's appearance through a muscular version of Sam Smith."]
+                        ]]
+                      ] : battle.slug === 'deeno-vs-tymeless' ? [
+                        ["Deeno", [
+                          ["This is GZone, and this is my house.", "Deeno establishes the central territorial argument immediately. The claim continues his earlier insistence that GZone is his home and gives TymeLess a status position to attack throughout the battle."],
+                          ["A headlock's really going to make you crash out? ... Try headlock me — koala ting, I'm letting it rip.", "The recent Tapped24 and Grams incident becomes live league history. Deeno presents himself as harder to restrain and turns clinging in a headlock into a koala comparison."],
+                          ["You've only had one clash three times.", "Deeno argues that TymeLess has repeated the same battle identity rather than progressing, attacking experience and variety at once."],
+                          ["Young Pete and Bas, rapping with grey hairs.", "The UK rap comparison makes TymeLess's age visible and sets up the grey-hair attack that TymeLess later reverses through the silver-fox line."],
+                          ["They gave me TymeLess like he's someone to worry about.", "Deeno dismisses the booking before moving into the more technical second-round material."],
+                          ["Why don't you see your kids on weekdays?", "This parenting attack echoes Ryno's Episode 11 argument that TymeLess needs more time for his children. TymeLess later reverses the subject by addressing Deeno's son."],
+                          ["Why do you spell OK with three K's?", "Three Ks turns an ordinary spelling into a racism accusation. It develops allegations raised in the Ryno clash; it remains battle material rather than verified fact."],
+                          ["Most Wanted, spin him, then replay. GTA, it's the final mission — Big Smoke or CJ. It's game over for you, no replay.", "Season branding, replay language, and the San Andreas characters form Deeno's strongest connected scheme. The final mission presents TymeLess as the last obstacle before completion."],
+                          ["Trying to call shots when you know I run this shit.", "The bar returns the second round to the platform-authority argument established by Deeno's opening house claim."],
+                          ["Call yourself TymeLess — how silly. If you've got time, drop it quickly.", "A direct stage-name flip turns possession of time into an instruction to deliver it or lose it."],
+                          ["When it's my time, there is no reverse.", "Deeno contrasts the opponent's name with his own momentum: once his moment arrives, the result cannot be rewound."],
+                          ["Put William in a spliff — bill it up.", "TymeLess's real name supplies Will and William while building a spliff supplies the bill-it-up sound. Ryno previously used William for fire-at-Will writing, making this a developed inherited route."],
+                          ["This Froot Loop will get a Special K. Cheerio, mate — I'm a serial killer.", "Froot Loops, Special K, and Cheerios create a cereal chain before Cheerio changes into serial. The playful food references contrast with the violent final meaning."],
+                          ["MJ — TymeLess ain't no Thriller.", "Michael Jackson and Thriller are used to say TymeLess is neither frightening nor iconic."],
+                          ["For your girl, I know you're a Simpson — that explains why you look like Smithers.", "The Simpsons setup lands on Smithers as a recognisable visual comparison for TymeLess."],
+                          ["I'll hit this guy with a l-l-lemonade.", "Deeno attempts a live response to TymeLess's lemon props by converting the fruit into lemonade. The stumble makes it important as a rebuttal attempt even though it does not take control of the motif."],
+                          ["Your bars are dead like Ryno's dance.", "The dismissal brings TymeLess's previous GZone opponent into the round and uses a remembered Ryno performance moment as local evidence."],
+                          ["Your baby mum looks like Miss Rachel, but can't help their kid with her speech.", "The children's-presenter comparison supports Deeno's family angle through a recognisable image and a parenting accusation."]
                         ]],
                         ["TymeLess", [
-                          ["Do I look like the one with Crohn's disease?", "TymeLess flips the stomach and toilet situation onto Deeno to launch his opening scheme."],
-                          ["You went and got all the toilets locked off.", "An embarrassing moment is exaggerated into a venue-wide logistical crisis."],
-                          ["Ginga Jay, is he taking the piss?", "A double meaning that works as both an accusation of joking and part of the running toilet scheme."],
-                          ["The chair at GZone isn't your throne.", "The toilet imagery becomes a platform-status attack: Deeno may act like royalty, but GZone is not solely his kingdom."],
-                          ["This is my house and I won't leave again.", "TymeLess claims territory on Deeno's home platform."],
-                          ["I came here to tell Tapped, 'back off.'", "The bar connects this clash to a wider GZone storyline."],
-                          ["Who brought Keith Lemon in?", "TymeLess compares Deeno's ginger hair and pale appearance to Keith Lemon. The visual insult also launches the lemon-prop theme that runs through the battle."],
-                          ["I brought another lemon in.", "The repeated prop turns a visual joke into a memorable motif."],
-                          ["You're a ginger fox with fleas and ticks; I'm a silver fox.", "A clean visual contrast that recasts TymeLess' grey hair as confidence while making Deeno look scruffy."],
-                          ["Both ginger men… came to GZone.", "A room-specific comparison links Deeno and Ginger Jay through the platform."],
-                          ["Ginger Jay giving himself a reload.", "After comparing Deeno and Ginga Jay as two ginger GZone figures, TymeLess jokes that the host is reloading a bar about himself. It turns the host's reaction into part of the punch."],
-                          ["Prince Harry from Uber Eats.", "Royal ginger imagery is downgraded into a low-status visual insult."],
-                          ["Paul Scholes.", "The famous footballer supplies another immediate UK ginger comparison."],
-                          ["Weasley.", "The Harry Potter family provides an obvious red-hair reference."],
-                          ["Leprechaun on a booster seat.", "A compact visual punch combining Deeno's hair, height, and cartoonish appearance."],
-                          ["Simon Pegg and Shaun of the Dead.", "British film imagery keeps the attack comic and recognisable."],
-                          ["Sugar Puff Monster.", "The cereal mascot comparison makes Deeno look exaggerated and cartoonish."],
-                          ["If you get lemons, you'll get squeezed.", "The lemon prop becomes a simple pressure punchline and the clearest payoff to the running theme."],
-                          ["You ain't got a gun, Deeno, when your belly starts rumbling.", "TymeLess contrasts street claims with the live stomach angle that drives his opening round."],
-                          ["It's the only time you're known to squeeze.", "Toilet imagery and pressure language combine in a tailored punch."],
-                          ["You're full of shit — don't think you're a boss.", "The toilet scheme becomes a direct attack on Deeno's platform authority."],
-                          ["There's a big-ass turd and it won't flush.", "The venue problem is exaggerated into a crude but highly visual punchline."],
-                          ["It's a plunger — go clear the toilet you blocked off.", "The physical prop completes the opening scheme and gives the crowd a visual payoff."],
-                          ["Tried to aim at the frame and he missed.", "A simple accuracy attack says Deeno's writing fails to hit its intended target."],
-                          ["Best believe I came for the win.", "TymeLess states his competitive intent directly inside the opening sequence."],
-                          ["Go back to the toilet, sit on your own.", "The recurring toilet angle isolates Deeno and sets up the throne punch."],
-                          ["Don't ever bring a melon in again.", "Melon and lemon sounds extend the fruit motif through repetition."],
-                          ["How is that not a cheat code?", "The comparison between Deeno and Ginga Jay is presented like an obvious character duplication."],
-                          ["You look like Jay if Jay was a bit slow.", "TymeLess sharpens the host comparison into a direct appearance and character insult."],
-                          ["The real reason I brought lemons in the clash.", "The final-round setup calls back to every earlier lemon appearance before the squeezing payoff."],
-                          ["Dino, your mum's name's Kelly — this one's a kill shot, he's not ready: Machine Gun Kelly.", "TymeLess uses Deeno's mother's name to build a Machine Gun Kelly name flip and introduce the final-round Kelly scheme."],
-                          ["Hope you're hearing these bars, Kelly.", "Addressing Kelly directly keeps the name scheme active and makes the family angle feel theatrical."],
-                          ["That's why everyone says R. Kelly.", "The repeated Kelly name is turned into an R. Kelly reference, completing the celebrity-name sequence."],
-                          ["She looks like Miss Trunchbull from Matilda.", "A recognisable film character supplies a direct visual comparison aimed at Deeno's mother."],
-                          ["Lemon number three.", "TymeLess reveals the third individual lemon and signals the final callback before the closer."]
+                          ["Do I look like the one with Crohn's disease? You ain't got a gun, Deeno — when your belly starts rumbling, it's the only time you're known to squeeze.", "TymeLess has just pretended that his own stomach is hurting and allowed the room to believe him. This line reveals the trick and redirects the illness imagery toward Deeno, beginning the planned toilet sequence."],
+                          ["You went and got all the toilets locked off ... There's a big-ass turd and it won't flush. It's a plunger — go clear the toilet you blocked off.", "The embarrassing situation expands into a venue-wide problem before the physical plunger supplies the visual payoff."],
+                          ["Go back to the toilet, sit on your own — the chair at GZone isn't your throne.", "TymeLess converts the toilet seat into Deeno's supposed royal seat. The crude opening scheme therefore resolves as a serious attack on platform authority."],
+                          ["No security. Don't ever put your hands on me again. This is my house and I won't leave again.", "TymeLess answers Deeno's house and security language in the same round, rejecting the home advantage and claiming permanent space on the platform."],
+                          ["Grams, if you put him in another headlock, this time make sure that he don't breathe again.", "The line invokes the physical controversy from Tapped24 vs Grams and imagines the same league incident being redirected toward Deeno."],
+                          ["Since his shit can't flow like Ryno, let me take his flow and dump off.", "TymeLess openly brings his Episode 11 opponent's flow into the toilet scheme. The callback is also a cadence change, so the reference is heard as well as named."],
+                          ["Who brought Keith Lemon in again? ... I brought another lemon in again — brought the fruit back to bury him again.", "Keith Lemon starts as a visual comparison for Deeno before the real fruit turns the name into a recurring physical motif."],
+                          ["You're a ginger fox with fleas and ticks; I'm a silver fox that will beat your chick.", "TymeLess absorbs Deeno's grey-hair attack and changes age into confidence. The fox comparison makes the rebuttal visual and easy to retain."],
+                          ["Both ginger men, they both can pen game, they came to GZone ... Ginga Jay giving himself a reload.", "Deeno is compared with the host through hair, platform, and writing. Ginga Jay's live reaction then becomes part of the punch rather than an interruption outside it."],
+                          ["Prince Harry from Uber Eats, Paul Scholes, Weasley ... a leprechaun on a booster seat.", "Royalty, football, Harry Potter, and folklore are compressed into a recognisable run of ginger and height comparisons."],
+                          ["It's Simon Pegg and Shaun of the Dead ... Who let the Sugar Puff Monster off the box?", "British film and cereal-mascot imagery extend the same visual character attack. Simon Pegg later becomes source material for Btizz's Mission: Impossible scheme."],
+                          ["Let me talk to your son real quick. I'm your new stepdad, and I'm going to look after you next.", "TymeLess changes the target from Deeno to his son and reverses the earlier parenting criticism by casting himself as the dependable replacement father."],
+                          ["When you ask what happened to your real dad, I'm going to say that your father is dead ... He didn't provide all right for his children.", "The stepfather performance develops into a death and neglect narrative, directly turning Deeno's weekday parenting attack back on him."],
+                          ["Deeno, your mum's name's Kelly ... This one's a kill shot: Machine Gun Kelly ... That's why everyone says R. Kelly.", "Kelly is repeated through two celebrity names. The first supports weapon imagery; the second completes the deliberately offensive family sequence."],
+                          ["She looks like Miss Trunchbull from Matilda.", "The Matilda character supplies an immediate visual comparison inside the third-round attack on Deeno's mother."],
+                          ["Here it is: lemon number three. The real reason I brought lemons in the clash — if you get lemon, then you'll get squeezed.", "The final reveal counts the props, recalls every earlier appearance, and completes the battle-long setup with a simple pressure payoff. The image becomes shorthand for TymeLess's official win."]
                         ]]
                       ] : [[mc1?.name || battle.mc1, []], [mc2?.name || battle.mc2, []]]) as [string, string[][]][]).map(([name, bars]) => (
                         <article key={name} className="min-h-40 bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
@@ -3071,25 +3633,36 @@ export default function BattleDetail() {
                 "The closing crowd call was described as clear, and the official battle record gives NattyEBK the win."
               ]],
               ["nattyebk-vs-zk", [
-                "NattyEBK brought aggression, shock value, direct personals, and stronger room-commanding moments, while newcomer Z.K answered with clearer structure, researched angles, Grimsby pride, and varied cultural references.",
-                "Z.K's cleaner writing kept the battle close, particularly in round two, but NattyEBK's intensity, crowd impact, and stronger closing round carried the audience decision. The archive records NattyEBK as the winner, 2-1."
+                "NattyEBK made the battle part of a continuing run, naming his official win over PR1NC3 in the opening and returning to it with 'just killed Prince, now Z.K's next' in the third.",
+                "Z.K produced the cleaner debut writing. Mickey Mouse, BBK, CCJs, Grimsby, grime, gaming, football, technology, and hygiene created a researched portrait, while round two gave him the clearest technical passage of the clash.",
+                "Natty created the larger moments through direct confrontation, the screenshot and photograph, the Z.K weapon flip, twins, the throne claim, a stronger flow change, and the Prince-to-Z.K progression. Those elements gave his third round the more decisive shape.",
+                "The crowd call and official archive record award NattyEBK the win, 2-1. Z.K's clarity kept the contest competitive, but Natty's escalation, physical evidence, room command, and stronger close carried the result."
+              ]],
+              ["deeno-vs-btizz", [
+                "Btizz made the clash competitive through flow changes, record rebuttals, TymeLess callbacks, and deliberate mirroring of Deeno's cadence.",
+                "The first crowd check was close enough to repeat, but the official record awards Deeno the win after the stronger opponent-specific third round and visual-prop sequence."
               ]],
               ["btizz-vs-cj-zino", [
                 "BTizz started with high energy and broad attack angles, but CJ-Zino built the clearer narrative through originality, hygiene, credibility, and flow-theft pressure.",
                 "CJ's sharper later rounds and stronger room control gave him the decisive momentum. The official record awards CJ-Zino the win."
               ]],
               ["deeno-vs-grams", [
-                "Grams used the surprise entrance and anti-Viking schemes effectively, while Deeno recovered with freestyle energy, name flips, and wider GZone status angles.",
-                "Deeno's recovery and platform command carried the official result. The battle record gives Deeno the win."
+                "Grams used the surprise reveal and preparation advantage effectively. His anti-Viking, image, drinking, parenting, race, women, fantasy, celebrity, and marketing routes formed the cleaner pre-written deconstruction.",
+                "Deeno acknowledged being rattled and made adaptation the counterargument. Grams became weed, weight, weighing, age, outsider, Pen Game, and comeback material, while the final expanded into GZone status and a father-figure role.",
+                "The battle therefore separates polish from recovery. Grams exposed stops that later opponents called a blank or choke; Deeno let the room see him construct material live and used the home platform to turn survival of the ambush into the competitive story.",
+                "The closing crowd check, host commentary, and official GZone record award Deeno the win. The host's this-is-his-home explanation also advances the house claim that later becomes central against Badee Harz, TymeLess, and Btizz."
               ]],
               ["deeno-vs-badee-harz", [
-                "Badee Harz made a confident debut and attacked Deeno's image, family, history with women, and credibility without looking intimidated.",
-                "Deeno's experience, home-platform authority, and room control ultimately gave him the edge. The official battle record awards the win to Deeno."
+                "Badee Harz made a confident debut built around Deeno's record against women, the Grams performance, family, finances, relationships, status, and the claim that she had deliberately planted false information for him to use.",
+                "Deeno built the clearer battle-long frame. Newcomer, groupie, levels, my house, this is my home, and run this all supported one hierarchy argument, while the crack and ashes exchange, pop-culture references, and crowd hooks gave his third round the larger physical shape.",
+                "The weakness on both sides was escalation. Unverified allegations, disability and family attacks, illness material, and sexual shock frequently obscured the cleaner Jasmine and Jafar, gambling, human flag, Darla, 125cc, article, family-gathering, and Renzo writing. Deeno also stumbled in round two, giving Badee's Grams callback visible force.",
+                "The final crowd checks and host announcement awarded the battle to Deeno, matching the official GZone record. Badee's planted-information rebuttal made the close competitive, but Deeno's recovery, room familiarity, prop moment, and established home-platform narrative carried the decision."
               ]],
               ["btizz-vs-1flaymr", [
-                "1Flaymr made a memorable debut because the fire branding, Jamaican delivery, Avatar references, and repeated flame imagery gave him an immediate identity.",
-                "BTizz controlled the battle more effectively. He attacked the flame persona directly, questioned its authenticity, involved the crowd, and landed the clearer insults around hygiene, Jamaican imagery, teeth, and the fire-versus-cold contrast.",
-                "The final crowd reaction favoured BTizz, with the closing \"fully extinguished\" framing making the result feel clear: 1Flaymr brought the fire, but BTizz brought the extinguisher and the stronger room control."
+                "1Flaymr created one of Season 1's clearest debut identities. Everything burn, forest fires, Avatar, Fire Nation, Jamaican cadence, the balaclava, Moses, landlord, snowman, and firebender made the two-round performance immediately recognisable.",
+                "Btizz won by making that identity the battleground. Plantain, Friction, fire-for-that, cold and ice, hygiene, claimed Jamaican authenticity, Sizzla, flag colours, Magnum, cornmeal, Postman Pat, and cap accusations all argued that the character was constructed and could be dismantled.",
+                "The decisive advantage was control. 1Flaymr's denser delivery sometimes hid individual punches; Btizz simplified his counters, involved the crowd, repeated key phrases, and made the opponent's own fire language generate reaction against him.",
+                "The closing crowd response and official GZone record awarded Btizz the win, his first after losses to Deluxx and CJ-Zino. Fully extinguished became the result's shorthand and later the central inherited phrase in 1Flaymr versus CJ-Zino."
               ]],
               ["2mwad-vs-ryno", [
                 "Ryno brought aggression, platform-wide confidence, and the cleaner technical peaks through the Pen Zeppelin and chess sequences.",
@@ -3100,12 +3673,16 @@ export default function BattleDetail() {
                 "BTizz controlled the room more consistently, built the clearer authenticity narrative, and landed the stronger tailored pen attack. The commentary table and official battle record give BTizz the win 2-1."
               ]],
               ["tapped24-vs-grams", [
-                "Grams built stronger connected angles around image, parenting, money, Georgie, and Tapped's public presentation, but the room's interruptions repeatedly disturbed his control.",
-                "Tapped escalated more effectively, turned the final into a Pen Game versus GZone statement, and produced the battle's largest shock moments. The guest judge and official battle record awarded the win to Tapped24."
+                "Grams built the more consistent lifestyle case through Georgie, parenting, children, cats, money, work, benefits, clothes, free products, image, property, and the gap between Tapped's public character and adult responsibility.",
+                "Tapped produced the larger escalation. He used Grams' Pen Game legacy and Deeno loss, disputed his own AJ result, then turned the final into a GZone-versus-Pen-Game loyalty argument supported by the returned screenshot tactic and the battle's largest visual moments.",
+                "Special guest Denzel Bentley explicitly chose Tapped24, saying that Tapped ripped the room while still crediting Grams. The choice was announced before the physical altercation, security intervention, host warning, and later crowd checks.",
+                "The official GZone record also awards Tapped24 the win, his first of Season 1 after losses to Deeno, Roman, and AJNA. The post-battle headlock controversy became future material, but the judged result reflects Tapped's stronger final-round narrative and room impact."
               ]],
               ["ryno-vs-roman", [
-                "Ryno brought venom, emotional pressure, and aggressive retaliation, but his material was less controlled and occasionally scattered.",
-                "Roman built the clearer case through repeated housing, character, reputation, and status angles, combining them with stronger name flips and crowd control. The official battle record remains a Roman win."
+                "Roman converted season history into a single character case. Housing pressure that began with 2MWAD and was expanded by TymeLess returned through Leicester, sofas, roads, a supposed shed, house keys, NFA language, allegations, and questions about what Ryno's visibility had produced.",
+                "Ryno identified much of the repetition and answered with homeless not anymore, demands to stop the allegation bars, Roman nameplay, delivery criticism, family attacks, and a direct challenge to Roman's claim that he had fought the toughest warriors.",
+                "The difference was development and control. Ryno's housing defence largely repeated his answer to TymeLess, while Roman anticipated it through the shed and key-proof counters. Roman also predicted the deceased-partner angle before Ryno delivered it, reducing the surprise of another inherited route.",
+                "The transcript includes a final audience check for Ryno but does not preserve a complete comparative vote. The official GZone record awards Roman the win, extending his run after PR1NC3 and Tapped24. His clearer three-round construction and steadier delivery outweighed Ryno's more scattered retaliation."
               ]],
               ["renzo-vs-proty", [
                 "Proty produced cleaner jokes and more clearly shaped visual punches, particularly through the UK Cali, Pennywise, Tails, Rizla, and social-media angles.",
@@ -3120,8 +3697,10 @@ export default function BattleDetail() {
                 "Tapped24 produced clean writing, memorable punchlines, and strong crowd engagement, but Roman's pressure and commanding performance carried the decision. The official battle record awards Roman the win."
               ]],
               ["cj-zino-vs-1flaymr", [
-                "1Flaymr brought the stronger character through fire branding, Jamaican cadence, repeated slogans, and performance energy, while CJ-Zino produced the cleaner counter-writing through the extinguished and Hunger Games schemes.",
-                "The transcript's crowd call is unclear, but the official battle record awards the win to 1Flaymr."
+                "1Flaymr turned Episode 19 into a comeback argument. The same fire identity that Btizz had declared fully extinguished returned through everything-burn hooks, Jamaican cadence, gunshot rhythm, roster callouts, and direct insistence that the flame was still active.",
+                "CJ-Zino produced the cleaner counter-writing. The Hunger Games sequence gave him the battle's strongest connected scheme, while Friction, the removed balaclava, online toughness, the Btizz result, and the inherited fully-extinguished phrase created a detailed case against 1Flaymr's authenticity.",
+                "The deciding contrast was identity against deconstruction. CJ explained why the character should fail; 1Flaymr made the character persist in the room. His repeated hooks were less intricate, but they were easier to recognise, joined the clash to the wider roster, and made survival after Episode 16 feel like the central rebuttal.",
+                "The transcript preserves separate audience checks without enough reliable information to compare their volume from text alone. The official GZone record awards the win to 1Flaymr, giving the flame persona a recorded recovery after the loss to Btizz."
               ]]
             ] as const).filter(([slug]) => battle.slug === slug).map(([slug, paragraphs]) => (
               <div key={slug} className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
@@ -3129,6 +3708,10 @@ export default function BattleDetail() {
                 {slug === 'deeno-vs-tymeless' ? (
                   <div className="space-y-4 text-zinc-400 text-sm leading-relaxed">
                     {[paragraphs[0], paragraphs[3]].map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  </div>
+                ) : slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' ? (
+                  <div className="space-y-4 text-zinc-400 text-sm leading-relaxed">
+                    {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
                 ) : (
                   <p className="text-zinc-400 text-sm leading-relaxed">{limitResultCopy(paragraphs)}</p>
@@ -3233,23 +3816,27 @@ export default function BattleDetail() {
                   {
                     mc: "1Flaymr",
                     highlights: [
-                      ["Strong fire branding", "Flame, burn, smoke, gunshot, and heat imagery define the performance."],
-                      ["Performance identity", "Jamaican-style cadence makes him instantly recognisable."],
-                      ["Repetition as crowd tool", "Everything burn and you dead function as performance hooks."],
-                      ["Direct callouts", "CJ, BTizz, Roman, Ryno, Tapped24, Darren, Jay, and ZK connect the round to the roster."],
-                      ["Best angle", "Nobody can permanently extinguish the flame persona."],
-                      ["Main weakness", "Some sections rely more on sound and repetition than clean punch structure."]
+                      ["Battle-long identity", "Fire, burning, full clips, gunshot sounds, rum, and Jamaican cadence make all three rounds sound like parts of the same character."],
+                      ["Archive rebuttal", "Naming Btizz as the source of fully extinguished turns the Episode 16 loss into material that 1Flaymr can answer directly."],
+                      ["Repetition as structure", "CJ don't run, everything burn, fully active, and CJ dead operate as fixed hooks around looser passages."],
+                      ["Roster-wide relaunch", "CJ, Btizz, Roman, Ryno, Tapped24, Darren, Jay, and Z.K expand the battle into a warning to the platform after the previous defeat."],
+                      ["Opponent-specific peaks", "CJ-to-DJ, the Btizz-win challenge, the helper accusation, and no-action criticism are strongest when the fire persona is aimed precisely."],
+                      ["Cultural and sound writing", "Heung-min Son, rum, Wayans, Guinness, Freddy, and Blackberry are joined by repeated end sounds and percussive delivery."],
+                      ["Best quality", "A recognisable character can regain momentum through short cues even when the surrounding transcript is dense or the mic level changes."],
+                      ["Main weakness", "Restarts, long repeated sequences, and sound-led phrasing sometimes obscure individual setups and reduce technical clarity."]
                     ]
                   },
                   {
                     mc: "CJ-Zino",
                     highlights: [
-                      ["Counter-persona writing", "CJ attacks the flame identity directly rather than avoiding it."],
-                      ["Hunger Games scheme", "Katniss, Mockingjay, Snow, fire, and the arena create a connected reference chain."],
-                      ["Old-name angle", "The previous Friction name is used to challenge the rebrand."],
-                      ["Stage-control angle", "CJ frames 1Flaymr as loud but insufficiently controlled."],
-                      ["Top-five claim", "He positions himself among GZone's stronger names."],
-                      ["Main strength", "The writing has cleaner structure and stronger rebuttal direction."]
+                      ["Inherited counter-persona", "CJ deliberately carries Btizz's fully-extinguished verdict into a new clash and builds his own writing around it."],
+                      ["Hunger Games structure", "Catching Fire, Katniss, Mockingjay, Snow, flame, and the arena form the battle's clearest connected reference chain."],
+                      ["Identity deconstruction", "Friction, the balaclava, the uncovered face, acting, attraction, and online toughness attack the person behind One Flame."],
+                      ["League-history awareness", "The Btizz result, 1Flaymr's introduction, and the Grams headlock turn previous episodes into supporting evidence."],
+                      ["Flow-authorship continuity", "I don't need a flow to get a reload develops the originality pressure CJ had already applied to Btizz in Episode 13."],
+                      ["Immediate echo", "The third-round mind-your-business opening closely mirrors 1Flaymr's preceding name-change defence and gives CJ a visible responsive moment."],
+                      ["Best quality", "The writing repeatedly accepts the opponent's imagery and converts it into counters rather than abandoning the established world."],
+                      ["Main weakness", "Longer personal passages and disrupted delivery do not always convert the cleaner analysis into the room-defining reaction it needs."]
                     ]
                   }
                 ].map(({ mc, highlights }) => (
@@ -3276,23 +3863,27 @@ export default function BattleDetail() {
                     {
                       mc: "1Flaymr",
                       highlights: [
-                        ["Strong character branding", "Everything revolves around flames, smoke, fire, heat, and burning."],
-                        ["Patois delivery", "His Jamaican-style delivery gives him a different sound from most of the roster."],
-                        ["Fire schemes", "Avatar, Fire Nation, firebender, forest fire, snowman, and smoke references build a clear identity."],
-                        ["Myth and religion imagery", "Moses and the Red Sea supply one of his strongest visual bars."],
-                        ["Threat repetition", "Repeated bang, burn, and death language creates performance rhythm."],
-                        ["Main weakness", "The performance has energy, but some bars lose impact because the wording is difficult to catch."]
+                        ["Character architecture", "The stage name, everything-burn slogan, fire imagery, cadence, balaclava, and movement all communicate the same identity."],
+                        ["Preview-to-debut continuity", "One Flamer, fire for that, and everything burn move from the Episode 13 aftermath into complete material here."],
+                        ["Elemental schemes", "Forest fire, Avatar, Fire Nation, firebender, snowman, December, smoke, and heat create recurring internal logic."],
+                        ["Mask self-rebuttal", "Removing the balaclava and owning the ugly-face joke concedes the visual attack before Btizz can fully control it."],
+                        ["Reference expansion", "Moses, Red Sea, landlord, eviction, Prince, Natty, CJ-Zino, and Deeno prevent the debut from remaining only one repeated flame slogan."],
+                        ["Live elemental answer", "Hot flow, snowman, and December respond to Btizz's cold-bars and ice-zone counter rather than existing in isolation."],
+                        ["Best quality", "A unique and repeatable performance identity is established within a single two-round battle."],
+                        ["Main weakness", "Dense delivery, mic level, repetition, and long threat lists reduce the clarity of individual setups and punches."]
                       ]
                     },
                     {
                       mc: "BTizz",
                       highlights: [
-                        ["Counter-persona attack", "BTizz attacks the flame identity directly and ultimately frames 1Flaymr as extinguished."],
-                        ["Crowd involvement", "Call-and-response moments such as fire for that and the name-spelling sections pull in the room."],
-                        ["Hygiene and appearance angles", "Teeth, breath, body, face, and general cleanliness become repeated targets."],
-                        ["Jamaican authenticity angle", "He questions whether 1Flaymr's Jamaican image is genuine or exaggerated."],
-                        ["Scene references", "AJ, CJ-Zino, Deeno, Darren, and other GZone references give the battle wider context."],
-                        ["Main strength", "BTizz has more direct control of the room and sounds more comfortable in the format."]
+                        ["Counter-persona design", "Every major route—cold, Friction, mask, hygiene, culture, and cap—attacks a component of the flame identity."],
+                        ["Slogan appropriation", "Fire for that is converted from 1Flaymr's preview phrase into a call-and-response cue for Btizz's own punches."],
+                        ["Cultural reference chain", "Plantain, rice and beans, Sizzla, Jamaican flag colours, Magnum, and cornmeal question the claimed authenticity through tailored imagery."],
+                        ["Elemental opposition", "Cold bars and the ice zone supply a simple physical answer to forest fire, heat, and firebending."],
+                        ["Identity research", "The Friction name and balaclava make the current character look traceable rather than mysterious."],
+                        ["Crowd mechanics", "Name spelling, chants, pauses, repetition, and simplified visual punches let the room participate in the deconstruction."],
+                        ["Best quality", "Btizz defines what the battle means and leaves the crowd with a concise phrase that survives the event."],
+                        ["Winning edge", "Fully extinguished resolves the complete counter-persona case and supports Btizz's first official Season 1 win."]
                       ]
                     }
                   ].map(({ mc, highlights }) => (
@@ -3407,23 +3998,27 @@ export default function BattleDetail() {
                     {
                       mc: "Grams",
                       highlights: [
-                        ["Image attack", "Clothes, shoes, freebies, lack of drip, and public presentation become repeated targets."],
-                        ["Relationship angle", "Georgie is framed as someone being dragged down by Tapped."],
-                        ["Parenting angle", "Children, CSA, food, debt, visibility, and responsibility support the fatherhood attack."],
-                        ["Platform-status angle", "Grams argues that Tapped is not truly tapped, connected, or built for pressure."],
-                        ["Pet and cat angle", "Grams turns care for his cats into a lifestyle and responsibility comparison."],
-                        ["Main weakness", "Strong angles lose some structure amid crowd chaos, props, reloads, and interruptions."]
+                        ["Connected lifestyle case", "Georgie, children, cats, money, work, benefits, clothing, image, transport, and property test the persona against adult stability."],
+                        ["Direct room address", "Speaking to Georgie makes the relationship argument involve visible evidence rather than an absent third party."],
+                        ["Headlock motif", "The introduction's MMA joke, I-put-him-in-a-headlock line, and post-decision altercation combine into the incident later battles remember."],
+                        ["Stage-name deconstruction", "Not Tapped, saying 24, not tapped in, and Tiny T repeatedly shrink the dangerous identity."],
+                        ["Responsibility comparison", "Raising cats into queens becomes a strange but memorable counter-standard to the parenting allegations."],
+                        ["Platform-transfer claim", "This is my home now argues that Pen Game history can be converted into a place inside GZone."],
+                        ["Best quality", "The strongest rounds return to the same grounded image, relationship, parenting, and money standards."],
+                        ["Main weakness", "Sound resets, interruptions, crowd debate, props, and rising tension weaken control of otherwise connected angles."]
                       ]
                     },
                     {
                       mc: "Tapped24",
                       highlights: [
-                        ["Pen Game legacy", "Tapped attacks Grams' old platform reputation and claims he damaged it himself."],
-                        ["Fertility and family", "Grams' lack of a wife, children, and family structure becomes a repeated target."],
-                        ["Age and status", "Tapped frames Grams as too old to remain in the same financial and career position."],
-                        ["Platform war", "Fuck Pen Game turns the final into a wider statement of GZone loyalty."],
-                        ["Screenshot allegations", "Alleged online behaviour and screenshots are used as serious character ammunition."],
-                        ["Main strength", "Tapped makes the battle feel like GZone defending its territory against an outsider."]
+                        ["Record reversal attempt", "Tapped reframes the AJNA loss as a platform decision that did not reflect what happened technically."],
+                        ["Pen Game legacy pressure", "Prior losses, damaged reputation, age, money, employment, and family structure make experience evidence against Grams."],
+                        ["GZone hierarchy", "You are not me or Deeno places the established home names above a recent Pen Game arrival despite Tapped's own record."],
+                        ["Platform-war close", "Go home, both group chats, snake, defending ours, and fuck Pen Game give the final a narrative larger than individual personals."],
+                        ["Evidence tactic evolution", "The Episode 9 text-message screenshots return as an Instagram image used for an offensive allegation rather than defence."],
+                        ["Physical theatre", "John Cena, Badee's underwear, the displayed screenshot, and direct crowd interaction create the battle's clearest visible moments."],
+                        ["Best quality", "Escalation turns three rounds of status pressure into a decisive final and the room swing noted by Denzel Bentley."],
+                        ["Winning edge", "The guest selection and official record reward the stronger final-round shape; the later altercation is aftermath, not the judging basis."]
                       ]
                     }
                   ].map(({ mc, highlights }) => (
@@ -3451,23 +4046,27 @@ export default function BattleDetail() {
                     {
                       mc: "Roman",
                       highlights: [
-                        ["Angle control", "Roman builds repeated narratives around Ryno's housing, image, allegations, family, and credibility."],
-                        ["Name and persona flips", "Rhino facts, animal imagery, and Roman squad references attack both identities."],
-                        ["Direct character attacks", "He repeatedly frames Ryno as unsafe, fake, desperate, and morally questionable."],
-                        ["Crowd control", "Deliberate pacing, repetition, and pauses create major reactions and reload moments."],
-                        ["Strongest writing", "The best material links real-world details to battle consequences rather than relying only on shock."],
-                        ["Main strength", "Roman makes the performance feel like a controlled takedown rather than a shouting match."]
+                        ["Predictive defence", "Roman announces the deceased-partner angle before Ryno uses it, exposing its Episode 9 lineage and reducing its surprise."],
+                        ["Three-round case", "Housing, allegations, public image, family, views, bookings, and status recur often enough to make separate rounds feel connected."],
+                        ["Inherited-route development", "Leicester and homelessness come through 2MWAD and TymeLess, but the shed, keys, career questions, and visual comparison extend the argument."],
+                        ["Name and persona flips", "Rhino mud, solitary animals, squad-deep Romans, relegation, Ryan Winfield, and windshield attack both the stage name and social position."],
+                        ["Status sequence", "Zero risk, zero gain, one million views, fame, bookings, and stage demand convert online reach into a measurable-career challenge."],
+                        ["Controlled pacing", "Pauses, reloads, and deliberate delivery help the room separate dense allegations from the cleaner punch structures."],
+                        ["Best quality", "Roman consolidates material heard elsewhere into a more coherent and opponent-specific prosecution."],
+                        ["Main weakness", "Extreme, ableist, and unverified allegation material can overpower the stronger technical writing and should not be treated as fact."]
                       ]
                     },
                     {
                       mc: "Ryno",
                       highlights: [
-                        ["Aggressive retaliation", "Ryno responds with heavy personal attacks and tries to match Roman's darkness."],
-                        ["Direct name attacks", "Roman's name and spelling patterns create repeated rhythm."],
-                        ["Family and relationship angles", "Roman's ex, mother, father, children, and partner become major targets."],
-                        ["Physical threat imagery", "Bodying, smoking, folding, drawing weapons, and war language appear throughout."],
-                        ["Recovery energy", "He pushes through interruptions and restarts with high intensity."],
-                        ["Main weakness", "Some writing feels scattered, while Roman's structure lands more cleanly."]
+                        ["Aggressive retaliation", "Ryno answers Roman's case with partner, family, grief, body, drinking, children, and street-credibility attacks."],
+                        ["Direct rebuttal awareness", "Homeless not anymore, dead the rapist bars, and the final list of allegedly faked claims show that Ryno understands the inherited narrative."],
+                        ["Roman name progression", "R-to-the-O spelling develops into ROM road markings and Maximus Decimus Meridius, moving from cadence into tailored references."],
+                        ["Résumé rebuttal", "Ryno quotes Roman's toughest-warriors claim and reduces the record behind it to Prince and Tapped."],
+                        ["Technical peaks", "Hat at half past six, no-scope focus, precision, third-degree burns, and road lines provide cleaner moments inside the darker personal writing."],
+                        ["Target escalation", "Calling for Deeno again continues Ryno's effort to present himself as ready for a larger GZone opponent."],
+                        ["Best quality", "Short direct counters create bite when the delivery slows enough for the room to catch them."],
+                        ["Main weakness", "Restarts, unstable pacing, incomplete passages, and the admission about weak writing prevent the rebuttals from replacing Roman's case."]
                       ]
                     }
                   ].map(({ mc, highlights }) => (
@@ -3759,23 +4358,27 @@ export default function BattleDetail() {
                   {
                     mc: "Grams",
                     highlights: [
-                      ["Surprise-entry momentum", "Grams weaponised the fact that Deeno did not expect him."],
-                      ["Anti-Viking angle", "He repeatedly attacked Deeno's Viking image through Arthur, Odin, and war imagery."],
-                      ["Body and stamina angles", "Size became a repeated target linked to running, burpees, bikes, and physical ability."],
-                      ["Race and identity shots", "Grams challenged Deeno's use of language and culture he viewed as inauthentic."],
-                      ["Pop-culture schemes", "Kirby, Arthur, Caesar, Shrek, Ed Sheeran, Harry Potter, Ron Weasley, Fiona, and Daphne shaped the imagery."],
-                      ["Main strength", "He made the surprise feel intentional and controlled rather than like a random interruption."]
+                      ["Surprise-entry momentum", "Grams weaponised the booking switch immediately: Deeno had prepared for 2 Man, while Grams entered with opponent-specific material."],
+                      ["Anti-Viking angle", "Arthur, Odin, war and costume imagery strip Deeno's branding of heroic weight and recast it as dress-up."],
+                      ["Body and stamina angles", "Size becomes a repeated target through running, burpees, bikes and physical ability, giving separate punches one coherent route."],
+                      ["Race and identity pressure", "Grams challenges language and cultural references he considers inauthentic, widening the attack from appearance into persona."],
+                      ["Pop-culture sequencing", "Kirby, Arthur, Caesar, Shrek, Ed Sheeran, Harry Potter, Ron Weasley, Fiona and Daphne keep the imagery changing without abandoning the character attack."],
+                      ["Control of Deeno's pauses", "Because Grams is the prepared battler, every Deeno stop reinforces his claim that the ambush has exposed a limit in Deeno's adaptability."],
+                      ["Best quality", "He makes the surprise feel intentional and controlled rather than like a random interruption, maintaining the clearer pre-written deconstruction."],
+                      ["Main weakness", "The broad spread of image, race, parenting and celebrity angles is polished but does not create as decisive a closing ownership statement as Deeno's final round."]
                     ]
                   },
                   {
                     mc: "Deeno",
                     highlights: [
-                      ["Freestyle recovery", "Deeno responded to an unexpected opponent with battle-ready material."],
-                      ["Name flips", "He used Grams for weed, weight, smoking, and weighing punches."],
-                      ["Platform-status angle", "Deeno framed GZone as his stage and Grams as someone entering his territory."],
-                      ["Scene callouts", "He addressed wider names and positioned himself as a central figure."],
-                      ["Age and responsibility angle", "He attacked Grams for being older without children or clear direction."],
-                      ["Main strength", "He recovered from the ambush and turned the battle into a wider GZone statement."]
+                      ["Freestyle recovery", "Deeno openly identifies the opponent switch and makes live construction part of the performance rather than pretending every route was pre-written for Grams."],
+                      ["Name-flip engine", "Grams becomes weed, weight, smoking and the act of weighing punches, allowing one name to support several connected attack routes."],
+                      ["Visible reset", "The stops and restart reveal the risk of improvising under pressure; the recovery keeps the round alive, but the blank remains usable evidence for Badee Harz in Episode 17."],
+                      ["Platform-status angle", "Deeno frames GZone as his stage and Grams as an outsider entering his territory, extending the 'my house' claim made against Tapped24 in Episode 1."],
+                      ["Scene callouts", "Wider league names turn a one-opponent battle into a statement about Deeno's place in the developing Season 1 hierarchy."],
+                      ["Age and responsibility angle", "He attacks Grams for being older without children or direction, then casts himself as a father figure to the platform."],
+                      ["Best quality", "He turns the ambush itself into his narrative: the audience watches him recover, build new material and claim ownership of the room."],
+                      ["Winning edge", "The official decision rewards adaptation and final-round authority; the host's 'this is his home' remark seals the house motif that continues through later Deeno battles."]
                     ]
                   }
                 ].map(({ mc, highlights }) => (
@@ -3927,23 +4530,27 @@ export default function BattleDetail() {
                   {
                     mc: "Deeno",
                     highlights: [
-                      ["Platform authority", "He repeatedly frames GZone as his house and Badee as someone stepping into his space."],
-                      ["Newcomer attack", "He questions why she is rapping and whether she belongs on the platform."],
-                      ["Body and age angles", "He targets her waistline, age, appearance, and physical image."],
-                      ["Family angles", "Her personal life, children, and partners form part of his attack package."],
-                      ["Pop-culture references", "Jafar, Tarzan, AJ, Epstein, and Blackpool appear in his material."],
-                      ["Main weakness", "Shock-value insults sometimes overpower the cleaner battle-writing ideas."]
+                      ["Territory narrative", "My house, this is my home, run this, levels, and newcomer language organise the battle around Deeno's established GZone position."],
+                      ["Recovery mechanism", "After restarts and a stumble, Deeno uses freestyle comments and the house refrain to reset himself and reconnect with the room."],
+                      ["Opponent-specific schemes", "Jasmine and Jafar, Harley Coleman, country questions, the human flag, Darla, deep voice, and the 125cc motorbike are tailored to Badee."],
+                      ["Physical prop writing", "The 0.1-gram crack bag and Badee's ashes turn the third-round family and drug route into a visible exchange."],
+                      ["Crowd-hook structure", "Nobody call-and-response, repeated house claims, and short visual comparisons make later material easier to follow than the dense personals."],
+                      ["Archive continuity", "The home claim and freestyle recovery develop patterns visible against Tapped24 and Grams and later challenged by TymeLess and Btizz."],
+                      ["Best quality", "Experience lets Deeno survive disruption and make platform position part of the writing rather than only an introduction."],
+                      ["Main weakness", "A second-round stumble and excessive family, disability, illness, and sexual shock weaken the cleaner technical routes."]
                     ]
                   },
                   {
                     mc: "Badee Harz",
                     highlights: [
-                      ["Debut pressure", "She responds confidently despite being introduced as a newcomer."],
-                      ["Anti-Deeno angle", "She attacks his record against women and casts herself as another loss in that pattern."],
-                      ["Family and sibling shots", "Deeno's brother, sister, and family names become direct personal ammunition."],
-                      ["Reputation attack", "She questions his jail claims, platform history, and battle credibility."],
-                      ["Self-branding", "She clearly positions herself as the baddest woman on GZone."],
-                      ["Main strength", "Her material is direct, personal, and designed to show that she is not intimidated."]
+                      ["Debut-to-roster structure", "Baddest on GZone, B-A-D-double-E, take over, and AJ next make the appearance an arrival statement with a future target."],
+                      ["Women's-record argument", "Kusha and Shami are cited before Badee names herself as the third loss, using a claimed pattern to reduce Deeno's experience advantage."],
+                      ["Performance-history pressure", "The Grams mind-blank reference is developed when Deeno stumbles again and Badee calls his second round a choke."],
+                      ["Planted-information rebuttal", "Badee says the N-word story was deliberately seeded and fake, turning Deeno's research process into the subject of the counterattack."],
+                      ["Name and sound writing", "B-A-D-double-E, D-E-N-O, Renzo, and friend zone create audible identity moments inside the heavier personal material."],
+                      ["Opponent-specific routes", "Casino, Spain, the alleged bladed article, family gathering, finances, furniture, and Deeno's next-opponent status keep the writing targeted."],
+                      ["Best quality", "She performs without visible newcomer deference and finds a genuine strategic turn in the third-round information reveal."],
+                      ["Main weakness", "Long allegation packages and extreme family or disability attacks sometimes bury the clearer gambling, article, naming, and archive callbacks."]
                     ]
                   }
                 ].map(({ mc, highlights }) => (
@@ -3971,21 +4578,27 @@ export default function BattleDetail() {
                   {
                     mc: "NattyEBK",
                     highlights: [
-                      ["Best round", "Round three."],
-                      ["Strongest trait", "Aggression and room control."],
-                      ["Best angle", "Z.K being unfit to stand against him in GZone."],
-                      ["Biggest reaction", "The third-round flow switch and rising crowd energy."],
-                      ["Main weakness", "Some of the harshest material was loosely structured."]
+                      ["Roster progression", "Prince is named as the first recorded body and Z.K as the next, giving Natty a two-battle narrative rather than an isolated win claim."],
+                      ["Direct pressure", "The stage name, travel, money, teeth, breath, religion, family, and claimed danger are delivered for immediate confrontation rather than layered ambiguity."],
+                      ["Angle reversal", "Breath and hygiene pressure used against Natty by PR1NC3 is redirected toward Z.K through plaque, teeth, washing, and dating material."],
+                      ["Physical evidence", "A screenshot and photograph interrupt the beat and turn the second round into a claimed proof sequence. The allegations remain unverified battle material."],
+                      ["Stage-name control", "Natty first questions whether Z.K has ever used the blade implied by his name, then imagines drawing his own Z.K from a case."],
+                      ["Best round", "Round three: twins, paired weapons, the GZone throne, house invasion, Canada Goose, Prince, Z.K, and the flow change create his clearest escalation."],
+                      ["Main weakness", "Stops, harsh personals, and loosely connected accusations can obscure the stronger wordplay and progression writing."],
+                      ["Winning edge", "Greater room command, more decisive visual moments, and a stronger closing narrative carry the audience decision."]
                     ]
                   },
                   {
                     mc: "Z.K",
                     highlights: [
-                      ["Best round", "Round two."],
-                      ["Strongest trait", "Clear writing and structured references."],
-                      ["Best angle", "Natty's image, finances, and credibility."],
-                      ["Key references", "BBK, CCJs, Virgil van Dijk, Tekken, Wiley, and Pokemon."],
-                      ["Main weakness", "Less explosive than Natty in the live room."]
+                      ["Debut strategy", "Research, clarity, and recognisable references are used to resist Natty's established room momentum."],
+                      ["Inherited pressure", "PR1NC3's Mickey Mouse comparison is reused through Natty's haircut, while the earlier hygiene weakness is broadened into home and appearance material."],
+                      ["Grime credibility", "BBK, Dimzy, Wiley, Central Cee, and AJ Tracey give Z.K a musical standard against which to question Natty's EBK identity and output."],
+                      ["Best round", "Round two: Batman and Robin, Grimsby-to-London movement, cultural food, Virgil van Dijk, Arsenal, Tekken, Wiley, and lemon imagery form the strongest technical route."],
+                      ["Audible flow critique", "The Natty-the-nip section names and performs a cadence rather than leaving the originality criticism as an unsupported statement."],
+                      ["Third-round sound chain", "Pokémon, Mewtwo, Bluetooth, Kindle, Pringle, single, and shingles create a clear sequence across immaturity, technology, writing, music, and appearance."],
+                      ["Main weakness", "The writing remains easier to follow, but individual references do not resolve into a final narrative strong enough to answer Natty's third."],
+                      ["Outcome", "Z.K makes the debut competitive and likely takes the second, but has less room impact and loses the crowd decision 2-1."]
                     ]
                   }
                 ].map(({ mc, highlights }) => (
@@ -4009,9 +4622,12 @@ export default function BattleDetail() {
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC
                 </h3>
-                {(battle.slug === 'deeno-vs-tymeless' ? [
-                  ["Deeno", "Time-name flips::TymeLess' name became a route into time, reverse, replay, death, and pressure writing.|Platform authority::Deeno performed like the established GZone regular defending home territory.|Gaming structure::GTA, Big Smoke, CJ, final-mission, game-over, and replay references created a connected scheme.|Pop-culture attacks::Michael Jackson, Thriller, The Simpsons, Smithers, and Beta Squad imagery gave the rounds recognisable moments.|Status pressure::Age, money, battle history, and career range were used to question TymeLess' position.|Crowd control::Deeno maintained force and presence through noisy, reactive passages.|Best quality::His cleanest material was tailored directly to TymeLess' name and identity.|Main weakness::Some heavier personals obscured the sharper name flips and structured ideas."],
-                  ["TymeLess", "Comic performance::Humour, pauses, repetition, and visual delivery turned individual punches into larger moments.|Toilet narrative::The locked toilets, taking-the-piss phrase, chair, and throne developed into a complete opening scheme.|Visual references::Keith Lemon, Prince Harry, Paul Scholes, Weasley, Simon Pegg, and the Sugar Puff Monster built sustained character pressure.|Prop use::The lemons were introduced, repeated, and paid off with the squeezing punchline.|Silver-fox contrast::TymeLess turned his own grey hair into confidence while making Deeno's ginger image look worn and comic.|Room involvement::Ginger Jay, reloads, and local GZone references made the audience part of the performance.|Best quality::Callbacks and running themes gave all three rounds a shared identity.|Winning edge::Stronger structure, bigger memorable moments, and better crowd connection carried the decision."]
+                {(battle.slug === 'deeno-vs-btizz' ? [
+                  ["Deeno", "Opponent-specific structure::The booking requests, family history, clothes, roster status, copied flow, and previous clashes all support one argument about stopping Btizz's rise.|Live rebuttal::Tap 22 becomes Catch-22, while the murder language is reversed into red rum.|Visual evidence::The Google Maps screenshot, headstone photograph, and adoption papers make the third round readable before every line is fully processed.|Third-round narrative::Flow imitation leads into the flipped script, physical props, and Deeno presenting himself as the father Btizz can rely on before the closing emotional-damage angle.|Pop-culture wordplay::Oliver Twist, Rayman Rabbids, Ben 10, Blade, Batman, Robin, Bruce Wayne, and Blu-ray give the rounds varied reference points.|Best quality::Adaptation and the ability to turn live moments into connected written structure.|Main weakness::Extremely dark family material and repeated prop-related stops sometimes overpower the cleaner technical writing.|Winning edge::The strongest final-round shape and the most decisive visual moments."],
+                  ["Btizz", "Flow variation::Btizz changes cadence, uses faster internal-rhyme pockets, and openly mirrors Deeno rather than staying inside one delivery pattern.|Roster continuity::Deluxx, CJ Zino, and 1Flaymr become proof of a climb toward the self-proclaimed GZone king.|Record rebuttal::The TymeLess result directly challenges Deeno's house, crown, and 3-0 claims.|Deliberate mirroring::Earlier accusations of borrowed flows are turned into an obvious imitation designed to provoke Deeno in real time.|Inherited callbacks::Lemons and Simon Pegg reuse memorable TymeLess material but develop it through a new loss reference and Mission: Impossible scheme.|Territory narrative::Yard, palace, house, cosy feet-up imagery, roster position, and crown language create a repeated takeover theme.|Best quality::Energy, adaptability, and the confidence to make wider GZone history part of the performance.|Main weakness::Overpacked passages, unclear wording, and repeated third-round restarts weaken control at the close."]
+                ] : battle.slug === 'deeno-vs-tymeless' ? [
+                  ["Deeno", "Territory framing::The opening house claim and later run-this language present Deeno as the established GZone figure defending his position.|League callback::The Tapped24 and Grams headlock incident becomes evidence for how Deeno says he would react to physical pressure.|Inherited Episode 11 angles::William, time writing, parenting criticism, and racism allegations develop routes previously used by Ryno against TymeLess.|Gaming structure::Most Wanted, GTA, Big Smoke, CJ, final mission, game over, and replay create his strongest connected scheme.|Third-round sound chain::Froot Loops, Special K, Cheerio and serial killer turn cereal names into violent wordplay.|Live counter attempt::Lemonade directly answers the fruit props, but the stumble stops the rebuttal from taking ownership of the image.|Best quality::His cleanest writing is tailored to TymeLess's name, history, and established vulnerabilities.|Main weakness::Restarts and heavier personals interrupt the stronger technical routes."],
+                  ["TymeLess", "Room misdirection::TymeLess pretends that his own stomach hurts, lets the room believe the complaint, and then reveals it as the setup for Crohn's disease, IBS, squeezing, locked toilets, the plunger, and taking-the-piss material about Deeno.|Status transformation::The toilet seat becomes Deeno's false throne before TymeLess claims the GZone house for himself.|Prop evolution::The physical-object style used against Ryno develops into a plunger, photograph, and three lemons that organise whole passages.|Angle reversal::Grey hair becomes the silver fox, while Deeno's parenting attack becomes a stepfather performance addressed to Deeno's son.|Room involvement::Ginga Jay, reloads, reactions, and repeated props make the people around the ring part of the writing.|Battle-long payoff::Keith Lemon becomes real lemons, survives the lemonade counter, and resolves through the third-lemon squeezing punch.|Forward legacy::Episode 22 reuses the official result, lemons, Simon Pegg, and the house dispute against Deeno.|Winning edge::Stronger structure, clearer recurring images, and better crowd connection carry the decision."]
                 ] : [[mc1?.name || battle.mc1, ""], [mc2?.name || battle.mc2, ""]]).map(([name, highlights]) => (
                   <div key={name} className="mb-6 pb-6 border-b border-white/10 last:mb-0 last:pb-0 last:border-0">
                     <h4 className="text-brand font-display uppercase text-lg mb-2">{name}</h4>
