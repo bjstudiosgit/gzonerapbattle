@@ -106,7 +106,7 @@ export const mcs: MC[] = [
     style: "Disrespect / Intensity",
     image: "/nattyebk.png",
     bio: "A true multi-weight battler bringing relentless intensity and sharp delivery to every clash. NattyEBK thrives on disrespect, pressure, and commanding stage presence, delivering aggressive rounds designed to overwhelm opponents.",
-    isActive: true,
+    isActive: false,
     weightClass: "Multi-Weight Specialist",
     height: "6'0\"",
     location: "London",
@@ -114,7 +114,7 @@ export const mcs: MC[] = [
     instagram: "https://instagram.com/NattyOrNatz",
     tiktok: "https://tiktok.com/@NattyOrNatz",
     youtube: "https://youtube.com/@NattyEBK",
-    tags: ["Debut Winner"],
+    tags: ["Debut Winner", "Wasted"],
     debutTier: "explosive",
     stats: { off: 9.2, def: 8.0, perf: 9.5 }
   },
