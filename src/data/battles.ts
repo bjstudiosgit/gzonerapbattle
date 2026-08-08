@@ -409,16 +409,16 @@ export const battles: Battle[] = [
   },
   {
     "id": "27",
-    "slug": "deeno-vs-natty-ebk",
+    "slug": "deeno-vs-cj-zino",
     "mc1": "deeno",
-    "mc2": "nattyebk",
-    "title": "Deeno vs Natty EBK",
+    "mc2": "cj-zino",
+    "title": "Deeno vs CJ Zino",
     "date": "29 Aug 2026",
     "isUnreleased": true,
     "isPlaceholder": false,
     "episode": "1x26",
     "ticketUrl": "/events",
-    "flyer": "/flyers/august-29-2026-deeno-vs-natty-ebk.png"
+    "flyer": "/flyers/august-29-2026-deeno-vs-cj.jpg"
   },
   {
     "id": "28",

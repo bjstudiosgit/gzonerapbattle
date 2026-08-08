@@ -26,9 +26,9 @@ const august29Flyers: PromoFlyer[] = [
     direct: true,
   },
   {
-    id: "deeno-natty-ebk",
-    title: "Deeno VS Natty EBK",
-    src: "/flyers/august-29-2026-deeno-vs-natty-ebk.png",
+    id: "deeno-cj-zino",
+    title: "Deeno VS C.J Zino",
+    src: "/flyers/august-29-2026-deeno-vs-cj.jpg",
     aspect: "aspect-[3/4]",
     direct: true,
   },

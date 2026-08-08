@@ -25,6 +25,9 @@ export default function MCsPage() {
   const totalMCs = mcs.length;
   const activeMCsCount = activeMcs.length;
   const gingaJay = { ...hosts[0], role: "Host", type: "hosts" as const };
+  const darrenStewart = { ...hosts.find(h => h.id === 'darren-stewart')!, role: "Co-Host", type: "hosts" as const };
+  const passive = { ...hosts.find(h => h.id === 'passive')!, role: "Co-Host", type: "hosts" as const };
+  const louisBowers = { ...hosts.find(h => h.id === 'louis-bowers')!, role: "Production", type: "hosts" as const };
 
   const getRank = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.rank || 0;
@@ -96,6 +99,9 @@ export default function MCsPage() {
               <MCCard key={mc.id} mc={mc} index={index} rank={getDisplayRank(mc.id)} points={getPoints(mc.id)} />
             ))}
             <StaffCard person={gingaJay} index={activeMcs.length} />
+            <StaffCard person={passive} index={activeMcs.length + 1} />
+            <StaffCard person={darrenStewart} index={activeMcs.length + 2} />
+            <StaffCard person={louisBowers} index={activeMcs.length + 3} />
           </div>
         </div>
 

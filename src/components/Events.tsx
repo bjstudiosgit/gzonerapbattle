@@ -13,7 +13,7 @@ const augustEventImages = [
   "/flyers/august-2026-zk-vs-cj-zino.jpeg",
 ];
 const august29EventImages = [
-  "/flyers/august-29-2026-deeno-vs-natty-ebk.png",
+  "/flyers/august-29-2026-deeno-vs-cj.jpg",
   "/flyers/august-29-2026-zk-vs-7wave.png",
   "/flyers/august-29-2026-badee-harz-vs-1flaymah.png",
   "/flyers/august-29-2026-tricky-vs-roman.png",
@@ -133,7 +133,7 @@ const events = [
     card: [
       { mc1: "Badee Harz", mc2: "1 Flaymah" },
       { mc1: "Badee Harz", mc2: "Roman" },
-      { mc1: "Deeno", mc2: "Natty EBK" },
+      { mc1: "Deeno", mc2: "C.J Zino" },
       { mc1: "Tricky", mc2: "Roman" },
       { mc1: "Z.K", mc2: "7Wave" },
     ]

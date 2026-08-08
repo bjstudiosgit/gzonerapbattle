@@ -56,9 +56,9 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
   );
 
   return person.isMystery ? (
-    <div>{card}</div>
+    <div className="block w-full h-full">{card}</div>
   ) : (
-    <Link to={`/${profileType}/${person.id}`} aria-label={`View ${person.name} profile`}>
+    <Link to={`/${profileType}/${person.id}`} className="block w-full h-full" aria-label={`View ${person.name} profile`}>
       {card}
     </Link>
   );

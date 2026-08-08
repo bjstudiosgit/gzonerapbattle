@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { mcs } from "../data/mcs";
 import { battles } from "../data/battles";
@@ -13,34 +13,7 @@ export default function IntroVideo() {
   ).length;
   const heroRevealLeadSeconds = 4;
   const [videoEnded, setVideoEnded] = useState(false);
-  const [introAudioFinished, setIntroAudioFinished] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.volume = 0.5;
-
-    const stopRetrying = () => {
-      window.removeEventListener("pointerdown", playIntro);
-      window.removeEventListener("keydown", playIntro);
-      window.removeEventListener("wheel", playIntro);
-      window.removeEventListener("scroll", playIntro);
-    };
-
-    const playIntro = () => {
-      audio.play().then(stopRetrying).catch(() => undefined);
-    };
-
-    playIntro();
-    window.addEventListener("pointerdown", playIntro);
-    window.addEventListener("keydown", playIntro);
-    window.addEventListener("wheel", playIntro);
-    window.addEventListener("scroll", playIntro);
-
-    return stopRetrying;
-  }, []);
+  const [introAudioFinished, setIntroAudioFinished] = useState(true);
 
   useEffect(() => {
     if (videoEnded) {
@@ -57,13 +30,7 @@ export default function IntroVideo() {
 
   return (
     <section className="relative w-full min-h-screen overflow-x-hidden">
-      <audio
-        ref={audioRef}
-        autoPlay
-        src="/gzoneintro.mp4"
-        preload="metadata"
-        onEnded={() => setIntroAudioFinished(true)}
-      />
+
       {/* Shared Video Background */}
       <div className="absolute inset-0 z-0">
         <motion.div 
