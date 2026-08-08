@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 const battleCard = [
   ["Badee Harz", "1 Flaymah"],
   ["Badee Harz", "Roman"],
-  ["Deeno", "Natty EBK"],
+  ["Deeno", "CJ Zino"],
   ["Tricky", "Roman"],
   ["Z.K", "7Wave"],
 ];
 
 const eventFlyers = [
-  { src: "/flyers/august-29-2026-deeno-vs-natty-ebk.png", alt: "Deeno vs Natty EBK event flyer" },
+  { src: "/flyers/august-29-2026-deeno-vs-cj.jpg", alt: "Deeno vs CJ Zino event flyer" },
   { src: "/flyers/august-29-2026-zk-vs-7wave.png", alt: "Z.K vs 7Wave event flyer" },
   { src: "/flyers/august-29-2026-badee-harz-vs-1flaymah.png", alt: "Badee Harz vs 1 Flaymah event flyer" },
   { src: "/flyers/august-29-2026-tricky-vs-roman.png", alt: "Tricky vs Roman event flyer" },
@@ -121,12 +121,14 @@ export default function RoyalRumbleLanding() {
                 ))}
               </div>
 
-              <Link
-                to="/events"
+              <a
+                href="https://www.eventbrite.co.uk/e/the-gzone-rap-battle-live-show-tickets-1997061772521"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand px-6 py-4 font-display text-xl uppercase text-black transition-colors hover:bg-white"
               >
-                Tickets On Sale Soon <Ticket size={20} />
-              </Link>
+                Tickets On Sale Now <Ticket size={20} />
+              </a>
             </motion.div>
           </div>
         </div>
