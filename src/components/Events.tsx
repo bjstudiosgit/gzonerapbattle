@@ -126,14 +126,15 @@ const events = [
     title: "G ZONE: 29TH AUGUST",
     date: "29th August 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "TICKETS ON SALE SOON",
+    price: "TICKETS ON SALE NOW",
     image: august29EventImages[0],
     images: august29EventImages,
-    description: "The next GZone card lands at Peacocks Boxing on 29th August. Tickets on sale soon.",
+    description: "The next GZone card lands at Peacocks Boxing on 29th August. Tickets on sale now.",
+    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-live-show-tickets-1997061772521",
     card: [
       { mc1: "Badee Harz", mc2: "1 Flaymah" },
       { mc1: "Badee Harz", mc2: "Roman" },
-      { mc1: "Deeno", mc2: "C.J Zino" },
+      { mc1: "Deeno", mc2: "CJ Zino" },
       { mc1: "Tricky", mc2: "Roman" },
       { mc1: "Z.K", mc2: "7Wave" },
     ]
