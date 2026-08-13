@@ -221,7 +221,11 @@ export default function BattleDetail() {
               <div className="text-center mb-6 md:mb-8">
                 <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
                 <p className="text-zinc-400 text-sm mt-2 tracking-widest">
-                  {battle.winner ? "Official Judges' Decision" : "Awaiting Decision"}
+                  {battle.winner
+                    ? battle.slug === 'zk-vs-cj-zino'
+                      ? "Official Audience Decision"
+                      : "Official Judges' Decision"
+                    : "Awaiting Decision"}
                 </p>
               </div>
 
@@ -2944,7 +2948,185 @@ export default function BattleDetail() {
               </>
             )}
 
-            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && (
+            {battle.slug === 'zk-vs-cj-zino' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Episode 23 put Z.K into his second GZone battle after the official loss to NattyEBK in Episode 20. CJ-Zino arrived with a longer platform record: a loss to Proty, a win over Btizz, and a loss to 1Flaymr. Z.K was trying to convert a competitive debut into his first recorded win, while CJ was looking to restore momentum after the 1Flaymr result.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">CJ opened through direct status and credibility pressure. The repeated &ldquo;Mr Robinson&rdquo; entrance moved through Liverpool and Suarez, Grimsby, health and hygiene, family and bereavement material before reaching the clearest argument: Z.K had allegedly rapped for fourteen years without turning that experience into comparable visibility. The JDZ and birthday view-count comparison made reach the round&apos;s closing measure.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">After a sound restart, Z.K answered through CJ&apos;s Instagram reach, Gollum and other appearance jokes, CJ&apos;s GZone record, home-condition imagery, and a football run through Scholes, Gerrard, and Paolo Di Canio. He brought out a mini football to make the claim that he could volley CJ-Zino visible in the room. The first round established the battle&apos;s main contrast: CJ used blunt confrontation and personal pressure, while Z.K stacked visual comedy and recognisable references.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">The middle rounds widened those approaches. CJ raised an unclear allegation about other people preparing Z.K&apos;s rounds, used &ldquo;PC Robinson&rdquo;, disputed the credibility behind Z.K&apos;s image, and closed through a partly unclear Roman-numeral and X sequence. Z.K began answering the season&apos;s picture tactic before it could control him, then used cheap food, clothes, CJ&apos;s previous results, football-kit imagery, and sustained appearance jokes to question CJ&apos;s status.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">CJ&apos;s third used the Peacock&apos;s boxing setting through gloves, sparring, kicks, knocks, and a crowd-facing &ldquo;Pow&rdquo; passage, but repeated mic and sound resets broke its progression. Z.K&apos;s final was the clearest rebuttal round: he answered the repeated Grimsby and GY pressure by saying CJ mentioned his home so often that he wanted to live there, contrasted the seaside with a London box house, then ran through Peter Parker, darts, Dwayne Carter, Keir Starmer, fish and tartar, Palmer, Pollock, teeth, and the anticipated-photo close.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light">Ginge checked both sides of the room before deferring the close result to the live YouTube audience. YouTube selected Z.K, and the official GZone record confirms him as the winner. The video gives no judge panel or round score. Z.K&apos;s sustained final run and stronger late adjustment left the cleaner last impression, while CJ&apos;s view-count argument and &ldquo;Pow&rdquo; participation kept the clash competitive. Serious personal accusations on both sides remain statements made in performance, not independently verified facts.</p>
+                  </div>
+                </section>
+
+                {battle.props && (
+                  <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10">
+                    <h2 className="text-3xl font-display uppercase text-white mb-8">Evidence: Props Used</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {battle.props.map((prop) => (
+                        <div key={`${prop.user}-${prop.name}`} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-950/70 p-5">
+                          <div className="w-16 h-16 shrink-0 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700">
+                            <span className="text-2xl">{prop.icon}</span>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-white font-bold">{prop.name}</p>
+                            <p className="text-zinc-500 text-sm uppercase tracking-widest">Used by {prop.user}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1 — CJ-Zino", "Longevity becomes underachievement", "Mr Robinson, Liverpool and Suarez, Grimsby, contamination and germs, personal and bereavement attacks, and fourteen years versus three build toward the view-count comparison. The opening is repeated after a sound adjustment."],
+                      ["Round 1 — Z.K", "Online reach and visual roast writing", "Slipknot and TikTok, Instagram followers, Gollum, roster-record pressure, the 1-0 scoreboard claim, floorboards and bando imagery, then a mini-football prop turns the Scholes, Gerrard, and Paolo Di Canio half-volley sequence into a physical claim that Z.K could volley CJ-Zino. He also restarts after asking for his level to be changed."],
+                      ["Round 2 — CJ-Zino", "Credibility, seriousness, and the X close", "An unclear suggestion that Z.K's rounds are paid for or prepared by others leads into direction writing, smell, PC Robinson, alleged lies, serious name-checks, severe deceased-friend material, and a partly unclear Z.K, Roman-numeral, and X sequence."],
+                      ["Round 2 — Z.K", "Pictures, class, and record pressure", "Facebook deletion and opponents producing pictures establish a prebuttal before shoes, family and poverty imagery, Rustlers and Worcester flavouring, BMX and wheelie, CJ's prior defeats, football-kit staging, clothes, dancing, and sustained appearance jokes."],
+                      ["Round 3 — CJ-Zino", "The boxing setting becomes performance", "GY and Fishpatrick lead into running an opponent down, sparring, gloves, kicking, knocks, tea and mug language, leprechaun and rainbow imagery, relationships, the cold GZone ring, and a Lethal B-style Pow call-and-response. The passage requires several starts."],
+                      ["Round 3 — Z.K", "Territory reversal and the longest connected run", "Z.K says CJ mentions his home so often that he wants to be from GY, contrasts a London box house with living near the seaside, then moves through Peter Parker, one-clash progress, darts, Dwayne Carter, farmer, Starmer, fish and tartar, Palmer, Pollock, teeth, and the photo-clone prebuttal."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Live rebuttal: GY changes ownership", "CJ repeatedly attacks Grimsby and Z.K's home area. Z.K opens his next round by saying CJ mentions the place so often that he wants to be from GY, then prefers his five-minute walk from the seaside to CJ's claimed London box house. The sequencing makes this an immediate answer, although the transcript cannot prove whether it was improvised."],
+                      ["Prebuttal: the photograph tactic is anticipated", "Natty stopped Episode 20 to present a screenshot and photograph against Z.K. Here Z.K begins round two with Facebook deletion and opponents whipping out pictures, then closes the battle by saying he expected CJ to come with a photo, had cloned it, and warned him to watch who he trusted. Because CJ's transcript contains no clear photo reveal, this is labelled a prepared prebuttal or claimed countermeasure, not a confirmed live prop rebuttal."],
+                      ["CJ inherits the fourteen-year argument", "Natty had already turned Z.K's fourteen years of rapping into evidence that his profile should be larger. CJ repeats that experience-versus-reach pressure and develops it through the JDZ and birthday view comparisons. It is inherited opponent history, not a new factual finding."],
+                      ["Football changes sides immediately", "CJ identifies Z.K as a Liverpool supporter and puts himself in a Suarez bag. Z.K answers in the following turn with Scholes, Gerrard, and Paolo Di Canio imagery, bringing out a mini football to show that he could volley CJ-Zino. The football subject clearly changes hands, although the prop reinforces a prepared performance sequence rather than a confirmed live rebuttal."],
+                      ["CJ disputes the 1Flaymr result", "CJ refers back to his previous clash and argues that the crowd misunderstood or misjudged the outcome. The official GZone archive still records 1Flaymr as the winner, so CJ's statement is documented as a performance rebuttal to his record rather than a revised result."],
+                      ["CJ's official losses become Z.K's pressure", "Z.K says CJ has been spun by much of the roster and later appears to reference Proty and 1Flaymr, both official CJ defeats. The speech-to-text wording around the names is imperfect, and 'bodied' is Z.K's battle claim rather than an official margin."],
+                      ["Live rebuttal: the level claim is reversed", "CJ says he cannot see Z.K levelling with a level like his. Z.K answers in the next round that CJ is stuck at the level he passed in one clash and that he beat the marker. Repeating the key word and reversing the hierarchy makes this the clearest opponent-to-opponent rebuttal, although the transcript cannot prove it was freestyled."],
+                      ["Grimsby develops from travel pressure into territory", "Z.K's debut already used Grimsby-to-London movement as part of his identity. CJ attacks Grimsby here, but Z.K's final turns the seaside into something preferable and worth defending. Location changes from vulnerability into owned territory."],
+                      ["Hygiene pressure keeps changing hands", "Natty used teeth, plaque, breath, and washing against Z.K. CJ now returns to germs and smell, while Z.K redirects the same surface through CJ's home, partner, clothes, hair, and teeth. The subject is exchanged across battles rather than belonging to one performer."],
+                      ["Darren the dentist is redirected", "Natty told Z.K to visit a dentist and said Darren could not save him in Episode 20. Z.K now says everyone knows Darren is a dentist before telling CJ that his teeth need checking. A bar previously aimed at Z.K becomes part of his closing attack on somebody else."],
+                      ["No more dropping the mic is a live self-callback", "CJ first says he will drop the mic and start with a kick. After the mic and sound interruptions, he says there will be no more dropping it before the Pow sequence. The adjustment responds to what has just happened on stage rather than answering an opponent's angle."],
+                      ["The result confirms progression, not a rewritten debut", "Z.K says he passed CJ's level in one clash, and Ginge later says it took a couple of battles for this version of Z.K to arrive. The official NattyEBK loss remains unchanged; Episode 23 records the improvement by giving Z.K his first GZone win."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Performance Analysis
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Z.K</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Z.K remains a visual and reference-led writer, but this performance is more opponent-specific than his debut. Instagram reach, CJ&apos;s record, London versus GY, clothes, teeth, and the anticipated photograph all build from material attached either to CJ or to Z.K&apos;s previous GZone experience.</p>
+                        <p>His opening uses quick images to resist CJ&apos;s direct aggression. Slipknot, TikTok, Gollum, Foster&apos;s, a cartoon character, Dixy Chicken, Nando&apos;s, Scholes, Gerrard, and Di Canio give the room frequent destinations even when the sound forces repetition.</p>
+                        <p>The third is the clearest step forward. The location reversal supplies an argument before darts, Dwayne Carter, farmer, Starmer, tartar, Palmer, and Pollock create sustained movement. Ginge&apos;s interruption that Z.K had finally arrived and was an &ldquo;encyclopedia of jokes&rdquo; is the strongest explicit reaction preserved by the transcript.</p>
+                        <p>Control remains imperfect: Z.K needs multiple starts, repeats long passages, and sometimes extends sound chains beyond their clearest meaning. Some severe personal material also competes with the cleaner visual writing. He nevertheless produces the more memorable closing run and wins the official livestream-audience decision.</p>
+                      </div>
+                    </article>
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">CJ-Zino</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>CJ performs through direct pressure, grime cadence, and confrontation. His first has the most coherent status argument: fourteen years becomes underachievement, and the view-count comparison gives the claim a measurable finish.</p>
+                        <p>&ldquo;Mr Robinson&rdquo;, Liverpool and Suarez, PC Robinson, GY, the gym, tea and mug language, and the Z.K and X material show attempts to tailor the writing beyond general hostility. His record rebuttal also makes the previous 1Flaymr decision part of the current battle.</p>
+                        <p>His strongest performance device is the third-round &ldquo;Pow&rdquo; section. Repetition turns a straightforward threat sequence into crowd participation, while the boxing setting makes sparring, gloves, kicks, and punches locally relevant. &ldquo;No more dropping the mic&rdquo; also shows awareness of the live disruption.</p>
+                        <p>CJ&apos;s weakness is shape and clarity. Long allegation packages, harsh family and bereavement attacks, mic trouble, and repeated attempts at the final passage interrupt progression. He creates energy and several reactive moments but does not leave as complete a final written sequence as Z.K&apos;s third.</p>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Notable Bars
+                  </h2>
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                    {[
+                      ["Z.K", [
+                        ["Sits in his bedroom smoking bongs while punching walls, listening to Slipknot. Spent his whole life on TikTok; skinny MC will die from a rib shot.", "Slipknot, TikTok, physical build, and a rib shot create an immediate portrait of online aggression that Z.K presents as fragile in person."],
+                        ["I checked your Insta: nobody follows you, nobody bothered to watch. When I bother you, you'll be a sorry you.", "Follow, watch, bother, and sorry-you keep the social-media reach attack moving through a simple internal sound chain."],
+                        ["Looking like Gollum too ... spun by most of the GZone roster.", "The Lord of the Rings image makes the appearance joke visible before Z.K joins it to CJ's official losing record. Any claim about the margin remains battle rhetoric."],
+                        ["Easy for me, 1-0 on the scoreboards.", "Z.K closes the opening section by judging it himself, making the football-influenced scoreboard part of the performance."],
+                        ["Never in your life have you been my calibre. Swear you look like a cartoon character.", "Calibre states the status gap while cartoon character converts it immediately into a visual roast."],
+                        ["Got a half-volley like Scholes and Gerrard ... now I'm coming like Paolo Di Canio.", "Three famous footballers connect the half-volley threat to CJ's earlier Liverpool and Suarez material. Z.K's mini-football prop makes the claim that he could volley CJ-Zino physically visible to the room."],
+                        ["You're Dixy Chicken, not Nando's. You don't rap, you love chilling at pantos.", "A lower-status chicken shop and pantomime reduce CJ's music and image through recognisable British references."],
+                        ["These lot are all scared, deleting Facebook. Out with my lyrics and they're whipping out pictures.", "Z.K turns the picture tactic used against him by Natty into an expected part of facing GZone opponents, beginning the prebuttal before CJ's later round."],
+                        ["Come to the clash, full kit in my boots, shin pads and the armband too.", "The football clothing turns Z.K's preparation into a complete match-day image rather than a single kick reference."],
+                        ["Fully grown bloke but your hair's in a pony ... Primark goods, chinos, Crocs and a rainbow T-shirt.", "Hair and inexpensive clothing create a sustained visual character attack that the audience can recognise without accepting the personal claims around it."],
+                        ["Mention the place that I live so much, you'd think that he wanted to be from GY ... Z.K's a five-minute walk from the seaside. I think I know what I'd rather.", "This is the clearest immediate answer of the battle. Z.K takes CJ's location pressure and makes Grimsby a preferable territory rather than an embarrassment."],
+                        ["Spent so long throwing darts at your face, won't be surprised if I got a nine-darter. This one I wrote is way off the chart; you look like a crack version of Dwayne Carter.", "Darts, nine-darter, chart, and Dwayne Carter sustain the end sounds while moving through precision, writing, and appearance."],
+                        ["Talk about Grimsby and fish ... I'll serve him like fish and tartar for starter.", "The coastal attack is reclaimed through a fish, tartar, and starter food chain, extending rather than abandoning the GY rebuttal."],
+                        ["We all know that Darren's a dentist, but we all need your tooth to be checked.", "Natty previously told Z.K that dentist Darren could not save his teeth. Z.K now redirects the same GZone reference toward CJ."],
+                        ["I had a feeling you'd come with a photo, so I cloned it. Now watch who you trust.", "The photo tactic that damaged Z.K's debut becomes a prepared counter. The line questions image reliability; it does not independently prove that any picture was genuine or manipulated."]
+                      ]],
+                      ["CJ-Zino", [
+                        ["I'm Mr Robinson. Everybody you spit's diluted. Keep on breathing, GZone's polluted. When I walked in, all your boys saluted.", "The repeated opener uses Robinson, diluted, polluted, and saluted to give CJ an immediately recognisable entrance cadence."],
+                        ["I know you're a Liverpool fan ... little man, I'm in my Suarez bag.", "Luis Suarez supplies an opponent-specific football reference before the round moves into kicking and confrontation."],
+                        ["I said, K, don't let me find out. You're claiming badness ... fuck around, find out.", "CJ isolates the final letter of Z.K's name and repeats find out to challenge whether the opponent's image survives scrutiny."],
+                        ["You've been rapping for fourteen years; I've been rapping for three, and your views ain't banging.", "Longevity is reversed into underachievement: the longer career is presented as a weakness because CJ claims to have reached a larger audience more quickly."],
+                        ["Your JDZ got 8K views; my birthday, I had 9K views.", "Specific figures make the wider career comparison concrete. They are claims made in the round and are not independently audited by this page."],
+                        ["If I rap like you, that's a punch in the mouth. If I rap like you, man will quit right now.", "Repetition makes imitation sound unacceptable and frames Z.K's approach as beneath CJ's own standard."],
+                        ["See a Black man, ask what he sells; PC Robinson fits too well.", "CJ turns Robinson into a police title and uses it inside a serious character accusation. The allegation remains battle material, not a verified fact."],
+                        ["Everybody you spat was lie after lie after lies.", "The simple repeated phrase condenses CJ's second-round credibility case into an easy crowd hook."],
+                        ["I'm raising a Z.K to carve out Roman numerals ... don't get to the X, bro's gonna need consumables.", "The transcription around the setup is imperfect, but Z.K, Roman numerals, X, and consumables are the clear anchors of an ambitious letter, number, and game-resource sequence."],
+                        ["You can't bar with a kid, let alone war with a kid. I need some gloves and I'm sparring a kid.", "Bar, war, and spar connect writing, conflict, and boxing while reducing Z.K to a child inside the Peacock's gym setting."],
+                        ["We're in Peacock's gym ... we're raising fighters ... I'll start with a knock.", "CJ uses the actual venue to make the gloves, kick, knock, and fighter language feel local to the room."],
+                        ["Click-clack-bang when I ride with the squad; even on my Jack Jones, I'm booming off your back door.", "Jack Jones means being alone, so CJ contrasts arriving with a squad and remaining dangerous without one."],
+                        ["No more dropping the mic ... coming like a Lethal B beat: pow. You can get a punch in your teeth: pow.", "CJ absorbs the live mic problem into the setup, then uses the recognisable Pow rhythm as a call-and-response performance close."]
+                      ]]
+                    ].map(([name, bars]) => (
+                      <article key={name as string} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                        <h3 className="text-2xl font-display uppercase text-brand mb-6">{name as string}</h3>
+                        <div className="space-y-4">
+                          {(bars as string[][]).map(([quote, explanation]) => (
+                            <div key={quote} className="rounded-xl border border-white/10 bg-white/[0.025] p-5">
+                              <blockquote className="text-white font-bold leading-relaxed mb-3">
+                                &ldquo;{quote}&rdquo;
+                              </blockquote>
+                              <p className="text-zinc-400 leading-relaxed font-light">{explanation}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+
+            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -4315,6 +4497,12 @@ export default function BattleDetail() {
                 "Natty created the larger moments through direct confrontation, the screenshot and photograph, the Z.K weapon flip, twins, the throne claim, a stronger flow change, and the Prince-to-Z.K progression. Those elements gave his third round the more decisive shape.",
                 "The crowd call and official archive record award NattyEBK the win, 2-1. Z.K's clarity kept the contest competitive, but Natty's escalation, physical evidence, room command, and stronger close carried the result."
               ]],
+              ["zk-vs-cj-zino", [
+                "CJ-Zino built his strongest case through direct pressure: Mr Robinson, Liverpool and Suarez, fourteen years versus three, view counts, PC Robinson, GY, and the Peacock's boxing setting all aimed to make Z.K's experience look unproductive.",
+                "Z.K answered with the clearer visual writing and a more opponent-specific record attack. Instagram, Gollum, football, CJ's previous results, clothing, London versus GY, teeth, and the photograph tactic turned his second GZone appearance into a progression from the Natty clash.",
+                "The decisive stretch was Z.K's third. He reversed CJ's level and location claims, sustained the darts, Carter, Starmer, tartar, Palmer, and Pollock run, redirected Darren the dentist, and closed with the prepared photo-clone counter. CJ's Pow sequence kept the room involved but repeated restarts weakened its shape.",
+                "Ginge checked the room, then deferred the close decision to the live YouTube audience. YouTube selected Z.K, and the official GZone record confirms the result. No judge panel or round score is given, so the battle is recorded as an audience win without inventing a margin."
+              ]],
               ["deeno-vs-btizz", [
                 "Btizz made the clash competitive through flow changes, record rebuttals, TymeLess callbacks and deliberate mirroring of Deeno's cadence. His résumé defence and use of Deeno's previous loss stopped the clash becoming a simple veteran-versus-challenger story.",
                 "Deeno built the larger opponent-specific case through Btizz's record, clothing and originality callbacks, father-and-son framing, the Google Maps screenshot, the photograph of a headstone inscribed with 'Btizz' and the adoption papers used to say he would father his opponent.",
@@ -4396,7 +4584,7 @@ export default function BattleDetail() {
             ] as const).filter(([slug]) => battle.slug === slug).map(([slug, paragraphs]) => (
               <div key={slug} className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-4 text-white">The Result</h3>
-                {slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' ? (
+                {slug === 'zk-vs-cj-zino' || slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' ? (
                   <div className="space-y-4 text-zinc-400 text-sm leading-relaxed">
                     {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
@@ -5353,7 +5541,56 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {battle.slug === 'zk-vs-cj-zino' && (
+              <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
+                <h3 className="text-xl font-display uppercase mb-6 text-white">
+                  Key Technical Highlights by MC
+                </h3>
+                {[
+                  {
+                    mc: "Z.K",
+                    highlights: [
+                      ["Visual comedy", "Slipknot, TikTok, Gollum, footballers, clothing brands, Peter Parker, Dwayne Carter, Palmer, and Phineas keep the writing easy to picture."],
+                      ["Physical football payoff", "Z.K brings out a mini football during the Scholes, Gerrard, and Paolo Di Canio half-volley sequence, using the prop to show the room that he could volley CJ-Zino."],
+                      ["Live location rebuttal", "CJ's repeated Grimsby and GY pressure is reversed into a claim that he wants to live there, followed by the seaside-versus-box-house comparison."],
+                      ["Level reversal", "CJ's claim that Z.K cannot reach his level comes back as CJ being stuck at a level Z.K says he passed in one clash."],
+                      ["Prepared photo counter", "Facebook and picture language in round two develops into the closing claim that Z.K expected a photo, cloned it, and could challenge who supplied it."],
+                      ["Archive awareness", "CJ's losses, Natty's previous evidence tactic, Darren the dentist, and Z.K's own debut all become material without changing the official results."],
+                      ["Sustained third-round chain", "Darts, nine-darter, chart, Carter, farmer, Starmer, tartar, Palmer, and Pollock give the final the battle's longest connected sound run."],
+                      ["Main weakness", "Restarts, repeated passages, harsh personals, and some overextended rhyme chains reduce clarity around the cleaner jokes."],
+                      ["Winning edge", "The stronger final-round adjustment, clearest Ginge reaction, and more memorable closing sequence support the livestream audience decision."]
+                    ]
+                  },
+                  {
+                    mc: "CJ-Zino",
+                    highlights: [
+                      ["Opening identity", "The repeated Mr Robinson, diluted, polluted, and saluted cadence gives CJ an immediate performance anchor."],
+                      ["Career-status case", "Fourteen years versus three and the JDZ and birthday view comparisons turn experience into a measurable relevance argument."],
+                      ["Opponent naming", "K, Zach, Robinson, PC Robinson, Grimsby, and GY keep important parts of the writing attached to this matchup."],
+                      ["Record rebuttal", "CJ disputes how the 1Flaymr result was received, making his most recent official loss part of the current performance without altering the archive verdict."],
+                      ["Venue writing", "Bar, war, spar, gloves, kicks, knocks, and fighters use the Peacock's boxing-gym setting instead of relying only on generic threats."],
+                      ["Crowd device", "The repeated Pow section converts punch language into call-and-response and gives CJ his clearest participatory moment."],
+                      ["Live self-callback", "No more dropping the mic acknowledges the interruption that has just affected the round and folds it back into the performance."],
+                      ["Main weakness", "Sound problems, multiple complete restarts, severe allegation packages, and a less connected final structure weaken the finish against Z.K's closing run."]
+                    ]
+                  }
+                ].map(({ mc, highlights }) => (
+                  <div key={mc} className="mb-8 last:mb-0">
+                    <h4 className="text-brand font-display uppercase text-lg mb-3">{mc}</h4>
+                    <div className="divide-y divide-white/10">
+                      {highlights.map(([label, detail]) => (
+                        <div key={label} className="py-3 first:pt-0 last:pb-0">
+                          <h5 className="text-white text-sm font-bold mb-1">{label}</h5>
+                          <p className="text-zinc-400 text-xs leading-relaxed">{detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

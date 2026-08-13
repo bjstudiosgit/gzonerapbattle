@@ -34,7 +34,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "53.1K",
+    "views": "53.7K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -83,7 +83,7 @@ export const battles: Battle[] = [
     "title": "CJ Zino vs Proty",
     "date": "15 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/T0zo6YgfxB4",
-    "views": "11.0K",
+    "views": "11.1K",
     "winner": "proty",
     "episode": "1x5"
   },
@@ -119,7 +119,7 @@ export const battles: Battle[] = [
     "title": "2MWAD vs Ryno",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/HfO3UR_Zeyk",
-    "views": "26.0K",
+    "views": "26.6K",
     "winner": "2mwad",
     "episode": "1x8",
     "props": [
@@ -150,7 +150,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs AJNA",
     "date": "19 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oUDDrQtoTHM",
-    "views": "13.5K",
+    "views": "13.8K",
     "winner": "ajna",
     "props": [
       { "name": "Pack of baby wipes", "user": "Tapped24", "icon": "🧼" }
@@ -229,7 +229,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Grams",
     "date": "1 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/9gkXN1ZJeP8",
-    "views": "12.5K",
+    "views": "12.7K",
     "winner": "tapped24",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -248,7 +248,7 @@ export const battles: Battle[] = [
     "title": "Btizz vs 1Flaymr",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/2lFLlylG5NQ",
-    "views": "7.5K",
+    "views": "8.0K",
     "winner": "btizz",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -276,7 +276,7 @@ export const battles: Battle[] = [
     "title": "Badee Harz vs Deeno",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "30.5K",
+    "views": "31.5K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -294,7 +294,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tymeless",
     "date": "19 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/JoW3ZGND5YM",
-    "views": "17.7K",
+    "views": "18.7K",
     "winner": "tymeless",
     "props": [
       { "name": "Toilet plunger", "user": "TymeLess", "icon": "🪠" },
@@ -347,12 +347,13 @@ export const battles: Battle[] = [
     "title": "Deeno vs Btizz",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/SOt1dtGOdoA",
+    "views": "6.6K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "1x22",
     "props": [
       { "name": "Google Maps screenshot of Btizz's modest family home", "user": "Deeno", "icon": "🗺️" },
-      { "name": "Photograph of a headstone inscribed with “Btizz”, symbolising his death", "user": "Deeno", "icon": "📸" },
+      { "name": "Mock headstone photograph bearing Btizz’s name", "user": "Deeno", "icon": "📸" },
       { "name": "Adoption papers presented to prove Deeno was going to “father” Btizz", "user": "Deeno", "icon": "📄" }
     ],
     "flyer": "/flyers/august-2026-deeno-vs-btizz.jpeg"
@@ -364,9 +365,14 @@ export const battles: Battle[] = [
     "mc2": "cj-zino",
     "title": "Z.K vs CJ Zino",
     "date": "1 Aug 2026",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/x11pj0si6lA",
+    "views": "448",
     "winner": "zk",
     "isPlaceholder": false,
     "episode": "1x23",
+    "props": [
+      { "name": "Mini football used to demonstrate volleying CJ-Zino", "user": "Z.K", "icon": "\u26BD" }
+    ],
     "flyer": "/flyers/august-2026-zk-vs-cj-zino.jpeg"
   },
   {
@@ -451,7 +457,7 @@ export const battles: Battle[] = [
 export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 
-export const lastUpdated = "5 Aug 2026";
+export const lastUpdated = "13 Aug 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {
