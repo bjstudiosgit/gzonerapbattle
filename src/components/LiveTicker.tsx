@@ -9,7 +9,7 @@ export default function LiveTicker() {
     { text: "THE BARS HAVE BEEN BROKEN DOWN: FULL BATTLE WRITE-UPS NOW LIVE", type: "editorial" },
     { text: "TYMELESS VS DEENO: THE AFTERMATH IS LIVE", type: "editorial" },
     { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
-    { text: "ROYAL RUMBLE VIDEOS COMING SOON", type: "upcoming" },
+    { text: "ROYAL RUMBLE VIDEOS OUT NOW", type: "live" },
     { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
   ];
 

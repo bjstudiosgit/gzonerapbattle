@@ -222,9 +222,11 @@ export default function BattleDetail() {
                 <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
                 <p className="text-zinc-400 text-sm mt-2 tracking-widest">
                   {battle.winner
-                    ? battle.slug === 'zk-vs-cj-zino'
-                      ? "Official Audience Decision"
-                      : "Official Judges' Decision"
+                    ? battle.slug === 'deeno-vs-afrodon'
+                      ? "GZone Crowd Decision"
+                      : battle.slug === 'zk-vs-cj-zino'
+                        ? "Official Audience Decision"
+                        : "Official Judges' Decision"
                     : "Awaiting Decision"}
                 </p>
               </div>
@@ -3126,7 +3128,160 @@ export default function BattleDetail() {
               </>
             )}
 
-            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && (
+            {battle.slug === 'deeno-vs-afrodon' && (
+              <>
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Clash Summary
+                  </h2>
+                  <div className="prose prose-invert prose-zinc max-w-none prose-lg">
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">FX1 launched our Freestyle League. We brought Afrodon in as the newest GZone roster member and put him straight across from Deeno. Both men took the clash the night before. They heard the beats in the room. No long camp. No familiar instrumentals. Just two established freestylers reacting live on our floor.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Afrodon came with the longer runs. He went at Deeno&apos;s weight, appearance, relationship, previous clashes, Ryno situation and Viking identity while changing rhyme pockets to stay on every beat. Mark from The Chase, Mary Poppins, KSI, MK Dons, church shoes and Mrs Deeno kept those attacks visual.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Deeno hit back with the shorter counters. Afrodon threatened the chain; Deeno turned it into Deebo from Friday. Afrodon attacked Deeno&apos;s mum; Deeno fired the animal comparison back at Afrodon&apos;s nan. At the finish, Deeno dragged the earlier More Life talk into the face-off and demanded the same energy there and then.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">By rounds two and three, almost everything became ammunition. Afrodon answered the nan attack, brought Mrs Deeno back through Snapchat and flipped the talk about his eye onto Deeno. Deeno kept grabbing the last subject in front of him—chain, family, crew, benefits, More Life—and sending it straight back.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light mb-8">Then the room got heated. They crowded each other, challenged each other and pushed the finish right to the edge before Ginge stepped between them. We kept the clash controlled, but the intensity was real—and every action gave the other man fresh material.</p>
+                    <p className="text-zinc-300 leading-relaxed font-light">We put the final call to the room. Deeno took it and became our first Freestyle League winner. No judges. No scorecards. The GZone crowd made the decision. Both MCs threw family, relationship and street claims at each other; those were angles inside the clash, not facts we are reporting about their lives.</p>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Round Structure
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Round 1", "Immediate visual pressure", "Afrodon sets our opening pace with Deeno's weight, Mark from The Chase, food, Ryno, his eye and Mrs Deeno. Deeno answers in shorter bursts, attacking the new roster member's appearance, reach and GZone status. Long flow meets compact counters from the jump."],
+                      ["Round 2", "Chain threat and live reversal", "The unknown beat pulls both men into direct confrontation. Afrodon brings church shoes, drugs, traps, family, KSI and the threat to take Deeno's chain. Deeno fires back with Deebo from Friday, moves into family pressure, then watches Afrodon answer the nan line and return to Mrs Deeno."],
+                      ["Round 3", "Callbacks become the finish", "Afrodon flips the talk about his eye onto Deeno, then goes at Deeno's mum and partner. Deeno sends the animal comparison back with the rabbit line, spots the crew for the JLS joke and closes by challenging Afrodon over the earlier More Life talk."],
+                      ["Closing exchange", "Physical tension and control", "The final face-off moves from verbal challenges into a shove. Ginge gets between them and settles our ring. That is FX1 at full temperature: reaction feeding reaction, with the battle kept under control."]
+                    ].map(([round, focus, detail]) => (
+                      <article key={round} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6">
+                        <p className="text-brand text-xs font-black uppercase tracking-[0.2em] mb-2">{round}</p>
+                        <h3 className="text-xl font-display uppercase text-white mb-4">{focus}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Rebuttals, Callbacks &amp; Evolving Material
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      ["Live rebuttal: chain becomes Deebo", "Afrodon says he will jack Deeno's chain. Deeno answers on the spot, switches his own name to Deebo and lands on Friday. One threat. One object. One instant film flip."],
+                      ["Live rebuttal: the nan line changes direction", "Deeno threatens Afrodon's nan. Afrodon opens the next reply with 'Talk to my nan?' and says Deeno has less style than she does. You can hear the handoff happen in real time."],
+                      ["Live rebuttal: mother becomes nan", "Afrodon says Deeno's mum looks like a dog. Deeno repeats the comparison, throws it back across the room and escalates dog into rabbit, mother into nan."],
+                      ["The eye becomes a self-aware reversal", "Afrodon does not duck the eye angle. He grabs it and says his eye and Deeno have the same problem: both are clapped, going the wrong way and not straight."],
+                      ["Mrs Deeno runs through all three rounds", "Afrodon starts by blaming a lip bite on seeing Mrs Deeno, comes back with Snapchat and returns to her at the finish. One live joke becomes his clearest three-round personal."],
+                      ["More Life returns at the close", "More Life is mentioned early. At the finish, Deeno challenges Afrodon over what he says was promised there. We see the earlier talk turn into a face-to-face credibility test inside FX1."],
+                      ["Ryno remains an unresolved challenge", "Afrodon keeps saying Deeno does not want Ryno. That is Afrodon's status angle on the night; FX1 does not settle anybody's private booking story."],
+                      ["New-roster status becomes material", "We introduce Afrodon as our newest roster member. Deeno instantly turns that welcome into pressure about one GZone video, limited views and how much Afrodon still has to prove here."],
+                      ["Written-versus-freestyle accusations", "Both men accuse the other of writing. Here is what we know: they took the clash the night before, heard the beats live and entered FX1 as freestylers. The accusations are bars, not a format change."],
+                      ["Actions create the next response", "This is why we launched the Freestyle League. The face-offs, chain threat, eye contact and shove all create the next bar almost immediately. One man acts; the other has to raise it or redirect it."]
+                    ].map(([title, detail]) => (
+                      <article key={title} className="rounded-2xl border border-white/10 bg-zinc-950/70 p-6">
+                        <h3 className="text-xl font-display uppercase text-brand mb-3">{title}</h3>
+                        <p className="text-zinc-400 leading-relaxed font-light">{detail}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Performance Analysis
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Deeno</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>What hits hardest for us is Deeno&apos;s compression. He grabs the last object or phrase—chain, nan, mum, crew, More Life—and sends back a recognisable answer before the beat or the room can move on.</p>
+                        <p>The Deeno-to-Deebo switch is his cleanest full freestyle construction. It answers a live threat, keeps hold of the chain and lands on the Friday character in one move. The mum-to-nan reversal and More Life finish run on the same instinct.</p>
+                        <p>He uses everything in our room. Afrodon&apos;s new-roster status, the crew behind him, the face-to-face distance and the physical jostling all become bars. Nothing has to sit in the background.</p>
+                        <p>Where it slips is escalation. Some family and threat passages chase shock harder than wordplay, and Ginge has to step in at the finish. When we put it to the crowd, though, Deeno&apos;s sharper live reversals took the win.</p>
+                      </div>
+                    </article>
+                    <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                      <h3 className="text-2xl font-display uppercase text-brand mb-6">Afrodon</h3>
+                      <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
+                        <p>Afrodon announces himself to our roster through sustained beat control. He keeps producing across long pockets, jumps from appearance to status, relationships, family, location and credibility, and never lets the unfamiliar instrumentals stop the attack.</p>
+                        <p>His best weapon is recurrence. Mrs Deeno grows from the lip-bite joke into Snapchat and the final partner attack. Ryno keeps coming back as a status challenge. He absorbs the eye criticism, while the nan response starts from Deeno&apos;s exact subject.</p>
+                        <p>He makes the unknown beats easy to follow. Mark from The Chase, Mary Poppins, KSI, MK Dons, Viking imagery, church shoes and social media give our crowd quick pictures while his rhyme routes keep moving.</p>
+                        <p>He could cut harder. Repetition, severe personals and long threat passages sometimes bury the cleaner visual jokes, while the finish becomes more physical than technical. Even in defeat, Afrodon gives our new league a forceful debut and proves he can adapt live.</p>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
+                  <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
+                    <span className="w-8 h-1 bg-brand" />
+                    Notable Bars
+                  </h2>
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                    {[
+                      ["Deeno", [
+                        ["You look like Likkleman just grew a couple feet and then tried to battle him.", "One look, one comparison, instant roast: Deeno turns Afrodon's height and appearance into a Likkleman flip."],
+                        ["Get him like Mewtwo — I don't wanna mute you.", "A clean sound switch. Mewtwo becomes 'mute you' without slowing the bar."],
+                        ["You have one video, got a couple of views and two bags — that's all right.", "We had just introduced Afrodon as our newest roster addition, so Deeno attacks the obvious pressure point: a fresh GZone name still building his catalogue."],
+                        ["Try to take my chain and everyone here will know about this Deeno — switch Deebo, it's Friday.", "The standout live counter of FX1. Afrodon threatens the chain; Deeno flips his own name into Deebo, the chain-snatcher from Friday."],
+                        ["Left hook, right hook — up with your nan, I'm kicking her all over the stairs.", "A raw family threat gives Afrodon the exact subject for his next response. In freestyle, the next rebuttal often starts with the last thing said."],
+                        ["If my mum looks like a dog, then your nan looks like a rabbit with AIDS.", "Afrodon's dog comparison comes straight back at his side of the room, with Deeno escalating dog into rabbit and mum into nan."],
+                        ["Who are you better than? I'll get my hammer then, get to the slapping man.", "Better than, hammer then, slapping man: a fast internal rhyme pocket built to cut through the beat."],
+                        ["I know I'm gonna lose this battle, 'cause he's brought in his old JLS crew.", "Deeno spots Afrodon's supporters, labels them an old JLS crew and pulls the whole room into a fake concession."],
+                        ["You're on JSA, that's why you don't have a thing to say.", "JSA becomes 'nothing to say': a quick benefits jab that lands back on Afrodon's performance."],
+                        ["I don't care what you wrote — stop going on like you are the GOAT.", "Both men question each other's freestyling. Deeno uses the writing accusation to attack Afrodon's claim to be the GOAT."],
+                        ["You said you'd bang me in More Life, but we're here right now and you actually won't.", "Deeno drags the earlier More Life talk into the face-off and demands the promised energy there and then."],
+                        ["You got shoved quick — now he's gonna say that I ain't done nothing.", "The shove happens and Deeno narrates it instantly, getting his version into the clash before Afrodon can answer."]
+                      ]],
+                      ["Afrodon", [
+                        ["Let me start with your weight — you look like Mark from The Chase.", "Afrodon opens on sight. Mark Labbett from The Chase gives our crowd an instant picture for the weight angle."],
+                        ["You can't tell me I'm shook of clashes when you're shook of clashing Ryno.", "Afrodon turns 'shook of clashes' back onto Deeno with Ryno. It is a status challenge delivered inside the battle."],
+                        ["With them bog eyes and your little drop lip, thinking he was on beef — call topless.", "Afrodon stays on what he can see—eyes, lip and face-to-face tension—to build the roast in real time."],
+                        ["Your girl is a pizza, wants toppings — the way she smokes on this, Mary Poppins.", "Pizza leads to toppings, smoke and Mary Poppins: a wild visual chain held together by the changing rhyme."],
+                        ["This clash is gonna dent your ego — you ain't better than me though.", "A simple ego/me though pocket keeps the challenge clear while Afrodon stays in rhythm."],
+                        ["Do you know why I bit my lip? I thought Mrs Deeno was in the background.", "A visible lip bite becomes the launch point for the Mrs Deeno angle that runs through all three rounds."],
+                        ["When you stepped in GZone in your church shoes, looking like you've never been on beef.", "Afrodon uses Deeno's clothes in our room—church shoes—as the proof line for a joke that he has never been on beef."],
+                        ["You're talking about drugs, you're talking about traps to the Viking.", "Viking identity meets the drug-and-trap talk. Afrodon frames himself as the wrong opponent to intimidate with it."],
+                        ["Try to take my chain? I'll never bite you like a pig.", "The chain challenge lights the fuse. Deeno answers it immediately with the Deebo and Friday flip, giving FX1 one of its clearest live handoffs."],
+                        ["Talk to my nan? You got less swag than my nan has.", "Repeating Deeno's target as a question marks the rebuttal. Afrodon then replaces violence with style and turns the comparison around."],
+                        ["Mrs Deeno, I'm gonna message you on Snapchat.", "The first-round partner joke grows into a specific social-media move, keeping Afrodon's recurring angle alive."],
+                        ["Mention my eye going the wrong way, but my eye and Deeno have a lot in common — they're both clapped and going the wrong way.", "Afrodon owns the visible eye angle and uses it as the setup for a comparison with Deeno—his clearest self-aware reversal."],
+                        ["If I was Mrs Deeno, I might as well say that I'm actually gay, 'cause she looks like a man.", "Afrodon returns to Mrs Deeno at the finish, completing the angle he started in round one with another harsh appearance attack."],
+                        ["You can't freestyle like I can.", "Afrodon plants his flag: sustained off-the-top pressure is the advantage he wants our crowd to remember."]
+                      ]]
+                    ].map(([name, bars]) => (
+                      <article key={name as string} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
+                        <h3 className="text-2xl font-display uppercase text-brand mb-6">{name as string}</h3>
+                        <div className="space-y-4">
+                          {(bars as string[][]).map(([quote, explanation]) => (
+                            <div key={quote} className="rounded-xl border border-white/10 bg-white/[0.025] p-5">
+                              <blockquote className="text-white font-bold leading-relaxed mb-3">
+                                &ldquo;{quote}&rdquo;
+                              </blockquote>
+                              <p className="text-zinc-400 leading-relaxed font-light">{explanation}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+
+            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -4503,6 +4658,12 @@ export default function BattleDetail() {
                 "The decisive stretch was Z.K's third. He reversed CJ's level and location claims, sustained the darts, Carter, Starmer, tartar, Palmer, and Pollock run, redirected Darren the dentist, and closed with the prepared photo-clone counter. CJ's Pow sequence kept the room involved but repeated restarts weakened its shape.",
                 "Ginge checked the room, then deferred the close decision to the live YouTube audience. YouTube selected Z.K, and the official GZone record confirms the result. No judge panel or round score is given, so the battle is recorded as an audience win without inventing a margin."
               ]],
+              ["deeno-vs-afrodon", [
+                "We introduced Afrodon as our newest roster member and dropped him straight into the longer freestyle passages. Changing rhyme pockets, visual comparisons and recurring Mrs Deeno, Ryno, eye and Viking angles kept the pressure moving across unknown beats.",
+                "Deeno answered with the shorter live reversals. The chain became Deebo from Friday, the mum attack came back at Afrodon's nan, the crew became JLS and the More Life talk became a face-to-face challenge.",
+                "The clash got more physical as every subject changed hands. A late shove brought Ginge between the battlers, settled our ring and stopped the intensity spilling beyond the battle.",
+                "We put it to the room. Deeno took FX1 and became our first Freestyle League winner. No judges. No scorecards. Our crowd made the call."
+              ]],
               ["deeno-vs-btizz", [
                 "Btizz made the clash competitive through flow changes, record rebuttals, TymeLess callbacks and deliberate mirroring of Deeno's cadence. His résumé defence and use of Deeno's previous loss stopped the clash becoming a simple veteran-versus-challenger story.",
                 "Deeno built the larger opponent-specific case through Btizz's record, clothing and originality callbacks, father-and-son framing, the Google Maps screenshot, the photograph of a headstone inscribed with 'Btizz' and the adoption papers used to say he would father his opponent.",
@@ -4584,7 +4745,7 @@ export default function BattleDetail() {
             ] as const).filter(([slug]) => battle.slug === slug).map(([slug, paragraphs]) => (
               <div key={slug} className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-4 text-white">The Result</h3>
-                {slug === 'zk-vs-cj-zino' || slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' ? (
+                {slug === 'zk-vs-cj-zino' || slug === 'deeno-vs-afrodon' || slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' ? (
                   <div className="space-y-4 text-zinc-400 text-sm leading-relaxed">
                     {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
@@ -5590,7 +5751,55 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {battle.slug === 'deeno-vs-afrodon' && (
+              <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
+                <h3 className="text-xl font-display uppercase mb-6 text-white">
+                  Key Technical Highlights by MC
+                </h3>
+                {[
+                  {
+                    mc: "Deeno",
+                    highlights: [
+                      ["Compact adaptation", "We see Deeno at his best when he grabs the last object or phrase and turns it around before the exchange can move on."],
+                      ["Chain-to-Deebo rebuttal", "Afrodon's chain threat becomes Deebo from Friday, with Deeno's own name powering the switch."],
+                      ["Animal-image reversal", "The dog attack on Deeno's mum comes straight back through the rabbit comparison aimed at Afrodon's nan."],
+                      ["Room awareness", "He pulls from everything happening in our room: Afrodon's new status, the crew, the face-off and the physical jostling."],
+                      ["Event callback", "The More Life talk returns at the close as a credibility test with both men standing face to face."],
+                      ["Best quality", "He recognises the opponent's last move fast and answers with a shorter, more memorable counter."],
+                      ["Main weakness", "Family attacks, threat language and physical escalation sometimes replace the cleaner wordplay."],
+                      ["Winning edge", "Our crowd backed the sharper immediate reversals and gave Deeno the first Freestyle League win."]
+                    ]
+                  },
+                  {
+                    mc: "Afrodon",
+                    highlights: [
+                      ["Sustained freestyle output", "Afrodon keeps producing across our unfamiliar beats and drives through long passages without getting trapped on one subject."],
+                      ["Recurring relationship angle", "Mrs Deeno grows from the lip-bite joke into Snapchat and a final appearance attack across all three rounds."],
+                      ["Self-aware eye rebuttal", "He owns the eye criticism and turns it into a wrong-way comparison with Deeno instead of ducking the visible target."],
+                      ["Recognisable reference range", "Mark from The Chase, Mary Poppins, KSI, MK Dons, church shoes, Ryno and Viking imagery give our crowd quick pictures while the flows change."],
+                      ["Direct nan response", "Repeating 'Talk to my nan?' marks the live handoff before Afrodon redirects Deeno's threat through style and family."],
+                      ["Best quality", "Beat control, continuous pressure and the ability to bring a subject back without losing freestyle pace."],
+                      ["Main weakness", "Long threat passages, repetition and severe personals can hide his more inventive live observations."],
+                      ["Debut value", "He did not take the crowd decision, but he gave us an adaptable, confrontational Freestyle League debut."]
+                    ]
+                  }
+                ].map(({ mc, highlights }) => (
+                  <div key={mc} className="mb-8 last:mb-0">
+                    <h4 className="text-brand font-display uppercase text-lg mb-3">{mc}</h4>
+                    <div className="divide-y divide-white/10">
+                      {highlights.map(([label, detail]) => (
+                        <div key={label} className="py-3 first:pt-0 last:pb-0">
+                          <h5 className="text-white text-sm font-bold mb-1">{label}</h5>
+                          <p className="text-zinc-400 text-xs leading-relaxed">{detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

@@ -47,6 +47,7 @@ export default function Footer() {
                 <li><Link to="/map" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
                 <li><Link to="/promo" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Promo Material</Link></li>
                 <li><Link to="/lost-property" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Museum</Link></li>
+                <li><Link to="/privacy" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Privacy Policy</Link></li>
               </ul>
             </div>
             
@@ -61,15 +62,13 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-zinc-600 text-[10px] font-black tracking-[0.3em] order-2 md:order-1">
+        <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row lg:flex-nowrap justify-between items-center gap-6">
+          <p className="shrink-0 whitespace-nowrap text-zinc-600 text-[10px] font-black tracking-[0.24em] order-2 lg:order-1">
             © 2026 GINJA ENTERTAINMENT LTD. Company number 16258136
           </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-zinc-600 text-[10px] uppercase font-black tracking-[0.3em] order-1 md:order-2">
-            <Link to="/privacy" className="text-zinc-500 hover:text-brand transition-colors">
-              Privacy Policy
-            </Link>
-            <span>Powered by <a href="https://www.bjstudio.co.uk" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-brand transition-colors">BJSTUDIO</a></span>
+          <div className="flex flex-nowrap justify-center gap-x-8 text-zinc-600 text-[10px] uppercase font-black tracking-[0.24em] order-1 lg:order-2">
+            <span className="whitespace-nowrap">Powered by <a href="https://www.bjstudio.co.uk" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-brand transition-colors">BJSTUDIO</a></span>
+            <span className="whitespace-nowrap">Proudly supported by <a href="https://www.lordofthearchives.co.uk" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-brand transition-colors">Lord of the Archives</a></span>
           </div>
         </div>
       </div>

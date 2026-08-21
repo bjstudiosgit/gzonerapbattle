@@ -382,6 +382,8 @@ export const battles: Battle[] = [
     "mc2": "afrodon",
     "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/_lObp_xBr20",
+    "views": "2.9K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "Fx1",
@@ -457,7 +459,7 @@ export const battles: Battle[] = [
 export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 
-export const lastUpdated = "13 Aug 2026";
+export const lastUpdated = "21 Aug 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

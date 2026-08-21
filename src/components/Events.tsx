@@ -110,10 +110,10 @@ const events = [
     title: "G ZONE: ROYAL RUMBLE",
     date: "1st August 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "IN PRODUCTION",
+    price: "VIDEOS OUT NOW",
     image: augustEventImages[0],
     images: augustEventImages,
-    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz and Z.K vs C.J Zino are out now, while Deeno vs Afrodon remains in production.",
+    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, and Deeno vs Afrodon are out now.",
     isCompleted: true,
     card: [
       { episode: "1x22", mc1: "Deeno", mc2: "Btizz", isMain: true },
