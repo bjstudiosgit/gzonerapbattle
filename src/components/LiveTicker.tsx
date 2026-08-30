@@ -2,6 +2,9 @@ import { BookOpen, Zap, Ticket, Play, Sword, ShoppingBag } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
+    { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
+    { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
+    { text: "LATEST RESULT: Z.K DEFEATED 7WAVE", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED BTIZZ - 1X22", type: "live" },
     { text: "LATEST RESULT: Z.K DEFEATED C.J ZINO - 1X23", type: "live" },
     { text: "LATEST FREESTYLE RESULT: DEENO DEFEATED AFRODON - FX1", type: "live" },

@@ -16,8 +16,6 @@ const august29EventImages = [
   "/flyers/august-29-2026-deeno-vs-cj.jpg",
   "/flyers/august-29-2026-zk-vs-7wave.png",
   "/flyers/august-29-2026-badee-harz-vs-1flaymah.png",
-  "/flyers/august-29-2026-tricky-vs-roman.png",
-  "/flyers/august-29-2026-badee-harz-vs-roman-essex.png",
 ];
 
 const events = [
@@ -126,17 +124,15 @@ const events = [
     title: "G ZONE: 29TH AUGUST",
     date: "29th August 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "TICKETS ON SALE NOW",
+    price: "EVENT COMPLETE",
     image: august29EventImages[0],
     images: august29EventImages,
-    description: "The next GZone card lands at Peacocks Boxing on 29th August. Tickets on sale now.",
-    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-live-show-tickets-1997061772521",
+    description: "The 29th August event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave.",
+    isCompleted: true,
     card: [
-      { mc1: "Badee Harz", mc2: "1 Flaymah" },
-      { mc1: "Badee Harz", mc2: "Roman" },
-      { mc1: "Deeno", mc2: "CJ Zino" },
-      { mc1: "Tricky", mc2: "Roman" },
-      { mc1: "Z.K", mc2: "7Wave" },
+      { episode: "1x24", mc1: "Badee Harz", mc2: "1 Flaymah", winner: "1 Flaymah" },
+      { episode: "1x25", mc1: "Deeno", mc2: "CJ Zino", winner: "Deeno" },
+      { episode: "1x26", mc1: "Z.K", mc2: "7Wave", winner: "Z.K" },
     ]
   },
   {
@@ -233,14 +229,18 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
         {event.card && (
           <div className="mb-8 space-y-2 bg-black/40 p-4 rounded-2xl border border-white/5">
             <div className="text-[10px] text-brand font-black uppercase tracking-widest mb-3 border-b border-brand/20 pb-2">Full Battle Card</div>
-            {event.card.map((match, i) => (
-              <div key={i} className={`flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-wider ${match.isMain ? 'text-white' : 'text-zinc-400'}`}>
-                <span className={`${match.isMain ? 'text-brand' : ''} truncate`}>{match.mc1}</span>
-                <span className="text-brand/40 mx-2 italic">VS</span>
-                <span className={`${match.isMain ? 'text-brand' : ''} truncate ml-auto text-right`}>{match.mc2}</span>
-                {match.isMain && <span className="ml-2 text-[8px] bg-brand text-black px-1.5 py-0.5 rounded font-black">MAIN</span>}
-              </div>
-            ))}
+            {event.card.map((match, i) => {
+              const winner = "winner" in match ? match.winner : undefined;
+              return (
+                <div key={i} className={`flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-wider ${match.isMain ? 'text-white' : 'text-zinc-400'}`}>
+                  <span className={`${match.isMain || winner === match.mc1 ? 'text-brand' : ''} truncate`}>{match.mc1}</span>
+                  <span className="text-brand/40 mx-2 italic">VS</span>
+                  <span className={`${match.isMain || winner === match.mc2 ? 'text-brand' : ''} truncate ml-auto text-right`}>{match.mc2}</span>
+                  {winner && <span className="ml-2 whitespace-nowrap rounded bg-brand px-1.5 py-0.5 text-[8px] font-black text-black">{winner} WON</span>}
+                  {match.isMain && <span className="ml-2 text-[8px] bg-brand text-black px-1.5 py-0.5 rounded font-black">MAIN</span>}
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -330,7 +330,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The next GZone event lands at Peacocks Boxing on 29th August 2026. Tickets on sale soon.
+              The 29th August event is complete. Results are confirmed and the battle videos are now in production.
             </p>
           </motion.div>
         </div>

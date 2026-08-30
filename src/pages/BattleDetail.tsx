@@ -191,7 +191,7 @@ export default function BattleDetail() {
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/80 px-4 py-3 backdrop-blur-sm md:bottom-6 md:left-6 md:right-6">
                       <div>
                         <h3 className="font-display text-xl uppercase text-white md:text-2xl">Video Coming Soon</h3>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">1 August 2026</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{battle.date || "Release date TBC"}</p>
                       </div>
                       <Clock size={24} className="shrink-0 text-brand" />
                     </div>
@@ -222,11 +222,11 @@ export default function BattleDetail() {
                 <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
                 <p className="text-zinc-400 text-sm mt-2 tracking-widest">
                   {battle.winner
-                    ? battle.slug === 'deeno-vs-afrodon'
+                    ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
                       ? "GZone Crowd Decision"
                       : battle.slug === 'zk-vs-cj-zino'
                         ? "Official Audience Decision"
-                        : "Official Judges' Decision"
+                        : "Official Judges' Decision")
                     : "Awaiting Decision"}
                 </p>
               </div>

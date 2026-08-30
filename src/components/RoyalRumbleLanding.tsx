@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Calendar, MapPin, Ticket } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calendar, MapPin, Trophy } from "lucide-react";
 
 const battleCard = [
-  ["Badee Harz", "1 Flaymah"],
-  ["Badee Harz", "Roman"],
-  ["Deeno", "CJ Zino"],
-  ["Tricky", "Roman"],
-  ["Z.K", "7Wave"],
+  { mc1: "Badee Harz", mc2: "1 Flaymah", winner: "1 Flaymah" },
+  { mc1: "Deeno", mc2: "CJ Zino", winner: "Deeno" },
+  { mc1: "Z.K", mc2: "7Wave", winner: "Z.K" },
 ];
 
 const eventFlyers = [
   { src: "/flyers/august-29-2026-deeno-vs-cj.jpg", alt: "Deeno vs CJ Zino event flyer" },
   { src: "/flyers/august-29-2026-zk-vs-7wave.png", alt: "Z.K vs 7Wave event flyer" },
   { src: "/flyers/august-29-2026-badee-harz-vs-1flaymah.png", alt: "Badee Harz vs 1 Flaymah event flyer" },
-  { src: "/flyers/august-29-2026-tricky-vs-roman.png", alt: "Tricky vs Roman event flyer" },
-  { src: "/flyers/august-29-2026-badee-harz-vs-roman-essex.png", alt: "Badee Harz vs Roman Essex event flyer" },
 ];
 
 export default function RoyalRumbleLanding() {
@@ -95,7 +90,7 @@ export default function RoyalRumbleLanding() {
           <div className="order-1 w-full lg:order-2 lg:w-1/2">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <h2 className="mb-4 text-[clamp(0.75rem,1.35vw,1.25rem)] font-black uppercase tracking-[0.16em] text-white md:mb-6">
-                Gzone <span className="text-brand">29th August</span> - next event
+                Gzone <span className="text-brand">29th August</span> - results
               </h2>
               <h3 className="mb-6 font-display text-4xl uppercase leading-[1.02] tracking-tight sm:text-5xl md:mb-8 md:text-7xl">
                 29th August 2026
@@ -103,32 +98,31 @@ export default function RoyalRumbleLanding() {
               </h3>
 
               <p className="mb-8 text-base font-medium leading-relaxed text-zinc-400 md:text-lg">
-                The next GZone card lands at Peacocks Boxing on 29th August. Tickets on sale soon.
+                The event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave. Roman and Trickyy and Badiee Harz and Roman had to be postponed.
               </p>
 
               <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {battleCard.map(([mc1, mc2], index) => (
+                {battleCard.map(({ mc1, mc2, winner }, index) => (
                   <div key={`${mc1}-${mc2}`} className={`rounded-2xl border p-4 ${index === 0 ? "border-brand/40 bg-brand/10" : "border-white/10 bg-white/5"}`}>
                     <div className="mb-2 text-[9px] font-black uppercase tracking-[0.22em] text-zinc-500">
-                      Battle
+                      Official result
                     </div>
                     <div className="flex items-center justify-between gap-3 font-display text-lg uppercase md:text-xl">
-                      <span>{mc1}</span>
+                      <span className={`flex items-center gap-2 ${winner === mc1 ? "text-brand" : ""}`}>
+                        {winner === mc1 && <Trophy size={14} />} {mc1}
+                      </span>
                       <span className="text-brand">VS</span>
-                      <span className="text-right">{mc2}</span>
+                      <span className={`flex items-center justify-end gap-2 text-right ${winner === mc2 ? "text-brand" : ""}`}>
+                        {winner === mc2 && <Trophy size={14} />} {mc2}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <a
-                href="https://www.eventbrite.co.uk/e/the-gzone-rap-battle-live-show-tickets-1997061772521"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand px-6 py-4 font-display text-xl uppercase text-black transition-colors hover:bg-white"
-              >
-                Tickets On Sale Now <Ticket size={20} />
-              </a>
+              <div className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand px-6 py-4 font-display text-xl uppercase text-black">
+                Results Confirmed <Trophy size={20} />
+              </div>
             </motion.div>
           </div>
         </div>

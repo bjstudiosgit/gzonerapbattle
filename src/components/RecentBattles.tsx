@@ -51,8 +51,8 @@ export default function RecentBattles() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <h3 className="text-4xl md:text-6xl font-display uppercase leading-none mb-6">
-            Coming Soon! <br className="sm:hidden" />
-            <span className="text-brand">Tickets on Sale NOW!</span>
+            Videos Coming Soon! <br className="sm:hidden" />
+            <span className="text-brand">Latest Results Confirmed</span>
           </h3>
           <p className="text-brand font-bold tracking-[0.4em] text-[10px] md:text-base">Season 1 "Most Wanted"</p>
         </div>

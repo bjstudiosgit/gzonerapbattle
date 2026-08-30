@@ -117,7 +117,7 @@ export default function IntroVideo() {
                     </p>
                     <div className="mt-3 h-px w-full max-w-3xl bg-brand/70" />
                     <p className="mt-4 max-w-3xl text-justify text-sm sm:text-xl leading-relaxed text-zinc-300">
-                      The GZone is the UK&apos;s uncensored battle rap arena, where hungry newcomers and veteran MCs settle rivalries, test their bars, and prove themselves in front of a live crowd. Based at Peacocks Boxing Gym in Canning Town, the league puts every clash inside a real fighting venue built for pressure, performance, and unforgettable moments.
+                      The GZone is the UK&apos;s uncensored battle rap arena, where hungry newcomers and veteran MCs settle rivalries, test their bars, and prove themselves in front of a live crowd. Based at the World Famous Peacocks Gym in Canning Town, the league puts every clash inside a real fighting venue built for pressure, performance, and unforgettable moments.
                     </p>
                   </div>
 

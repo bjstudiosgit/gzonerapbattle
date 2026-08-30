@@ -10,6 +10,15 @@ type PromoFlyer = {
   direct?: boolean;
 };
 
+type PromoEvent = {
+  id: string;
+  badge: string;
+  badgeTone: "brand" | "zinc";
+  heading: string;
+  subheading: string;
+  flyers: PromoFlyer[];
+};
+
 const august29Flyers: PromoFlyer[] = [
   {
     id: "badee-harz-1flaymah",
@@ -19,23 +28,9 @@ const august29Flyers: PromoFlyer[] = [
     direct: true,
   },
   {
-    id: "badee-harz-roman-essex",
-    title: "Badee Harz VS Roman - Essex Artwork",
-    src: "/flyers/august-29-2026-badee-harz-vs-roman-essex.png",
-    aspect: "aspect-[3/4]",
-    direct: true,
-  },
-  {
     id: "deeno-cj-zino",
     title: "Deeno VS C.J Zino",
     src: "/flyers/august-29-2026-deeno-vs-cj.jpg",
-    aspect: "aspect-[3/4]",
-    direct: true,
-  },
-  {
-    id: "tricky-roman",
-    title: "Tricky VS Roman",
-    src: "/flyers/august-29-2026-tricky-vs-roman.png",
     aspect: "aspect-[3/4]",
     direct: true,
   },
@@ -108,11 +103,11 @@ const aprilFlyers: PromoFlyer[] = [
   },
 ];
 
-const promoEvents = [
+const promoEvents: PromoEvent[] = [
   {
     id: "august-29",
-    badge: "Next Event",
-    badgeTone: "brand" as const,
+    badge: "Archive",
+    badgeTone: "zinc" as const,
     heading: "29th August 2026",
     subheading: "Peacocks Boxing, Canning Town",
     flyers: august29Flyers,
@@ -157,7 +152,7 @@ export default function PromoMaterialPage() {
             <div className="h-1 w-32 bg-gradient-to-r from-brand to-transparent mb-8 origin-left mx-auto lg:mx-0" />
             
             <p className="text-zinc-400 text-sm md:text-lg max-w-2xl leading-relaxed tracking-tight font-medium opacity-80 border-l-0 lg:border-l-2 border-brand/20 lg:pl-6 py-2 mx-auto lg:mx-0">
-              Official artwork and promotional assets for upcoming events. Available for MCs, promoters, and media partners to download and share across social platforms.
+              Official event artwork and promotional assets. Available for MCs, promoters, and media partners to download and share across social platforms.
             </p>
           </div>
         </header>
