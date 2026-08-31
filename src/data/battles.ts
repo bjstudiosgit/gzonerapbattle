@@ -121,7 +121,7 @@ export const battles: Battle[] = [
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/HfO3UR_Zeyk",
     "views": "26.8K",
-    "winner": "2mwad",
+    "winner": "ryno",
     "episode": "1x8",
     "props": [
       { name: "NFA Document from Police", user: "Ryno", icon: "📄" }
