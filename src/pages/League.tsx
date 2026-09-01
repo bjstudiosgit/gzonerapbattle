@@ -148,8 +148,8 @@ export default function League() {
                 <div className={`absolute inset-0 opacity-30 ${tier.bg}`} />
                 </div>
 
-                 <div className="relative z-10 flex items-center justify-between mb-36 md:mb-56">
-                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-display text-3xl border-2 transition-all ${
+                 <div className="relative z-10 flex items-center justify-between mb-20 md:mb-32">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-display text-3xl border-2 transition-all ${
                     isGold ? 'bg-yellow-500 text-black border-yellow-500' : 
                     mc.rank === 2 ? 'bg-zinc-400 text-black border-zinc-400' :
                     'bg-amber-700 text-black border-amber-700'
@@ -163,8 +163,8 @@ export default function League() {
                 </div>
 
                 <div className="relative z-10 text-center">
-                  {/* MOST WANTED badge for the top-ranked MCs */}
-                  {mc.rank <= 3 && (
+                  {/* MOST WANTED badge for the #1 Champion */}
+                  {mc.rank === 1 && (
                     <div className="absolute top-1/2 left-1/2 z-30 w-max -translate-x-1/2 -translate-y-1/2 scale-[0.62] pointer-events-none md:scale-90">
                       <div className="transform -rotate-12 border-4 border-red-600 bg-black/45 px-5 py-2 backdrop-blur-sm shadow-[0_0_30px_rgba(220,38,38,0.3)]">
                         <span className="whitespace-nowrap font-display text-4xl uppercase tracking-[-0.06em] text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)] md:text-5xl">

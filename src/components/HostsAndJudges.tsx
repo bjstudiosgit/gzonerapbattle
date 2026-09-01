@@ -67,11 +67,20 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
 export default function HostsAndJudges({ embedded = false, excludeIds = [] }: HostsAndJudgesProps) {
   const staffHosts = hosts.map((person) => ({ ...person, type: "hosts" as const }));
   const staffJudges = judges.map((person) => ({ ...person, type: "judges" as const }));
+  const gingaJay = staffHosts.find((h) => h.id === "ginga-jay");
+  const darrenStewart = staffHosts.find((h) => h.id === "darren-stewart");
+  const passive = staffHosts.find((h) => h.id === "passive");
+  const louisBowers = staffHosts.find((h) => h.id === "louis-bowers");
+  const remainingHosts = staffHosts.filter(
+    (h) => !["ginga-jay", "darren-stewart", "passive", "louis-bowers"].includes(h.id)
+  );
+
   const staff = [
-    { ...staffHosts[0], role: "Host" },
-    { ...staffHosts[1], role: "Host" },
-    { ...staffHosts[3], role: "Judge", type: "judges" as const },
-    staffHosts[2],
+    ...(gingaJay ? [{ ...gingaJay, role: "Host" }] : []),
+    ...(darrenStewart ? [{ ...darrenStewart, role: "Host" }] : []),
+    ...(passive ? [{ ...passive, role: "Judge", type: "judges" as const }] : []),
+    ...(louisBowers ? [louisBowers] : []),
+    ...remainingHosts,
     ...staffJudges,
   ].filter((person) => !excludeIds.includes(person.id));
 

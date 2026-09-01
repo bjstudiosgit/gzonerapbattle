@@ -274,7 +274,7 @@ export const battles: Battle[] = [
     "slug": "deeno-vs-badee-harz",
     "mc1": "deeno",
     "mc2": "badee-harz",
-    "title": "Badee Harz vs Deeno",
+    "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
     "views": "32.8K",

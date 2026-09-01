@@ -62,8 +62,8 @@ export default function RecentBattles() {
             const mc1 = mcs.find(m => m.id === battle.mc1);
             const mc2 = mcs.find(m => m.id === battle.mc2);
             const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
-            const mc1Name = titleMc1 || mc1?.name || battle.mc1;
-            const mc2Name = titleMc2 || mc2?.name || battle.mc2;
+            const mc1Name = mc1?.name || titleMc1 || battle.mc1;
+            const mc2Name = mc2?.name || titleMc2 || battle.mc2;
             const videoId = getYouTubeId(battle.videoUrl);
             const isLive = Boolean(battle.videoUrl);
             const isInProduction = !isLive && !battle.ticketUrl;

@@ -24,10 +24,11 @@ export default function MCsPage() {
   const inactiveMcs = mcs.filter(mc => mc.isActive === false);
   const totalMCs = mcs.length;
   const activeMCsCount = activeMcs.length;
-  const gingaJay = { ...hosts[0], role: "Host", type: "hosts" as const };
+  const gingaJay = { ...hosts.find(h => h.id === 'ginga-jay')!, role: "Host", type: "hosts" as const };
   const darrenStewart = { ...hosts.find(h => h.id === 'darren-stewart')!, role: "Co-Host", type: "hosts" as const };
   const passive = { ...hosts.find(h => h.id === 'passive')!, role: "Co-Host", type: "hosts" as const };
   const louisBowers = { ...hosts.find(h => h.id === 'louis-bowers')!, role: "Production", type: "hosts" as const };
+  const mostWanted2 = { ...hosts.find(h => h.id === 'most-wanted-2')!, role: "Official DJs", type: "hosts" as const };
 
   const getRank = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.rank || 0;
@@ -102,6 +103,7 @@ export default function MCsPage() {
             <StaffCard person={passive} index={activeMcs.length + 1} />
             <StaffCard person={darrenStewart} index={activeMcs.length + 2} />
             <StaffCard person={louisBowers} index={activeMcs.length + 3} />
+            <StaffCard person={mostWanted2} index={activeMcs.length + 4} />
           </div>
         </div>
 
