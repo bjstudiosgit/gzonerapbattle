@@ -96,7 +96,7 @@ export const battles: Battle[] = [
     "title": "Renzo vs Proty",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/bZRy8jgPvwk",
-    "views": "10.1K",
+    "views": "10.6K",
     "winner": "renzo",
     "episode": "1x6"
   },
@@ -230,7 +230,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Grams",
     "date": "1 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/9gkXN1ZJeP8",
-    "views": "12.9K",
+    "views": "13.1K",
     "winner": "tapped24",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -330,7 +330,7 @@ export const battles: Battle[] = [
     "title": "NattyEBK vs Z.K",
     "date": "13 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/ayTTSuKB168",
-    "views": "4.8K",
+    "views": "4.9K",
     "winner": "nattyebk",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -384,7 +384,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/_lObp_xBr20",
-    "views": "6.1K",
+    "views": "6.4K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "Fx1",
@@ -437,7 +437,7 @@ export const battles: Battle[] = [
 export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 
-export const lastUpdated = "30 Aug 2026";
+export const lastUpdated = "2 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

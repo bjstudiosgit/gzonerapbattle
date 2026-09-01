@@ -45,7 +45,7 @@ export default function StaffPage({ embedded = false }: StaffPageProps) {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand/30 blur-[100px] rounded-full opacity-50 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
                 
                 <img 
-                  src="/staff/gingerjaymodel-600w.png" 
+                  src="/gingerjaymodelpoint.png" 
                   alt="Ginga Jay" 
                   width={600}
                   height={804}

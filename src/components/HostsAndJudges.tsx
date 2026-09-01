@@ -21,9 +21,7 @@ export type StaffCardPerson = {
 
 export function StaffCard({ person, index }: { person: StaffCardPerson; index: number }) {
   const profileType = person.type === "judges" ? "judge" : "host";
-  const image = person.type === "hosts" && person.id === "ginga-jay"
-    ? "/jay.png"
-    : portraitImage(person.listImage || person.image, "card");
+  const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
     <motion.div

@@ -12,7 +12,6 @@ export default function League() {
   const topScore = calculatedRankings[0]?.totalScore ?? 0;
 
   const top3 = calculatedRankings
-    .filter(rankData => rankData.id !== 'ldn-mikez')
     .slice(0, 3)
     .map((rankData, index) => {
       const mcData = mcs.find(m => m.id === rankData.id);

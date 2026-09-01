@@ -66,7 +66,7 @@ export const mcs: MC[] = [
     style: "Technical / Flow",
     image: "/mctapped24.png",
     bio: "Tapped24 is currently on the Wasted list and taking some time out from the scene. His mix of disrespect, comedy, and strong performance energy still makes him one of the more crowd-focused battlers in the Gzone catalogue.",
-    isActive: true,
+    isActive: false,
     weightClass: "Heavyweight Rapper",
     height: "5'11\"",
     location: "Southwest London (now Southampton)",
@@ -74,6 +74,7 @@ export const mcs: MC[] = [
     instagram: "https://instagram.com/tapped24_",
     tiktok: "https://tiktok.com/@tapped24_",
     youtube: "https://youtube.com/@tapped24",
+    tags: ["Wasted"],
     starCount: 3
   },
   {
@@ -87,14 +88,15 @@ export const mcs: MC[] = [
     style: "Disrespect / Wordplay",
     image: "/princ3.png",
     bio: "PR1NC3 brings pure disrespect, intricate wordplay, high energy, and effortless flows to every clash. He keeps opponents under constant pressure, firing off lethal punchlines with speed and precision.",
-    isActive: true,
+    isActive: false,
     weightClass: "Middleweight",
     height: "5'10\"",
     location: "London",
     coordinates: [51.5074, -0.1278],
     instagram: "https://instagram.com/itzyaboy_pr1nc3",
     tiktok: "https://tiktok.com/@itzyaboy_pr1nc3",
-    youtube: "https://youtube.com/@itzyaboy_pr1nc3"
+    youtube: "https://youtube.com/@itzyaboy_pr1nc3",
+    tags: ["Wasted"]
   },
   {
     id: "nattyebk",
@@ -246,7 +248,7 @@ export const mcs: MC[] = [
     style: "Technical / Rapid",
     image: "/proty.png",
     bio: "Proty is a technical specialist known for his rapid-fire delivery and layered, creative approach. He expertly blends humour, wordplay, and cultural references to break down his opponents and win over the crowd. With a mix of comedic timing and intricate schemes, Proty's technical precision and high-energy performance make him one of the most active and competitive MCs in the league.",
-    isActive: true,
+    isActive: false,
     location: "Bristol",
     coordinates: [51.4545, -2.5879],
     instagram: "https://instagram.com",
