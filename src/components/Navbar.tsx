@@ -1,4 +1,4 @@
-import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Images, Vote, Mic2 } from "lucide-react";
+import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Vote, Mic2, MapPin, Flame } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
@@ -9,19 +9,19 @@ export default function Navbar() {
   const location = useLocation();
 
   const navLinks = [
-    { name: "Tickets", href: "/events", icon: Ticket },
     { name: "Battles", href: "/battles", icon: Play },
     { name: "Freestyle", href: "/freestyle", icon: Mic2 },
     { name: "League", href: "/league", icon: Trophy },
+    { name: "Gstreet Freestyles", href: "/gzone-street-freestyles", icon: MapPin },
+    { name: "Cyphers", href: "/cyphers", icon: Flame },
     { name: "Who's Who", href: "/battles/mc", icon: Users },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
-    { name: "Photos", href: "/photos", icon: Images },
     { name: "Apply", href: "/apply", icon: FileText },
+    { name: "Tickets", href: "/events", icon: Ticket },
     { name: "Vote", href: "/vote", icon: Vote },
   ];
 
   const isHome = location.pathname === "/";
-
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     setIsOpen(false);
     soundManager.playImpact();

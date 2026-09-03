@@ -17,6 +17,7 @@ export interface Battle {
   league?: "season1" | "freestyle";
   summary?: string;
   ticketUrl?: string;
+  ticketsOnSaleSoon?: boolean;
   flyer?: string;
   props?: { name: string, user: string, icon: string }[];
 }
@@ -35,7 +36,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "53.7K",
+    "views": "54.4K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -73,7 +74,7 @@ export const battles: Battle[] = [
     "title": "LDN Mikez vs 2MWAD",
     "date": "15 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/NEiGspeXLYM",
-    "views": "24.1K",
+    "views": "24.2K",
     "winner": "ldn-mikez"
   },
   {
@@ -84,7 +85,7 @@ export const battles: Battle[] = [
     "title": "CJ Zino vs Proty",
     "date": "15 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/T0zo6YgfxB4",
-    "views": "11.1K",
+    "views": "11.2K",
     "winner": "proty",
     "episode": "1x5"
   },
@@ -432,12 +433,77 @@ export const battles: Battle[] = [
     "episode": "1x26",
     "flyer": "/flyers/august-29-2026-zk-vs-7wave.png"
   },
+  {
+    "id": "28",
+    "slug": "tymeless-vs-kime",
+    "mc1": "tymeless",
+    "mc2": "kime",
+    "title": "Tymeless vs K.I.M.E",
+    "date": "26 Sep 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x27",
+    "flyer": "/flyers/september-26-2026-tymeless-vs-kime.jpg",
+    "ticketUrl": "/events"
+  },
+  {
+    "id": "29",
+    "slug": "afrodon-vs-akeezy",
+    "mc1": "afrodon",
+    "mc2": "akeezy",
+    "title": "Afrodon vs Akeezy",
+    "date": "26 Sep 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x28",
+    "flyer": "/flyers/september-26-2026-afrodon-vs-akeezy.jpg",
+    "ticketUrl": "/events"
+  },
+  {
+    "id": "30",
+    "slug": "marni-gramz-vs-btizz",
+    "mc1": "grams",
+    "mc2": "btizz",
+    "title": "Marni Gramz vs Btizz",
+    "date": "26 Sep 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x29",
+    "flyer": "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
+    "ticketUrl": "/events"
+  },
+  {
+    "id": "31",
+    "slug": "zk-vs-tricky",
+    "mc1": "tricky",
+    "mc2": "zk",
+    "title": "Trickyy vs Z.K",
+    "date": "26 Sep 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x30",
+    "flyer": "/flyers/september-26-2026-trickyy-vs-zk.jpg",
+    "ticketUrl": "/events"
+  },
+  {
+    "id": "32",
+    "slug": "roman-vs-badee-harz",
+    "mc1": "badee-harz",
+    "mc2": "roman",
+    "title": "Badiee Harz vs Roman",
+    "date": "26 Sep 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x31",
+    "flyer": "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
+    "ticketUrl": "/events"
+  }
 ];
 
 export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 
-export const lastUpdated = "2 Sept 2026";
+export const lastUpdated = "3 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

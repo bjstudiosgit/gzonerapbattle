@@ -14,6 +14,7 @@ export default function LiveTicker() {
     { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
     { text: "ROYAL RUMBLE VIDEOS OUT NOW", type: "live" },
     { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
+    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKEEZY | MARNI GRAMZ VS BTIZZ | TRICKYY VS Z.K | BADIEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
   ];
 
   const tickerItems = [...items, ...items];
@@ -22,7 +23,7 @@ export default function LiveTicker() {
     <div className="w-full bg-brand text-black py-2 overflow-hidden whitespace-nowrap border-y border-black/20 relative z-50 shadow-[0_0_30px_rgba(242,125,38,0.3)]">
       <div
         className="flex w-max items-center gap-12 px-4 animate-marquee"
-        style={{ animationDuration: "60s" }}
+        style={{ animationDuration: "90s" }}
       >
         {tickerItems.map((item, idx) => (
           <div key={idx} className="flex shrink-0 items-center gap-3">

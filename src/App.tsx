@@ -4,7 +4,7 @@
  */
 
 import { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
 import GlobalDisclaimer from "./components/GlobalDisclaimer";
@@ -17,7 +17,6 @@ const MerchSection = lazy(() => import("./components/MerchSection"));
 const UpcomingEventLanding = lazy(() =>
   import("./components/UpcomingEventLanding").then((module) => ({ default: module.UpcomingEventLanding }))
 );
-const RoyalRumbleLanding = lazy(() => import("./components/RoyalRumbleLanding"));
 const RecentBattles = lazy(() => import("./components/RecentBattles"));
 const MCBios = lazy(() => import("./components/MCBios"));
 const LostPropertyPreview = lazy(() => import("./components/LostPropertyPreview"));
@@ -41,6 +40,8 @@ const LostProperty = lazy(() => import("./components/LostProperty"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
+const GzoneStreetFreestyles = lazy(() => import("./pages/GzoneStreetFreestyles"));
+const GzoneCyphers = lazy(() => import("./pages/GzoneCyphers"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -83,14 +84,13 @@ function Home() {
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
       <FeaturedVideo />
-      <RoyalRumbleLanding />
       <UpcomingEventLanding />
-      <LostPropertyPreview />
       <RecentBattles />
       <MerchSection showShopAll={false} />
       <MCBios />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <GlobalDisclaimer className="text-center text-sm md:text-base" />
+      <LostPropertyPreview />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        <GlobalDisclaimer />
       </div>
     </main>
   );
@@ -163,7 +163,8 @@ function Main() {
           <Route path="/freestyle" element={<BattlesPage variant="freestyle" />} />
           <Route path="/staff" element={<StaffPage />} />
           <Route path="/merch" element={<MerchPage />} />
-          <Route path="/promo" element={<PromoMaterialPage />} />
+          <Route path="/flyers" element={<PromoMaterialPage />} />
+          <Route path="/promo" element={<Navigate to="/flyers" replace />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/battle/:slug" element={<BattleDetail />} />
@@ -171,6 +172,14 @@ function Main() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/vote" element={<VotePage />} />
           <Route path="/vote/live" element={<VoteLivePage />} />
+          <Route path="/gzone-street-freestyles" element={<GzoneStreetFreestyles />} />
+          <Route path="/GzoneStreetFreestyles" element={<Navigate to="/gzone-street-freestyles" replace />} />
+          <Route path="/gzonestreetfreestyles" element={<Navigate to="/gzone-street-freestyles" replace />} />
+          <Route path="/street" element={<Navigate to="/gzone-street-freestyles" replace />} />
+          <Route path="/cyphers" element={<GzoneCyphers />} />
+          <Route path="/gzone-cyphers" element={<Navigate to="/cyphers" replace />} />
+          <Route path="/gzonecyphers" element={<Navigate to="/cyphers" replace />} />
+          <Route path="/cypher" element={<Navigate to="/cyphers" replace />} />
         </Routes>
       </Suspense>
       

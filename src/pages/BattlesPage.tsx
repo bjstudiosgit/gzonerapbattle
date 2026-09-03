@@ -36,8 +36,8 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
   const orderedBattles = sortBattlesById(isFreestyle ? freestyleBattles : seasonOneBattles);
   const totalViewsStr = calculateTotalViews(orderedBattles);
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;
-  const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && !battle.ticketUrl).length;
-  const outstandingCount = orderedBattles.filter((battle) => battle.isUnreleased && battle.ticketUrl).length;
+  const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && Boolean(battle.winner || battle.resultLabel)).length;
+  const outstandingCount = orderedBattles.filter((battle) => battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel).length;
 
   return (
     <div className="min-h-screen pt-32 md:pt-44 pb-16 md:pb-24 relative overflow-hidden">
@@ -115,8 +115,9 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                 const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
                 const mc1Name = mc1?.name || titleMc1 || battle.mc1;
                 const mc2Name = mc2?.name || titleMc2 || battle.mc2;
-                const isInProduction = !battle.videoUrl && !battle.ticketUrl;
-                const isTicketsOnSale = Boolean(battle.ticketUrl);
+                const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
+                const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
+                const isTicketsOnSale = !battle.videoUrl && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
 
                 return (
                   <button
@@ -128,8 +129,16 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                     <div className="text-brand font-mono text-sm font-black opacity-80 mb-2">
                       #{battle.episode || (!battle.isUnreleased ? `0${index + 1}` : "TBC")}
                     </div>
-                    <div className="font-display text-[1.35rem] leading-none uppercase text-white mb-4">
-                      {mc1Name} <span className="text-zinc-600 text-sm font-black px-1">VS</span> {mc2Name}
+                    <div className="font-display text-[1.35rem] leading-none uppercase text-white mb-4 flex items-center gap-2">
+                      <span className="flex items-center gap-1.5 min-w-0">
+                        <span className="truncate">{mc1Name}</span>
+                        {battle.winner === battle.mc1 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
+                      </span>
+                      <span className="text-zinc-600 text-sm font-black px-1 shrink-0">VS</span>
+                      <span className="flex items-center gap-1.5 min-w-0">
+                        {battle.winner === battle.mc2 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
+                        <span className="truncate">{mc2Name}</span>
+                      </span>
                     </div>
                     <div className="flex flex-col gap-1.5 text-xs font-black tracking-widest uppercase">
                       <div className="text-zinc-500">
@@ -137,7 +146,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                       </div>
                       <div className="text-zinc-500">
                         Status: <span className={`ml-1 ${battle.videoUrl ? "text-emerald-400" : "text-brand"}`}>
-                          {battle.videoUrl ? "Live" : isInProduction ? "In Production" : isTicketsOnSale ? "Tickets on Sale" : "Coming Soon"}
+                          {battle.videoUrl ? "Live" : isInProduction ? "In Production" : isTicketsOnSaleSoon ? "Tickets on Sale Soon" : isTicketsOnSale ? "Tickets on Sale" : "Coming Soon"}
                         </span>
                       </div>
                     </div>
@@ -148,14 +157,14 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
           </div>
 
           <div className="hidden sm:block overflow-x-auto scrollbar-hide">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[760px] lg:min-w-0">
               <thead>
                 <tr className="border-b border-white/10 bg-black/40">
-                  <th className="px-6 py-6 md:px-10 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">ID</th>
-                  <th className="px-6 py-6 md:px-10 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">The Battle</th>
-                  <th className="hidden sm:table-cell px-6 py-6 md:px-10 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-center">Impact</th>
-                  <th className="hidden lg:table-cell px-10 py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">Schedule</th>
-                  <th className="px-6 py-6 md:px-10 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-right md:text-left">Status</th>
+                  <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap w-24">ID</th>
+                  <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">The Battle</th>
+                  <th className="hidden sm:table-cell px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-center whitespace-nowrap w-28">Impact</th>
+                  <th className="hidden lg:table-cell px-6 md:px-8 py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap min-w-[200px]">Schedule</th>
+                  <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-right md:text-left whitespace-nowrap min-w-[190px]">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -163,15 +172,16 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   const mc1 = mcs.find(m => m.id === battle.mc1);
                   const mc2 = mcs.find(m => m.id === battle.mc2);
                   const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
-                  const mc1Name = mc1?.name || titleMc1 || battle.mc1;
-                  const mc2Name = mc2?.name || titleMc2 || battle.mc2;
-                  const leftPair = mc1Name.split("&").map(name => name.trim()).filter(Boolean);
-                  const rightPair = mc2Name.split("&").map(name => name.trim()).filter(Boolean);
+                  const leftPair = titleMc1.split("&").map(name => name.trim()).filter(Boolean);
+                  const rightPair = titleMc2.split("&").map(name => name.trim()).filter(Boolean);
                   const isTwoVsTwo = leftPair.length === 2 && rightPair.length === 2;
+                  const mc1Name = isTwoVsTwo ? titleMc1 : (mc1?.name || titleMc1 || battle.mc1);
+                  const mc2Name = isTwoVsTwo ? titleMc2 : (mc2?.name || titleMc2 || battle.mc2);
                   const scheduleText = battle.date || "Coming Soon";
                   const scheduleLink = battle.ticketUrl || "/events";
-                  const isInProduction = !battle.videoUrl && !battle.ticketUrl;
-                  const isTicketsOnSale = Boolean(battle.ticketUrl);
+                  const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
+                  const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
+                  const isTicketsOnSale = !battle.videoUrl && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
                   const shouldShowComingSoon = battle.isUnreleased && Boolean(battle.ticketUrl);
                   
                   return (
@@ -180,12 +190,12 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                       onClick={() => navigate(battle.ticketUrl || `/battle/${battle.slug}`)}
                       className="group hover:bg-white/[0.03] transition-all duration-300 cursor-pointer"
                     >
-                      <td className="px-6 py-6 md:px-10 md:py-10">
+                      <td className="px-6 py-6 md:px-8 md:py-10 whitespace-nowrap">
                         <span className="font-mono text-brand text-sm md:text-lg font-black opacity-40 group-hover:opacity-100 transition-opacity">
                           {battle.episode || (!battle.isUnreleased ? `1x${String(index + 1).padStart(2, '0')}` : "")}
                         </span>
                       </td>
-                      <td className="px-6 py-6 md:px-10 md:py-10">
+                      <td className="px-6 py-6 md:px-8 md:py-10">
                         <div className="flex flex-col gap-2">
                           {isTwoVsTwo ? (
                             <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] grid-rows-2 items-center gap-x-3 gap-y-1 font-display uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors">
@@ -212,7 +222,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                           )}
                           <div className="lg:hidden flex items-center gap-4 text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">
                             <span className="flex items-center gap-1.5">
-                              <Calendar size={12} className="text-brand/40" /> 
+                              <Calendar size={12} className="text-brand/40 shrink-0" /> 
                               {battle.isUnreleased || shouldShowComingSoon ? (
                                 <ScheduleLink href={scheduleLink}>
                                   {scheduleText}
@@ -222,15 +232,15 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                           </div>
                         </div>
                       </td>
-                      <td className="hidden sm:table-cell px-6 py-6 md:px-10 md:py-10 text-center">
+                      <td className="hidden sm:table-cell px-6 py-6 md:px-8 md:py-10 text-center whitespace-nowrap">
                         <div className="inline-flex flex-col items-center gap-1 text-zinc-100 font-mono text-sm md:text-lg">
                           <span className="text-[10px] uppercase font-black tracking-tighter text-zinc-600">Views</span>
                           <span className="group-hover:text-brand transition-colors">{!battle.isUnreleased ? (battle.views || "---") : "---"}</span>
                         </div>
                       </td>
-                      <td className="hidden lg:table-cell px-10 py-10">
-                        <div className="flex items-center gap-3 text-zinc-300 text-sm font-black uppercase tracking-widest">
-                          <Calendar size={18} className="text-brand opacity-40" />
+                      <td className="hidden lg:table-cell px-6 md:px-8 py-10 whitespace-nowrap min-w-[200px]">
+                        <div className="flex items-center gap-3 text-zinc-300 text-sm font-black uppercase tracking-widest whitespace-nowrap">
+                          <Calendar size={18} className="text-brand opacity-40 shrink-0" />
                           {battle.isUnreleased || shouldShowComingSoon ? (
                             <ScheduleLink href={scheduleLink}>
                               {scheduleText}
@@ -238,14 +248,14 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                           ) : (battle.date || "TBD")}
                         </div>
                       </td>
-                      <td className="px-6 py-6 md:px-10 md:py-10 text-right md:text-left">
+                      <td className="px-6 py-6 md:px-8 md:py-10 text-right md:text-left whitespace-nowrap min-w-[190px]">
                         <div className="flex flex-col md:flex-row items-end md:items-center gap-2">
-                          <span className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border ${
+                          <span className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border whitespace-nowrap ${
                             battle.videoUrl 
                               ? "bg-emerald-500 text-black border-emerald-400 shadow-emerald-500/20" 
                               : "bg-zinc-900 border-zinc-700 text-zinc-500"
                           }`}>
-                            {battle.videoUrl ? "Live Now" : isInProduction ? "In Production" : isTicketsOnSale ? "Tickets on Sale" : "Coming Soon"}
+                            {battle.videoUrl ? "Live Now" : isInProduction ? "In Production" : isTicketsOnSaleSoon ? "Tickets on Sale Soon" : isTicketsOnSale ? "Tickets on Sale" : "Coming Soon"}
                           </span>
                         </div>
                       </td>

@@ -1,6 +1,4 @@
 import HostsAndJudges from "../components/HostsAndJudges";
-import { Users, Info, ShieldCheck } from "lucide-react";
-import GlobalDisclaimer from "../components/GlobalDisclaimer";
 import { motion } from "motion/react";
 
 type StaffPageProps = {
