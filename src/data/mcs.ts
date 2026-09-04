@@ -433,7 +433,7 @@ export const mcs: MC[] = [
     losses: 0,
     style: "Aggressive / Delivery",
     image: "/tricky.png",
-    bio: "Trickyy represents Lancashire, bringing heavy punchlines and aggression into the Gzone arena against Z.K.",
+    bio: "Trickyy represents Lancashire, bringing heavy punchlines and aggressive delivery to the Gzone roster.",
     isActive: true,
     location: "Lancashire",
     coordinates: [53.7022, -2.2872]

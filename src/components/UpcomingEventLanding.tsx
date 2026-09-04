@@ -19,11 +19,6 @@ const septemberFlyers = [
     src: "/flyers/september-26-2026-afrodon-vs-akeezy.jpg",
   },
   {
-    id: "trickyy-zk",
-    title: "Trickyy vs Z.K",
-    src: "/flyers/september-26-2026-trickyy-vs-zk.jpg",
-  },
-  {
     id: "badiee-roman",
     title: "Badiee Harz vs Roman",
     src: "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
@@ -115,14 +110,13 @@ export const UpcomingEventLanding = () => {
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 5 high-stakes clashes locked in for the night:
+                  The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 4 high-stakes clashes locked in for the night:
                 </p>
 
                 <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-white leading-relaxed">
                   <span className="text-brand">Marni Gramz vs Btizz</span> &bull;{" "}
                   <span className="text-brand">Tymeless vs K.I.M.E</span> &bull;{" "}
                   <span className="text-brand">Afrodon vs Akeezy</span> &bull;{" "}
-                  <span className="text-brand">Trickyy vs Z.K</span> &bull;{" "}
                   <span className="text-brand">Badiee Harz vs Roman</span>
                 </p>
 

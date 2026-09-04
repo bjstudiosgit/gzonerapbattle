@@ -52,17 +52,6 @@ const allFlyers: PromoFlyer[] = [
     direct: true,
   },
   {
-    id: "trickyy-vs-zk",
-    title: "Trickyy vs Z.K",
-    event: "26th September 2026",
-    date: "26 Sep 2026",
-    category: "upcoming",
-    categoryLabel: "26 Sep Clash",
-    src: "/flyers/september-26-2026-trickyy-vs-zk.jpg",
-    aspect: "aspect-[3/4]",
-    direct: true,
-  },
-  {
     id: "badiee-harz-vs-roman",
     title: "Badiee Harz vs Roman",
     event: "26th September 2026",

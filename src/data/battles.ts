@@ -474,19 +474,6 @@ export const battles: Battle[] = [
   },
   {
     "id": "31",
-    "slug": "zk-vs-tricky",
-    "mc1": "tricky",
-    "mc2": "zk",
-    "title": "Trickyy vs Z.K",
-    "date": "26 Sep 2026",
-    "isUnreleased": true,
-    "isPlaceholder": false,
-    "episode": "1x30",
-    "flyer": "/flyers/september-26-2026-trickyy-vs-zk.jpg",
-    "ticketUrl": "/events"
-  },
-  {
-    "id": "32",
     "slug": "roman-vs-badee-harz",
     "mc1": "badee-harz",
     "mc2": "roman",
@@ -494,7 +481,7 @@ export const battles: Battle[] = [
     "date": "26 Sep 2026",
     "isUnreleased": true,
     "isPlaceholder": false,
-    "episode": "1x31",
+    "episode": "1x30",
     "flyer": "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
     "ticketUrl": "/events"
   }

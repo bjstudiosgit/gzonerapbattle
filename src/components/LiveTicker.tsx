@@ -14,7 +14,7 @@ export default function LiveTicker() {
     { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
     { text: "ROYAL RUMBLE VIDEOS OUT NOW", type: "live" },
     { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
-    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKEEZY | MARNI GRAMZ VS BTIZZ | TRICKYY VS Z.K | BADIEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
+    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKEEZY | MARNI GRAMZ VS BTIZZ | BADIEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
   ];
 
   const tickerItems = [...items, ...items];
