@@ -482,7 +482,7 @@ export const battles: Battle[] = [
     "isUnreleased": true,
     "isPlaceholder": false,
     "episode": "1x30",
-    "flyer": "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
+    "flyer": "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
     "ticketUrl": "/events"
   }
 ];

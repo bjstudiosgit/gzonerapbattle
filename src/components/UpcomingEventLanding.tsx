@@ -19,9 +19,9 @@ const septemberFlyers = [
     src: "/flyers/september-26-2026-afrodon-vs-akeezy.jpg",
   },
   {
-    id: "badiee-roman",
+    id: "badee-roman",
     title: "Badee Harz vs Roman",
-    src: "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
+    src: "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
   },
 ];
 

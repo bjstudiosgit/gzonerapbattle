@@ -157,7 +157,7 @@ const events = [
     images: [
       "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
       "/flyers/september-26-2026-tymeless-vs-kime.jpg",
-      "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
+      "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
       "/flyers/september-26-2026-afrodon-vs-akeezy.jpg"
     ],
     description: "Official 4-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
