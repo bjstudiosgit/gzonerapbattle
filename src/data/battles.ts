@@ -477,7 +477,7 @@ export const battles: Battle[] = [
     "slug": "roman-vs-badee-harz",
     "mc1": "badee-harz",
     "mc2": "roman",
-    "title": "Badiee Harz vs Roman",
+    "title": "Badee Harz vs Roman",
     "date": "26 Sep 2026",
     "isUnreleased": true,
     "isPlaceholder": false,

@@ -53,7 +53,7 @@ const allFlyers: PromoFlyer[] = [
   },
   {
     id: "badiee-harz-vs-roman",
-    title: "Badiee Harz vs Roman",
+    title: "Badee Harz vs Roman",
     event: "26th September 2026",
     date: "26 Sep 2026",
     category: "upcoming",

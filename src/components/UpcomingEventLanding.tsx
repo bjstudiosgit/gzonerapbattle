@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Ticket } from 'lucide-react';
 
 const septemberFlyers = [
@@ -20,31 +20,23 @@ const septemberFlyers = [
   },
   {
     id: "badiee-roman",
-    title: "Badiee Harz vs Roman",
+    title: "Badee Harz vs Roman",
     src: "/flyers/september-26-2026-badiee-harz-vs-roman.jpg",
   },
 ];
 
 export const UpcomingEventLanding = () => {
   const [activeFlyerIndex, setActiveFlyerIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       setActiveFlyerIndex((prev) => (prev + 1) % septemberFlyers.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const activeFlyer = septemberFlyers[activeFlyerIndex];
+    }, 3500);
+    return () => window.clearInterval(interval);
+  }, []);
 
   return (
-    <section
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      className="relative py-20 md:py-28 overflow-hidden bg-[#050505]"
-    >
+    <section className="relative py-20 md:py-28 overflow-hidden bg-[#050505]">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand/10 blur-[130px] rounded-full" />
@@ -74,18 +66,20 @@ export const UpcomingEventLanding = () => {
 
               {/* Main Flyer Card */}
               <div className="relative bg-zinc-950 rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[3/4] w-full flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeFlyer.id}
-                    src={activeFlyer.src}
-                    alt={activeFlyer.title}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="w-full h-full object-contain bg-black select-none"
-                  />
-                </AnimatePresence>
+                {septemberFlyers.map((flyer, idx) => {
+                  const isActive = idx === activeFlyerIndex;
+                  return (
+                    <img
+                      key={flyer.id}
+                      src={flyer.src}
+                      alt={flyer.title}
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      className={`absolute inset-0 w-full h-full object-contain bg-black select-none transition-opacity duration-700 ease-in-out ${
+                        isActive ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+                      }`}
+                    />
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -113,11 +107,8 @@ export const UpcomingEventLanding = () => {
                   The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 4 high-stakes clashes locked in for the night:
                 </p>
 
-                <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-white leading-relaxed">
-                  <span className="text-brand">Marni Gramz vs Btizz</span> &bull;{" "}
-                  <span className="text-brand">Tymeless vs K.I.M.E</span> &bull;{" "}
-                  <span className="text-brand">Afrodon vs Akeezy</span> &bull;{" "}
-                  <span className="text-brand">Badiee Harz vs Roman</span>
+                <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">
+                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Afrodon vs Akeezy &bull; Badee Harz vs Roman
                 </p>
 
                 <p className="text-zinc-400 text-sm sm:text-base">

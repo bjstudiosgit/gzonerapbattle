@@ -98,7 +98,7 @@ export default function RoyalRumbleLanding() {
               </h3>
 
               <p className="mb-8 text-base font-medium leading-relaxed text-zinc-400 md:text-lg">
-                The event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave. Roman and Trickyy and Badiee Harz and Roman had to be postponed.
+                The event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave. Roman and Trickyy and Badee Harz and Roman had to be postponed.
               </p>
 
               <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">

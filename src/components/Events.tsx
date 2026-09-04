@@ -167,7 +167,7 @@ const events = [
       { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
       { episode: "1x28", mc1: "AFRODON", mc2: "AKEEZY" },
       { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ" },
-      { episode: "1x30", mc1: "BADIEE HARZ", mc2: "ROMAN" }
+      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" }
     ]
   }
 ];
@@ -211,6 +211,41 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
             loop
             playsInline
           />
+        ) : images && images.length > 1 ? (
+          <>
+            {images.map((imgSrc, imgIdx) => {
+              const isCurrent = imgIdx === imageIndex;
+              return (
+                <img
+                  key={imgSrc}
+                  src={imgSrc}
+                  alt={event.title}
+                  width={640}
+                  height={360}
+                  className={`absolute inset-0 w-full h-full object-cover object-top bg-black transition-opacity duration-700 ease-in-out ${
+                    isCurrent ? "opacity-95 z-10" : "opacity-0 pointer-events-none z-0"
+                  }`}
+                  referrerPolicy="no-referrer"
+                  loading={imgIdx === 0 ? "eager" : "lazy"}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.endsWith(defaultEventImage)) return;
+                    target.src = defaultEventImage;
+                  }}
+                />
+              );
+            })}
+            <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-1.5 pointer-events-none">
+              {images.map((_, imgIdx) => (
+                <span
+                  key={imgIdx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    imgIdx === imageIndex ? "w-5 bg-brand" : "w-1.5 bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
         ) : (
           <img
             key={activeImage}
