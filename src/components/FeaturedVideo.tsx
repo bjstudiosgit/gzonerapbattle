@@ -33,7 +33,9 @@ export default function FeaturedVideo() {
           </h2>
           <p className="text-zinc-300 text-sm sm:text-xl leading-relaxed tracking-normal text-center max-w-3xl mx-auto">
             {featuredBattle ? (
-              featuredBattle.episode ? (
+              featuredBattle.league === "royal-rumble" ? (
+                <>The 9-MC Royal Rumble EP1 clash is now live in the Gzone arena.</>
+              ) : featuredBattle.episode ? (
                 <>
                   <span>Episode {featuredBattle.episode}</span>
                   {" "}{featuredBattle.title} is now live in the Gzone arena.
@@ -58,6 +60,7 @@ export default function FeaturedVideo() {
           <div className="absolute -inset-1 bg-gradient-to-r from-brand to-orange-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
           
           <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(242,125,38,0.25)] bg-[#050505]">
+
             <iframe
               className="w-full h-full border-0"
               src={featuredBattleEmbedSrc}

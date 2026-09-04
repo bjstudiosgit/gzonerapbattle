@@ -2,6 +2,7 @@ import { BookOpen, Zap, Ticket, Play, Sword, ShoppingBag } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
+    { text: "LATEST BATTLE: ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
     { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
     { text: "LATEST RESULT: Z.K DEFEATED 7WAVE", type: "live" },

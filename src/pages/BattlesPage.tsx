@@ -115,6 +115,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                 const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
                 const mc1Name = mc1?.name || titleMc1 || battle.mc1;
                 const mc2Name = mc2?.name || titleMc2 || battle.mc2;
+                const isVsBattle = battle.title.toLowerCase().includes(" vs ");
                 const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
                 const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
                 const isTicketsOnSale = !battle.videoUrl && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
@@ -129,17 +130,29 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                     <div className="text-brand font-mono text-sm font-black opacity-80 mb-2">
                       #{battle.episode || (!battle.isUnreleased ? `0${index + 1}` : "TBC")}
                     </div>
-                    <div className="font-display text-[1.35rem] leading-none uppercase text-white mb-4 flex items-center gap-2">
-                      <span className="flex items-center gap-1.5 min-w-0">
-                        <span className="truncate">{mc1Name}</span>
-                        {battle.winner === battle.mc1 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
-                      </span>
-                      <span className="text-zinc-600 text-sm font-black px-1 shrink-0">VS</span>
-                      <span className="flex items-center gap-1.5 min-w-0">
-                        {battle.winner === battle.mc2 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
-                        <span className="truncate">{mc2Name}</span>
-                      </span>
-                    </div>
+                    {!isVsBattle ? (
+                      <div className="mb-4">
+                        <div className="font-display text-[1.35rem] leading-none uppercase text-white flex items-center gap-2">
+                          <span>{battle.title}</span>
+                          <span className="text-[10px] font-mono font-black px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">9-MC Clash</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-400 font-medium mt-1 truncate">
+                          Tricky • Cookie • Passive • Deeno • Mello • 1 Flaymah • Btizz • Badee Harz • Jai-D
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="font-display text-[1.35rem] leading-none uppercase text-white mb-4 flex items-center gap-2">
+                        <span className="flex items-center gap-1.5 min-w-0">
+                          <span className="truncate">{mc1Name}</span>
+                          {battle.winner === battle.mc1 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
+                        </span>
+                        <span className="text-zinc-600 text-sm font-black px-1 shrink-0">VS</span>
+                        <span className="flex items-center gap-1.5 min-w-0">
+                          {battle.winner === battle.mc2 && <Trophy size={14} className="text-brand shrink-0 animate-pulse" />}
+                          <span className="truncate">{mc2Name}</span>
+                        </span>
+                      </div>
+                    )}
                     <div className="flex flex-col gap-1.5 text-xs font-black tracking-widest uppercase">
                       <div className="text-zinc-500">
                         Impact: <span className="text-zinc-100 font-mono ml-1">{!battle.isUnreleased ? (battle.views || "---") : "---"}</span>
@@ -172,6 +185,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   const mc1 = mcs.find(m => m.id === battle.mc1);
                   const mc2 = mcs.find(m => m.id === battle.mc2);
                   const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
+                  const isVsBattle = battle.title.toLowerCase().includes(" vs ");
                   const leftPair = titleMc1.split("&").map(name => name.trim()).filter(Boolean);
                   const rightPair = titleMc2.split("&").map(name => name.trim()).filter(Boolean);
                   const isTwoVsTwo = leftPair.length === 2 && rightPair.length === 2;
@@ -186,7 +200,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   
                   return (
                     <tr 
-                      key={battle.id}
+                      key={battle.id} 
                       onClick={() => navigate(battle.ticketUrl || `/battle/${battle.slug}`)}
                       className="group hover:bg-white/[0.03] transition-all duration-300 cursor-pointer"
                     >
@@ -204,6 +218,16 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                               <div className="text-left truncate">{rightPair[0]}</div>
                               <div className="text-right truncate">{leftPair[1]}</div>
                               <div className="text-left truncate">{rightPair[1]}</div>
+                            </div>
+                          ) : !isVsBattle ? (
+                            <div className="flex items-center gap-3 font-display uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors">
+                              <span>{battle.title}</span>
+                              <span className="text-[10px] font-mono font-black px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20 shrink-0">
+                                9-MC Clash
+                              </span>
+                              <span className="text-xs font-sans font-medium text-zinc-400 normal-case truncate hidden lg:inline">
+                                Tricky, Cookie, Passive, Deeno, Mello, 1 Flaymah, Btizz, Badee Harz, Jai-D
+                              </span>
                             </div>
                           ) : (
                             <div className="grid grid-cols-[120px_auto_120px] md:grid-cols-[1fr_auto_1fr] items-center gap-2 md:gap-6 font-display uppercase text-lg md:text-xl text-zinc-100 group-hover:text-brand transition-colors">

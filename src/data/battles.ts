@@ -14,12 +14,13 @@ export interface Battle {
   isMainEvent?: boolean;
   isWanted?: boolean;
   episode?: string;
-  league?: "season1" | "freestyle";
+  league?: "season1" | "freestyle" | "royal-rumble";
   summary?: string;
   ticketUrl?: string;
   ticketsOnSaleSoon?: boolean;
   flyer?: string;
   props?: { name: string, user: string, icon: string }[];
+  lineup?: string[];
 }
 
 export interface NotableBar {
@@ -484,13 +485,31 @@ export const battles: Battle[] = [
     "episode": "1x30",
     "flyer": "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
     "ticketUrl": "/events"
+  },
+  {
+    "id": "32",
+    "slug": "royal-rumble",
+    "mc1": "tricky",
+    "mc2": "deeno",
+    "title": "Royal Rumble EP1",
+    "date": "4 Sept 2026",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
+    "views": "1,023",
+    "isPlaceholder": false,
+    "isUnreleased": false,
+    "episode": "EP1",
+    "league": "royal-rumble",
+    "flyer": "/flyers/august-2026-likkle-man.jpeg",
+    "summary": "THE GZONE HAVE INITIATED WAR ON THE WHOLE SCENE WITH THIS ONE... THE FIRST OF ITS KIND IN THIS ENVIRONMENT AND OHHHHH IT WENT OFFFF! Featuring Tricky, Cookie, Passive, Deeno \"The Viking\", Mello, 1 Flaymah, Btizz, Badee Harz, Jai-D. Beats produced by Keegan - K.Sticky. Production: N.Studios.",
+    "lineup": ["tricky", "cookie", "passive", "deeno", "mello", "1flaymr", "btizz", "badee-harz", "jai-d"]
   }
 ];
 
-export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle");
+export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle" && battle.league !== "royal-rumble");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
+export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "3 Sept 2026";
+export const lastUpdated = "4 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

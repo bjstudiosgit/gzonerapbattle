@@ -32,9 +32,9 @@ export default function BattleDetail() {
 
   const mc1 = mcs.find(m => m.id === battle.mc1);
   const mc2 = mcs.find(m => m.id === battle.mc2);
-  const leagueName = battle.league === "freestyle" ? "Freestyle League" : "Season 1";
-  const archivePath = battle.league === "freestyle" ? "/freestyle" : "/battles";
-  const archiveLabel = battle.league === "freestyle" ? "Freestyle" : "Battles";
+  const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
+  const archivePath = battle.league === "royal-rumble" ? "/royal-rumble" : battle.league === "freestyle" ? "/freestyle" : "/battles";
+  const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 
   // Helper to extract YouTube ID from embed URL
   const getYouTubeId = (url: string | undefined) => {
@@ -216,51 +216,131 @@ export default function BattleDetail() {
               </div>
             </motion.div>
 
-            {/* Battle Result */}
-            <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
-              <div className="text-center mb-6 md:mb-8">
-                <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
-                <p className="text-zinc-400 text-sm mt-2 tracking-widest">
-                  {battle.winner
-                    ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
-                      ? "GZone Crowd Decision"
-                      : battle.slug === 'zk-vs-cj-zino'
-                        ? "Official Audience Decision"
-                        : "Official Judges' Decision")
-                    : "Awaiting Decision"}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
-                  VS
+            {/* Battle Result or Royal Rumble Lineup */}
+            {battle.slug === 'royal-rumble' ? (
+              <section className="bg-zinc-900/50 p-6 md:p-10 rounded-3xl border border-white/5 space-y-8">
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand border border-brand/30 text-xs font-black uppercase tracking-widest mb-3">
+                    Freestyle Division • 9-MC Rumble
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-display uppercase text-white">The Royal Rumble</h2>
+                  <p className="text-zinc-400 text-sm mt-2 tracking-widest uppercase font-mono">
+                    9 MCs • Beats by Keegan - K.Sticky • Production by N.Studios
+                  </p>
                 </div>
 
-                {/* MC1 Result */}
-                <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                  {battle.winner === mc1?.id && (
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                      <Trophy size={14} /> Official Winner
-                    </div>
-                  )}
-                  <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400 mb-4 border-b border-white/10 pb-2">
+                    Official Roster Lineup
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+                    {[
+                      { name: "Trickyy", id: "tricky", note: "Lancashire" },
+                      { name: "Cookie", note: "Contender" },
+                      { name: "Passive", note: "Cypher Vet" },
+                      { name: "Deeno \"The Viking\"", id: "deeno", note: "Reading" },
+                      { name: "Mello", note: "Contender" },
+                      { name: "1 Flaymah", id: "1flaymr", note: "Birmingham" },
+                      { name: "Btizz", id: "btizz", note: "Essex" },
+                      { name: "Badee Harz", id: "badee-harz", note: "Essex" },
+                      { name: "Jai-D", note: "Contender" },
+                    ].map((artist, idx) => (
+                      <div
+                        key={artist.name}
+                        className="p-4 rounded-2xl border border-white/10 bg-zinc-950/60 flex items-center justify-between group hover:border-brand/40 transition-colors"
+                      >
+                        <div>
+                          <div className="text-[10px] font-mono text-brand font-black">ENTRY #{idx + 1}</div>
+                          <div className="font-display text-lg uppercase text-white my-0.5">
+                            {artist.id ? (
+                              <Link to={`/mc/${artist.id}`} className="hover:text-brand transition-colors">
+                                {artist.name}
+                              </Link>
+                            ) : (
+                              <span>{artist.name}</span>
+                            )}
+                          </div>
+                          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">{artist.note}</div>
+                        </div>
+                        {artist.id && (
+                          <Link
+                            to={`/mc/${artist.id}`}
+                            className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-white/5 text-zinc-400 group-hover:bg-brand group-hover:text-black transition-colors uppercase tracking-wider"
+                          >
+                            Profile
+                          </Link>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* MC2 Result */}
-                <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                  {battle.winner === mc2?.id && (
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                      <Trophy size={14} /> Official Winner
-                    </div>
-                  )}
-                  <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
+                <div className="p-6 md:p-8 rounded-2xl bg-black/40 border border-white/5 space-y-4">
+                  <h3 className="text-xl font-display uppercase text-white flex items-center gap-3">
+                    <span className="w-4 h-1 bg-brand" />
+                    Clash Breakdown
+                  </h3>
+                  <p className="text-zinc-300 leading-relaxed font-light">
+                    The Gzone initiated war on the entire UK battle scene with this one. Recorded live at Peacocks Boxing Gymnasium in Canning Town, London, during the 1st August 2026 event, nine MCs collided in an electric multi-man free-for-all over beats produced by Keegan - K.Sticky.
+                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light">
+                    The format represents a major evolution for the Gzone Freestyle division: rapid mic rotations, spontaneous bars, live rebuttals, and heavy energy with established roster headliners like Deeno, Btizz, 1 Flaymah, Badee Harz, and Trickyy trading fire alongside Passive, Cookie, Mello, and Jai-D.
+                  </p>
+                  <div className="pt-4 border-t border-white/10 flex flex-wrap gap-4 text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                    <span>Beats: <strong className="text-white">Keegan - K.Sticky</strong></span>
+                    <span>•</span>
+                    <span>Production: <strong className="text-white">N.Studios</strong></span>
+                    <span>•</span>
+                    <span>Venue: <strong className="text-white">Peacocks Boxing, Canning Town</strong></span>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            ) : (
+              <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
+                <div className="text-center mb-6 md:mb-8">
+                  <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
+                  <p className="text-zinc-400 text-sm mt-2 tracking-widest">
+                    {battle.winner
+                      ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
+                        ? "GZone Crowd Decision"
+                        : battle.slug === 'zk-vs-cj-zino'
+                          ? "Official Audience Decision"
+                          : "Official Judges' Decision")
+                      : "Awaiting Decision"}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
+                    VS
+                  </div>
+
+                  {/* MC1 Result */}
+                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                    {battle.winner === mc1?.id && (
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                        <Trophy size={14} /> Official Winner
+                      </div>
+                    )}
+                    <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
+                      <Link to={`/mc/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
+                    </div>
+                  </div>
+
+                  {/* MC2 Result */}
+                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                    {battle.winner === mc2?.id && (
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                        <Trophy size={14} /> Official Winner
+                      </div>
+                    )}
+                    <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
+                      <Link to={`/mc/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>
