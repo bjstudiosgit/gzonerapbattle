@@ -53,7 +53,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs Roman",
     "date": "1 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/QByqdZAF3L0",
-    "views": "23.8K",
+    "views": "23.9K",
     "winner": "roman"
   },
   {
@@ -167,7 +167,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Tymeless",
     "date": "26 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Omge-TNTrhQ",
-    "views": "15.9K",
+    "views": "16.4K",
     "winner": "tymeless",
     "props": [
       { "name": "Alleged photo of Ryno kissing a man", "user": "Tymeless", "icon": "📸" },
@@ -265,7 +265,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Roman",
     "date": "7 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/eNusiS3fDhw",
-    "views": "12.7K",
+    "views": "12.9K",
     "winner": "roman",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -332,7 +332,7 @@ export const battles: Battle[] = [
     "title": "NattyEBK vs Z.K",
     "date": "13 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/ayTTSuKB168",
-    "views": "4.9K",
+    "views": "5.0K",
     "winner": "nattyebk",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -422,17 +422,17 @@ export const battles: Battle[] = [
   },
   {
     "id": "27",
-    "slug": "7wave-vs-zk",
-    "mc1": "7wave",
+    "slug": "7wxve-vs-zk",
+    "mc1": "7wxve",
     "mc2": "zk",
-    "title": "7Wave vs ZK",
+    "title": "7wxve vs ZK",
     "date": "29 Aug 2026",
     "winner": "zk",
     "resultLabel": "Official Result",
     "isUnreleased": true,
     "isPlaceholder": false,
     "episode": "1x26",
-    "flyer": "/flyers/august-29-2026-zk-vs-7wave.png"
+    "flyer": "/flyers/august-29-2026-zk-vs-7wxve.png"
   },
   {
     "id": "28",
@@ -449,15 +449,15 @@ export const battles: Battle[] = [
   },
   {
     "id": "29",
-    "slug": "afrodon-vs-akeezy",
+    "slug": "afrodon-vs-akzzey",
     "mc1": "afrodon",
-    "mc2": "akeezy",
-    "title": "Afrodon vs Akeezy",
+    "mc2": "akzzey",
+    "title": "Afrodon vs Akzzey",
     "date": "26 Sep 2026",
     "isUnreleased": true,
     "isPlaceholder": false,
     "episode": "1x28",
-    "flyer": "/flyers/september-26-2026-afrodon-vs-akeezy.jpg",
+    "flyer": "/flyers/september-26-2026-afrodon-vs-akzzey.jpg",
     "ticketUrl": "/events"
   },
   {
@@ -494,7 +494,7 @@ export const battles: Battle[] = [
     "title": "Royal Rumble EP1",
     "date": "4 Sept 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
-    "views": "1,023",
+    "views": "6.9K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP1",
@@ -509,7 +509,7 @@ export const seasonOneBattles = battles.filter((battle) => battle.league !== "fr
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "4 Sept 2026";
+export const lastUpdated = "5 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

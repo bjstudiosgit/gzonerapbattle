@@ -385,7 +385,7 @@ export const mcs: MC[] = [
     losses: 1,
     style: "Direct / Punchlines",
     image: "/zk.png",
-    bio: "Z.K made his Gzone debut against NattyEBK before recording wins over CJ Zino and 7Wave. His direct, punchline-focused style has made him a Season 1 name to watch.",
+    bio: "Z.K made his Gzone debut against NattyEBK before recording wins over CJ Zino and 7wxve. His direct, punchline-focused style has made him a Season 1 name to watch.",
     isActive: true,
     location: "Grimsby",
     coordinates: [53.5675, -0.0736],
@@ -394,20 +394,19 @@ export const mcs: MC[] = [
     debutTier: "standard"
   },
   {
-    id: "7wave",
-    slug: "7wave",
-    name: "7Wave",
+    id: "7wxve",
+    slug: "7wxve",
+    name: "7wxve",
     battles: 1,
     wins: 0,
     losses: 1,
     style: "Lyrical / Technical",
-    image: "/7wave.png",
-    bio: "7Wave stepped into the Gzone arena in August 2026 for an intense clash with Z.K.",
+    image: "/7wxve.png",
+    bio: "7wxve stepped into the Gzone arena in August 2026 for an intense clash with Z.K.",
     isActive: true,
     location: "Sheffield",
     coordinates: [53.3811, -1.4701],
-    instagram: "https://instagram.com",
-    tiktok: "https://www.tiktok.com/@the.gzone.rbl",
+    instagram: "https://www.instagram.com/7wxve_official/",
     debutTier: "standard"
   },
   {
@@ -419,7 +418,7 @@ export const mcs: MC[] = [
     losses: 0,
     style: "Freestyle / Energy",
     image: "/afrodon.png",
-    bio: "Afrodon joined the Gzone roster for the first Freestyle League battle and clashes with Akeezy on 26th September 2026.",
+    bio: "Afrodon joined the Gzone roster for the first Freestyle League battle and clashes with Akzzey on 26th September 2026.",
     isActive: true,
     location: "Nottingham",
     coordinates: [52.9548, -1.1581]
@@ -439,18 +438,19 @@ export const mcs: MC[] = [
     coordinates: [53.7022, -2.2872]
   },
   {
-    id: "akeezy",
-    slug: "akeezy",
-    name: "Akeezy",
+    id: "akzzey",
+    slug: "akzzey",
+    name: "Akzzey",
     battles: 0,
     wins: 0,
     losses: 0,
     style: "Grime / Flow",
-    image: "/akeezy.jpg",
-    bio: "Birmingham lyricist Akeezy makes his official Gzone clash debut against Nottingham's Afrodon on 26th September 2026.",
+    image: "/akzzey.jpg",
+    bio: "Birmingham lyricist Akzzey makes his official Gzone clash debut against Nottingham's Afrodon on 26th September 2026.",
     isActive: true,
     location: "Birmingham",
-    coordinates: [52.4862, -1.8904]
+    coordinates: [52.4862, -1.8904],
+    instagram: "https://www.instagram.com/akzzey/"
   },
   {
     id: "kime",

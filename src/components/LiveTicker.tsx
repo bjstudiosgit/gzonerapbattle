@@ -5,7 +5,7 @@ export default function LiveTicker() {
     { text: "LATEST BATTLE: ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
     { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
-    { text: "LATEST RESULT: Z.K DEFEATED 7WAVE", type: "live" },
+    { text: "LATEST RESULT: Z.K DEFEATED 7WXVE", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED BTIZZ - 1X22", type: "live" },
     { text: "LATEST RESULT: Z.K DEFEATED C.J ZINO - 1X23", type: "live" },
     { text: "LATEST FREESTYLE RESULT: DEENO DEFEATED AFRODON - FX1", type: "live" },
@@ -15,7 +15,7 @@ export default function LiveTicker() {
     { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
     { text: "ROYAL RUMBLE VIDEOS OUT NOW", type: "live" },
     { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
-    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKEEZY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
+    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKZZEY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
   ];
 
   const tickerItems = [...items, ...items];

@@ -5,12 +5,12 @@ import { Calendar, MapPin, Trophy } from "lucide-react";
 const battleCard = [
   { mc1: "Badee Harz", mc2: "1 Flaymah", winner: "1 Flaymah" },
   { mc1: "Deeno", mc2: "CJ Zino", winner: "Deeno" },
-  { mc1: "Z.K", mc2: "7Wave", winner: "Z.K" },
+  { mc1: "Z.K", mc2: "7wxve", winner: "Z.K" },
 ];
 
 const eventFlyers = [
   { src: "/flyers/august-29-2026-deeno-vs-cj.jpg", alt: "Deeno vs CJ Zino event flyer" },
-  { src: "/flyers/august-29-2026-zk-vs-7wave.png", alt: "Z.K vs 7Wave event flyer" },
+  { src: "/flyers/august-29-2026-zk-vs-7wxve.png", alt: "Z.K vs 7wxve event flyer" },
   { src: "/flyers/august-29-2026-badee-harz-vs-1flaymah.png", alt: "Badee Harz vs 1 Flaymah event flyer" },
 ];
 
@@ -98,7 +98,7 @@ export default function RoyalRumbleLanding() {
               </h3>
 
               <p className="mb-8 text-base font-medium leading-relaxed text-zinc-400 md:text-lg">
-                The event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave. Roman and Trickyy and Badee Harz and Roman had to be postponed.
+                The event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7wxve. Roman and Trickyy and Badee Harz and Roman had to be postponed.
               </p>
 
               <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">

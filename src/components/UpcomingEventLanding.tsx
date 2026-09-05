@@ -14,9 +14,9 @@ const septemberFlyers = [
     src: "/flyers/september-26-2026-tymeless-vs-kime.jpg",
   },
   {
-    id: "afrodon-akeezy",
-    title: "Afrodon vs Akeezy",
-    src: "/flyers/september-26-2026-afrodon-vs-akeezy.jpg",
+    id: "afrodon-akzzey",
+    title: "Afrodon vs Akzzey",
+    src: "/flyers/september-26-2026-afrodon-vs-akzzey.jpg",
   },
   {
     id: "badee-roman",
@@ -108,7 +108,7 @@ export const UpcomingEventLanding = () => {
                 </p>
 
                 <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">
-                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Afrodon vs Akeezy &bull; Badee Harz vs Roman
+                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Afrodon vs Akzzey &bull; Badee Harz vs Roman
                 </p>
 
                 <p className="text-zinc-400 text-sm sm:text-base">

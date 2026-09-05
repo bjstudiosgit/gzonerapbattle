@@ -14,7 +14,7 @@ const augustEventImages = [
 ];
 const august29EventImages = [
   "/flyers/august-29-2026-deeno-vs-cj.jpg",
-  "/flyers/august-29-2026-zk-vs-7wave.png",
+  "/flyers/august-29-2026-zk-vs-7wxve.png",
   "/flyers/august-29-2026-badee-harz-vs-1flaymah.png",
 ];
 
@@ -128,12 +128,12 @@ const events = [
     price: "EVENT COMPLETE",
     image: august29EventImages[0],
     images: august29EventImages,
-    description: "The 29th August event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave.",
+    description: "The 29th August event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7wxve.",
     isCompleted: true,
     card: [
       { episode: "1x24", mc1: "Badee Harz", mc2: "1 Flaymah", winner: "1 Flaymah" },
       { episode: "1x25", mc1: "Deeno", mc2: "CJ Zino", winner: "Deeno" },
-      { episode: "1x26", mc1: "Z.K", mc2: "7Wave", winner: "Z.K" },
+      { episode: "1x26", mc1: "Z.K", mc2: "7wxve", winner: "Z.K" },
     ]
   },
   {
@@ -159,14 +159,14 @@ const events = [
       "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
       "/flyers/september-26-2026-tymeless-vs-kime.jpg",
       "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
-      "/flyers/september-26-2026-afrodon-vs-akeezy.jpg"
+      "/flyers/september-26-2026-afrodon-vs-akzzey.jpg"
     ],
     description: "Official 4-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
     isCompleted: false,
     ticketLink: "https://www.eventbrite.co.uk",
     card: [
       { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
-      { episode: "1x28", mc1: "AFRODON", mc2: "AKEEZY" },
+      { episode: "1x28", mc1: "AFRODON", mc2: "AKZZEY" },
       { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ" },
       { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" }
     ]
