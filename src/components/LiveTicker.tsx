@@ -2,20 +2,16 @@ import { BookOpen, Zap, Ticket, Play, Sword, ShoppingBag } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
+    { text: "NEW GSTREET FREESTYLE: EP3 - DEENO OUT NOW", type: "live" },
     { text: "LATEST BATTLE: ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
+    { text: "NEXT EVENT: SATURDAY 26TH SEPTEMBER 2026 - PEACOCKS BOXING, CANNING TOWN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
+    { text: "SEPTEMBER 26TH LINEUP: TYMELESS VS K.I.M.E | AFRODON VS AKZZEY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN", type: "upcoming" },
     { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
     { text: "LATEST RESULT: Z.K DEFEATED 7WXVE", type: "live" },
-    { text: "LATEST RESULT: DEENO DEFEATED BTIZZ - 1X22", type: "live" },
-    { text: "LATEST RESULT: Z.K DEFEATED C.J ZINO - 1X23", type: "live" },
-    { text: "LATEST FREESTYLE RESULT: DEENO DEFEATED AFRODON - FX1", type: "live" },
-    { text: "LEAGUE UPDATE: AFRODON JOINS THE GZONE LEAGUE", type: "editorial" },
-    { text: "THE BARS HAVE BEEN BROKEN DOWN: FULL BATTLE WRITE-UPS NOW LIVE", type: "editorial" },
-    { text: "TYMELESS VS DEENO: THE AFTERMATH IS LIVE", type: "editorial" },
-    { text: "GZONE MERCH HAS DROPPED: SHOP THE LATEST COLLECTION", type: "merch" },
-    { text: "ROYAL RUMBLE VIDEOS OUT NOW", type: "live" },
-    { text: "MAY MADNESS VIDEOS ARE LANDING", type: "upcoming" },
-    { text: "UPCOMING BATTLES (26TH SEP): TYMELESS VS K.I.M.E | AFRODON VS AKZZEY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
+    { text: "GSTREET FREESTYLES: WATCH EP1 MARS, EP2 PASSIVE AND EP3 DEENO", type: "live" },
+    { text: "BATTLE BREAKDOWNS: EXPLORE THE BARS, REBUTTALS AND RESULTS", type: "editorial" },
+    { text: "REP THE GZONE: SHOP THE MERCH COLLECTION", type: "merch" },
   ];
 
   const tickerItems = [...items, ...items];

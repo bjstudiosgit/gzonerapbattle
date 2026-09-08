@@ -64,7 +64,7 @@ export const battles: Battle[] = [
     "title": "LDN Mikez vs Deluxx",
     "date": "8 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/RhC2D3ftzZo",
-    "views": "16.2K",
+    "views": "16.3K",
     "winner": "ldn-mikez"
   },
   {
@@ -218,7 +218,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Grams",
     "date": "16 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OuVeBAU1OQQ",
-    "views": "21.2K",
+    "views": "22.0K",
     "winner": "deeno",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -251,7 +251,7 @@ export const battles: Battle[] = [
     "title": "Btizz vs 1Flaymr",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/2lFLlylG5NQ",
-    "views": "8.2K",
+    "views": "8.3K",
     "winner": "btizz",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -279,7 +279,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "32.8K",
+    "views": "33.4K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -386,7 +386,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/_lObp_xBr20",
-    "views": "6.4K",
+    "views": "6.7K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "Fx1",
@@ -494,7 +494,7 @@ export const battles: Battle[] = [
     "title": "Royal Rumble EP1",
     "date": "4 Sept 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
-    "views": "6.9K",
+    "views": "14.9K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP1",
@@ -509,7 +509,7 @@ export const seasonOneBattles = battles.filter((battle) => battle.league !== "fr
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "5 Sept 2026";
+export const lastUpdated = "8 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

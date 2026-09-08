@@ -12,7 +12,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "438",
+    views: "540",
   },
   {
     id: "ep2",
@@ -22,7 +22,17 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "sKrMgvf3IBI",
     videoUrl: "https://www.youtube.com/watch?v=sKrMgvf3IBI",
-    views: "46",
+    views: "5.3K",
+  },
+  {
+    id: "ep3",
+    episode: "EP3",
+    title: "EP3 - Deeno",
+    artist: "Deeno",
+    location: "Peacocks Gym, Canning Town",
+    videoId: "lvPH1WSZ2r0",
+    videoUrl: "https://www.youtube.com/watch?v=lvPH1WSZ2r0",
+    views: "539",
   },
 ];
 
@@ -65,7 +75,7 @@ export default function GzoneStreetFreestyles() {
         name: `Gstreet Freestyles - ${ep.title}`,
         description: `Gstreet Freestyle ${ep.title} recorded live at ${ep.location}.`,
         thumbnailUrl: `https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`,
-        uploadDate: "2026-08-11T12:00:00+01:00",
+        uploadDate: ep.id === "ep3" ? undefined : "2026-08-11T12:00:00+01:00",
         contentUrl: ep.videoUrl,
         embedUrl: `https://www.youtube-nocookie.com/embed/${ep.videoId}`,
       },
@@ -75,23 +85,23 @@ export default function GzoneStreetFreestyles() {
   return (
     <div className="min-h-screen pt-32 md:pt-44 pb-16 md:pb-24 relative overflow-hidden bg-[#050505]">
       <Helmet>
-        <title>Gstreet Freestyles | EP1 Mars & EP2 Passive | Gzone RBL</title>
+        <title>Gstreet Freestyles | EP1 Mars, EP2 Passive & EP3 Deeno | Gzone RBL</title>
         <meta
           name="description"
-          content="Watch Gstreet Freestyles featuring EP1 Mars and EP2 Passive recorded live at Peacocks Gym, Canning Town London. Raw UK underground battle rap and street performances."
+          content="Watch Gstreet Freestyles featuring EP1 Mars, EP2 Passive and EP3 Deeno recorded live at Peacocks Gym, Canning Town London. Raw UK underground battle rap and street performances."
         />
         <meta
           name="keywords"
-          content="Gstreet Freestyles, Gzone Street Freestyles, Gzone, UK Battle Rap, Street Freestyles, Mars, Passive, Peacocks Gym, Canning Town, Underground Rap"
+          content="Gstreet Freestyles, Gzone Street Freestyles, Gzone, UK Battle Rap, Street Freestyles, Mars, Passive, Deeno, Peacocks Gym, Canning Town, Underground Rap"
         />
         <link rel="canonical" href="https://www.gzonerapbattle.co.uk/gzone-street-freestyles" />
         
         {/* Open Graph */}
         <meta property="og:type" content="video.other" />
-        <meta property="og:title" content="Gstreet Freestyles | EP1 Mars & EP2 Passive" />
+        <meta property="og:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive & EP3 Deeno" />
         <meta
           property="og:description"
-          content="Taking raw Gzone penmanship out of the gym and onto the streets. Watch EP1 Mars and EP2 Passive live on the concrete at Peacocks Gym."
+          content="Taking raw Gzone penmanship out of the gym and onto the streets. Watch EP1 Mars, EP2 Passive and EP3 Deeno live on the concrete at Peacocks Gym."
         />
         <meta property="og:url" content="https://www.gzonerapbattle.co.uk/gzone-street-freestyles" />
         <meta
@@ -101,10 +111,10 @@ export default function GzoneStreetFreestyles() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gstreet Freestyles | EP1 Mars & EP2 Passive" />
+        <meta name="twitter:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive & EP3 Deeno" />
         <meta
           name="twitter:description"
-          content="Watch Gstreet Freestyles EP1 Mars & EP2 Passive recorded live at Peacocks Gym, Canning Town."
+          content="Watch Gstreet Freestyles EP1 Mars, EP2 Passive & EP3 Deeno recorded live at Peacocks Gym, Canning Town."
         />
         <meta
           name="twitter:image"

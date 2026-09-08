@@ -24,7 +24,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Silva Rose • Uncle Dizz",
     videoId: "I4ieQV35pdk",
     videoUrl: "https://www.youtube.com/watch?v=I4ieQV35pdk",
-    views: "12.1K",
+    views: "12.5K",
   },
   {
     id: "dec-2025",
@@ -35,7 +35,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "LwiRdIpkwNs",
     videoUrl: "https://www.youtube.com/watch?v=LwiRdIpkwNs&t=34s",
     startTime: 34,
-    views: "8.1K",
+    views: "8.5K",
   },
   {
     id: "feb-2026",
@@ -46,7 +46,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "qANdhQ1otLc",
     videoUrl: "https://www.youtube.com/watch?v=qANdhQ1otLc&t=39s",
     startTime: 39,
-    views: "3.4K",
+    views: "3.7K",
   },
   {
     id: "aug-2026-pt1",
@@ -56,7 +56,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Afrodon • Mercedes • Foxamous • Btizz • CJ-Zino • Redzman • ZK • Lincz",
     videoId: "oDqjEXwyUy0",
     videoUrl: "https://www.youtube.com/watch?v=oDqjEXwyUy0",
-    views: "3.0K",
+    views: "3.5K",
   },
   {
     id: "aug-2026-pt2",
@@ -66,7 +66,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "GZone Roster Cypher",
     videoId: "tG9HfUmEAnQ",
     videoUrl: "https://www.youtube.com/watch?v=tG9HfUmEAnQ",
-    views: "718",
+    views: "976",
   },
 ];
 
