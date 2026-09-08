@@ -163,7 +163,7 @@ const events = [
     ],
     description: "Official 4-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
     isCompleted: false,
-    ticketLink: "https://www.eventbrite.co.uk",
+    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
     card: [
       { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
       { episode: "1x28", mc1: "AFRODON", mc2: "AKZZEY" },

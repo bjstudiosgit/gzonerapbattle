@@ -118,7 +118,7 @@ export const UpcomingEventLanding = () => {
 
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <a
-                  href="https://www.eventbrite.co.uk"
+                  href="https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-brand hover:bg-white text-black px-8 py-4 font-display text-lg uppercase tracking-wider transition-all duration-300 shadow-[0_10px_30px_rgba(242,125,38,0.3)] hover:scale-[1.02] active:scale-95 text-center"
