@@ -3,9 +3,10 @@ import { BookOpen, Zap, Ticket, Play, Sword, ShoppingBag } from "lucide-react";
 export default function LiveTicker() {
   const items = [
     { text: "NEW GSTREET FREESTYLE: EP4 - JAI-DEE OUT NOW", type: "live" },
-    { text: "LATEST BATTLE: ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
+    { text: "LATEST BATTLE: 1X24 BADEE HARZ VS 1FLAYMAH OUT NOW ON YOUTUBE", type: "live" },
+    { text: "ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
     { text: "NEXT EVENT: SATURDAY 26TH SEPTEMBER 2026 - PEACOCKS BOXING, CANNING TOWN - TICKETS £12 ON EVENTBRITE", type: "ticket" },
-    { text: "SEPTEMBER 26TH LINEUP: TYMELESS VS K.I.M.E | AFRODON VS AKZZEY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN", type: "upcoming" },
+    { text: "SEPTEMBER 26TH LINEUP: TYMELESS VS K.I.M.E | AFRODON VS AKZZEY | MARNI GRAMZ VS BTIZZ | BADEE HARZ VS ROMAN | 1Flaymah vs Z.K", type: "upcoming" },
     { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
     { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
     { text: "LATEST RESULT: Z.K DEFEATED 7WXVE", type: "live" },

@@ -113,8 +113,8 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                 const mc1 = mcs.find(m => m.id === battle.mc1);
                 const mc2 = mcs.find(m => m.id === battle.mc2);
                 const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
-                const mc1Name = mc1?.name || titleMc1 || battle.mc1;
-                const mc2Name = mc2?.name || titleMc2 || battle.mc2;
+                const mc1Name = titleMc1 || mc1?.name || battle.mc1;
+                const mc2Name = titleMc2 || mc2?.name || battle.mc2;
                 const isVsBattle = battle.title.toLowerCase().includes(" vs ");
                 const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
                 const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
@@ -124,7 +124,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   <button
                     key={battle.id}
                     type="button"
-                    onClick={() => navigate(battle.ticketUrl || `/battle/${battle.slug}`)}
+                    onClick={() => navigate(`/battle/${battle.slug}`)}
                     className="block w-full text-left bg-zinc-900/80 border border-white/5 rounded-2xl p-5 shadow-xl transition-all active:scale-[0.98]"
                   >
                     <div className="text-brand font-mono text-sm font-black opacity-80 mb-2">
@@ -189,8 +189,8 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   const leftPair = titleMc1.split("&").map(name => name.trim()).filter(Boolean);
                   const rightPair = titleMc2.split("&").map(name => name.trim()).filter(Boolean);
                   const isTwoVsTwo = leftPair.length === 2 && rightPair.length === 2;
-                  const mc1Name = isTwoVsTwo ? titleMc1 : (mc1?.name || titleMc1 || battle.mc1);
-                  const mc2Name = isTwoVsTwo ? titleMc2 : (mc2?.name || titleMc2 || battle.mc2);
+                  const mc1Name = titleMc1 || mc1?.name || battle.mc1;
+                  const mc2Name = titleMc2 || mc2?.name || battle.mc2;
                   const scheduleText = battle.date || "Coming Soon";
                   const scheduleLink = battle.ticketUrl || "/events";
                   const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
@@ -201,7 +201,7 @@ export default function BattlesPage({ variant = "season1" }: { variant?: "season
                   return (
                     <tr 
                       key={battle.id} 
-                      onClick={() => navigate(battle.ticketUrl || `/battle/${battle.slug}`)}
+                      onClick={() => navigate(`/battle/${battle.slug}`)}
                       className="group hover:bg-white/[0.03] transition-all duration-300 cursor-pointer"
                     >
                       <td className="px-6 py-6 md:px-8 md:py-10 whitespace-nowrap">

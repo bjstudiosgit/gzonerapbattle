@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Ticket } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const septemberFlyers = [
   {
@@ -22,6 +23,11 @@ const septemberFlyers = [
     id: "badee-roman",
     title: "Badee Harz vs Roman",
     src: "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
+  },
+  {
+    id: "1flaymah-zk",
+    title: "1Flaymah vs Z.K",
+    src: "/flyers/september-26-2026-1flaymah-vs-zk.png",
   },
 ];
 
@@ -104,11 +110,12 @@ export const UpcomingEventLanding = () => {
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 4 high-stakes clashes locked in for the night:
+                  The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 5 high-stakes clashes locked in for the night:
                 </p>
 
                 <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">
-                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Afrodon vs Akzzey &bull; Badee Harz vs Roman
+                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Afrodon vs Akzzey &bull; Badee Harz vs Roman &bull;{' '}
+                  <Link to="/battle/1flaymah-vs-zk" className="hover:text-white transition-colors">1Flaymah vs Z.K</Link>
                 </p>
 
                 <p className="text-zinc-400 text-sm sm:text-base">

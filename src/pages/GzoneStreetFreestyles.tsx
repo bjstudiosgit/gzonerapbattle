@@ -12,7 +12,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "540",
+    views: "549",
   },
   {
     id: "ep2",
@@ -22,7 +22,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "sKrMgvf3IBI",
     videoUrl: "https://www.youtube.com/watch?v=sKrMgvf3IBI",
-    views: "5.3K",
+    views: "5.6K",
   },
   {
     id: "ep3",
@@ -32,7 +32,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "lvPH1WSZ2r0",
     videoUrl: "https://www.youtube.com/watch?v=lvPH1WSZ2r0",
-    views: "539",
+    views: "2.3K",
   },
   {
     id: "ep4",
@@ -42,7 +42,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "g3XHI940boA",
     videoUrl: "https://www.youtube.com/watch?v=g3XHI940boA",
-    views: "12",
+    views: "331",
   },
 ];
 
@@ -57,6 +57,8 @@ export default function GzoneStreetFreestyles() {
         if (!res.ok) return;
         const data = await res.json();
         if (data && typeof data.viewCount === "number") {
+          const savedCount = parseFloat(ep.views) * (ep.views.endsWith("K") ? 1000 : 1);
+          if (data.viewCount < savedCount) return;
           const count =
             data.viewCount >= 1000
               ? `${(data.viewCount / 1000).toFixed(1)}K`

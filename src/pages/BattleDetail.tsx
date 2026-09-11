@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { battles as allBattles, deenoNotableBars, tapped24NotableBars } from "../data/battles";
 import { mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
+import { BadeeHarzVs1FlaymahSummary, BadeeHarzVs1FlaymahResult, BadeeHarzVs1FlaymahHighlights } from "../components/BadeeHarzVs1FlaymahSummary";
 
 const RESULT_CHARACTER_LIMIT = 310;
 
@@ -32,7 +33,11 @@ export default function BattleDetail() {
 
   const mc1 = mcs.find(m => m.id === battle.mc1);
   const mc2 = mcs.find(m => m.id === battle.mc2);
+  const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel);
   const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
+  const description = isUpcoming
+    ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${leagueName}.`
+    : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
   const archivePath = battle.league === "royal-rumble" ? "/royal-rumble" : battle.league === "freestyle" ? "/freestyle" : "/battles";
   const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 
@@ -66,7 +71,7 @@ export default function BattleDetail() {
     "name": `${battle.title} - Gzone Rap Battle`,
     "description": `Full battle between ${mc1?.name} and ${mc2?.name} from Gzone Rap Battle League.`,
     "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-    "uploadDate": formatDateForSchema(battle.date),
+    "uploadDate": formatDateForSchema(battle.releaseDate || battle.date),
     "contentUrl": `https://www.youtube.com/watch?v=${videoId}`,
     "embedUrl": battle.videoUrl
   } : null;
@@ -78,7 +83,7 @@ export default function BattleDetail() {
 
   const shareBattle = async () => {
     const title = `${battle.title} | Gzone Rap Battle`;
-    const text = `Watch ${battle.title} on Gzone Rap Battle League.`;
+    const text = `${isUpcoming ? "Upcoming battle:" : "Watch"} ${battle.title} on Gzone Rap Battle League.`;
     const url = shareUrl || (typeof window !== "undefined" ? window.location.href : "");
 
     try {
@@ -116,9 +121,9 @@ export default function BattleDetail() {
     <div className="min-h-screen pt-24 md:pt-32 pb-16 lg:pb-24 relative overflow-hidden">
       <Helmet>
         <title>{battle.title} | Gzone Rap Battle</title>
-        <meta name="description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
+        <meta name="description" content={description} />
         <meta property="og:title" content={`${battle.title} | Gzone Rap Battle`} />
-        <meta property="og:description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
+        <meta property="og:description" content={description} />
         {socialImage && <meta property="og:image" content={socialImage} />}
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -163,13 +168,13 @@ export default function BattleDetail() {
                   )}
                   {battle.isUnreleased && (
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                      <Clock size={16} /> Unreleased Battle
+                      <Clock size={16} /> {isUpcoming ? "Upcoming Battle" : "Unreleased Battle"}
                     </div>
                   )}
                 </div>
               )}
               
-              <div className="aspect-video bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group">
+              <div className={`${isUpcoming && battle.flyer ? "aspect-[3/4] max-w-lg mx-auto" : "aspect-video"} bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group`}>
                 {battle.videoUrl ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -187,14 +192,18 @@ export default function BattleDetail() {
                       alt={`${battle.title} event flyer`}
                       className="absolute inset-0 h-full w-full object-contain"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/80 px-4 py-3 backdrop-blur-sm md:bottom-6 md:left-6 md:right-6">
-                      <div>
-                        <h3 className="font-display text-xl uppercase text-white md:text-2xl">Video Coming Soon</h3>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{battle.date || "Release date TBC"}</p>
-                      </div>
-                      <Clock size={24} className="shrink-0 text-brand" />
-                    </div>
+                    {!isUpcoming && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+                        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/80 px-4 py-3 backdrop-blur-sm md:bottom-6 md:left-6 md:right-6">
+                          <div>
+                            <h3 className="font-display text-xl uppercase text-white md:text-2xl">Video Coming Soon</h3>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{battle.date || "Release date TBC"}</p>
+                          </div>
+                          <Clock size={24} className="shrink-0 text-brand" />
+                        </div>
+                      </>
+                    )}
                   </div>
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-900 relative">
@@ -215,6 +224,13 @@ export default function BattleDetail() {
                 )}
               </div>
             </motion.div>
+
+            {isUpcoming && battle.summary && (
+              <section className="bg-zinc-900/50 p-6 md:p-8 rounded-3xl border border-white/5">
+                <h2 className="text-2xl font-display uppercase text-white mb-4">Upcoming Battle · {battle.episode}</h2>
+                <p className="text-zinc-300 leading-relaxed">{battle.summary}</p>
+              </section>
+            )}
 
             {/* Battle Result or Royal Rumble Lineup */}
             {battle.slug === 'royal-rumble' ? (
@@ -295,7 +311,7 @@ export default function BattleDetail() {
                   </div>
                 </div>
               </section>
-            ) : (
+            ) : !isUpcoming ? (
               <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
                 <div className="text-center mb-6 md:mb-8">
                   <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
@@ -340,7 +356,9 @@ export default function BattleDetail() {
                   </div>
                 </div>
               </section>
-            )}
+            ) : null}
+
+            {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>
@@ -3361,7 +3379,7 @@ export default function BattleDetail() {
               </>
             )}
 
-            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
+            {!isUpcoming && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -4639,7 +4657,7 @@ export default function BattleDetail() {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">Views</span>
-                  <span className="text-zinc-100 font-bold">{battle.views || "0"}</span>
+                  <span className="text-zinc-100 font-bold">{isUpcoming ? "—" : battle.views || "0"}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">League</span>
@@ -4652,6 +4670,16 @@ export default function BattleDetail() {
                   </div>
                 )}
               </div>
+              {isUpcoming && battle.ticketUrl && (
+                <a
+                  href={battle.ticketUrl}
+                  target={battle.ticketUrl.startsWith("http") ? "_blank" : undefined}
+                  rel={battle.ticketUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block text-center mt-6 bg-brand text-black py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors"
+                >
+                  Get Tickets
+                </a>
+              )}
               <button 
                 aria-label="Share this battle"
                 onClick={shareBattle}
@@ -4676,6 +4704,13 @@ export default function BattleDetail() {
                 Subscribe on YouTube
               </a>
             </div>
+
+            {battle.slug === 'badee-harz-vs-1-flaymah' && (
+              <>
+                <BadeeHarzVs1FlaymahResult />
+                <BadeeHarzVs1FlaymahHighlights />
+              </>
+            )}
 
             {([
               ["deeno-vs-tapped24", [
@@ -5879,7 +5914,7 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {!isUpcoming && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

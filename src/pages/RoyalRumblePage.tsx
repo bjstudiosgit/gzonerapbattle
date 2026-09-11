@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { MapPin, Eye, ExternalLink } from "lucide-react";
+import { royalRumbleBattles } from "../data/battles";
 
 const initialRoyalRumbleEpisodes = [
   {
@@ -11,7 +12,7 @@ const initialRoyalRumbleEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "d5YMlQZdNO4",
     videoUrl: "https://www.youtube.com/watch?v=d5YMlQZdNO4",
-    views: "1,023",
+    views: royalRumbleBattles.find((battle) => battle.slug === "royal-rumble")?.views ?? "---",
   },
 ];
 
@@ -26,6 +27,8 @@ export default function RoyalRumblePage() {
         if (!res.ok) return;
         const data = await res.json();
         if (data && typeof data.viewCount === "number") {
+          const savedCount = (parseFloat(ep.views.replace(/,/g, "")) || 0) * (ep.views.endsWith("K") ? 1000 : 1);
+          if (data.viewCount < savedCount) return;
           const count =
             data.viewCount >= 1000
               ? `${(data.viewCount / 1000).toFixed(1)}K`

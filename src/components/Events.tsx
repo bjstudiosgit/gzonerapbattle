@@ -159,16 +159,18 @@ const events = [
       "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
       "/flyers/september-26-2026-tymeless-vs-kime.jpg",
       "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
-      "/flyers/september-26-2026-afrodon-vs-akzzey.jpg"
+      "/flyers/september-26-2026-afrodon-vs-akzzey.jpg",
+      "/flyers/september-26-2026-1flaymah-vs-zk.png"
     ],
-    description: "Official 4-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
+    description: "Official 5-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
     isCompleted: false,
     ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
     card: [
       { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
       { episode: "1x28", mc1: "AFRODON", mc2: "AKZZEY" },
       { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ" },
-      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" }
+      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" },
+      { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K" }
     ]
   }
 ];
@@ -390,7 +392,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The 29th August event is complete. Results are confirmed and the battle videos are now in production.
+              The 29th August event is complete. Badee Harz vs 1Flaymah (1x24) is out now. Deeno vs CJ Zino (1x25) and Z.K vs 7wxve (1x26) are still in production.
             </p>
           </motion.div>
         </div>

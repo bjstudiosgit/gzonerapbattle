@@ -3,7 +3,8 @@ import { battles } from "../data/battles";
 import { sortBattlesById } from "../lib/battleUtils";
 
 export default function FeaturedVideo() {
-  const releasedBattles = sortBattlesById(battles.filter((battle) => !battle.isUnreleased && Boolean(battle.videoUrl)));
+  const releasedBattles = sortBattlesById(battles.filter((battle) => !battle.isUnreleased && Boolean(battle.videoUrl)))
+    .sort((a, b) => new Date(a.releaseDate || a.date || 0).getTime() - new Date(b.releaseDate || b.date || 0).getTime());
   const featuredBattle = releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null;
   const featuredBattleEmbedSrc = featuredBattle?.videoUrl
     ? featuredBattle.videoUrl.includes("watch?v=")

@@ -125,7 +125,7 @@ export default function IntroVideo() {
 
                   <div className="mb-12 grid w-full max-w-3xl grid-cols-5">
                     <div className="px-2 py-2 text-center sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">16.6K</div>
+                      <div className="font-display text-xl sm:text-3xl text-brand">16.7K</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Subscribers</div>
                     </div>
                     <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">

@@ -19,6 +19,17 @@ export type PromoFlyer = {
 const allFlyers: PromoFlyer[] = [
   // 26th September 2026 (Upcoming)
   {
+    id: "1flaymah-vs-zk",
+    title: "1Flaymah vs Z.K",
+    event: "26th September 2026",
+    date: "26 Sep 2026",
+    category: "upcoming",
+    categoryLabel: "26 Sep Clash",
+    src: "/flyers/september-26-2026-1flaymah-vs-zk.png",
+    aspect: "aspect-[3/4]",
+    direct: true,
+  },
+  {
     id: "marni-gramz-vs-btizz",
     title: "Marni Gramz vs Btizz",
     event: "26th September 2026",
