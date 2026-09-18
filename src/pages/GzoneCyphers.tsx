@@ -24,7 +24,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Silva Rose • Uncle Dizz",
     videoId: "I4ieQV35pdk",
     videoUrl: "https://www.youtube.com/watch?v=I4ieQV35pdk",
-    views: "12.5K",
+    views: "12.6K",
   },
   {
     id: "dec-2025",
@@ -35,7 +35,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "LwiRdIpkwNs",
     videoUrl: "https://www.youtube.com/watch?v=LwiRdIpkwNs&t=34s",
     startTime: 34,
-    views: "8.7K",
+    views: "8.8K",
   },
   {
     id: "feb-2026",

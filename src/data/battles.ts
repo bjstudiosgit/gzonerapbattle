@@ -38,7 +38,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "54.7K",
+    "views": "54.9K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -54,7 +54,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs Roman",
     "date": "1 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/QByqdZAF3L0",
-    "views": "24.0K",
+    "views": "24.1K",
     "winner": "roman"
   },
   {
@@ -65,7 +65,7 @@ export const battles: Battle[] = [
     "title": "LDN Mikez vs Deluxx",
     "date": "8 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/RhC2D3ftzZo",
-    "views": "16.3K",
+    "views": "16.4K",
     "winner": "ldn-mikez"
   },
   {
@@ -76,7 +76,7 @@ export const battles: Battle[] = [
     "title": "LDN Mikez vs 2MWAD",
     "date": "15 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/NEiGspeXLYM",
-    "views": "24.3K",
+    "views": "24.5K",
     "winner": "ldn-mikez"
   },
   {
@@ -87,7 +87,7 @@ export const battles: Battle[] = [
     "title": "CJ Zino vs Proty",
     "date": "15 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/T0zo6YgfxB4",
-    "views": "11.3K",
+    "views": "11.4K",
     "winner": "proty",
     "episode": "1x5"
   },
@@ -99,7 +99,7 @@ export const battles: Battle[] = [
     "title": "Renzo vs Proty",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/bZRy8jgPvwk",
-    "views": "10.6K",
+    "views": "10.7K",
     "winner": "renzo",
     "episode": "1x6"
   },
@@ -123,7 +123,7 @@ export const battles: Battle[] = [
     "title": "2MWAD vs Ryno",
     "date": "19 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/HfO3UR_Zeyk",
-    "views": "27.3K",
+    "views": "27.5K",
     "winner": "ryno",
     "episode": "1x8",
     "props": [
@@ -138,7 +138,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Roman",
     "date": "4 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OGagI2K6StY",
-    "views": "25.1K",
+    "views": "25.2K",
     "winner": "roman",
     "episode": "1x9",
     "props": [
@@ -154,7 +154,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs AJNA",
     "date": "19 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oUDDrQtoTHM",
-    "views": "14.2K",
+    "views": "14.5K",
     "winner": "ajna",
     "props": [
       { "name": "Pack of baby wipes", "user": "Tapped24", "icon": "🧼" }
@@ -168,7 +168,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Tymeless",
     "date": "26 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Omge-TNTrhQ",
-    "views": "16.7K",
+    "views": "17.1K",
     "winner": "tymeless",
     "props": [
       { "name": "Alleged photo of Ryno kissing a man", "user": "Tymeless", "icon": "📸" },
@@ -189,7 +189,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs NattyEBK",
     "date": "2 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Rs3kTPbnUm4",
-    "views": "9.1K",
+    "views": "9.2K",
     "winner": "nattyebk",
     "episode": "1x12",
     "props": [
@@ -206,7 +206,7 @@ export const battles: Battle[] = [
     "title": "Btizz vs CJ Zino",
     "date": "9 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/-bKXRy3RxoY",
-    "views": "6.9K",
+    "views": "7.0K",
     "winner": "cj-zino",
     "isPlaceholder": false,
     "episode": "1x13"
@@ -219,7 +219,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Grams",
     "date": "16 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OuVeBAU1OQQ",
-    "views": "22.2K",
+    "views": "22.4K",
     "winner": "deeno",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -233,7 +233,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Grams",
     "date": "1 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/9gkXN1ZJeP8",
-    "views": "13.2K",
+    "views": "13.3K",
     "winner": "tapped24",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -252,7 +252,7 @@ export const battles: Battle[] = [
     "title": "Btizz vs 1Flaymr",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/2lFLlylG5NQ",
-    "views": "8.4K",
+    "views": "8.5K",
     "winner": "btizz",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -266,7 +266,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Roman",
     "date": "7 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/eNusiS3fDhw",
-    "views": "13.2K",
+    "views": "13.4K",
     "winner": "roman",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -280,7 +280,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "33.7K",
+    "views": "34.4K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -298,7 +298,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tymeless",
     "date": "19 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/JoW3ZGND5YM",
-    "views": "26.1K",
+    "views": "26.6K",
     "winner": "tymeless",
     "props": [
       { "name": "Toilet plunger", "user": "TymeLess", "icon": "🪠" },
@@ -319,7 +319,7 @@ export const battles: Battle[] = [
     "title": "1Flaymr vs CJ Zino",
     "date": "7 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/BKAVkMglg3Q",
-    "views": "5.3K",
+    "views": "5.5K",
     "winner": "1flaymr",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -333,7 +333,7 @@ export const battles: Battle[] = [
     "title": "NattyEBK vs Z.K",
     "date": "13 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/ayTTSuKB168",
-    "views": "5.0K",
+    "views": "5.1K",
     "winner": "nattyebk",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -351,7 +351,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Btizz",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/SOt1dtGOdoA",
-    "views": "8.2K",
+    "views": "8.4K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "1x22",
@@ -370,7 +370,7 @@ export const battles: Battle[] = [
     "title": "Z.K vs CJ Zino",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/x11pj0si6lA",
-    "views": "4.4K",
+    "views": "4.6K",
     "winner": "zk",
     "isPlaceholder": false,
     "episode": "1x23",
@@ -387,7 +387,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/_lObp_xBr20",
-    "views": "7.0K",
+    "views": "7.2K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "Fx1",
@@ -402,7 +402,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-11T13:00:06-07:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/4uYGPr_RZ1I",
-    "views": "577",
+    "views": "11.2K",
     "winner": "1flaymr",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -417,11 +417,17 @@ export const battles: Battle[] = [
     "mc2": "cj-zino",
     "title": "Deeno vs CJ Zino",
     "date": "29 Aug 2026",
+    "releaseDate": "2026-09-18T12:00:00-07:00",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/s3ez2EAfov0",
+    "views": "3.1K",
     "winner": "deeno",
     "resultLabel": "Official Result",
-    "isUnreleased": true,
+    "isUnreleased": false,
     "isPlaceholder": false,
     "episode": "1x25",
+    "props": [
+      { "name": "A jar of Marmalade", "user": "CJ Zino", "icon": "🍯" }
+    ],
     "flyer": "/flyers/august-29-2026-deeno-vs-cj.jpg"
   },
   {
@@ -498,7 +504,7 @@ export const battles: Battle[] = [
     "title": "Royal Rumble EP1",
     "date": "4 Sept 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
-    "views": "29.5K",
+    "views": "54.9K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP1",
@@ -527,7 +533,7 @@ export const seasonOneBattles = battles.filter((battle) => battle.league !== "fr
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "11 Sept 2026";
+export const lastUpdated = "18 Sept 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {
