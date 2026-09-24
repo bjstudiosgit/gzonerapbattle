@@ -13,6 +13,7 @@ export interface Host {
   instagram?: string;
   tiktok?: string;
   youtube?: string;
+  linktree?: string;
   quote?: string;
   displayTag?: string;
   isCelebrity?: boolean;
@@ -69,5 +70,18 @@ export const hosts: Host[] = [
     nickname: "The Specialist",
     instagram: "https://instagram.com/passivemc",
     tiktok: "https://www.tiktok.com/@the.gzone.rbl"
+  },
+  {
+    id: "most-wanted-2",
+    name: "Most Wanted 2",
+    role: "Official DJs",
+    image: "/mostwanted2.jpg",
+    bio: "Most Wanted 2 are the official resident DJs for GZone Rap Battle League. DJ Wayne Y.G. and DJ K.J. make up the Flex FM duo, bringing years of experience and high-energy live performance to every event. From setting the atmosphere before the battles to handling the music, cues and tracks used during the clashes themselves, Most Wanted 2 provide the soundtrack and live DJ support that keeps GZone moving from start to finish.",
+    fields: ["OFFICIAL DJs"],
+    leagueRoleDescription: "As GZone’s official DJs, Most Wanted 2 control the soundtrack and tempo of each event. From battle introductions and walk-ons to crowd moments and transitions between clashes, DJ Wayne Y.G. and DJ K.J. help shape the atmosphere and give every GZone event its own live identity.",
+    nickname: "DJ WAYNE Y.G. × DJ K.J.",
+    instagram: "https://www.instagram.com/officialmostwanted2",
+    linktree: "https://linktr.ee/Officialmostwanted",
+    tiktok: "https://www.tiktok.com/@officialdjwayneyg"
   }
 ];

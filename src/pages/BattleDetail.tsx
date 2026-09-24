@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import { battles as allBattles, deenoNotableBars, tapped24NotableBars } from "../data/battles";
 import { mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
+import { BadeeHarzVs1FlaymahSummary, BadeeHarzVs1FlaymahResult, BadeeHarzVs1FlaymahHighlights } from "../components/BadeeHarzVs1FlaymahSummary";
+import { DeenoVsCjZinoSummary } from "../components/DeenoVsCjZinoSummary";
 
 const RESULT_CHARACTER_LIMIT = 310;
 
@@ -32,9 +34,13 @@ export default function BattleDetail() {
 
   const mc1 = mcs.find(m => m.id === battle.mc1);
   const mc2 = mcs.find(m => m.id === battle.mc2);
-  const leagueName = battle.league === "freestyle" ? "Freestyle League" : "Season 1";
-  const archivePath = battle.league === "freestyle" ? "/freestyle" : "/battles";
-  const archiveLabel = battle.league === "freestyle" ? "Freestyle" : "Battles";
+  const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel);
+  const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
+  const description = isUpcoming
+    ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${leagueName}.`
+    : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
+  const archivePath = battle.league === "royal-rumble" ? "/royal-rumble" : battle.league === "freestyle" ? "/freestyle" : "/battles";
+  const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 
   // Helper to extract YouTube ID from embed URL
   const getYouTubeId = (url: string | undefined) => {
@@ -66,7 +72,7 @@ export default function BattleDetail() {
     "name": `${battle.title} - Gzone Rap Battle`,
     "description": `Full battle between ${mc1?.name} and ${mc2?.name} from Gzone Rap Battle League.`,
     "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-    "uploadDate": formatDateForSchema(battle.date),
+    "uploadDate": formatDateForSchema(battle.releaseDate || battle.date),
     "contentUrl": `https://www.youtube.com/watch?v=${videoId}`,
     "embedUrl": battle.videoUrl
   } : null;
@@ -78,7 +84,7 @@ export default function BattleDetail() {
 
   const shareBattle = async () => {
     const title = `${battle.title} | Gzone Rap Battle`;
-    const text = `Watch ${battle.title} on Gzone Rap Battle League.`;
+    const text = `${isUpcoming ? "Upcoming battle:" : "Watch"} ${battle.title} on Gzone Rap Battle League.`;
     const url = shareUrl || (typeof window !== "undefined" ? window.location.href : "");
 
     try {
@@ -116,9 +122,9 @@ export default function BattleDetail() {
     <div className="min-h-screen pt-24 md:pt-32 pb-16 lg:pb-24 relative overflow-hidden">
       <Helmet>
         <title>{battle.title} | Gzone Rap Battle</title>
-        <meta name="description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
+        <meta name="description" content={description} />
         <meta property="og:title" content={`${battle.title} | Gzone Rap Battle`} />
-        <meta property="og:description" content={`Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`} />
+        <meta property="og:description" content={description} />
         {socialImage && <meta property="og:image" content={socialImage} />}
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -133,7 +139,7 @@ export default function BattleDetail() {
         </script>
       )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Link 
+        <Link
           to={archivePath}
           aria-label={`Back to ${archiveLabel}`}
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-6 md:mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
@@ -163,13 +169,13 @@ export default function BattleDetail() {
                   )}
                   {battle.isUnreleased && (
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                      <Clock size={16} /> Unreleased Battle
+                      <Clock size={16} /> {isUpcoming ? "Upcoming Battle" : "Unreleased Battle"}
                     </div>
                   )}
                 </div>
               )}
-              
-              <div className="aspect-video bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group">
+
+              <div className={`${isUpcoming && battle.flyer ? "aspect-[3/4] max-w-lg mx-auto" : "aspect-video"} bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group`}>
                 {battle.videoUrl ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -187,20 +193,24 @@ export default function BattleDetail() {
                       alt={`${battle.title} event flyer`}
                       className="absolute inset-0 h-full w-full object-contain"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/80 px-4 py-3 backdrop-blur-sm md:bottom-6 md:left-6 md:right-6">
-                      <div>
-                        <h3 className="font-display text-xl uppercase text-white md:text-2xl">Video Coming Soon</h3>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{battle.date || "Release date TBC"}</p>
-                      </div>
-                      <Clock size={24} className="shrink-0 text-brand" />
-                    </div>
+                    {!isUpcoming && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+                        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/80 px-4 py-3 backdrop-blur-sm md:bottom-6 md:left-6 md:right-6">
+                          <div>
+                            <h3 className="font-display text-xl uppercase text-white md:text-2xl">Video Coming Soon</h3>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{battle.date || "Release date TBC"}</p>
+                          </div>
+                          <Clock size={24} className="shrink-0 text-brand" />
+                        </div>
+                      </>
+                    )}
                   </div>
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-900 relative">
-                    <img 
-                      src={`https://picsum.photos/seed/${battle.id}/1280/720`} 
-                      alt="Battle Thumbnail" 
+                    <img
+                      src={`https://picsum.photos/seed/${battle.id}/1280/720`}
+                      alt="Battle Thumbnail"
                       className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
                       referrerPolicy="no-referrer"
                     />
@@ -216,51 +226,141 @@ export default function BattleDetail() {
               </div>
             </motion.div>
 
-            {/* Battle Result */}
-            <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
-              <div className="text-center mb-6 md:mb-8">
-                <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
-                <p className="text-zinc-400 text-sm mt-2 tracking-widest">
-                  {battle.winner
-                    ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
-                      ? "GZone Crowd Decision"
-                      : battle.slug === 'zk-vs-cj-zino'
-                        ? "Official Audience Decision"
-                        : "Official Judges' Decision")
-                    : "Awaiting Decision"}
-                </p>
-              </div>
+            {isUpcoming && battle.summary && (
+              <section className="bg-zinc-900/50 p-6 md:p-8 rounded-3xl border border-white/5">
+                <h2 className="text-2xl font-display uppercase text-white mb-4">Upcoming Battle · {battle.episode}</h2>
+                <p className="text-zinc-300 leading-relaxed">{battle.summary}</p>
+              </section>
+            )}
 
-              <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
-                  VS
+            {/* Battle Result or Royal Rumble Lineup */}
+            {battle.slug === 'royal-rumble' ? (
+              <section className="bg-zinc-900/50 p-6 md:p-10 rounded-3xl border border-white/5 space-y-8">
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand border border-brand/30 text-xs font-black uppercase tracking-widest mb-3">
+                    Freestyle Division • 9-MC Rumble
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-display uppercase text-white">The Royal Rumble</h2>
+                  <p className="text-zinc-400 text-sm mt-2 tracking-widest uppercase font-mono">
+                    9 MCs • Beats by Keegan - K.Sticky • Production by N.Studios
+                  </p>
                 </div>
 
-                {/* MC1 Result */}
-                <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                  {battle.winner === mc1?.id && (
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                      <Trophy size={14} /> Official Winner
-                    </div>
-                  )}
-                  <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400 mb-4 border-b border-white/10 pb-2">
+                    Official Roster Lineup
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+                    {[
+                      { name: "Trickyy", id: "tricky", note: "Lancashire" },
+                      { name: "Cookie", note: "Contender" },
+                      { name: "Passive", note: "Cypher Vet" },
+                      { name: "Deeno \"The Viking\"", id: "deeno", note: "Reading" },
+                      { name: "Mello", note: "Contender" },
+                      { name: "1 Flaymah", id: "1flaymr", note: "Birmingham" },
+                      { name: "Btizz", id: "btizz", note: "Essex" },
+                      { name: "Badee Harz", id: "badee-harz", note: "Essex" },
+                      { name: "Jai-D", note: "Contender" },
+                    ].map((artist, idx) => (
+                      <div
+                        key={artist.name}
+                        className="p-4 rounded-2xl border border-white/10 bg-zinc-950/60 flex items-center justify-between group hover:border-brand/40 transition-colors"
+                      >
+                        <div>
+                          <div className="text-[10px] font-mono text-brand font-black">ENTRY #{idx + 1}</div>
+                          <div className="font-display text-lg uppercase text-white my-0.5">
+                            {artist.id ? (
+                              <Link to={`/mc/${artist.id}`} className="hover:text-brand transition-colors">
+                                {artist.name}
+                              </Link>
+                            ) : (
+                              <span>{artist.name}</span>
+                            )}
+                          </div>
+                          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">{artist.note}</div>
+                        </div>
+                        {artist.id && (
+                          <Link
+                            to={`/mc/${artist.id}`}
+                            className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-white/5 text-zinc-400 group-hover:bg-brand group-hover:text-black transition-colors uppercase tracking-wider"
+                          >
+                            Profile
+                          </Link>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* MC2 Result */}
-                <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                  {battle.winner === mc2?.id && (
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                      <Trophy size={14} /> Official Winner
-                    </div>
-                  )}
-                  <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
-                    <Link to={`/mc/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
+                <div className="p-6 md:p-8 rounded-2xl bg-black/40 border border-white/5 space-y-4">
+                  <h3 className="text-xl font-display uppercase text-white flex items-center gap-3">
+                    <span className="w-4 h-1 bg-brand" />
+                    Clash Breakdown
+                  </h3>
+                  <p className="text-zinc-300 leading-relaxed font-light">
+                    The Gzone initiated war on the entire UK battle scene with this one. Recorded live at Peacocks Boxing Gymnasium in Canning Town, London, during the 1st August 2026 event, nine MCs collided in an electric multi-man free-for-all over beats produced by Keegan - K.Sticky.
+                  </p>
+                  <p className="text-zinc-300 leading-relaxed font-light">
+                    The format represents a major evolution for the Gzone Freestyle division: rapid mic rotations, spontaneous bars, live rebuttals, and heavy energy with established roster headliners like Deeno, Btizz, 1 Flaymah, Badee Harz, and Trickyy trading fire alongside Passive, Cookie, Mello, and Jai-D.
+                  </p>
+                  <div className="pt-4 border-t border-white/10 flex flex-wrap gap-4 text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                    <span>Beats: <strong className="text-white">Keegan - K.Sticky</strong></span>
+                    <span>•</span>
+                    <span>Production: <strong className="text-white">N.Studios</strong></span>
+                    <span>•</span>
+                    <span>Venue: <strong className="text-white">Peacocks Boxing, Canning Town</strong></span>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            ) : !isUpcoming ? (
+              <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
+                <div className="text-center mb-6 md:mb-8">
+                  <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
+                  <p className="text-zinc-400 text-sm mt-2 tracking-widest">
+                    {battle.winner
+                      ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
+                        ? "GZone Crowd Decision"
+                        : battle.slug === 'zk-vs-cj-zino'
+                          ? "Official Audience Decision"
+                          : "Official Judges' Decision")
+                      : "Awaiting Decision"}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
+                    VS
+                  </div>
+
+                  {/* MC1 Result */}
+                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                    {battle.winner === mc1?.id && (
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                        <Trophy size={14} /> Official Winner
+                      </div>
+                    )}
+                    <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
+                      <Link to={`/mc/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
+                    </div>
+                  </div>
+
+                  {/* MC2 Result */}
+                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
+                    {battle.winner === mc2?.id && (
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
+                        <Trophy size={14} /> Official Winner
+                      </div>
+                    )}
+                    <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
+                      <Link to={`/mc/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : null}
+
+            {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
+            {battle.slug === 'deeno-vs-cj-zino' && <DeenoVsCjZinoSummary />}
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>
@@ -366,7 +466,7 @@ export default function BattleDetail() {
             {battle.slug === 'deeno-vs-tapped24' && (
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -648,7 +748,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -803,7 +903,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -901,7 +1001,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1008,7 +1108,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1179,7 +1279,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1291,7 +1391,7 @@ export default function BattleDetail() {
             {battle.slug === 'pr1nc3-vs-roman' && (
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1451,7 +1551,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1533,7 +1633,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1616,7 +1716,7 @@ export default function BattleDetail() {
             {battle.slug === 'ldn-mikez-vs-deluxx' && (
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1699,7 +1799,7 @@ export default function BattleDetail() {
             {battle.slug === 'ldn-mikez-vs-2mwad' && (
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1783,13 +1883,13 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                   <h2 className="text-3xl font-display uppercase text-white flex items-center gap-4">
                     <span className="w-8 h-1 bg-brand" />
                     Clash Summary
                   </h2>
-                  
+
                   {/* Warning/Advisory Badge */}
                   <div className="flex items-center gap-3 px-5 py-3 bg-orange-500/10 border border-orange-500/30 rounded-full">
                     <AlertCircle className="text-orange-500" size={18} />
@@ -1876,7 +1976,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -1960,7 +2060,7 @@ export default function BattleDetail() {
               <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                 {/* Subtle accent line */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
-                
+
                 <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
                   <span className="w-8 h-1 bg-brand" />
                   Clash Summary
@@ -2928,7 +3028,7 @@ export default function BattleDetail() {
                         ["This one's called Natty-the-nip flow, 'cause you're coming like a local gigolo.", "Z.K names and imitates a cadence to turn flow criticism into something the room can hear rather than merely accept."],
                         ["Saturday night, your girl's looking like Cher Lloyd; Sunday morning, Sirius Black.", "Two recognisable hair images describe an overnight visual deterioration and give Z.K one of his cleanest comic comparisons."],
                         ["You were at home with Pokémon cards, getting gassed over Mewtwo. You still send porn over Bluetooth.", "Pokémon and outdated file sharing combine childish and technologically dated images to undermine Natty's adult street persona."],
-                        ["I'm writing bars while you're reading books on Kindle ... Why is your face the same shape as a Pringle? Music-wise, he ain't got one single — face is fucked from acne and shingles.", "Kindle, Pringle, single, and shingles form a sustained end-rhyme chain across writing, appearance, music output, and skin." ]
+                        ["I'm writing bars while you're reading books on Kindle ... Why is your face the same shape as a Pringle? Music-wise, he ain't got one single — face is fucked from acne and shingles.", "Kindle, Pringle, single, and shingles form a sustained end-rhyme chain across writing, appearance, music output, and skin."]
                       ]]
                     ].map(([name, bars]) => (
                       <article key={name as string} className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
@@ -3281,7 +3381,7 @@ export default function BattleDetail() {
               </>
             )}
 
-            {battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
+            {!isUpcoming && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -3293,7 +3393,7 @@ export default function BattleDetail() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {(battle.slug === 'deeno-vs-btizz' ? [
                         ["Deeno", "Deeno treated the clash as a chance to defend his GZone position against a fast-rising opponent. His material was more battle-specific than general: Btizz's requests for the booking, family history, previous opponents, clothes, claimed road image, copied flows, and place on the roster all fed the same argument that the climb had reached its limit.|Adaptation was Deeno's strongest quality. Catch-22 grew from the live Tap 22 mistake, red rum reversed Btizz's murder language, and the third-round opening predicted the copied cadence before turning it into the flipped-script setup. Those moments made the performance feel responsive rather than sealed inside pre-written rounds.|The third was his clearest complete structure. The Google Maps screenshot, headstone photograph, and adoption papers established visual pressure; presenting himself as Btizz's new father turned the between-round exchange into a complete adoption narrative. The Ben 10, Blade, Batman, Robin, Bruce Wayne, two-day, and Blu-ray references supplied connected technical payoffs around it.|The weakness was excess. Some family and death material was intentionally cruel, and repeated stops around the props interrupted momentum. Even so, Deeno built the stronger closing narrative and left the cleaner final impression for the crowd."],
-                        ["Btizz", "Btizz performed like someone trying to prove that climbing the roster was not accidental. He used Deluxx, CJ Zino, and 1Flaymr as résumé markers, rejected Deeno's king status through the TymeLess result, and repeatedly reframed the home platform as territory he could occupy.|Flow variation and self-awareness were his biggest strengths. He moved between direct punches, faster internal-rhyme pockets, crowd-facing repetition, and an explicit imitation of Deeno's cadence. Because CJ and Deluxx had previously criticised him for borrowing flows, making the imitation obvious changed it from a hidden weakness into a deliberate provocation.|His best connected writing came through Mission: Impossible, Benji Dunn, and Simon Pegg; the repeated house takeover; the lemon callback to TymeLess; and the later Lego, Family Guy, and crown material. These references made the clash feel part of an evolving GZone story rather than an isolated battle.|The weakness was control. Several passages were overpacked or hard to follow, and the third round needed repeated restarts after crowd interruptions and disputes over wording. Btizz remained dangerous through energy and adaptability, but his closing material did not resolve as cleanly as Deeno's prop-led third." ]
+                        ["Btizz", "Btizz performed like someone trying to prove that climbing the roster was not accidental. He used Deluxx, CJ Zino, and 1Flaymr as résumé markers, rejected Deeno's king status through the TymeLess result, and repeatedly reframed the home platform as territory he could occupy.|Flow variation and self-awareness were his biggest strengths. He moved between direct punches, faster internal-rhyme pockets, crowd-facing repetition, and an explicit imitation of Deeno's cadence. Because CJ and Deluxx had previously criticised him for borrowing flows, making the imitation obvious changed it from a hidden weakness into a deliberate provocation.|His best connected writing came through Mission: Impossible, Benji Dunn, and Simon Pegg; the repeated house takeover; the lemon callback to TymeLess; and the later Lego, Family Guy, and crown material. These references made the clash feel part of an evolving GZone story rather than an isolated battle.|The weakness was control. Several passages were overpacked or hard to follow, and the third round needed repeated restarts after crowd interruptions and disputes over wording. Btizz remained dangerous through energy and adaptability, but his closing material did not resolve as cleanly as Deeno's prop-led third."]
                       ] : battle.slug === 'deeno-vs-tymeless' ? [
                         ["Deeno", "Deeno treated the main event as a defence of territory. The opening house claim, security language, headlock reference, age pressure, and dismissal of TymeLess's battle record all argued that the visitor did not belong above the established GZone figure.|His best writing was tailored and connected. GTA, Big Smoke, CJ, final mission, game over, and replay formed the clearest second-round scheme, while time, no reverse, William, Froot Loops, Special K, Cheerio and serial killer gave the third a strong opponent-specific route.|Episode 11 supplied part of his research. Ryno had already used William, time concepts, parenting criticism, and racism allegations against TymeLess; Deeno changed the wording but reused those established pressure points. The weekday question also created the opening for TymeLess's later stepfather reversal.|Deeno remained forceful through a noisy battle, but stops and material selection weakened his control. The lemonade line was a genuine attempt to answer the fruit props, yet the stumble prevented it from replacing TymeLess's motif. His clean technical peaks kept the clash competitive, but they did not connect across all three rounds as completely as TymeLess's performance."],
                         ["TymeLess", "TymeLess built the stronger complete performance by treating the clash as one developing story rather than a collection of isolated punches. He first pretended that his own stomach was hurting and let the room believe him, then exposed the complaint as the setup for a toilet scheme about Deeno. The toilet became Deeno's false throne, and the throne became a challenge to ownership of GZone.|His strongest battle instinct was transformation. Grey hair became the silver fox, the recent Tapped24 and Grams incident became headlock material, Ryno's flow became part of the toilet cadence, and Deeno's parenting attack became a third-round stepfather performance aimed directly at Deeno's son.|The visual writing gave every round recognisable anchors. The plunger completed the opening narrative; Keith Lemon expanded into three physical lemons; and Prince Harry, Paul Scholes, Weasley, Simon Pegg, Shaun of the Dead, the Sugar Puff Monster and Ginga Jay turned Deeno's appearance into a recurring character.|TymeLess controlled reaction better through pauses, reloads, repetition, room involvement, misdirection, and delayed payoff. The third lemon resolved material introduced much earlier, while the crowd decision confirmed that the connected performance had outweighed Deeno's stronger individual technical passages."]
@@ -4559,7 +4659,7 @@ export default function BattleDetail() {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">Views</span>
-                  <span className="text-zinc-100 font-bold">{battle.views || "0"}</span>
+                  <span className="text-zinc-100 font-bold">{isUpcoming ? "—" : battle.views || "0"}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">League</span>
@@ -4572,7 +4672,17 @@ export default function BattleDetail() {
                   </div>
                 )}
               </div>
-              <button 
+              {isUpcoming && battle.ticketUrl && (
+                <a
+                  href={battle.ticketUrl}
+                  target={battle.ticketUrl.startsWith("http") ? "_blank" : undefined}
+                  rel={battle.ticketUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block text-center mt-6 bg-brand text-black py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors"
+                >
+                  Get Tickets
+                </a>
+              )}
+              <button
                 aria-label="Share this battle"
                 onClick={shareBattle}
                 className="w-full mt-8 flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white py-4 rounded-xl transition-colors font-bold uppercase tracking-widest text-xs"
@@ -4586,8 +4696,8 @@ export default function BattleDetail() {
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
                 Watch the battles on YouTube and leave your comments there to support the culture.
               </p>
-              <a 
-                href="https://www.youtube.com/@gingajay" 
+              <a
+                href="https://www.youtube.com/@gingajay"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Subscribe to the official Gzone YouTube channel"
@@ -4596,6 +4706,13 @@ export default function BattleDetail() {
                 Subscribe on YouTube
               </a>
             </div>
+
+            {battle.slug === 'badee-harz-vs-1-flaymah' && (
+              <>
+                <BadeeHarzVs1FlaymahResult />
+                <BadeeHarzVs1FlaymahHighlights />
+              </>
+            )}
 
             {([
               ["deeno-vs-tapped24", [
@@ -5799,7 +5916,7 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {!isUpcoming && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

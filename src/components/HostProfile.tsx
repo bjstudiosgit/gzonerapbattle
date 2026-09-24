@@ -115,7 +115,7 @@ export default function HostProfile() {
                 ))}
               </div>
 
-              {(host.instagram || host.tiktok || host.youtube) && (
+              {(host.instagram || host.tiktok || host.youtube || host.linktree) && (
                 <div className="flex items-center gap-4 mt-8">
                   {host.instagram && (
                     <a 
@@ -126,6 +126,19 @@ export default function HostProfile() {
                       title="Follow on Instagram"
                     >
                       <Instagram size={20} />
+                    </a>
+                  )}
+                  {host.linktree && (
+                    <a 
+                      href={host.linktree} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-brand hover:bg-brand-dark text-black p-3 rounded-full transition-all transform hover:scale-110 flex items-center justify-center shadow-lg shadow-brand/20"
+                      title="Visit Linktree"
+                    >
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M13.511 5.853l3.48-3.481 2.441 2.441-3.481 3.481h4.049v3.452h-5.285l3.864 3.864-2.441 2.441-4.138-4.139v6.588h-3.452v-6.588l-4.139 4.139-2.441-2.441 3.864-3.864h-5.285v-3.452h4.049l-3.481-3.481 2.441-2.441 3.48 3.481v-4.049h3.452v4.049z"/>
+                      </svg>
                     </a>
                   )}
                   {host.tiktok && (

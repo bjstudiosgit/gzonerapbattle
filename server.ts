@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import helmet from "helmet";
+import { ApplyProxyError, submitApplication } from "./applyProxy";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,6 +11,7 @@ const __dirname = path.dirname(__filename);
 async function startServer() {
   const app = express();
   const PORT = 3000;
+  app.use(express.json());
 
   // Security headers
   app.use(
@@ -22,6 +24,16 @@ async function startServer() {
   // API routes can be added here
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  app.post("/api/apply", async (req, res) => {
+    try {
+      res.json(await submitApplication(req.body));
+    } catch (error) {
+      res.status(error instanceof ApplyProxyError ? error.status : 502).json({
+        error: error instanceof Error ? error.message : "Unable to send your application.",
+      });
+    }
   });
 
   if (process.env.NODE_ENV !== "production") {

@@ -33,7 +33,7 @@ export default function MCProfile() {
 
   const starCount = getRankStars(rank);
 
-  const mcBattles = sortBattlesById(allBattles.filter(b => b.mc1 === mc.id || b.mc2 === mc.id));
+  const mcBattles = sortBattlesById(allBattles.filter(b => b.mc1 === mc.id || b.mc2 === mc.id || (b.lineup && b.lineup.includes(mc.id))));
   const mcProps = mcBattles
     .flatMap(battle => battle.props ?? [])
     .filter(prop => prop.user.toLowerCase() === mc.name.toLowerCase())
@@ -326,64 +326,92 @@ export default function MCProfile() {
             <div>
               <h2 className="text-2xl font-display uppercase mb-6 text-white border-l-4 border-brand pl-4">Battle History</h2>
               <div className="space-y-4">
-                {mcBattles.map((battle) => {
-                  const opponentId = battle.mc1 === mc.id ? battle.mc2 : battle.mc1;
-                  const opponent = mcs.find(m => m.id === opponentId);
-                  return (
-                    <div 
-                      key={battle.id} 
-                      onClick={() => navigate(`/battle/${battle.slug}`)}
-                      className="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 flex items-center justify-between group hover:border-brand/30 transition-all cursor-pointer hover:bg-zinc-900"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10">
-                          <img 
-                            src={portraitImage(opponent?.image, "avatar")} 
-                            alt={opponent?.name} 
-                            width={48}
-                            height={48}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-cover" 
-                            referrerPolicy="no-referrer" 
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              if (target.src.includes('awaiting-photo.png')) return;
-                              target.src = `https://picsum.photos/seed/${opponent?.id}/100/100`;
-                            }}
-                          />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <div className="text-xs text-zinc-300 uppercase tracking-widest font-bold">vs Opponent</div>
-                            {battle.winner && (
-                              <div className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter ${
-                                battle.winner === mc.id 
-                                  ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30' 
-                                  : 'bg-rose-500/20 text-rose-500 border border-rose-500/30'
-                              }`}>
-                                {battle.winner === mc.id ? 'WIN' : 'LOSS'}
-                              </div>
+                {mcBattles.length === 0 ? (
+                  <div className="bg-zinc-900/40 border border-white/5 rounded-2xl p-6 text-zinc-400 text-sm">
+                    No individual battles on record yet. Upcoming clashes will appear here.
+                  </div>
+                ) : (
+                  mcBattles.map((battle) => {
+                    const isRoyalRumble = battle.league === "royal-rumble";
+                    const opponentId = battle.mc1 === mc.id ? battle.mc2 : battle.mc1;
+                    const opponent = mcs.find(m => m.id === opponentId);
+                    const targetUrl = isRoyalRumble ? "/royal-rumble" : `/battle/${battle.slug}`;
+                    return (
+                      <div 
+                        key={battle.id} 
+                        onClick={() => navigate(targetUrl)}
+                        className="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 flex items-center justify-between group hover:border-brand/30 transition-all cursor-pointer hover:bg-zinc-900"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-zinc-900 shrink-0 flex items-center justify-center">
+                            {isRoyalRumble ? (
+                              <img 
+                                src="/portraits/tricky-avatar-128x128.jpg" 
+                                alt="Royal Rumble" 
+                                width={48}
+                                height={48}
+                                className="w-full h-full object-cover" 
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = `https://picsum.photos/seed/royal-rumble/100/100`;
+                                }}
+                              />
+                            ) : (
+                              <img 
+                                src={portraitImage(opponent?.image, "avatar")} 
+                                alt={opponent?.name} 
+                                width={48}
+                                height={48}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover" 
+                                referrerPolicy="no-referrer" 
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  if (target.src.includes('awaiting-photo.png')) return;
+                                  target.src = `https://picsum.photos/seed/${opponent?.id}/100/100`;
+                                }}
+                              />
                             )}
                           </div>
-                          <Link
-                            to={`/mc/${opponent?.slug}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="text-xl font-display uppercase group-hover:text-brand transition-colors hover:underline decoration-brand/30 underline-offset-4"
-                          >
-                            {opponent?.name}
-                          </Link>
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <div className="text-xs text-zinc-300 uppercase tracking-widest font-bold">
+                                {isRoyalRumble ? "Special Event" : "vs Opponent"}
+                              </div>
+                              {battle.winner && (
+                                <div className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter ${
+                                  battle.winner === mc.id 
+                                    ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30' 
+                                    : 'bg-rose-500/20 text-rose-500 border border-rose-500/30'
+                                }`}>
+                                  {battle.winner === mc.id ? 'WIN' : 'LOSS'}
+                                </div>
+                              )}
+                              {isRoyalRumble && (
+                                <div className="text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter bg-brand/20 text-brand border border-brand/30">
+                                  9-MC CLASH
+                                </div>
+                              )}
+                            </div>
+                            <Link
+                              to={targetUrl}
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-xl font-display uppercase group-hover:text-brand transition-colors hover:underline decoration-brand/30 underline-offset-4"
+                            >
+                              {isRoyalRumble ? "Royal Rumble EP1" : opponent?.name}
+                            </Link>
+                          </div>
+                        </div>
+                        <div 
+                          className="bg-zinc-800 p-3 rounded-full group-hover:bg-brand group-hover:text-black transition-all"
+                          aria-label={isRoyalRumble ? "Watch Royal Rumble" : `Watch battle vs ${opponent?.name}`}
+                        >
+                          <Play size={20} fill="currentColor" />
                         </div>
                       </div>
-                      <div 
-                        className="bg-zinc-800 p-3 rounded-full group-hover:bg-brand group-hover:text-black transition-all"
-                        aria-label={`Watch battle vs ${opponent?.name}`}
-                      >
-                        <Play size={20} fill="currentColor" />
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
             </div>
           </motion.div>

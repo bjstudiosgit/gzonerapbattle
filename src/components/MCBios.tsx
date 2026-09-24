@@ -63,7 +63,7 @@ export default function MCBios() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h3 className="text-4xl md:text-7xl font-display uppercase leading-none">
-            The Season One Line Up <span className="text-brand">&quot;Most Wanted&quot;</span>
+            Gzone <span className="text-brand">&quot;Most Wanted&quot;</span> Season One
           </h3>
           <div className="flex items-center justify-center gap-2 mt-4">
             {[...Array(5)].map((_, index) => (

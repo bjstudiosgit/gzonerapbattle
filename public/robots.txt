@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.gzonerapbattle.com/sitemap.xml
+Sitemap: https://www.gzonerapbattle.co.uk/sitemap.xml

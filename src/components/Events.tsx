@@ -14,7 +14,7 @@ const augustEventImages = [
 ];
 const august29EventImages = [
   "/flyers/august-29-2026-deeno-vs-cj.jpg",
-  "/flyers/august-29-2026-zk-vs-7wave.png",
+  "/flyers/august-29-2026-zk-vs-7wxve.png",
   "/flyers/august-29-2026-badee-harz-vs-1flaymah.png",
 ];
 
@@ -111,12 +111,13 @@ const events = [
     price: "VIDEOS OUT NOW",
     image: augustEventImages[0],
     images: augustEventImages,
-    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, and Deeno vs Afrodon are out now.",
+    description: "The 1st August Royal Rumble is complete. Deeno vs Btizz, Z.K vs C.J Zino, Deeno vs Afrodon, and the 9-MC Royal Rumble are out now.",
     isCompleted: true,
     card: [
       { episode: "1x22", mc1: "Deeno", mc2: "Btizz", isMain: true },
       { episode: "1x23", mc1: "Z.K", mc2: "C.J Zino" },
       { episode: "Fx1", mc1: "Deeno", mc2: "Afrodon" },
+      { episode: "Fx2", mc1: "Royal Rumble", mc2: "9-MC Clash" },
     ]
   },
   {
@@ -127,12 +128,12 @@ const events = [
     price: "EVENT COMPLETE",
     image: august29EventImages[0],
     images: august29EventImages,
-    description: "The 29th August event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7Wave.",
+    description: "The 29th August event is complete. 1 Flaymah defeated Badee Harz, Deeno defeated CJ Zino, and Z.K defeated 7wxve.",
     isCompleted: true,
     card: [
       { episode: "1x24", mc1: "Badee Harz", mc2: "1 Flaymah", winner: "1 Flaymah" },
       { episode: "1x25", mc1: "Deeno", mc2: "CJ Zino", winner: "Deeno" },
-      { episode: "1x26", mc1: "Z.K", mc2: "7Wave", winner: "Z.K" },
+      { episode: "1x26", mc1: "Z.K", mc2: "7wxve", winner: "Z.K" },
     ]
   },
   {
@@ -146,6 +147,30 @@ const events = [
     description: "Gzone is coming to Manchester to find street-ready battle rappers. The best performers from Street Edition will earn spots in Gzone Season 2.",
     applyLink: "/apply"
   },
+  {
+    id: 10,
+    title: "G ZONE: 26TH SEPTEMBER",
+    date: "26th September 2026",
+    location: "Peacocks Boxing, Canning Town",
+    price: "TICKETS £12",
+    doors: "5:00 PM",
+    image: "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
+    images: [
+      "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
+      "/flyers/september-26-2026-tymeless-vs-kime.jpg",
+      "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
+      "/flyers/september-26-2026-1flaymah-vs-zk.png"
+    ],
+    description: "Official 5-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
+    isCompleted: false,
+    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
+    card: [
+      { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
+      { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ" },
+      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" },
+      { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K" }
+    ]
+  }
 ];
 
 type EventItem = (typeof events)[number];
@@ -187,6 +212,41 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
             loop
             playsInline
           />
+        ) : images && images.length > 1 ? (
+          <>
+            {images.map((imgSrc, imgIdx) => {
+              const isCurrent = imgIdx === imageIndex;
+              return (
+                <img
+                  key={imgSrc}
+                  src={imgSrc}
+                  alt={event.title}
+                  width={640}
+                  height={360}
+                  className={`absolute inset-0 w-full h-full object-cover object-top bg-black transition-opacity duration-700 ease-in-out ${
+                    isCurrent ? "opacity-95 z-10" : "opacity-0 pointer-events-none z-0"
+                  }`}
+                  referrerPolicy="no-referrer"
+                  loading={imgIdx === 0 ? "eager" : "lazy"}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.endsWith(defaultEventImage)) return;
+                    target.src = defaultEventImage;
+                  }}
+                />
+              );
+            })}
+            <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-1.5 pointer-events-none">
+              {images.map((_, imgIdx) => (
+                <span
+                  key={imgIdx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    imgIdx === imageIndex ? "w-5 bg-brand" : "w-1.5 bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
         ) : (
           <img
             key={activeImage}
@@ -330,7 +390,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The 29th August event is complete. Results are confirmed and the battle videos are now in production.
+              The 29th August event is complete. Badee Harz vs 1Flaymah (1x24) is out now. Deeno vs CJ Zino (1x25) and Z.K vs 7wxve (1x26) are still in production.
             </p>
           </motion.div>
         </div>
