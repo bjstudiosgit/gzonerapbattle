@@ -165,10 +165,10 @@ const events = [
     isCompleted: false,
     ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
     card: [
-      { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E" },
-      { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ" },
-      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN" },
-      { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K" }
+      { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
+      { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
+      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN", winner: "ROMAN" },
+      { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
     ]
   }
 ];

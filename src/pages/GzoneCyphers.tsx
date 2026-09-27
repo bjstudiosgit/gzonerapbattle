@@ -35,7 +35,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "LwiRdIpkwNs",
     videoUrl: "https://www.youtube.com/watch?v=LwiRdIpkwNs&t=34s",
     startTime: 34,
-    views: "8.8K",
+    views: "8.9K",
   },
   {
     id: "feb-2026",
@@ -46,7 +46,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "qANdhQ1otLc",
     videoUrl: "https://www.youtube.com/watch?v=qANdhQ1otLc&t=39s",
     startTime: 39,
-    views: "3.8K",
+    views: "3.9K",
   },
   {
     id: "aug-2026-pt1",
@@ -66,7 +66,7 @@ const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "GZone Roster Cypher",
     videoId: "tG9HfUmEAnQ",
     videoUrl: "https://www.youtube.com/watch?v=tG9HfUmEAnQ",
-    views: "1.0K",
+    views: "1.1K",
   },
 ];
 

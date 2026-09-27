@@ -12,7 +12,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "555",
+    views: "558",
   },
   {
     id: "ep2",
@@ -22,7 +22,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "sKrMgvf3IBI",
     videoUrl: "https://www.youtube.com/watch?v=sKrMgvf3IBI",
-    views: "5.9K",
+    views: "6.1K",
   },
   {
     id: "ep3",
@@ -32,7 +32,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "lvPH1WSZ2r0",
     videoUrl: "https://www.youtube.com/watch?v=lvPH1WSZ2r0",
-    views: "2.5K",
+    views: "2.6K",
   },
   {
     id: "ep4",
@@ -42,7 +42,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "g3XHI940boA",
     videoUrl: "https://www.youtube.com/watch?v=g3XHI940boA",
-    views: "469",
+    views: "500",
   },
   {
     id: "ep5",
@@ -52,7 +52,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "OMdxdbUuXko",
     videoUrl: "https://www.youtube.com/watch?v=OMdxdbUuXko",
-    views: "0",
+    views: "538",
   },
   {
     id: "ep6",
@@ -62,7 +62,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "h_wUxCFaKc8",
     videoUrl: "https://www.youtube.com/watch?v=h_wUxCFaKc8",
-    views: "0",
+    views: "499",
   },
 ];
 

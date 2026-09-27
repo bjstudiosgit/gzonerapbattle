@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Ticket } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Film } from 'lucide-react';
 
 const septemberFlyers = [
   {
@@ -96,37 +95,33 @@ export const UpcomingEventLanding = () => {
             >
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-display uppercase leading-[1.02] tracking-tight text-white mb-2">
-                  26th September 2026
+                  October 2026
                 </h2>
                 <p className="font-display text-lg sm:text-xl uppercase tracking-wider text-brand">
-                  Peacocks Boxing, Canning Town
+                  Event Details Coming Soon
                 </p>
               </div>
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  The next official Gzone event lands on Saturday 26th September at Peacocks Boxing, Canning Town. 5 high-stakes clashes locked in for the night:
+                  Our 26th September event has now taken place. The battles from the night are currently in production and will be released on the official Gzone YouTube channel.
                 </p>
 
                 <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">
-                  Marni Gramz vs Btizz &bull; Tymeless vs K.I.M.E &bull; Badee Harz vs Roman &bull;{' '}
-                  <Link to="/battle/1flaymah-vs-zk" className="hover:text-white transition-colors">1Flaymah vs Z.K</Link>
+                  October 2026 details coming soon
                 </p>
 
                 <p className="text-zinc-400 text-sm sm:text-base">
-                  Tickets are £12 available on Eventbrite, with exclusive live streaming broadcasting directly on the official Gzone YouTube channel.
+                  Keep an eye on Gzone for the next date, venue, lineup, and ticket announcement.
                 </p>
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <a
-                  href="https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-brand hover:bg-white text-black px-8 py-4 font-display text-lg uppercase tracking-wider transition-all duration-300 shadow-[0_10px_30px_rgba(242,125,38,0.3)] hover:scale-[1.02] active:scale-95 text-center"
+                <div
+                  className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-brand/40 bg-brand/15 text-brand px-8 py-4 font-display text-lg uppercase tracking-wider text-center"
                 >
-                  Get Tickets £12 <Ticket size={18} />
-                </a>
+                  September Battles In Production <Film size={18} />
+                </div>
               </div>
             </motion.div>
           </div>
