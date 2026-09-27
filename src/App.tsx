@@ -42,7 +42,6 @@ const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
 const GzoneStreetFreestyles = lazy(() => import("./pages/GzoneStreetFreestyles"));
 const GzoneCyphers = lazy(() => import("./pages/GzoneCyphers"));
-const RoyalRumblePage = lazy(() => import("./pages/RoyalRumblePage"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -184,7 +183,7 @@ function Main() {
           <Route path="/battles/mc" element={<MCsPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/battles" element={<BattlesPage />} />
-          <Route path="/freestyle" element={<BattlesPage variant="freestyle" />} />
+          <Route path="/freestyle" element={<Navigate to="/battles#freestyle" replace />} />
           <Route path="/staff" element={<StaffPage />} />
           <Route path="/merch" element={<MerchPage />} />
           <Route path="/flyers" element={<PromoMaterialPage />} />
@@ -204,9 +203,9 @@ function Main() {
           <Route path="/gzone-cyphers" element={<Navigate to="/cyphers" replace />} />
           <Route path="/gzonecyphers" element={<Navigate to="/cyphers" replace />} />
           <Route path="/cypher" element={<Navigate to="/cyphers" replace />} />
-          <Route path="/royal-rumble" element={<RoyalRumblePage />} />
-          <Route path="/royalrumble" element={<Navigate to="/royal-rumble" replace />} />
-          <Route path="/RoyalRumble" element={<Navigate to="/royal-rumble" replace />} />
+          <Route path="/royal-rumble" element={<Navigate to="/battles#royal-rumble" replace />} />
+          <Route path="/royalrumble" element={<Navigate to="/battles#royal-rumble" replace />} />
+          <Route path="/RoyalRumble" element={<Navigate to="/battles#royal-rumble" replace />} />
         </Routes>
       </Suspense>
       

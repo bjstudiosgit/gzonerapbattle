@@ -40,7 +40,7 @@ export default function BattleDetail() {
   const description = isUpcoming
     ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${leagueName}.`
     : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
-  const archivePath = battle.league === "royal-rumble" ? "/royal-rumble" : battle.league === "freestyle" ? "/freestyle" : "/battles";
+  const archivePath = battle.league === "royal-rumble" ? "/battles#royal-rumble" : battle.league === "freestyle" ? "/battles#freestyle" : "/battles";
   const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 
   // Helper to extract YouTube ID from embed URL

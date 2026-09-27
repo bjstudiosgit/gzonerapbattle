@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/freestyle", "destination": "/battles", "permanent": true },
+    { "source": "/royal-rumble", "destination": "/battles", "permanent": true },
+    { "source": "/royalrumble", "destination": "/battles", "permanent": true },
+    { "source": "/RoyalRumble", "destination": "/battles", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

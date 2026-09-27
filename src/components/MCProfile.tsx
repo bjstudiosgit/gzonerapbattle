@@ -335,7 +335,7 @@ export default function MCProfile() {
                     const isRoyalRumble = battle.league === "royal-rumble";
                     const opponentId = battle.mc1 === mc.id ? battle.mc2 : battle.mc1;
                     const opponent = mcs.find(m => m.id === opponentId);
-                    const targetUrl = isRoyalRumble ? "/royal-rumble" : `/battle/${battle.slug}`;
+                    const targetUrl = `/battle/${battle.slug}`;
                     return (
                       <div 
                         key={battle.id} 
