@@ -87,7 +87,8 @@ export const mcs: MC[] = [
     style: "Disrespect / Wordplay",
     image: "/princ3.png",
     bio: "PR1NC3 brings pure disrespect, intricate wordplay, high energy, and effortless flows to every clash. He keeps opponents under constant pressure, firing off lethal punchlines with speed and precision.",
-    isActive: true,
+    isActive: false,
+    tags: ["Wasted"],
     weightClass: "Middleweight",
     height: "5'10\"",
     location: "London",
@@ -418,7 +419,7 @@ export const mcs: MC[] = [
     losses: 0,
     style: "Freestyle / Energy",
     image: "/afrodon.png",
-    bio: "Afrodon joined the Gzone roster for the first Freestyle League battle and clashes with Akzzey on 26th September 2026.",
+    bio: "Afrodon joined the Gzone roster for the first Freestyle League battle.",
     isActive: true,
     location: "Nottingham",
     coordinates: [52.9548, -1.1581]
@@ -436,21 +437,6 @@ export const mcs: MC[] = [
     isActive: true,
     location: "Lancashire",
     coordinates: [53.7022, -2.2872]
-  },
-  {
-    id: "akzzey",
-    slug: "akzzey",
-    name: "Akzzey",
-    battles: 0,
-    wins: 0,
-    losses: 0,
-    style: "Grime / Flow",
-    image: "/akzzey.jpg",
-    bio: "Birmingham lyricist Akzzey makes his official Gzone clash debut against Nottingham's Afrodon on 26th September 2026.",
-    isActive: true,
-    location: "Birmingham",
-    coordinates: [52.4862, -1.8904],
-    instagram: "https://www.instagram.com/akzzey/"
   },
   {
     id: "kime",

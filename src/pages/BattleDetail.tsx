@@ -362,7 +362,7 @@ export default function BattleDetail() {
 
             {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
             {battle.slug === 'deeno-vs-cj-zino' && <DeenoVsCjZinoSummary />}
-            {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary />}
+            {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary props={battle.props} />}
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>

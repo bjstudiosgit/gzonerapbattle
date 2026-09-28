@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { MapPin, Eye, ExternalLink } from "lucide-react";
 
-const initialStreetEpisodes = [
+export const initialStreetEpisodes = [
   {
     id: "ep1",
     episode: "EP1",
@@ -12,7 +12,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "558",
+    views: "560",
   },
   {
     id: "ep2",
@@ -42,7 +42,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "g3XHI940boA",
     videoUrl: "https://www.youtube.com/watch?v=g3XHI940boA",
-    views: "500",
+    views: "501",
   },
   {
     id: "ep5",
@@ -52,7 +52,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "OMdxdbUuXko",
     videoUrl: "https://www.youtube.com/watch?v=OMdxdbUuXko",
-    views: "538",
+    views: "544",
   },
   {
     id: "ep6",
@@ -62,7 +62,7 @@ const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "h_wUxCFaKc8",
     videoUrl: "https://www.youtube.com/watch?v=h_wUxCFaKc8",
-    views: "499",
+    views: "510",
   },
 ];
 

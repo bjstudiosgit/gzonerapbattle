@@ -40,8 +40,7 @@ const LostProperty = lazy(() => import("./components/LostProperty"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
-const GzoneStreetFreestyles = lazy(() => import("./pages/GzoneStreetFreestyles"));
-const GzoneCyphers = lazy(() => import("./pages/GzoneCyphers"));
+const Outside = lazy(() => import("./pages/Outside"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -195,14 +194,15 @@ function Main() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/vote" element={<VotePage />} />
           <Route path="/vote/live" element={<VoteLivePage />} />
-          <Route path="/gzone-street-freestyles" element={<GzoneStreetFreestyles />} />
-          <Route path="/GzoneStreetFreestyles" element={<Navigate to="/gzone-street-freestyles" replace />} />
-          <Route path="/gzonestreetfreestyles" element={<Navigate to="/gzone-street-freestyles" replace />} />
-          <Route path="/street" element={<Navigate to="/gzone-street-freestyles" replace />} />
-          <Route path="/cyphers" element={<GzoneCyphers />} />
-          <Route path="/gzone-cyphers" element={<Navigate to="/cyphers" replace />} />
-          <Route path="/gzonecyphers" element={<Navigate to="/cyphers" replace />} />
-          <Route path="/cypher" element={<Navigate to="/cyphers" replace />} />
+          <Route path="/outside" element={<Outside />} />
+          <Route path="/gzone-street-freestyles" element={<Navigate to="/outside?series=freestyles" replace />} />
+          <Route path="/GzoneStreetFreestyles" element={<Navigate to="/outside?series=freestyles" replace />} />
+          <Route path="/gzonestreetfreestyles" element={<Navigate to="/outside?series=freestyles" replace />} />
+          <Route path="/street" element={<Navigate to="/outside?series=freestyles" replace />} />
+          <Route path="/cyphers" element={<Navigate to="/outside?series=cyphers" replace />} />
+          <Route path="/gzone-cyphers" element={<Navigate to="/outside?series=cyphers" replace />} />
+          <Route path="/gzonecyphers" element={<Navigate to="/outside?series=cyphers" replace />} />
+          <Route path="/cypher" element={<Navigate to="/outside?series=cyphers" replace />} />
           <Route path="/royal-rumble" element={<Navigate to="/battles#royal-rumble" replace />} />
           <Route path="/royalrumble" element={<Navigate to="/battles#royal-rumble" replace />} />
           <Route path="/RoyalRumble" element={<Navigate to="/battles#royal-rumble" replace />} />

@@ -1,4 +1,4 @@
-import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Vote, MapPin, Flame } from "lucide-react";
+import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Vote, MapPin } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
@@ -11,8 +11,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Battles", href: "/battles", icon: Play },
     { name: "League", href: "/league", icon: Trophy },
-    { name: "Gstreet Freestyles", href: "/gzone-street-freestyles", icon: MapPin },
-    { name: "Cyphers", href: "/cyphers", icon: Flame },
+    { name: "Outside", href: "/outside", icon: MapPin },
     { name: "Who's Who", href: "/battles/mc", icon: Users },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
     { name: "Apply", href: "/apply", icon: FileText },

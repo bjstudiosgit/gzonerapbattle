@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Battle } from "../data/battles";
 
 const rounds = [
   ["Round 1 — Z.K", "Personal research, visual jokes, and repeated restarts", "Z.K attacks 7wxve's move from Skegness to Sheffield, build, finances, living conditions, online image, and alleged conduct. References to Ryno and Richie place 7wxve inside an existing battle history. Sound adjustments force Z.K to restart the passage several times before he completes the round."],
@@ -73,7 +74,7 @@ function SummarySection({ title, children }: { title: string; children: ReactNod
   );
 }
 
-export function SevenWxveVsZkSummary() {
+export function SevenWxveVsZkSummary({ props }: { props?: Battle["props"] }) {
   return (
     <>
       <SummarySection title="Clash Summary">
@@ -87,6 +88,23 @@ export function SevenWxveVsZkSummary() {
           <p>The crowd awarded Z.K the win. His greater volume, stronger completion, and ability to recover from the early sound problems gave him the clearer overall performance.</p>
         </div>
       </SummarySection>
+
+      {props && props.length > 0 && (
+        <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10">
+          <h2 className="text-3xl font-display uppercase text-white mb-8">Evidence: Props Used</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {props.map((prop) => (
+              <div key={`${prop.user}-${prop.name}`} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-950/70 p-5">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-800 text-2xl">{prop.icon}</span>
+                <div className="min-w-0">
+                  <p className="font-bold text-white">{prop.name}</p>
+                  <p className="text-sm uppercase tracking-widest text-zinc-500">Used by {prop.user}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <SummarySection title="Round Structure">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

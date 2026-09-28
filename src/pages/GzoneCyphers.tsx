@@ -15,7 +15,7 @@ export interface CypherEpisode {
   startTime?: number;
 }
 
-const initialCypherEpisodes: CypherEpisode[] = [
+export const initialCypherEpisodes: CypherEpisode[] = [
   {
     id: "nov-2025",
     month: "November 2025",

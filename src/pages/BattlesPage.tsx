@@ -1,4 +1,4 @@
-import { freestyleBattles, lastUpdated, royalRumbleBattles, seasonOneBattles } from "../data/battles";
+import { battles, freestyleBattles, lastUpdated, royalRumbleBattles, seasonOneBattles } from "../data/battles";
 import type { Battle } from "../data/battles";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
@@ -90,7 +90,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
                 )}
                 <div className="flex flex-col gap-1.5 text-xs font-black tracking-widest uppercase">
                   <div className="text-zinc-500">
-                    Impact: <span className="text-zinc-100 font-mono ml-1">{!battle.isUnreleased ? (views || "---") : "---"}</span>
+                    Views: <span className="text-zinc-100 font-mono ml-1">{!battle.isUnreleased ? (views || "---") : "---"}</span>
                   </div>
                   <div className="text-zinc-500">
                     Status: <span className={`ml-1 ${battle.videoUrl ? "text-emerald-400" : "text-brand"}`}>
@@ -109,9 +109,9 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
           <thead>
             <tr className="border-b border-white/10 bg-black/40">
               <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap w-24">ID</th>
-              <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">The Battle</th>
-              <th className="hidden sm:table-cell px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-center whitespace-nowrap w-28">Impact</th>
-              <th className="hidden lg:table-cell px-6 md:px-8 py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap min-w-[200px]">Schedule</th>
+              <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">Battle</th>
+              <th className="hidden sm:table-cell px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-center whitespace-nowrap w-28">Views</th>
+              <th className="hidden lg:table-cell px-6 md:px-8 py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap min-w-[200px]">Date</th>
               <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 text-right md:text-left whitespace-nowrap min-w-[190px]">Status</th>
             </tr>
           </thead>
@@ -239,10 +239,11 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
 export default function BattlesPage() {
   const orderedBattles = sortBattlesById(seasonOneBattles);
   const [rumbleViews, setRumbleViews] = useState<Record<string, string>>({});
-  const totalViewsStr = calculateTotalViews(orderedBattles);
+  const totalViewsStr = calculateTotalViews(battles);
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;
   const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && Boolean(battle.winner || battle.resultLabel)).length;
   const outstandingCount = orderedBattles.filter((battle) => battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel).length;
+  const seasonBattleCount = orderedBattles.length;
 
   useEffect(() => {
     if (window.location.hash === "#freestyle" || window.location.hash === "#royal-rumble") {
@@ -289,7 +290,7 @@ export default function BattlesPage() {
               </div>
             </div>
             <p className="text-zinc-400 text-[0.95rem] md:text-lg max-w-full md:max-w-3xl leading-[1.6] md:leading-relaxed tracking-tight font-medium opacity-80 mx-auto lg:mx-0">
-              The archive of high-stakes collisions. Every clash recorded here is a piece of Gzone history, where the UK's top-tier MCs settled scores and established dominance. Review the impact, track the views, and relive the battles that defined the "Most Wanted" division.
+              The "Most Wanted" season is still unfolding. Watch the clashes already live, follow the battles in production, and revisit the moments shaping Gzone history.
             </p>
           </div>
           
@@ -307,7 +308,17 @@ export default function BattlesPage() {
             <div className="bg-zinc-900/60 backdrop-blur-xl border border-white/10 p-5 md:p-6 rounded-[2rem] flex-1 md:min-w-[280px] shadow-2xl group hover:border-brand/30 transition-colors">
               <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-400 mb-5">
                 <Play size={16} className="text-brand" />
-                <span className="text-[10px] uppercase tracking-widest font-black">Season 1 In Progress</span>
+                <span className="text-[10px] uppercase tracking-widest font-black">Season 1 Progress</span>
+              </div>
+              <div className="mb-5">
+                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-2">
+                  <span className="text-white">{liveNowCount} of {seasonBattleCount} battles live</span>
+                  <span className="text-zinc-500">{Math.round((liveNowCount / seasonBattleCount) * 100)}%</span>
+                </div>
+                <div className="flex h-1.5 overflow-hidden rounded-full bg-white/10" aria-label={`${liveNowCount} of ${seasonBattleCount} Season 1 battles live`}>
+                  <span className="bg-emerald-400" style={{ width: `${(liveNowCount / seasonBattleCount) * 100}%` }} />
+                  <span className="bg-brand" style={{ width: `${(inProductionCount / seasonBattleCount) * 100}%` }} />
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-4 md:gap-6 text-center md:text-left">
                 <div>
@@ -333,9 +344,8 @@ export default function BattlesPage() {
             <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
               <div>
                 <h2 id="freestyle-battles-heading" className="font-display text-3xl md:text-5xl uppercase text-white">
-                  Freestyle <span className="text-brand">League</span>
+                  Freestyle <span className="text-brand">Battles</span>
                 </h2>
-                <p className="text-zinc-400 mt-2">Explore every Gzone Freestyle League clash.</p>
               </div>
             </div>
             <BattlesTable orderedBattles={sortBattlesById(freestyleBattles)} />

@@ -39,8 +39,9 @@ async function updateFileViews(filePath: string, idRegex: RegExp, makeVideoLine:
       if (youtubeViews !== undefined) {
         const pattern = new RegExp(`(${escapeRegExp(makeVideoLine(id))}[^}]*?"?views"?:\\s*")[^"]+(")`);
         if (!pattern.test(source)) throw new Error("View field missing");
-        source = source.replace(pattern, `$1${formatViews(youtubeViews)}$2`);
-        console.log(`[${filePath}] ${id}: ${formatViews(youtubeViews)} (YouTube)`);
+        const views = formatViews(Math.max(savedCount, youtubeViews));
+        source = source.replace(pattern, `$1${views}$2`);
+        console.log(`[${filePath}] ${id}: ${views} (YouTube${youtubeViews < savedCount ? "; retained newer saved count" : ""})`);
         continue;
       }
       const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
@@ -85,18 +86,17 @@ async function fetchViews() {
       } catch {
         // Keep the existing provider as a fallback when YouTube is unavailable.
       }
+      const savedViews = battlesSource.match(new RegExp(`${escapeRegExp(videoLine)}[^}]*?"views":\\s*"([^"]+)"`))?.[1];
+      const savedCount = savedViews ? parseFloat(savedViews) * (savedViews.endsWith("K") ? 1000 : 1) : 0;
       let count = youtubeViews;
-      let retained = false;
       if (count === undefined) {
         const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
         const json = await response.json();
         if (!response.ok || typeof json?.viewCount !== "number") throw new Error("Views unavailable");
-        const savedViews = battlesSource.match(new RegExp(`${escapeRegExp(videoLine)}[^}]*?"views":\\s*"([^"]+)"`))?.[1];
-        const savedCount = savedViews ? parseFloat(savedViews) * (savedViews.endsWith("K") ? 1000 : 1) : 0;
-        retained = json.viewCount < savedCount;
-        count = Math.max(savedCount, json.viewCount);
+        count = json.viewCount;
       }
-      const views = formatViews(count);
+      const retained = count < savedCount;
+      const views = formatViews(Math.max(savedCount, count));
       const viewsLinePattern = new RegExp(`(${escapeRegExp(videoLine)}\\r?\\n\\s*"views":\\s*")[^"]+(")`);
       const insertViewsPattern = new RegExp(`(${escapeRegExp(videoLine)})(\\r?\\n)`);
 
@@ -106,7 +106,7 @@ async function fetchViews() {
         battlesSource = battlesSource.replace(insertViewsPattern, `$1$2    "views": "${views}",$2`);
       }
 
-      console.log(`[battles.ts] ${id}: ${views} (${youtubeViews !== undefined ? "YouTube" : retained ? "fallback; retained newer saved count" : "fallback"})`);
+      console.log(`[battles.ts] ${id}: ${views} (${youtubeViews !== undefined ? "YouTube" : "fallback"}${retained ? "; retained newer saved count" : ""})`);
     } catch {
       failedRefreshes++;
       console.log(`[battles.ts] ${id}: Error — saved count retained`);

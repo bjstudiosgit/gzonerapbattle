@@ -1,18 +1,12 @@
-import { BookOpen, Zap, Play, Sword, ShoppingBag } from "lucide-react";
+import { Zap, Play } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
-    { text: "NEW GSTREET FREESTYLE: EP4 - JAI-DEE OUT NOW", type: "live" },
-    { text: "LATEST BATTLE: 1X24 BADEE HARZ VS 1FLAYMAH OUT NOW ON YOUTUBE", type: "live" },
+    { text: "OCTOBER TICKETS ON SALE SOON", type: "upcoming" },
+    { text: "Z.K VS CJ ZINO OUT NOW", type: "live" },
+    { text: "TRICKY - THE FALL OF THE ROMAN EMPIRE MUSIC VIDEO OUT NOW", type: "live" },
     { text: "ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
     { text: "SEPTEMBER 26TH BATTLES ARE NOW IN PRODUCTION", type: "upcoming" },
-    { text: "OCTOBER 2026 EVENT DETAILS COMING SOON", type: "upcoming" },
-    { text: "LATEST RESULT: 1 FLAYMAH DEFEATED BADEE HARZ", type: "live" },
-    { text: "LATEST RESULT: DEENO DEFEATED CJ ZINO", type: "live" },
-    { text: "LATEST RESULT: Z.K DEFEATED 7WXVE", type: "live" },
-    { text: "GSTREET FREESTYLES: WATCH EP1 MARS, EP2 PASSIVE, EP3 DEENO AND EP4 JAI-DEE", type: "live" },
-    { text: "BATTLE BREAKDOWNS: EXPLORE THE BARS, REBUTTALS AND RESULTS", type: "editorial" },
-    { text: "REP THE GZONE: SHOP THE MERCH COLLECTION", type: "merch" },
   ];
 
   const tickerItems = [...items, ...items];
@@ -25,20 +19,14 @@ export default function LiveTicker() {
       >
         {tickerItems.map((item, idx) => (
           <div key={idx} className="flex shrink-0 items-center gap-3">
-            {item.type === "live" && !item.text.includes("DEFEATED") && (
+            {item.type === "live" && (
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
               </span>
             )}
 
-            {item.type === "merch" && <ShoppingBag size={14} />}
-            {item.type === "editorial" && <BookOpen size={14} />}
-            {item.type === "live" && (item.text.includes("DEFEATED") ? (
-              <Sword size={14} className="fill-current" />
-            ) : (
-              <Play size={14} className="fill-current" />
-            ))}
+            {item.type === "live" && <Play size={14} className="fill-current" />}
             {item.type === "upcoming" && <Zap size={14} className="animate-pulse" />}
 
             <span className="font-black text-[11px] md:text-[13px] uppercase tracking-tighter">

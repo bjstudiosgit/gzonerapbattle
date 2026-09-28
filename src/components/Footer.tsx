@@ -41,6 +41,7 @@ export default function Footer() {
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Directory</h5>
               <ul className="space-y-2">
                 <li><Link to="/battles" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Rap Battles</Link></li>
+                <li><Link to="/outside" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Outside</Link></li>
                 <li><Link to="/events" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Next Event</Link></li>
                 <li><Link to="/battles/mc" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
                 <li><Link to="/merch" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
