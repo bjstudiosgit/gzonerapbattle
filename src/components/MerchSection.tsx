@@ -110,12 +110,13 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
               Merch Has <span className="text-brand">Dropped!</span>
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed font-medium max-w-2xl">
-              Fresh Gzone gear is live now. Scroll through the collection below or visit our Shopify store.
+              {showShopAll
+                ? "Fresh Gzone gear is live now. Explore the full collection below."
+                : "Fresh Gzone gear is live now. Scroll through the collection below or visit our Shopify store."}
             </p>
           </div>
 
-          {/* Carousel Arrows & Shop All CTA */}
-          <div className="flex items-center gap-3 self-start md:self-end">
+          {!showShopAll && <div className="flex items-center gap-3 self-start md:self-end">
             <a
               href={`${SHOP_URL}/collections/all`}
               target="_blank"
@@ -142,16 +143,16 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
                 <ChevronRight size={20} />
               </button>
             </div>
-          </div>
+          </div>}
         </motion.div>
 
         {/* Loading Skeletons */}
         {isLoading && (
-          <div className="flex gap-4 sm:gap-6 overflow-hidden py-2" aria-label="Loading merchandise">
+          <div className={showShopAll ? "grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 py-2" : "flex gap-4 sm:gap-6 overflow-hidden py-2"} aria-label="Loading merchandise">
             {Array.from({ length: 5 }).map((_, index) => (
               <div
                 key={index}
-                className="w-[240px] sm:w-[280px] md:w-[310px] shrink-0 overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-zinc-950/70 animate-pulse"
+                className={`${showShopAll ? "min-w-0" : "w-[240px] sm:w-[280px] md:w-[310px] shrink-0"} overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-zinc-950/70 animate-pulse`}
               >
                 <div className="aspect-square bg-zinc-800/70" />
                 <div className="p-4 sm:p-5 space-y-3">
@@ -180,11 +181,13 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
           </div>
         )}
 
-        {/* Horizontal Scrolling Carousel */}
+        {/* Product collection */}
         {!isLoading && !hasError && (
           <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 scroll-smooth"
+            ref={showShopAll ? undefined : scrollRef}
+            className={showShopAll
+              ? "grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 py-4"
+              : "flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 scroll-smooth"}
           >
             {products.map((product) => {
               const priceLabel = getPriceLabel(product);
@@ -198,7 +201,7 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
                   href={productUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex w-[240px] sm:w-[280px] md:w-[310px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-zinc-950/85 shadow-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/50 hover:shadow-brand/10"
+                  className={`group flex flex-col overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-zinc-950/85 shadow-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/50 hover:shadow-brand/10 ${showShopAll ? "min-w-0" : "w-[240px] sm:w-[280px] md:w-[310px] shrink-0 snap-start"}`}
                 >
                   <div className="relative aspect-square overflow-hidden bg-zinc-900">
                     <img
@@ -242,7 +245,7 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
             })}
 
             {/* Final "Shop All Collection" Card */}
-            <a
+            {!showShopAll && <a
               href={`${SHOP_URL}/collections/all`}
               target="_blank"
               rel="noopener noreferrer"
@@ -260,7 +263,7 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
               <span className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 border border-brand/30 px-4 py-2 text-xs font-black uppercase tracking-widest text-brand group-hover:bg-brand group-hover:text-black transition-all">
                 Shopify Store <ArrowUpRight size={13} />
               </span>
-            </a>
+            </a>}
           </div>
         )}
       </div>
