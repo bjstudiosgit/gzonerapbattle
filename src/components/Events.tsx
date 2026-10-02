@@ -152,7 +152,7 @@ const events = [
     title: "G ZONE: 26TH SEPTEMBER",
     date: "26th September 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "TICKETS £12",
+    price: "EVENT COMPLETE",
     doors: "5:00 PM",
     image: "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
     images: [
@@ -161,13 +161,12 @@ const events = [
       "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
       "/flyers/september-26-2026-1flaymah-vs-zk.png"
     ],
-    description: "Official 5-battle card locked in for Saturday 26th September at Peacocks Boxing, Canning Town. Tickets £12 available on Eventbrite, live streaming exclusively on YouTube.",
-    isCompleted: false,
-    ticketLink: "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
+    description: "The 26th September event is complete. Badee Harz vs Roman is out now.",
+    isCompleted: true,
     card: [
-      { episode: "1x27", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
+      { episode: "1x27", mc1: "BADEE HARZ", mc2: "ROMAN", winner: "ROMAN" },
       { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
-      { episode: "1x30", mc1: "BADEE HARZ", mc2: "ROMAN", winner: "ROMAN" },
+      { episode: "1x30", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
       { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
     ]
   }
@@ -390,7 +389,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The 29th August event is complete. Badee Harz vs 1Flaymah (1x24) is out now. Deeno vs CJ Zino (1x25) and Z.K vs 7wxve (1x26) are still in production.
+              The 26th September event is complete. Badee Harz vs Roman (1x27) is out now. Tymeless vs K.I.M.E (1x30), Marni Gramz vs Btizz (1x29), and 1Flaymah vs Z.K (1x31) are still in production.
             </p>
           </motion.div>
         </div>

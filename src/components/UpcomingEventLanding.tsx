@@ -104,7 +104,7 @@ export const UpcomingEventLanding = () => {
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  Our 26th September event has now taken place. The battles from the night are currently in production and will be released on the official Gzone YouTube channel.
+                  Our 26th September event has now taken place. Badee Harz vs Roman is out now. The remaining battles from the night are currently in production and will be released on the official Gzone YouTube channel.
                 </p>
 
                 <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">

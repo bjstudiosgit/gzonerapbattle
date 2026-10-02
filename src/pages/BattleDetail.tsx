@@ -8,6 +8,7 @@ import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-reac
 import { BadeeHarzVs1FlaymahSummary, BadeeHarzVs1FlaymahResult, BadeeHarzVs1FlaymahHighlights } from "../components/BadeeHarzVs1FlaymahSummary";
 import { DeenoVsCjZinoSummary } from "../components/DeenoVsCjZinoSummary";
 import { SevenWxveVsZkSummary, SevenWxveVsZkResult, SevenWxveVsZkHighlights } from "../components/SevenWxveVsZkSummary";
+import { BadeeHarzVsRomanSummary } from "../components/BadeeHarzVsRomanSummary";
 
 const RESULT_CHARACTER_LIMIT = 310;
 
@@ -363,6 +364,7 @@ export default function BattleDetail() {
             {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
             {battle.slug === 'deeno-vs-cj-zino' && <DeenoVsCjZinoSummary />}
             {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary props={battle.props} />}
+            {battle.slug === 'roman-vs-badee-harz' && <BadeeHarzVsRomanSummary props={battle.props} />}
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>
@@ -3385,7 +3387,7 @@ export default function BattleDetail() {
 
             {!isUpcoming && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
-                {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+                {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
                     <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
@@ -4557,7 +4559,7 @@ export default function BattleDetail() {
                       ))}
                     </div>
                   </section>
-                ) : (
+                ) : battle.slug === 'roman-vs-badee-harz' ? null : (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
                     <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
@@ -4871,7 +4873,7 @@ export default function BattleDetail() {
             ] as const).filter(([slug]) => battle.slug === slug).map(([slug, paragraphs]) => (
               <div key={slug} className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-4 text-white">The Result</h3>
-                {slug === 'zk-vs-cj-zino' || slug === 'deeno-vs-afrodon' || slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' ? (
+                {slug === 'zk-vs-cj-zino' || slug === 'deeno-vs-afrodon' || slug === 'nattyebk-vs-zk' || slug === 'cj-zino-vs-1flaymr' || slug === 'ryno-vs-roman' || slug === 'deeno-vs-badee-harz' || slug === 'btizz-vs-1flaymr' || slug === 'tapped24-vs-grams' || slug === 'deeno-vs-grams' || slug === 'btizz-vs-cj-zino' || slug === 'pr1nc3-vs-nattyebk' || slug === 'ryno-vs-tymeless' || slug === 'tapped24-vs-ajna' || slug === 'tapped24-vs-roman' || slug === '2mwad-vs-ryno' || slug === 'deluxx-vs-btizz' || slug === 'renzo-vs-proty' || slug === 'cj-zino-vs-proty' || slug === 'ldn-mikez-vs-2mwad' || slug === 'ldn-mikez-vs-deluxx' || slug === 'pr1nc3-vs-roman' || slug === 'deeno-vs-tapped24' || slug === 'deeno-vs-tymeless' || slug === 'deeno-vs-btizz' || slug === 'roman-vs-badee-harz' ? (
                   <div className="space-y-4 text-zinc-400 text-sm leading-relaxed">
                     {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
@@ -5925,7 +5927,7 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {!isUpcoming && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && (
+            {!isUpcoming && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

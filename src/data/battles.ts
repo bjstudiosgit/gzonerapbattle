@@ -451,7 +451,7 @@ export const battles: Battle[] = [
     "flyer": "/flyers/august-29-2026-zk-vs-7wxve.png"
   },
   {
-    "id": "28",
+    "id": "31",
     "slug": "tymeless-vs-kime",
     "mc1": "tymeless",
     "mc2": "kime",
@@ -461,7 +461,7 @@ export const battles: Battle[] = [
     "resultLabel": "Official Result",
     "isUnreleased": true,
     "isPlaceholder": false,
-    "episode": "1x27",
+    "episode": "1x30",
     "flyer": "/flyers/september-26-2026-tymeless-vs-kime.jpg",
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
   },
@@ -481,22 +481,26 @@ export const battles: Battle[] = [
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
   },
   {
-    "id": "31",
+    "id": "29",
     "slug": "roman-vs-badee-harz",
     "mc1": "badee-harz",
     "mc2": "roman",
     "title": "Badee Harz vs Roman",
-    "date": "26 Sep 2026",
+    "date": "02 Oct 2026",
+    "releaseDate": "2026-10-02T19:00:00+01:00",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/oAgeLuYN344",
     "winner": "roman",
     "resultLabel": "Official Result",
-    "isUnreleased": true,
+    "isUnreleased": false,
     "isPlaceholder": false,
-    "episode": "1x30",
+    "episode": "1x27",
     "flyer": "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
-    "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
+    "props": [
+      { name: "Trojan Condom", user: "Badee Harz", icon: "🛡️" }
+    ]
   },
   {
-    "id": "32",
+    "id": "28",
     "slug": "royal-rumble",
     "mc1": "tricky",
     "mc2": "deeno",
@@ -513,7 +517,7 @@ export const battles: Battle[] = [
     "lineup": ["tricky", "cookie", "passive", "deeno", "mello", "1flaymr", "btizz", "badee-harz", "jai-d"]
   },
   {
-    "id": "33",
+    "id": "32",
     "slug": "1flaymah-vs-zk",
     "mc1": "1flaymr",
     "mc2": "zk",
