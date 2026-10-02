@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# The GZone Rap Battle
 
-# Run and deploy your AI Studio app
+The official website for The GZone Rap Battle platform. This repository contains the frontend web application.
 
-This contains everything you need to run your app locally.
+## Getting Started
 
-View your app in AI Studio: https://ai.studio/apps/94014bbe-6cfc-4857-aae2-7fbc566c4ed7
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Run Locally
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   The site will be available at `http://localhost:5173` (or the port specified in your console).
 
-**Prerequisites:**  Node.js
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
+   The built files will be output to the `dist` directory.
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
