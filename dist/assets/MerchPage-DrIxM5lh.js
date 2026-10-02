@@ -1,1 +1,0 @@
-import{j as r}from"./index-aPZ8_vA1.js";import t from"./MerchSection-DS_1l4tm.js";import"./proxy-CssMdiRm.js";import"./arrow-up-right-Ke81hAaQ.js";import"./chevron-left-CiBvYbDv.js";import"./chevron-right-GtLtQefi.js";function s(){return r.jsx("main",{className:"min-h-screen pt-28 md:pt-32",children:r.jsx(t,{})})}export{s as default};
