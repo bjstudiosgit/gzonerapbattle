@@ -24,7 +24,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Silva Rose • Uncle Dizz",
     videoId: "I4ieQV35pdk",
     videoUrl: "https://www.youtube.com/watch?v=I4ieQV35pdk",
-    views: "12.6K",
+    views: "12.7K",
   },
   {
     id: "dec-2025",
@@ -56,7 +56,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Afrodon • Mercedes • Foxamous • Btizz • CJ-Zino • Redzman • ZK • Lincz",
     videoId: "oDqjEXwyUy0",
     videoUrl: "https://www.youtube.com/watch?v=oDqjEXwyUy0",
-    views: "3.6K",
+    views: "3.7K",
   },
   {
     id: "aug-2026-pt2",

@@ -87,8 +87,7 @@ export const mcs: MC[] = [
     style: "Disrespect / Wordplay",
     image: "/princ3.png",
     bio: "PR1NC3 brings pure disrespect, intricate wordplay, high energy, and effortless flows to every clash. He keeps opponents under constant pressure, firing off lethal punchlines with speed and precision.",
-    isActive: false,
-    tags: ["Wasted"],
+    isActive: true,
     weightClass: "Middleweight",
     height: "5'10\"",
     location: "London",
@@ -194,10 +193,9 @@ export const mcs: MC[] = [
     style: "Performance / Energy",
     image: "/deluxx.png",
     bio: "Deluxx is a performance-driven MC who leans heavily into flow, rhythm, and cadence. His style is built around repetition and recurring phrases, using momentum and a strong presence to match his opponent's energy. Known for his high-energy performances and crowd-facing moments, Deluxx relies on his natural rhythm to keep himself in the contest and capture the audience's attention.",
-    isActive: false,
+    isActive: true,
     location: "London",
-    coordinates: [51.5074, -0.1278],
-    tags: ["Wasted"]
+    coordinates: [51.5074, -0.1278]
   },
   {
     id: "2mwad",
@@ -207,7 +205,7 @@ export const mcs: MC[] = [
     wins: 0,
     losses: 2,
     style: "Comedy / Fast Flows",
-    image: "/2mwad.png",
+    image: "/portraits/2mwad-actual.png",
     bio: "Unpredictable and high-intensity, 2MWAD blends rapid-fire flows with a confrontational approach. He is known for immediately challenging his opponent's material and originality, often focusing on breaking down their personal life and positioning. Using structured setups, layered references, and creative gaming-style metaphors, his quick delivery and sharp humour make every clash a memorable and hard-fought encounter.",
     isActive: false,
     weightClass: "76kg",
@@ -348,13 +346,13 @@ export const mcs: MC[] = [
   {
     id: "grams",
     slug: "grams",
-    name: "Grams",
+    name: "Marni Gramz",
     battles: 2,
     wins: 0,
     losses: 2,
     style: "Technical / Wordplay",
     image: "/grams.png",
-    bio: "A cold-blooded lyricist known for intricate wordplay and surgical delivery. After rising through the PenGame scene and overcoming controversy, Grams doesn't wait for permission, he takes the arena. Now in the Gzone, the rules are simple: no politics, no protection… just war.",
+    bio: "A cold-blooded lyricist known for intricate wordplay and surgical delivery. After rising through the PenGame scene and overcoming controversy, Marni Gramz doesn't wait for permission, he takes the arena. Now in the Gzone, the rules are simple: no politics, no protection… just war.",
     isActive: true,
     location: "London",
     coordinates: [51.5074, -0.1278],
@@ -452,5 +450,17 @@ export const mcs: MC[] = [
     isActive: true,
     location: "Moss Side, Manchester",
     coordinates: [53.4545, -2.2366]
+  },
+  {
+    id: "mello",
+    slug: "mello",
+    name: "Mello",
+    battles: 0,
+    wins: 0,
+    losses: 0,
+    style: "Freestyle",
+    image: "/portraits/mcmello.png",
+    bio: "Mello appears in Royal Rumble EP1 and EP2: Day of Reckoning, bringing his live performance to the Gzone arena.",
+    isActive: true
   }
 ];

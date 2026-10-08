@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { mcs } from "../data/mcs";
 import { battles as allBattles, seasonOneBattles } from "../data/battles";
+import { initialStreetEpisodes } from "../pages/GzoneStreetFreestyles";
 import { ArrowLeft, Mic2, Trophy, Zap, Play, MapPin, Weight, Instagram, Youtube, Quote, Crown, Facebook, Mail, Music, Star } from "lucide-react";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { portraitImage } from "../lib/images";
@@ -30,10 +31,12 @@ export default function MCProfile() {
   const losses = overallRecord?.losses ?? mc.losses;
   const battleCount = overallRecord?.battles ?? mc.battles;
   const isWasted = mc.isActive === false;
+  const streetFreestyle = initialStreetEpisodes.find(episode => episode.artist.toLowerCase() === mc.name.toLowerCase());
 
   const starCount = getRankStars(rank);
 
-  const mcBattles = sortBattlesById(allBattles.filter(b => b.mc1 === mc.id || b.mc2 === mc.id || (b.lineup && b.lineup.includes(mc.id))));
+  const lineupNames = [mc.id, mc.name, `${mc.name} ${mc.nickname ?? ""}`.trim()].map(name => name.toLowerCase());
+  const mcBattles = sortBattlesById(allBattles.filter(b => b.mc1 === mc.id || b.mc2 === mc.id || b.lineup?.some(name => lineupNames.includes(name.toLowerCase()))));
   const mcProps = mcBattles
     .flatMap(battle => battle.props ?? [])
     .filter(prop => prop.user.toLowerCase() === mc.name.toLowerCase())
@@ -66,6 +69,7 @@ export default function MCProfile() {
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="space-y-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -123,6 +127,25 @@ export default function MCProfile() {
               {wins}W : {losses}L
             </div>
           </motion.div>
+
+          {streetFreestyle && (
+            <section className="rounded-3xl border border-white/10 bg-zinc-900/50 p-5 md:p-6">
+              <div className="mb-4">
+                <h2 className="font-display text-2xl uppercase text-white">{mc.name} Gstreet Freestyle</h2>
+              </div>
+              <div className="aspect-video overflow-hidden rounded-2xl bg-black">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${streetFreestyle.videoId}`}
+                  title={`${mc.name} Gstreet Freestyle`}
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </section>
+          )}
+          </div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -346,13 +369,13 @@ export default function MCProfile() {
                           <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-zinc-900 shrink-0 flex items-center justify-center">
                             {isRoyalRumble ? (
                               <img 
-                                src="/portraits/tricky-avatar-128x128.jpg" 
+                                src={portraitImage(mc.image, "avatar")}
                                 alt="Royal Rumble" 
                                 width={48}
                                 height={48}
                                 className="w-full h-full object-cover" 
                                 onError={(e) => {
-                                  (e.target as HTMLImageElement).src = `https://picsum.photos/seed/royal-rumble/100/100`;
+                                  (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${mc.id}/100/100`;
                                 }}
                               />
                             ) : (
@@ -387,18 +410,13 @@ export default function MCProfile() {
                                   {battle.winner === mc.id ? 'WIN' : 'LOSS'}
                                 </div>
                               )}
-                              {isRoyalRumble && (
-                                <div className="text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter bg-brand/20 text-brand border border-brand/30">
-                                  9-MC CLASH
-                                </div>
-                              )}
                             </div>
                             <Link
                               to={targetUrl}
                               onClick={(e) => e.stopPropagation()}
                               className="text-xl font-display uppercase group-hover:text-brand transition-colors hover:underline decoration-brand/30 underline-offset-4"
                             >
-                              {isRoyalRumble ? "Royal Rumble EP1" : opponent?.name}
+                              {isRoyalRumble ? battle.title : opponent?.name}
                             </Link>
                           </div>
                         </div>

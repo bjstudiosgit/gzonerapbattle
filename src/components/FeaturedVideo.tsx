@@ -5,7 +5,8 @@ import { sortBattlesById } from "../lib/battleUtils";
 export default function FeaturedVideo() {
   const releasedBattles = sortBattlesById(battles.filter((battle) => !battle.isUnreleased && Boolean(battle.videoUrl)))
     .sort((a, b) => new Date(a.releaseDate || a.date || 0).getTime() - new Date(b.releaseDate || b.date || 0).getTime());
-  const featuredBattle = releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null;
+  const featuredBattle = battles.find((battle) => battle.slug === "royal-rumble-ep2")
+    ?? (releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null);
   const featuredBattleEmbedSrc = featuredBattle?.videoUrl
     ? featuredBattle.videoUrl.includes("watch?v=")
       ? featuredBattle.videoUrl.replace("watch?v=", "embed/")
@@ -35,7 +36,7 @@ export default function FeaturedVideo() {
           <p className="text-zinc-300 text-sm sm:text-xl leading-relaxed tracking-normal text-center max-w-3xl mx-auto">
             {featuredBattle ? (
               featuredBattle.league === "royal-rumble" ? (
-                <>The 9-MC Royal Rumble EP1 clash is now live in the Gzone arena.</>
+                <>{featuredBattle.title} is now live in the Gzone arena.</>
               ) : featuredBattle.episode ? (
                 <>
                   <span>Episode {featuredBattle.episode}</span>

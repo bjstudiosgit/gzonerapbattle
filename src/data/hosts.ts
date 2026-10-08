@@ -24,7 +24,7 @@ export const hosts: Host[] = [
     id: "ginga-jay",
     name: "Ginga Jay",
     role: "Main Host / Co Owner",
-    image: "/gingajay.png",
+    image: "/portraits/ginga-jay-current.png",
     bio: "The main voice of Ginga Entertainment and the Gzone. Ginga Jay brings unmatched energy and charisma to the stage, keeping the crowd engaged and the battles flowing. As an entertainer first and foremost, he knows exactly how to set the mood for a high-stakes clash.",
     fields: ["Entertainer"],
     leagueRoleDescription: "As Main Host and Co-Owner, Ginga Jay is the driving force behind the energy and atmosphere of GZone. Known for his larger-than-life personality, quick wit, and commanding stage presence, he keeps audiences engaged from the first introduction to the final verdict. Whether hosting live events, delivering expert commentary, or helping shape the future of the platform, Ginga Jay remains the brainchild of the Ginga Entertainment family. 🎤🔥",
@@ -48,9 +48,9 @@ export const hosts: Host[] = [
   },
   {
     id: "louis-bowers",
-    name: "Louis Bowers",
-    role: "Production / Co Owner",
-    displayTag: "Production",
+    name: "Louis Anthony Bowers",
+    role: "Co-Owner",
+    displayTag: "Co-Owner",
     image: "/louisbowerslist.png",
     listImage: "/louisbowerslist.png",
     bio: "Louis “Reason” is the founder of Muscle Memory Musik and Ladder Records, a London-based space that brings together a recording studio, label, and artist collective.\n\nHe’s spent years working across artist development, production, and live performance, helping emerging artists find their footing and develop their sound in a practical, supportive environment.\n\nAlongside this, Louis is a working artist himself, writing, producing and performing across multiple styles as a singer, rapper, and multi-instrumentalist.\n\nHe is the frontman of Dishy Tangent, with collaborations including UB40, Big Narstie and Cockney Rejects. His work has taken him from local stages to international tours, TV appearances, and major venues such as the O2 Arena and Rebellion Festival.\n\nLouis has also been closely involved with Ginga Jay over the years, helping run events like The Sesh, which gives a platform to a wide range of artists. More recently, he’s contributed to the sound and production behind Gzone battles and content, working alongside his team to support events and recordings.\n\nBefore all of this, he came up through grime and battle rap, regularly clashing in school and college. With family ties to Peacock Gymnasium, stepping into a battle environment has always felt natural.\n\nWhether it’s creating music, supporting artists, or helping run events, Louis focuses on building a space where people can develop, collaborate, and put their work out properly.",
@@ -70,6 +70,46 @@ export const hosts: Host[] = [
     nickname: "The Specialist",
     instagram: "https://instagram.com/passivemc",
     tiktok: "https://www.tiktok.com/@the.gzone.rbl"
+  },
+  {
+    id: "adrian-dash",
+    name: "Adrian Dash",
+    role: "Co-Host",
+    image: "/portraits/adrian-dash.png",
+    bio: "Adrian Dash is a co-host of the GZone Rap Battle League, helping present the battles and bring the live event to the audience.",
+    fields: [],
+    leagueRoleDescription: "Adrian Dash joins the GZone hosting team to help present live battles and guide the audience through each event.",
+    instagram: "https://www.instagram.com/adriandashmusic/"
+  },
+  {
+    id: "del-sajiwandani",
+    name: "Del Sajiwandani",
+    role: "Sound Engineer",
+    image: "/portraits/del-sajiwandani.png",
+    bio: "Del Sajiwandani is a sound engineer for the GZone Rap Battle League.",
+    fields: [],
+    leagueRoleDescription: "Del supports the sound for GZone events and battle recordings.",
+    instagram: "https://www.instagram.com/e13music/"
+  },
+  {
+    id: "scientificbrad",
+    name: "ScientificBrad",
+    role: "Web / Graphic Design",
+    image: "/portraits/scientificbrad.png",
+    bio: "ScientificBrad works on web and graphic design for the GZone production team.",
+    fields: [],
+    leagueRoleDescription: "ScientificBrad creates web and graphic design for GZone's digital presence and production materials.",
+    instagram: "https://www.instagram.com/scientificbrad/"
+  },
+  {
+    id: "n-studios",
+    name: "N.STUDIOS",
+    role: "Video Production",
+    image: "/portraits/n-studios.png",
+    bio: "N.STUDIOS works on video production for the GZone Rap Battle League.",
+    fields: [],
+    leagueRoleDescription: "N.STUDIOS supports GZone's video production and battle content.",
+    instagram: "https://www.instagram.com/n.studios/"
   },
   {
     id: "most-wanted-2",

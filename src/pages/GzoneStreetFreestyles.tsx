@@ -12,7 +12,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "560",
+    views: "563",
   },
   {
     id: "ep2",
@@ -42,7 +42,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "g3XHI940boA",
     videoUrl: "https://www.youtube.com/watch?v=g3XHI940boA",
-    views: "501",
+    views: "505",
   },
   {
     id: "ep5",
@@ -52,7 +52,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "OMdxdbUuXko",
     videoUrl: "https://www.youtube.com/watch?v=OMdxdbUuXko",
-    views: "544",
+    views: "567",
   },
   {
     id: "ep6",
@@ -62,7 +62,27 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "h_wUxCFaKc8",
     videoUrl: "https://www.youtube.com/watch?v=h_wUxCFaKc8",
-    views: "510",
+    views: "529",
+  },
+  {
+    id: "ep7",
+    episode: "EP7",
+    title: "EP7 - Roman",
+    artist: "Roman",
+    location: "Peacocks Gym, Canning Town",
+    videoId: "lycEg4YcZjE",
+    videoUrl: "https://www.youtube.com/watch?v=lycEg4YcZjE",
+    views: "99",
+  },
+  {
+    id: "ep8",
+    episode: "EP8",
+    title: "EP8 - Yekim",
+    artist: "Yekim",
+    location: "Peacocks Gym, Canning Town",
+    videoId: "5L22b72sVqw",
+    videoUrl: "https://www.youtube.com/watch?v=5L22b72sVqw",
+    views: "16",
   },
 ];
 
@@ -107,7 +127,7 @@ export default function GzoneStreetFreestyles() {
         name: `Gstreet Freestyles - ${ep.title}`,
         description: `Gstreet Freestyle ${ep.title} recorded live at ${ep.location}.`,
         thumbnailUrl: `https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`,
-        uploadDate: (ep.id === "ep3" || ep.id === "ep4" || ep.id === "ep5" || ep.id === "ep6") ? undefined : "2026-08-11T12:00:00+01:00",
+        uploadDate: (ep.id === "ep3" || ep.id === "ep4" || ep.id === "ep5" || ep.id === "ep6" || ep.id === "ep7" || ep.id === "ep8") ? undefined : "2026-08-11T12:00:00+01:00",
         contentUrl: ep.videoUrl,
         embedUrl: `https://www.youtube-nocookie.com/embed/${ep.videoId}`,
       },
@@ -117,23 +137,23 @@ export default function GzoneStreetFreestyles() {
   return (
     <div className="min-h-screen pt-32 md:pt-44 pb-16 md:pb-24 relative overflow-hidden bg-[#050505]">
       <Helmet>
-        <title>Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron & EP6 Mr. Flyguy | Gzone RBL</title>
+        <title>Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman & EP8 Yekim | Gzone RBL</title>
         <meta
           name="description"
-          content="Watch Gstreet Freestyles featuring EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron and EP6 Mr. Flyguy recorded live at Peacocks Gym, Canning Town London. Raw UK underground battle rap and street performances."
+          content="Watch Gstreet Freestyles featuring EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman and EP8 Yekim recorded live at Peacocks Gym, Canning Town London. Raw UK underground battle rap and street performances."
         />
         <meta
           name="keywords"
-          content="Gstreet Freestyles, Gzone Street Freestyles, Gzone, UK Battle Rap, Street Freestyles, Mars, Passive, Deeno, Jai-Dee, Double A Da Ron, Mr. Flyguy, Peacocks Gym, Canning Town, Underground Rap"
+          content="Gstreet Freestyles, Gzone Street Freestyles, Gzone, UK Battle Rap, Street Freestyles, Mars, Passive, Deeno, Jai-Dee, Double A Da Ron, Mr. Flyguy, Roman, Yekim, Peacocks Gym, Canning Town, Underground Rap"
         />
         <link rel="canonical" href="https://www.gzonerapbattle.co.uk/gzone-street-freestyles" />
         
         {/* Open Graph */}
         <meta property="og:type" content="video.other" />
-        <meta property="og:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron & EP6 Mr. Flyguy" />
+        <meta property="og:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman & EP8 Yekim" />
         <meta
           property="og:description"
-          content="Taking raw Gzone penmanship out of the gym and onto the streets. Watch EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron and EP6 Mr. Flyguy live on the concrete at Peacocks Gym."
+          content="Taking raw Gzone penmanship out of the gym and onto the streets. Watch EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman and EP8 Yekim live on the concrete at Peacocks Gym."
         />
         <meta property="og:url" content="https://www.gzonerapbattle.co.uk/gzone-street-freestyles" />
         <meta
@@ -143,10 +163,10 @@ export default function GzoneStreetFreestyles() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron & EP6 Mr. Flyguy" />
+        <meta name="twitter:title" content="Gstreet Freestyles | EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman & EP8 Yekim" />
         <meta
           name="twitter:description"
-          content="Watch Gstreet Freestyles EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron & EP6 Mr. Flyguy recorded live at Peacocks Gym, Canning Town."
+          content="Watch Gstreet Freestyles EP1 Mars, EP2 Passive, EP3 Deeno, EP4 Jai-Dee, EP5 Double A Da Ron, EP6 Mr. Flyguy, EP7 Roman & EP8 Yekim recorded live at Peacocks Gym, Canning Town."
         />
         <meta
           name="twitter:image"

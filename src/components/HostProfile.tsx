@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { hosts } from "../data/hosts";
+import { royalRumbleBattles } from "../data/battles";
 import { ArrowLeft, Star, MapPin, Ruler, Instagram, Youtube, Quote } from "lucide-react";
 import { portraitImage } from "../lib/images";
 
@@ -16,9 +17,10 @@ export default function HostProfile() {
     );
   }
 
-  const profileImageSrc = host.id === "ginga-jay"
-    ? "/jay.png"
-    : portraitImage(host.image, "profile");
+  const profileImageSrc = portraitImage(host.image, "profile");
+  const rumbleAppearances = host.id === "passive"
+    ? royalRumbleBattles.filter(battle => battle.lineup?.some(name => name.toLowerCase() === host.id || name.toLowerCase() === host.name.toLowerCase()))
+    : [];
 
   return (
     <div className="min-h-screen pt-32 pb-24 relative overflow-hidden">
@@ -29,7 +31,7 @@ export default function HostProfile() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
           to="/staff" 
-          aria-label="Back to Staff"
+          aria-label="Back to Production"
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Command
@@ -183,6 +185,19 @@ export default function HostProfile() {
                 {host.leagueRoleDescription || `As a ${host.role}, ${host.name} is responsible for maintaining the high-octane atmosphere of the Gzone. Whether it's introducing the combatants or providing expert commentary, they are an essential part of the Ginga Entertainment family.`}
               </div>
             </div>
+
+            {rumbleAppearances.length > 0 && (
+              <section className="mt-8">
+                <h2 className="text-2xl font-display uppercase mb-6 text-white border-l-4 border-brand pl-4">Royal Rumble Appearances</h2>
+                <div className="space-y-3">
+                  {rumbleAppearances.map(battle => (
+                    <Link key={battle.id} to={`/battle/${battle.slug}`} className="block rounded-2xl border border-white/5 bg-zinc-900/50 p-5 font-display text-xl uppercase text-white hover:border-brand/30 hover:text-brand transition-colors">
+                      {battle.title}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
           </motion.div>
         </div>
       </div>

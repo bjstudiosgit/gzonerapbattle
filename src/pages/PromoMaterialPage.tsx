@@ -147,7 +147,7 @@ const allFlyers: PromoFlyer[] = [
   },
   {
     id: "tapped24-grams",
-    title: "Tapped 24 vs Grams",
+    title: "Tapped 24 vs Marni Gramz",
     event: "April Showdown",
     date: "26 Apr 2026",
     category: "april-showdown",

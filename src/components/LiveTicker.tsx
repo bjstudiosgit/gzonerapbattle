@@ -5,7 +5,7 @@ export default function LiveTicker() {
     { text: "OCTOBER TICKETS ON SALE SOON", type: "upcoming" },
     { text: "Z.K VS CJ ZINO OUT NOW", type: "live" },
     { text: "TRICKY - THE FALL OF THE ROMAN EMPIRE MUSIC VIDEO OUT NOW", type: "live" },
-    { text: "ROYAL RUMBLE EP1 OUT NOW ON YOUTUBE", type: "live" },
+    { text: "ROYAL RUMBLE EP2 OUT NOW ON YOUTUBE", type: "live" },
     { text: "SEPTEMBER 26TH BATTLES ARE NOW IN PRODUCTION", type: "upcoming" },
   ];
 

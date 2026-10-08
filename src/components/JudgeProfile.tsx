@@ -25,7 +25,7 @@ export default function JudgeProfile() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
           to="/staff" 
-          aria-label="Back to Staff"
+          aria-label="Back to Production"
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Command

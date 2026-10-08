@@ -1,10 +1,13 @@
-import { Star, AlertCircle } from "lucide-react";
+import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import { mcs } from "../data/mcs";
 import MCCard from "../components/MCCard";
 import StaffPage from "./StaffPage";
 
 import { calculateRankings } from "../lib/ranking";
 import { seasonOneBattles } from "../data/battles";
+import { initialStreetEpisodes } from "./GzoneStreetFreestyles";
+import { portraitImage } from "../lib/images";
 
 export default function MCsPage() {
   const rankings = calculateRankings(seasonOneBattles, mcs);
@@ -19,17 +22,19 @@ export default function MCsPage() {
     });
 
   const inactiveMcs = mcs.filter(mc => mc.isActive === false);
-  const totalMCs = mcs.length;
-  const activeMCsCount = activeMcs.length;
-
-  const getRank = (mcId: string) => {
-    return rankings.find(r => r.id === mcId)?.rank || 0;
-  };
-
-  const getDisplayRank = (mcId: string) => {
-    const position = activeMcs.findIndex((mc) => mc.id === mcId);
-    return position >= 0 ? position + 1 : getRank(mcId);
-  };
+  const featuredBattleIds = new Set(["kime", "tricky", "afrodon"]);
+  const battleMcs = activeMcs.filter(mc => mc.battles > 0 || featuredBattleIds.has(mc.id));
+  const rosterMcs = [...battleMcs, ...inactiveMcs];
+  const otherMcs = activeMcs.filter(mc => mc.battles === 0 && !featuredBattleIds.has(mc.id)).sort((a, b) => (a.id === "mello" ? -1 : b.id === "mello" ? 1 : 0));
+  const guestRappers = [
+    { name: "Cookie", image: "https://img.youtube.com/vi/d5YMlQZdNO4/hqdefault.jpg", href: "/battle/royal-rumble" },
+    { name: "M.J", image: "https://img.youtube.com/vi/Cjh9PfQYe44/hqdefault.jpg", href: "/battle/royal-rumble-ep2" },
+    ...initialStreetEpisodes
+      .filter(episode => !mcs.some(mc => mc.name.toLowerCase() === episode.artist.toLowerCase()) && episode.artist !== "Passive")
+      .map(episode => ({ name: episode.artist, image: `https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg`, href: `/outside?video=${episode.videoId}` })),
+  ];
+  const totalMCs = rosterMcs.length;
+  const activeMCsCount = battleMcs.length;
 
   const getPoints = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.totalScore || 0;
@@ -45,7 +50,7 @@ export default function MCsPage() {
           <div className="flex-1 w-full">
             <div className="flex flex-col items-center lg:items-start gap-3 md:gap-4 lg:gap-6 mb-5 lg:mb-12">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-display uppercase text-white tracking-tighter leading-[0.9]">
-                Who's <span className="text-brand">Who</span>
+                Battle <span className="text-brand">Rappers</span>
               </h2>
               <p className="text-brand font-black uppercase tracking-[0.3em] text-xs md:text-sm">Season 1 "Most Wanted"</p>
               <div className="flex items-center gap-2">
@@ -81,33 +86,38 @@ export default function MCsPage() {
           </div>
         </div>
 
-        {/* Active MCs Grid */}
-        <div className="mb-16 md:mb-24">
+        {/* Battle rappers, with wasted MCs continuing the same roster */}
+        <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
-            {activeMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index} rank={getDisplayRank(mc.id)} points={getPoints(mc.id)} />
+            {rosterMcs.map((mc, index) => (
+              <MCCard key={mc.id} mc={mc} index={index} rank={index + 1} points={getPoints(mc.id)} />
             ))}
           </div>
         </div>
 
-        {/* Inactive / Wasted Section */}
-        {inactiveMcs.length > 0 && (
-          <div className="relative">
-            <div className="absolute inset-0 bg-red-950/5 blur-[100px] pointer-events-none" />
-            <div className="flex items-center gap-4 mb-10 opacity-50">
-              <div className="h-px flex-1 bg-white/10" />
-              <h3 className="text-2xl md:text-4xl font-display uppercase flex items-center gap-4 text-zinc-500">
-                <AlertCircle size={24} /> Wasted
-              </h3>
-              <div className="h-px flex-1 bg-white/10" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 opacity-40 grayscale transition-all hover:opacity-100 hover:grayscale-0 duration-700">
-              {inactiveMcs.map((mc, index) => (
-                <MCCard key={mc.id} mc={mc} index={index} rank={getRank(mc.id)} points={getPoints(mc.id)} />
-              ))}
-            </div>
+        <section aria-labelledby="rappers-heading" className="mt-20 md:mt-28">
+          <h2 id="rappers-heading" className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Rappers</h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5">
+            {otherMcs.map((mc) => (
+              <Link key={mc.id} to={`/mc/${mc.slug}`} className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-white/10 bg-zinc-950 hover:border-brand/60" aria-label={`View ${mc.name} profile`}>
+                <img src={portraitImage(mc.image, "card")} alt="" loading="lazy" className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="font-display text-2xl uppercase leading-none text-white group-hover:text-brand">{mc.name}</h3>
+                </div>
+              </Link>
+            ))}
+            {guestRappers.map((rapper) => (
+              <Link key={rapper.name} to={rapper.href} className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-white/10 bg-zinc-950 hover:border-brand/60" aria-label={`View ${rapper.name} appearance`}>
+                <img src={rapper.image} alt="" loading="lazy" className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="font-display text-2xl uppercase leading-none text-white group-hover:text-brand">{rapper.name}</h3>
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
+        </section>
       </div>
       <StaffPage embedded />
     </div>

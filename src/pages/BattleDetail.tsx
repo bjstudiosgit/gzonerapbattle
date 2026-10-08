@@ -40,7 +40,9 @@ export default function BattleDetail() {
   const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
   const description = isUpcoming
     ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${leagueName}.`
-    : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
+    : battle.league === "royal-rumble"
+      ? `Watch ${battle.title} from the Gzone Rap Battle League.`
+      : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
   const archivePath = battle.league === "royal-rumble" ? "/battles#royal-rumble" : battle.league === "freestyle" ? "/battles#freestyle" : "/battles";
   const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 
@@ -72,9 +74,9 @@ export default function BattleDetail() {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": `${battle.title} - Gzone Rap Battle`,
-    "description": `Full battle between ${mc1?.name} and ${mc2?.name} from Gzone Rap Battle League.`,
+    "description": description,
     "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-    "uploadDate": formatDateForSchema(battle.releaseDate || battle.date),
+    ...(battle.releaseDate || battle.date ? { "uploadDate": formatDateForSchema(battle.releaseDate || battle.date) } : {}),
     "contentUrl": `https://www.youtube.com/watch?v=${videoId}`,
     "embedUrl": battle.videoUrl
   } : null;
@@ -235,13 +237,30 @@ export default function BattleDetail() {
               </section>
             )}
 
+            {battle.slug === 'royal-rumble-ep2' && battle.lineup && (
+              <section className="bg-zinc-900/50 p-6 md:p-10 rounded-3xl border border-white/5">
+                <h2 className="text-2xl md:text-4xl font-display uppercase text-white mb-6">EP2 Lineup</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {battle.lineup.map((name, index) => {
+                    const profileId = ({ Roman: 'roman', Mello: 'mello', 'Deeno The Viking': 'deeno', Btizz: 'btizz', 'Marni Gramz': 'grams' } as Record<string, string>)[name];
+                    const profilePath = name === 'Passive' ? '/host/passive' : profileId ? `/mc/${profileId}` : undefined;
+                    return (
+                      <div key={name} className="rounded-2xl border border-white/10 bg-zinc-950/60 p-4">
+                        <div className="text-[10px] font-mono text-brand font-black">ENTRY #{index + 1}</div>
+                        <div className="font-display text-lg uppercase text-white mt-1">
+                          {profilePath ? <Link to={profilePath} className="hover:text-brand">{name}</Link> : name}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
             {/* Battle Result or Royal Rumble Lineup */}
             {battle.slug === 'royal-rumble' ? (
               <section className="bg-zinc-900/50 p-6 md:p-10 rounded-3xl border border-white/5 space-y-8">
                 <div className="text-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand border border-brand/30 text-xs font-black uppercase tracking-widest mb-3">
-                    Freestyle Division • 9-MC Rumble
-                  </div>
                   <h2 className="text-3xl md:text-5xl font-display uppercase text-white">The Royal Rumble</h2>
                   <p className="text-zinc-400 text-sm mt-2 tracking-widest uppercase font-mono">
                     9 MCs • Beats by Keegan - K.Sticky • Production by N.Studios
@@ -258,7 +277,7 @@ export default function BattleDetail() {
                       { name: "Cookie", note: "Contender" },
                       { name: "Passive", note: "Cypher Vet" },
                       { name: "Deeno \"The Viking\"", id: "deeno", note: "Reading" },
-                      { name: "Mello", note: "Contender" },
+                      { name: "Mello", id: "mello", note: "Contender" },
                       { name: "1 Flaymah", id: "1flaymr", note: "Birmingham" },
                       { name: "Btizz", id: "btizz", note: "Essex" },
                       { name: "Badee Harz", id: "badee-harz", note: "Essex" },
@@ -314,7 +333,7 @@ export default function BattleDetail() {
                   </div>
                 </div>
               </section>
-            ) : !isUpcoming ? (
+            ) : !isUpcoming && battle.league !== "royal-rumble" ? (
               <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
                 <div className="text-center mb-6 md:mb-8">
                   <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
@@ -2353,7 +2372,7 @@ export default function BattleDetail() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Grams</h3>
+                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Marni Gramz</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
                       <p>Grams entered with the decisive preparation advantage. The opponent reveal made his first written lines feel like an ambush, and he immediately used Deeno's reaction as evidence that the established home figure could be removed from his preferred conditions.</p>
                       <p>The writing had a coherent anti-character route. Weight, speech, drinking, parenting, treatment of women, race identity, clothes, Odin, Arthur, Harry Potter, Shrek, Scooby-Doo, Ed Sheeran, and glass-house imagery all argued that the Viking and leader presentation was marketing rather than reality.</p>
@@ -2664,7 +2683,7 @@ export default function BattleDetail() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <article className="bg-zinc-950/70 border border-white/10 rounded-2xl p-6 md:p-8">
-                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Grams</h3>
+                    <h3 className="text-2xl font-display uppercase text-brand mb-6">Marni Gramz</h3>
                     <div className="space-y-6 text-zinc-300 leading-relaxed font-light">
                       <p>Grams built the more consistent lifestyle case. Georgie, children, parenting, cats, employment, benefits, clothing, free products, image, transport, property, and mortgage pressure all measured Tapped's dangerous public character against adult responsibility.</p>
                       <p>Direct address was his strongest device. Speaking to Georgie made the relationship angle visible in the room, while I put him in a headlock, ten press-ups, Tapped/not tapped in, Tiny T, addressed/dress, Zac Efron, and Hitch gave the heavier case short repeatable punches.</p>
@@ -3385,7 +3404,7 @@ export default function BattleDetail() {
               </>
             )}
 
-            {!isUpcoming && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
+            {!isUpcoming && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -3682,7 +3701,7 @@ export default function BattleDetail() {
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
                       {[
                         {
-                          mc: "Grams",
+                          mc: "Marni Gramz",
                           entries: [
                             ["You're not Tapped, you're saying 24", "A direct stage-name flip arguing that the dangerous Tapped persona is only a number and not a reality."],
                             ["I put him in a headlock, his pen game's desktop", "Physical dominance is mixed with a critique that Tapped's writing is static, basic, or better suited to a computer than a live room."],
@@ -4345,7 +4364,7 @@ export default function BattleDetail() {
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
                       {[
                         {
-                          mc: "Grams",
+                          mc: "Marni Gramz",
                           entries: [
                             ["How you gonna verse me? You're dirty, nerdy / Need to bang gym, cause you're way too curvy", "Grams immediately attacks hygiene, threat level, and body shape, establishing the physical-disrespect angle that runs through his rounds."],
                             ["You don't wanna battle when you can't do a burpee / Go flying like Kirby", "A fitness punch connects Deeno's battle readiness to a full-body exercise, then uses Nintendo's floating pink character to make him look soft and cartoonish."],
@@ -4663,7 +4682,7 @@ export default function BattleDetail() {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">Views</span>
-                  <span className="text-zinc-100 font-bold">{isUpcoming ? "—" : battle.views || "0"}</span>
+                  <span className="text-zinc-100 font-bold">{isUpcoming ? "—" : battle.views || "—"}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="text-zinc-400 text-xs uppercase tracking-widest">League</span>
@@ -5174,7 +5193,7 @@ export default function BattleDetail() {
                   <h3 className="text-xl font-display uppercase mb-6 text-white">Key Technical Highlights by MC</h3>
                   {[
                     {
-                      mc: "Grams",
+                      mc: "Marni Gramz",
                       highlights: [
                         ["Connected lifestyle case", "Georgie, children, cats, money, work, benefits, clothing, image, transport, and property test the persona against adult stability."],
                         ["Direct room address", "Speaking to Georgie makes the relationship argument involve visible evidence rather than an absent third party."],
@@ -5557,7 +5576,7 @@ export default function BattleDetail() {
                 <h3 className="text-xl font-display uppercase mb-6 text-white">Key Technical Highlights by MC</h3>
                 {[
                   {
-                    mc: "Grams",
+                    mc: "Marni Gramz",
                     highlights: [
                       ["Surprise-entry momentum", "Grams weaponised the booking switch immediately: Deeno had prepared for 2 Man, while Grams entered with opponent-specific material."],
                       ["Anti-Viking angle", "Arthur, Odin, war and costume imagery strip Deeno's branding of heroic weight and recast it as dress-up."],
@@ -5927,7 +5946,7 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {!isUpcoming && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
+            {!isUpcoming && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC

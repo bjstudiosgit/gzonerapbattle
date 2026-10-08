@@ -46,7 +46,7 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
         <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
           {person.role}
         </span>
-        <h4 className="truncate text-2xl font-display uppercase leading-none text-white transition-colors group-hover:text-brand">
+        <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${person.id === "louis-bowers" ? "text-xl" : "truncate text-2xl"}`}>
           {person.name}
         </h4>
       </div>
@@ -79,20 +79,33 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
     ...(passive ? [{ ...passive, role: "Judge", type: "judges" as const }] : []),
     ...(louisBowers ? [louisBowers] : []),
     ...remainingHosts,
-    ...staffJudges,
+    ...staffJudges.filter((person) => person.role !== "Celebrity Guest"),
   ].filter((person) => !excludeIds.includes(person.id));
+  const celebrityGuests = staffJudges.filter(
+    (person) => person.role === "Celebrity Guest" && !excludeIds.includes(person.id)
+  );
 
   return (
-    <section id="staff" className={`relative scroll-mt-24 overflow-hidden ${embedded ? "mt-4" : "py-24"}`}>
+    <section id="staff" className={`relative scroll-mt-24 overflow-hidden ${embedded ? "" : "py-24"}`}>
       {!embedded && <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none" />}
       {!embedded && <div className="absolute -bottom-1/4 -left-1/4 h-full w-full rounded-full bg-brand/10 blur-[120px] pointer-events-none" />}
 
       <div className={`relative z-10 mx-auto max-w-7xl ${embedded ? "" : "px-4 sm:px-6 lg:px-8"}`}>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6">
+        <div className={embedded ? "grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5" : "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6"}>
           {staff.map((person, index) => (
             <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
           ))}
         </div>
+        {celebrityGuests.length > 0 && (
+          <div className={embedded ? "mt-20 md:mt-28" : "mt-16 border-t border-white/10 pt-12"}>
+            <h2 className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Celebrity Guests</h2>
+            <div className={embedded ? "grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5" : "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6"}>
+              {celebrityGuests.map((person, index) => (
+                <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

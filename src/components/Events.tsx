@@ -63,7 +63,7 @@ const events = [
     isCompleted: true,
     card: [
       { mc1: "C.J", mc2: "Btizz" },
-      { mc1: "Deeno", mc2: "Grams", isMain: true },
+      { mc1: "Deeno", mc2: "Marni Gramz", isMain: true },
       { mc1: "Ryno", mc2: "Tymeless" },
       { mc1: "A.J", mc2: "Tapped 24" },
       { mc1: "Natty", mc2: "Prince" }
@@ -80,7 +80,7 @@ const events = [
     ticketLink: "#",
     isCompleted: true,
     card: [
-      { mc1: "Grams", mc2: "Tapped 24", isMain: true },
+      { mc1: "Marni Gramz", mc2: "Tapped 24", isMain: true },
       { mc1: "Roman", mc2: "Ryno" },
       { mc1: "Deeno", mc2: "Badee Harz" },
       { mc1: "Btizz", mc2: "1Flaymah" }
