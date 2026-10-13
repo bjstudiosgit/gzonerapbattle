@@ -5,8 +5,8 @@ import { ArrowLeft, Star, MapPin, Instagram, Youtube, Quote } from "lucide-react
 import { portraitImage } from "../lib/images";
 
 export default function JudgeProfile() {
-  const { id } = useParams<{ id: string }>();
-  const judge = judges.find(j => j.id === id);
+  const { id, slug } = useParams<{ id: string; slug: string }>();
+  const judge = judges.find(j => j.id === (id || slug));
 
   if (!judge) {
     return (
@@ -24,11 +24,11 @@ export default function JudgeProfile() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
-          to="/staff" 
-          aria-label="Back to Production"
+          to="/whoswho"
+          aria-label="Back to Who's Who"
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Command
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Who's Who
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">

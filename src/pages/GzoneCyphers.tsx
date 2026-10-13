@@ -35,7 +35,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "LwiRdIpkwNs",
     videoUrl: "https://www.youtube.com/watch?v=LwiRdIpkwNs&t=34s",
     startTime: 34,
-    views: "8.9K",
+    views: "9.0K",
   },
   {
     id: "feb-2026",
@@ -46,7 +46,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "qANdhQ1otLc",
     videoUrl: "https://www.youtube.com/watch?v=qANdhQ1otLc&t=39s",
     startTime: 39,
-    views: "3.9K",
+    views: "4.0K",
   },
   {
     id: "aug-2026-pt1",

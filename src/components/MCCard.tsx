@@ -11,12 +11,10 @@ interface MCCardProps {
   index?: number;
   rank?: number;
   points?: number;
+  isRapper?: boolean;
 }
 
-export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardProps) {
-  const isDebutWinner = mc.tags?.includes("Debut Winner");
-  const isGoldStar = mc.tags?.includes("Gold Star");
-  const hasSpecialBadge = isDebutWinner || isGoldStar;
+export default function MCCard({ mc, index = 0, rank = 0, points = 0, isRapper = false }: MCCardProps) {
   const isWasted = mc.isActive === false;
 
   const starCount = getRankStars(rank);
@@ -51,40 +49,6 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardPr
     soundManager.playHover();
   };
   
-  // Determine rarity tier styles
-  let borderClass = "border border-white/5";
-  let glowClass = "";
-  let badgeClass = "bg-zinc-800 text-zinc-300";
-  let badgeText = "MC";
-  let subText = "Season 1";
-
-  if (isGoldStar) {
-    badgeText = "GOLD STAR";
-    if (isDebutWinner) subText = "DEBUT WINNER S1";
-    borderClass = "border-yellow-500/80 border";
-    glowClass = "shadow-[inset_0_0_15px_rgba(234,179,8,0.4)]";
-    badgeClass = "bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600 text-black border border-yellow-200/50";
-  } else if (isDebutWinner) {
-    badgeText = "DEBUT WINNER";
-    if (mc.debutTier === 'bodybag') {
-      borderClass = "border-orange-700/80 border";
-      glowClass = "shadow-[inset_0_0_15px_rgba(194,65,12,0.4)]";
-      badgeClass = "bg-gradient-to-r from-orange-800 to-red-900 text-white border border-orange-500/30";
-    } else if (mc.debutTier === 'explosive') {
-      borderClass = "border-brand/80 border";
-      glowClass = "shadow-[inset_0_0_10px_rgba(242,125,38,0.3)]";
-      badgeClass = "bg-gradient-to-r from-brand to-orange-500 text-black border border-white/20";
-    } else if (mc.debutTier === 'silver') {
-      borderClass = "border-zinc-300/80 border";
-      glowClass = "shadow-[inset_0_0_12px_rgba(212,212,216,0.3)]";
-      badgeClass = "bg-gradient-to-r from-zinc-200 to-zinc-400 text-black border border-white/50";
-    } else {
-      borderClass = "border-brand/60 border";
-      glowClass = "shadow-[inset_0_0_8px_rgba(242,125,38,0.2)]";
-      badgeClass = "bg-brand/90 text-black border border-brand/50";
-    }
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -95,12 +59,11 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardPr
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleHover}
       style={{ rotateX, rotateY, perspective: 1000 }}
-      className={`group relative aspect-[3/4] rounded-xl overflow-hidden ${borderClass} bg-zinc-950 cursor-pointer ${isWasted ? 'opacity-60 grayscale' : ''}`}
+      className={`group relative aspect-[3/4] rounded-xl overflow-hidden border border-white/5 bg-zinc-950 cursor-pointer ${isWasted ? 'grayscale' : ''}`}
     >
-      <Link to={`/mc/${mc.slug}`} onClick={handleClick} className="block w-full h-full" aria-label={`View ${mc.name} profile`}>
+      <Link to={`/${mc.slug}`} onClick={handleClick} className="block w-full h-full" aria-label={`View ${mc.name} profile`}>
         
-        {/* Inner Glow & Texture */}
-        <div className={`absolute inset-0 pointer-events-none z-10 ${glowClass}`} />
+        {/* Texture */}
         <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none z-10" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/concrete-wall.png")' }} />
         
         {/* Portrait */}
@@ -121,18 +84,6 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardPr
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-90 z-10" />
 
-        {/* Special Badge - Moved to top-left to avoid faces */}
-        {hasSpecialBadge && (
-          <div className="absolute top-0 left-0 z-20">
-            <div className={`px-3 py-1 shadow-lg ${badgeClass}`}>
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] font-black uppercase tracking-widest leading-none">{badgeText}</span>
-                <span className="text-[6px] font-bold uppercase tracking-[0.2em] opacity-80 mt-0.5">{subText}</span>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* MOST WANTED badge for the top-ranked MCs */}
         {rank > 0 && rank <= 3 && !isWasted && (
           <div className="absolute top-1/2 left-1/2 z-30 w-max -translate-x-1/2 -translate-y-1/2 scale-[0.58] pointer-events-none md:scale-75">
@@ -146,9 +97,9 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardPr
 
         {/* GTA-style WASTED badge for inactive MCs */}
         {isWasted && (
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
-            <div className="border-4 border-red-600/50 px-6 py-2 transform rotate-12 bg-black/60 backdrop-blur-md">
-              <span className="text-red-600 font-display text-4xl md:text-6xl tracking-tighter uppercase drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] [text-shadow:2px_2px_0_#000,-2px_-2px_0_#000,2px_-2px_0_#000,-2px_2px_0_#000]">WASTED</span>
+          <div className="absolute top-1/2 left-1/2 z-30 w-max -translate-x-1/2 -translate-y-1/2 scale-[0.58] pointer-events-none md:scale-75">
+            <div className="transform -rotate-12 border-y-4 border-white/80 px-8 py-2">
+              <span className="whitespace-nowrap font-display text-4xl uppercase tracking-[-0.06em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:text-6xl">WASTED</span>
             </div>
           </div>
         )}
@@ -167,11 +118,15 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0 }: MCCardPr
               {rank > 0 && <span className="text-zinc-600 mr-2">#{rank}</span>}
               {mc.name}
             </h4>
-            <div className="flex items-center gap-2 mt-1">
-              <p className="text-brand font-bold text-[10px] tracking-[0.2em]">{mc.wins}W - {mc.losses}L</p>
-              <span className="w-1 h-1 rounded-full bg-zinc-600" />
-              <p className="text-zinc-400 font-bold text-[10px] tracking-[0.2em]">{mc.battles} Battles</p>
-            </div>
+            {isRapper ? (
+              <p className="mt-1 text-brand font-bold text-[10px] uppercase tracking-[0.2em]">Rapper</p>
+            ) : (
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-brand font-bold text-[10px] tracking-[0.2em]">{mc.wins}W - {mc.losses}L</p>
+                <span className="w-1 h-1 rounded-full bg-zinc-600" />
+                <p className="text-zinc-400 font-bold text-[10px] tracking-[0.2em]">{mc.battles} Battles</p>
+              </div>
+            )}
           </div>
         </div>
       </Link>

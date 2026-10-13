@@ -23,6 +23,7 @@ function filenameWithoutExtension(src = "") {
 
 export function portraitImage(src: string | undefined, variant: PortraitVariant) {
   if (!src) return "";
+  if (/^https?:\/\//.test(src)) return src;
   if (src.startsWith("/flyers/") || src.startsWith("/portraits/")) return src;
   return `/portraits/${filenameWithoutExtension(src)}-${variant}-${portraitSizes[variant]}.jpg`;
 }

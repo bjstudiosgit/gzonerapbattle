@@ -180,7 +180,7 @@ const allFlyers: PromoFlyer[] = [
   },
   {
     id: "btizz-1flaymr",
-    title: "Btizz vs 1Flaymr",
+    title: "Btizz vs 1FLAYMAH",
     event: "April Showdown",
     date: "26 Apr 2026",
     category: "april-showdown",

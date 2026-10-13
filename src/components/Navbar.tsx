@@ -12,7 +12,7 @@ export default function Navbar() {
     { name: "Battles", href: "/battles", icon: Play },
     { name: "League", href: "/league", icon: Trophy },
     { name: "Outside", href: "/outside", icon: MapPin },
-    { name: "Who's Who", href: "/battles/mc", icon: Users },
+    { name: "Who's Who", href: "/whoswho", icon: Users },
     { name: "Merch", href: "/merch", icon: ShoppingBag },
     { name: "Apply", href: "/apply", icon: FileText },
     { name: "Tickets", href: "/events", icon: Ticket },

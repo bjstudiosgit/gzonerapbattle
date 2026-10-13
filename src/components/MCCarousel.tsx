@@ -221,7 +221,7 @@ function MCCardView({
       className="group relative w-[300px] sm:w-[440px] aspect-[3/4] rounded-[2rem]"
     >
       <Link
-        to={`/mc/${mc.slug}`}
+        to={`/${mc.slug}`}
         onClick={() => soundManager.playImpact()}
         className="absolute inset-0 z-20 rounded-[2rem]"
         aria-label={`View ${mc.name} profile`}
@@ -282,7 +282,7 @@ function MCCardView({
           </div>
 
           <Link
-            to={`/mc/${mc.slug}`}
+            to={`/${mc.slug}`}
             onClick={() => soundManager.playImpact()}
             className="relative z-30 inline-flex items-center gap-2 bg-brand text-black px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.25em] hover:bg-white transition"
           >
@@ -374,14 +374,14 @@ function StaffCardView({
       {card}
       <div className="absolute inset-0 z-20">
         <Link
-          to={`/${item.profileType}/${item.id}`}
+          to={`/${item.id}`}
           onClick={() => soundManager.playImpact()}
           className="absolute bottom-5 left-5 sm:bottom-7 sm:left-7 z-30 inline-flex items-center gap-2 bg-brand text-black px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.25em] hover:bg-white transition"
         >
           View Profile <ArrowUpRight size={14} />
         </Link>
         <Link
-          to={`/${item.profileType}/${item.id}`}
+          to={`/${item.id}`}
           onClick={() => soundManager.playImpact()}
           className="absolute inset-0"
           aria-label={`View ${item.name} profile`}

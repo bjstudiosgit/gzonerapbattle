@@ -20,7 +20,6 @@ export type StaffCardPerson = {
 };
 
 export function StaffCard({ person, index }: { person: StaffCardPerson; index: number }) {
-  const profileType = person.type === "judges" ? "judge" : "host";
   const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
@@ -56,7 +55,7 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
   return person.isMystery ? (
     <div className="block w-full h-full">{card}</div>
   ) : (
-    <Link to={`/${profileType}/${person.id}`} className="block w-full h-full" aria-label={`View ${person.name} profile`}>
+    <Link to={`/${person.id}`} className="block w-full h-full" aria-label={`View ${person.name} profile`}>
       {card}
     </Link>
   );

@@ -114,7 +114,7 @@ export default function LeagueTable({
                         </div>
                       </td>
                       <td className="px-6 py-8 md:px-10 md:py-10">
-                        <Link to={`/mc/${mc.slug}`} className="flex items-center gap-4 group/name relative">
+                        <Link to={`/${mc.slug}`} className="flex items-center gap-4 group/name relative">
                           <div className={`relative w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-zinc-900 ${isTop3 ? 'border-brand/40 shadow-[0_0_20px_rgba(242,125,38,0.2)]' : 'border-white/5 group-hover/name:border-brand/30'}`}>
                             {mc.image ? (
                               <img 

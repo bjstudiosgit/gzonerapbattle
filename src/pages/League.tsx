@@ -183,7 +183,7 @@ export default function League() {
                     </div>
                   )}
                   
-                  <Link to={`/mc/${mc.slug}`} className="block group/link">
+                  <Link to={`/${mc.slug}`} className="block group/link">
                     <h3 className={`text-3xl md:text-5xl font-display uppercase leading-none mb-4 md:mb-6 transition-colors ${tier.text} group-hover/link:opacity-80`}>
                       {mc.name.split(' ')[0]} <br/> <span className="text-white">{mc.name.split(' ')[1] || ''}</span>
                     </h3>

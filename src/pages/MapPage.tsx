@@ -207,7 +207,7 @@ const MapPage: React.FC = () => {
                         key={mc.id}
                       >
                         <Link 
-                          to={`/mc/${mc.slug}`}
+                          to={`/${mc.slug}`}
                           className="group block bg-zinc-900/40 border border-white/5 rounded-3xl p-5 hover:border-brand/40 transition-all duration-500 relative overflow-hidden"
                         >
                           <div className="flex items-center gap-5">

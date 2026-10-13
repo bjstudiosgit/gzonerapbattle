@@ -45,12 +45,12 @@ const callbacks = [
   {
     title: "The hooks debate has an earlier history",
     detail: "The Episode 16 and Episode 19 write-ups already distinguish Flaymah's recurring slogans and dense delivery from his opponents' counter-writing. Badee develops that established tension into this battle's central formal argument. The connection is a continuing criticism of his approach, not proof that she is quoting a specific Btizz or CJ punch.",
-    source: ["cj-zino-vs-1flaymr", "1x19 — CJ-Zino vs 1Flaymr"],
+    source: ["cj-zino-vs-1flaymr", "1x19 — CJ-Zino vs 1FLAYMAH"],
   },
   {
     title: "The removed mask remains usable material",
     detail: "Flaymah removed his balaclava during the Btizz battle; CJ later attacked the uncovered face as part of the constructed persona. Badee's opening question about taking the bally off revisits that established exposure. She is reopening a known weakness in the character rather than unveiling a new identity.",
-    source: ["btizz-vs-1flaymr", "1x16 — Btizz vs 1Flaymr"],
+    source: ["btizz-vs-1flaymr", "1x16 — Btizz vs 1FLAYMAH"],
   },
   {
     title: "Patois criticism meets an anticipated stereotype",

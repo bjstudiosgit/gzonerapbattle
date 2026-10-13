@@ -131,7 +131,7 @@ export default function LeaguePreview() {
                 </div>
 
                 <Link 
-                  to={`/mc/${mc.slug}`}
+                  to={`/${mc.slug}`}
                   className="w-full py-3 rounded-full bg-white/5 text-white font-bold uppercase tracking-widest text-[10px] hover:bg-brand hover:text-black transition-all duration-300 flex items-center justify-center gap-2 border border-white/5 hover:border-brand"
                 >
                   View Profile <ChevronRight size={14} />

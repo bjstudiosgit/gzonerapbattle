@@ -43,7 +43,7 @@ export default function Footer() {
                 <li><Link to="/battles" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Rap Battles</Link></li>
                 <li><Link to="/outside" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Outside</Link></li>
                 <li><Link to="/events" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Next Event</Link></li>
-                <li><Link to="/battles/mc" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
+                <li><Link to="/whoswho" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
                 <li><Link to="/merch" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
                 <li><Link to="/map" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
                 <li><Link to="/flyers" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
@@ -55,7 +55,7 @@ export default function Footer() {
             <div>
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Community</h5>
               <ul className="space-y-2">
-                <li><Link to="/staff" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Production</Link></li>
+                <li><Link to="/whoswho" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Production</Link></li>
                 <li><Link to="/photos" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Photos</Link></li>
                 <li><Link to="/league" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">League</Link></li>
                 <li><Link to="/apply" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Apply Now</Link></li>

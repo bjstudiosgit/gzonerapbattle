@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { battles } from "../src/data/battles";
 import { hosts } from "../src/data/hosts";
 import { judges } from "../src/data/judges";
-import { mcs } from "../src/data/mcs";
+import { guestMcs, mcs } from "../src/data/mcs";
 
 const siteUrl = "https://www.gzonerapbattle.co.uk";
 const lastModified = new Date().toISOString().slice(0, 10);
@@ -20,8 +20,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/outside", changefreq: "weekly", priority: "0.8" },
   { path: "/league", changefreq: "weekly", priority: "0.9" },
   { path: "/events", changefreq: "weekly", priority: "0.8" },
-  { path: "/battles/mc", changefreq: "weekly", priority: "0.8" },
-  { path: "/staff", changefreq: "monthly", priority: "0.7" },
+  { path: "/whoswho", changefreq: "weekly", priority: "0.8" },
   { path: "/photos", changefreq: "weekly", priority: "0.7" },
   { path: "/map", changefreq: "monthly", priority: "0.6" },
   { path: "/flyers", changefreq: "weekly", priority: "0.7" },
@@ -54,7 +53,8 @@ const urlEntry = ({ path, changefreq, priority }: SitemapEntry) => `  <url>
 
 const battleEntry = (battle: (typeof publishedBattles)[number]) => {
   const videoId = battle.videoUrl?.split("/").pop() ?? "";
-  const publicationDate = new Date(battle.releaseDate ?? battle.date ?? lastModified).toISOString();
+  const publishedAt = battle.releaseDate || battle.date;
+  const publicationDate = publishedAt ? new Date(publishedAt).toISOString() : undefined;
 
   return `  <url>
     <loc>${siteUrl}/battle/${battle.slug}</loc>
@@ -67,15 +67,15 @@ const battleEntry = (battle: (typeof publishedBattles)[number]) => {
       <video:description>${escapeXml(`Full battle between ${battle.title.replace(" vs ", " and ")} from Gzone Rap Battle League.`)}</video:description>
       <video:player_loc>${escapeXml(battle.videoUrl ?? "")}</video:player_loc>
       <video:content_loc>https://www.youtube.com/watch?v=${videoId}</video:content_loc>
-      <video:publication_date>${publicationDate}</video:publication_date>
+${publicationDate ? `      <video:publication_date>${publicationDate}</video:publication_date>` : ""}
     </video:video>
   </url>`;
 };
 
 const profileEntries: SitemapEntry[] = [
-  ...mcs.map((mc) => ({ path: `/mc/${mc.slug}`, changefreq: "monthly" as const, priority: "0.7" })),
-  ...hosts.map((host) => ({ path: `/host/${host.id}`, changefreq: "monthly" as const, priority: "0.6" })),
-  ...judges.map((judge) => ({ path: `/judge/${judge.id}`, changefreq: "monthly" as const, priority: "0.6" })),
+  ...[...mcs, ...guestMcs].map((mc) => ({ path: `/${mc.slug}`, changefreq: "monthly" as const, priority: "0.7" })),
+  ...hosts.map((host) => ({ path: `/${host.id}`, changefreq: "monthly" as const, priority: "0.6" })),
+  ...judges.map((judge) => ({ path: `/${judge.id}`, changefreq: "monthly" as const, priority: "0.6" })),
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

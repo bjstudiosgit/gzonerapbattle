@@ -4,7 +4,7 @@
  */
 
 import { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
 import GlobalDisclaimer from "./components/GlobalDisclaimer";
@@ -23,14 +23,14 @@ const LostPropertyPreview = lazy(() => import("./components/LostPropertyPreview"
 
 const ApplyPage = lazy(() => import("./pages/ApplyPage"));
 const SuccessPage = lazy(() => import("./pages/SuccessPage"));
-const MCProfile = lazy(() => import("./components/MCProfile"));
-const HostProfile = lazy(() => import("./components/HostProfile"));
-const JudgeProfile = lazy(() => import("./components/JudgeProfile"));
+const PersonProfile = lazy(() => import("./components/PersonProfile"));
+
+
 const League = lazy(() => import("./pages/League"));
 const MCsPage = lazy(() => import("./pages/MCsPage"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const BattlesPage = lazy(() => import("./pages/BattlesPage"));
-const StaffPage = lazy(() => import("./pages/StaffPage"));
+
 const MerchPage = lazy(() => import("./pages/MerchPage"));
 const PromoMaterialPage = lazy(() => import("./pages/PromoMaterialPage"));
 const EventsPage = lazy(() => import("./pages/EventsPage"));
@@ -41,6 +41,11 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
 const Outside = lazy(() => import("./pages/Outside"));
+
+function LegacyProfileRedirect() {
+  const { id, slug } = useParams();
+  return <Navigate to={`/${id || slug}`} replace />;
+}
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -175,15 +180,16 @@ function Main() {
           <Route path="/" element={<Home />} />
           <Route path="/apply" element={<ApplyPage />} />
           <Route path="/success" element={<SuccessPage />} />
-          <Route path="/mc/:slug" element={<MCProfile />} />
-          <Route path="/host/:id" element={<HostProfile />} />
-          <Route path="/judge/:id" element={<JudgeProfile />} />
+          <Route path="/mc/:slug" element={<LegacyProfileRedirect />} />
+          <Route path="/host/:id" element={<LegacyProfileRedirect />} />
+          <Route path="/judge/:id" element={<LegacyProfileRedirect />} />
           <Route path="/league" element={<League />} />
-          <Route path="/battles/mc" element={<MCsPage />} />
+          <Route path="/whoswho" element={<MCsPage />} />
+          <Route path="/battles/mc" element={<Navigate to="/whoswho" replace />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/battles" element={<BattlesPage />} />
           <Route path="/freestyle" element={<Navigate to="/battles#freestyle" replace />} />
-          <Route path="/staff" element={<StaffPage />} />
+          <Route path="/staff" element={<Navigate to="/whoswho" replace />} />
           <Route path="/merch" element={<MerchPage />} />
           <Route path="/flyers" element={<PromoMaterialPage />} />
           <Route path="/promo" element={<Navigate to="/flyers" replace />} />
@@ -206,6 +212,8 @@ function Main() {
           <Route path="/royal-rumble" element={<Navigate to="/battles#royal-rumble" replace />} />
           <Route path="/royalrumble" element={<Navigate to="/battles#royal-rumble" replace />} />
           <Route path="/RoyalRumble" element={<Navigate to="/battles#royal-rumble" replace />} />
+          <Route path="/1flaymr" element={<Navigate to="/1flaymah" replace />} />
+          <Route path="/:slug" element={<PersonProfile />} />
         </Routes>
       </Suspense>
       

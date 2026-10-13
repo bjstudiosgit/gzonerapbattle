@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
-import { mcs } from "../data/mcs";
+import { guestMcs, mcs } from "../data/mcs";
 import { battles as allBattles, seasonOneBattles } from "../data/battles";
 import { initialStreetEpisodes } from "../pages/GzoneStreetFreestyles";
 import { ArrowLeft, Mic2, Trophy, Zap, Play, MapPin, Weight, Instagram, Youtube, Quote, Crown, Facebook, Mail, Music, Star } from "lucide-react";
@@ -12,7 +12,7 @@ import { sortBattlesById } from "../lib/battleUtils";
 export default function MCProfile() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const mc = mcs.find(m => m.slug === slug);
+  const mc = [...mcs, ...guestMcs].find(m => m.slug === slug);
 
   if (!mc) {
     return (
@@ -35,7 +35,7 @@ export default function MCProfile() {
 
   const starCount = getRankStars(rank);
 
-  const lineupNames = [mc.id, mc.name, `${mc.name} ${mc.nickname ?? ""}`.trim()].map(name => name.toLowerCase());
+  const lineupNames = [mc.id, mc.name, `${mc.name} ${mc.nickname ?? ""}`.trim(), ...(mc.id === "jai-dee" ? ["jai-d"] : [])].map(name => name.toLowerCase());
   const mcBattles = sortBattlesById(allBattles.filter(b => b.mc1 === mc.id || b.mc2 === mc.id || b.lineup?.some(name => lineupNames.includes(name.toLowerCase()))));
   const mcProps = mcBattles
     .flatMap(battle => battle.props ?? [])
@@ -61,11 +61,11 @@ export default function MCProfile() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
-          to="/battles/mc" 
-          aria-label="Back to MCs"
+          to="/whoswho"
+          aria-label="Back to Who's Who"
           className="inline-flex items-center gap-3 text-zinc-500 hover:text-brand transition-all mb-6 md:mb-12 uppercase tracking-[0.4em] text-[10px] font-black group/back"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to MC Roster
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Who's Who
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
