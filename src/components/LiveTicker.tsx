@@ -2,7 +2,7 @@ import { Zap, Play } from "lucide-react";
 
 export default function LiveTicker() {
   const items = [
-    { text: "OCTOBER TICKETS ON SALE SOON", type: "upcoming" },
+    { text: "14 NOVEMBER — SIX NEW BATTLES — TICKETS ON SALE SOON", type: "upcoming" },
     { text: "Z.K VS CJ ZINO OUT NOW", type: "live" },
     { text: "TRICKY - THE FALL OF THE ROMAN EMPIRE MUSIC VIDEO OUT NOW", type: "live" },
     { text: "ROYAL RUMBLE EP2 OUT NOW ON YOUTUBE", type: "live" },

@@ -29,6 +29,105 @@ export interface NotableBar {
   explanation: string;
 }
 
+export const novemberBattles: Battle[] = [
+  {
+    "id": "34",
+    "slug": "deeno-vs-kime",
+    "mc1": "deeno",
+    "mc2": "kime",
+    "title": "Deeno vs K.I.M.E",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x32",
+    "league": "season1",
+    "flyer": "/flyers/deenovskime.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "Deeno vs K.I.M.E is confirmed for Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  },
+  {
+    "id": "35",
+    "slug": "mello-vs-ryno",
+    "mc1": "mello",
+    "mc2": "ryno",
+    "title": "Mello vs Ryno",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x33",
+    "league": "season1",
+    "flyer": "/flyers/mellovsryno.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "Mello vs Ryno is confirmed for Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  },
+  {
+    "id": "36",
+    "slug": "prince-vs-deluxx",
+    "mc1": "pr1nc3",
+    "mc2": "deluxx",
+    "title": "Prince vs Deluxx",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x34",
+    "league": "season1",
+    "flyer": "/flyers/princvsdeluxx.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "Prince vs Deluxx is confirmed for Season 1, episode 1x34, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  },
+  {
+    "id": "37",
+    "slug": "tricky-vs-7wxve",
+    "mc1": "tricky",
+    "mc2": "7wxve",
+    "title": "Tricky vs 7wxve",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x35",
+    "league": "season1",
+    "flyer": "/flyers/trickyvs7wxve.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "Tricky vs 7wxve is confirmed for Season 1, episode 1x35, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  },
+  {
+    "id": "38",
+    "slug": "btizz-vs-yekim",
+    "mc1": "btizz",
+    "mc2": "yekim",
+    "title": "Btizz vs Yekim",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x36",
+    "league": "season1",
+    "flyer": "/flyers/btizzvsyekim.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "Btizz vs Yekim is confirmed for Season 1, episode 1x36, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  },
+  {
+    "id": "39",
+    "slug": "1flaymah-vs-roman",
+    "mc1": "1flaymr",
+    "mc2": "roman",
+    "title": "1Flaymah vs Roman",
+    "date": "14 Nov 2026",
+    "isUnreleased": true,
+    "isPlaceholder": false,
+    "episode": "1x37",
+    "league": "season1",
+    "flyer": "/flyers/romanvs1flaymah.png",
+    "ticketUrl": "/events",
+    "ticketsOnSaleSoon": true,
+    "summary": "1Flaymah vs Roman is confirmed for Season 1, episode 1x37, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+  }
+];
+
 export const battles: Battle[] = [
   {
     "id": "1",
@@ -38,7 +137,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "55.7K",
+    "views": "55.8K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -168,7 +267,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Tymeless",
     "date": "26 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Omge-TNTrhQ",
-    "views": "17.8K",
+    "views": "17.9K",
     "winner": "tymeless",
     "props": [
       { "name": "Alleged photo of Ryno kissing a man", "user": "Tymeless", "icon": "📸" },
@@ -252,7 +351,7 @@ export const battles: Battle[] = [
     "title": "Btizz vs 1FLAYMAH",
     "date": "26 Apr 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/2lFLlylG5NQ",
-    "views": "8.8K",
+    "views": "8.9K",
     "winner": "btizz",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -266,7 +365,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Roman",
     "date": "7 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/eNusiS3fDhw",
-    "views": "14.0K",
+    "views": "14.1K",
     "winner": "roman",
     "isUnreleased": false,
     "isPlaceholder": false,
@@ -298,7 +397,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tymeless",
     "date": "19 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/JoW3ZGND5YM",
-    "views": "28.1K",
+    "views": "28.3K",
     "winner": "tymeless",
     "props": [
       { "name": "Toilet plunger", "user": "TymeLess", "icon": "🪠" },
@@ -351,7 +450,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Btizz",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/SOt1dtGOdoA",
-    "views": "9.0K",
+    "views": "9.1K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "1x22",
@@ -402,7 +501,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-11T13:00:06-07:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/4uYGPr_RZ1I",
-    "views": "13.5K",
+    "views": "13.6K",
     "winner": "1flaymr",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -419,7 +518,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-18T12:00:00-07:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/s3ez2EAfov0",
-    "views": "12.9K",
+    "views": "13.0K",
     "winner": "deeno",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -489,7 +588,7 @@ export const battles: Battle[] = [
     "date": "02 Oct 2026",
     "releaseDate": "2026-10-02T19:00:00+01:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oAgeLuYN344",
-    "views": "15.4K",
+    "views": "16.0K",
     "winner": "roman",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -508,7 +607,7 @@ export const battles: Battle[] = [
     "title": "Royal Rumble EP1: The Royal Rumble",
     "date": "4 Sept 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
-    "views": "71.1K",
+    "views": "73.0K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP1",
@@ -524,7 +623,7 @@ export const battles: Battle[] = [
     "mc2": "",
     "title": "Royal Rumble EP2: Day of Reckoning",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Cjh9PfQYe44",
-    "views": "8.6K",
+    "views": "9.1K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP2",
@@ -546,14 +645,15 @@ export const battles: Battle[] = [
     "flyer": "/flyers/september-26-2026-1flaymah-vs-zk.png",
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
     "summary": "1Flaymah defeated Z.K in Season 1, episode 1x31, at Peacocks Boxing, Canning Town. The battle is currently in production."
-  }
+  },
+  ...novemberBattles
 ];
 
 export const seasonOneBattles = battles.filter((battle) => battle.league !== "freestyle" && battle.league !== "royal-rumble");
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "13 Oct 2026";
+export const lastUpdated = "14 Oct 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { battles as allBattles, deenoNotableBars, tapped24NotableBars } from "../data/battles";
-import { mcs } from "../data/mcs";
+import { guestMcs, mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
 import { BadeeHarzVs1FlaymahSummary, BadeeHarzVs1FlaymahResult, BadeeHarzVs1FlaymahHighlights } from "../components/BadeeHarzVs1FlaymahSummary";
 import { DeenoVsCjZinoSummary } from "../components/DeenoVsCjZinoSummary";
@@ -34,8 +34,8 @@ export default function BattleDetail() {
     );
   }
 
-  const mc1 = mcs.find(m => m.id === battle.mc1);
-  const mc2 = mcs.find(m => m.id === battle.mc2);
+  const mc1 = [...mcs, ...guestMcs].find(m => m.id === battle.mc1);
+  const mc2 = [...mcs, ...guestMcs].find(m => m.id === battle.mc2);
   const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel);
   const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
   const description = isUpcoming
@@ -173,7 +173,7 @@ export default function BattleDetail() {
                   )}
                   {battle.isUnreleased && (
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                      <Clock size={16} /> {isUpcoming ? "Upcoming Battle" : "Unreleased Battle"}
+                      <Clock size={16} /> {isUpcoming ? (battle.ticketsOnSaleSoon ? "Tickets on sale soon" : "Upcoming Battle") : "Unreleased Battle"}
                     </div>
                   )}
                 </div>
@@ -4702,7 +4702,7 @@ export default function BattleDetail() {
                   rel={battle.ticketUrl.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="block text-center mt-6 bg-brand text-black py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors"
                 >
-                  Get Tickets
+                  {battle.ticketsOnSaleSoon ? "Tickets on sale soon" : "Get Tickets"}
                 </a>
               )}
               <button

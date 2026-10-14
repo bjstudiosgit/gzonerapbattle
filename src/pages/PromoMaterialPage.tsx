@@ -3,13 +3,14 @@ import { Helmet } from "react-helmet";
 import { motion, AnimatePresence } from "motion/react";
 import { Download, Eye, X, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { flyerImage } from "../lib/images";
+import { novemberBattles } from "../data/battles";
 
 export type PromoFlyer = {
   id: string;
   title: string;
   event: string;
   date: string;
-  category: "upcoming" | "august-29" | "royal-rumble" | "april-showdown";
+  category: "upcoming" | "september-26" | "august-29" | "royal-rumble" | "april-showdown";
   categoryLabel: string;
   src: string;
   aspect: string;
@@ -17,13 +18,26 @@ export type PromoFlyer = {
 };
 
 const allFlyers: PromoFlyer[] = [
-  // 26th September 2026 (Upcoming)
+  // 14th November 2026 (Upcoming)
+  ...novemberBattles.map<PromoFlyer>((battle) => ({
+    id: battle.slug,
+    title: `${battle.episode} · ${battle.title}`,
+    event: "14th November 2026",
+    date: "14 Nov 2026",
+    category: "upcoming",
+    categoryLabel: "Tickets on sale soon",
+    src: battle.flyer!,
+    aspect: "aspect-[3/4]",
+    direct: true,
+  })),
+
+  // 26th September 2026
   {
     id: "1flaymah-vs-zk",
     title: "1Flaymah vs Z.K",
     event: "26th September 2026",
     date: "26 Sep 2026",
-    category: "upcoming",
+    category: "september-26",
     categoryLabel: "26 Sep Clash",
     src: "/flyers/september-26-2026-1flaymah-vs-zk.png",
     aspect: "aspect-[3/4]",
@@ -34,7 +48,7 @@ const allFlyers: PromoFlyer[] = [
     title: "Marni Gramz vs Btizz",
     event: "26th September 2026",
     date: "26 Sep 2026",
-    category: "upcoming",
+    category: "september-26",
     categoryLabel: "26 Sep Clash",
     src: "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
     aspect: "aspect-[3/4]",
@@ -45,7 +59,7 @@ const allFlyers: PromoFlyer[] = [
     title: "Tymeless vs K.I.M.E",
     event: "26th September 2026",
     date: "26 Sep 2026",
-    category: "upcoming",
+    category: "september-26",
     categoryLabel: "26 Sep Clash",
     src: "/flyers/september-26-2026-tymeless-vs-kime.jpg",
     aspect: "aspect-[3/4]",
@@ -56,7 +70,7 @@ const allFlyers: PromoFlyer[] = [
     title: "Badee Harz vs Roman",
     event: "26th September 2026",
     date: "26 Sep 2026",
-    category: "upcoming",
+    category: "september-26",
     categoryLabel: "26 Sep Clash",
     src: "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
     aspect: "aspect-[3/4]",
@@ -195,9 +209,14 @@ const filterCategories = [
   { id: "all", label: "All Flyers", count: allFlyers.length },
   {
     id: "upcoming",
-    label: "26 Sep 2026",
+    label: "14 Nov 2026",
     count: allFlyers.filter((f) => f.category === "upcoming").length,
     isUpcoming: true,
+  },
+  {
+    id: "september-26",
+    label: "26 Sep 2026",
+    count: allFlyers.filter((f) => f.category === "september-26").length,
   },
   {
     id: "august-29",

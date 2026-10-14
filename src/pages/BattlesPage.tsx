@@ -2,7 +2,7 @@ import { battles, freestyleBattles, lastUpdated, royalRumbleBattles, seasonOneBa
 import type { Battle } from "../data/battles";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { mcs } from "../data/mcs";
+import { guestMcs, mcs } from "../data/mcs";
 import { Link, useNavigate } from "react-router-dom";
 import { Play, Eye, Calendar, Trophy, Star } from "lucide-react";
 import { calculateTotalViews, parseViews, sortBattlesById } from "../lib/battleUtils";
@@ -42,8 +42,8 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
           {orderedBattles.map((battle, index) => {
             const episode = battle.league === "royal-rumble" ? `RR${battle.episode?.replace(/\D/g, "") || index + 1}` : battle.episode;
             const views = viewsById[battle.id] || battle.views;
-            const mc1 = mcs.find(m => m.id === battle.mc1);
-            const mc2 = mcs.find(m => m.id === battle.mc2);
+            const mc1 = [...mcs, ...guestMcs].find(m => m.id === battle.mc1);
+            const mc2 = [...mcs, ...guestMcs].find(m => m.id === battle.mc2);
             const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
             const mc1Name = titleMc1 || mc1?.name || battle.mc1;
             const mc2Name = titleMc2 || mc2?.name || battle.mc2;
@@ -119,8 +119,8 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
             {orderedBattles.map((battle, index) => {
               const episode = battle.league === "royal-rumble" ? `RR${battle.episode?.replace(/\D/g, "") || index + 1}` : battle.episode;
               const views = viewsById[battle.id] || battle.views;
-              const mc1 = mcs.find(m => m.id === battle.mc1);
-              const mc2 = mcs.find(m => m.id === battle.mc2);
+              const mc1 = [...mcs, ...guestMcs].find(m => m.id === battle.mc1);
+              const mc2 = [...mcs, ...guestMcs].find(m => m.id === battle.mc2);
               const [titleMc1 = battle.mc1, titleMc2 = battle.mc2] = battle.title.split(" vs ");
               const isVsBattle = battle.title.toLowerCase().includes(" vs ");
               const leftPair = titleMc1.split("&").map(name => name.trim()).filter(Boolean);

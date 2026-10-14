@@ -1,36 +1,21 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Film } from 'lucide-react';
+import { Ticket } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { novemberBattles } from '../data/battles';
 
-const septemberFlyers = [
-  {
-    id: "marni-btizz",
-    title: "Marni Gramz vs Btizz",
-    src: "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
-  },
-  {
-    id: "tymeless-kime",
-    title: "Tymeless vs K.I.M.E",
-    src: "/flyers/september-26-2026-tymeless-vs-kime.jpg",
-  },
-  {
-    id: "badee-roman",
-    title: "Badee Harz vs Roman",
-    src: "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
-  },
-  {
-    id: "1flaymah-zk",
-    title: "1Flaymah vs Z.K",
-    src: "/flyers/september-26-2026-1flaymah-vs-zk.png",
-  },
-];
+const novemberFlyers = novemberBattles.map((battle) => ({
+  id: battle.slug,
+  title: battle.title,
+  src: battle.flyer,
+}));
 
 export const UpcomingEventLanding = () => {
   const [activeFlyerIndex, setActiveFlyerIndex] = useState(0);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setActiveFlyerIndex((prev) => (prev + 1) % septemberFlyers.length);
+      setActiveFlyerIndex((prev) => (prev + 1) % novemberFlyers.length);
     }, 3500);
     return () => window.clearInterval(interval);
   }, []);
@@ -66,7 +51,7 @@ export const UpcomingEventLanding = () => {
 
               {/* Main Flyer Card */}
               <div className="relative bg-zinc-950 rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[3/4] w-full flex items-center justify-center">
-                {septemberFlyers.map((flyer, idx) => {
+                {novemberFlyers.map((flyer, idx) => {
                   const isActive = idx === activeFlyerIndex;
                   return (
                     <img
@@ -95,33 +80,40 @@ export const UpcomingEventLanding = () => {
             >
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-display uppercase leading-[1.02] tracking-tight text-white mb-2">
-                  October 2026
+                  14 November 2026
                 </h2>
                 <p className="font-display text-lg sm:text-xl uppercase tracking-wider text-brand">
-                  Event Details Coming Soon
+                  Peacocks Boxing, Canning Town
                 </p>
               </div>
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  Our 26th September event has now taken place. Badee Harz vs Roman is out now. The remaining battles from the night are currently in production and will be released on the official Gzone YouTube channel.
+                  Six new Season 1 battles are coming to the Gzone. Join us at Peacocks Boxing in Canning Town on 14 November.
                 </p>
 
-                <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-brand leading-relaxed">
-                  October 2026 details coming soon
-                </p>
+                <ul className="space-y-2 font-display text-lg sm:text-xl uppercase tracking-wide">
+                  {novemberBattles.map((battle) => (
+                    <li key={battle.id}>
+                      <Link to={`/battle/${battle.slug}`} className="hover:text-brand transition-colors">
+                        <span className="text-brand mr-3">{battle.episode}</span>{battle.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
 
                 <p className="text-zinc-400 text-sm sm:text-base">
-                  Keep an eye on Gzone for the next date, venue, lineup, and ticket announcement.
+                  Tickets on sale soon. Keep an eye on Gzone for the ticket release announcement.
                 </p>
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <div
+                <Link
+                  to="/events"
                   className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-brand/40 bg-brand/15 text-brand px-8 py-4 font-display text-lg uppercase tracking-wider text-center"
                 >
-                  September Battles In Production <Film size={18} />
-                </div>
+                  Tickets on sale soon <Ticket size={18} />
+                </Link>
               </div>
             </motion.div>
           </div>

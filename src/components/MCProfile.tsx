@@ -357,7 +357,7 @@ export default function MCProfile() {
                   mcBattles.map((battle) => {
                     const isRoyalRumble = battle.league === "royal-rumble";
                     const opponentId = battle.mc1 === mc.id ? battle.mc2 : battle.mc1;
-                    const opponent = mcs.find(m => m.id === opponentId);
+                    const opponent = [...mcs, ...guestMcs].find(m => m.id === opponentId);
                     const targetUrl = `/battle/${battle.slug}`;
                     return (
                       <div 
@@ -399,7 +399,7 @@ export default function MCProfile() {
                           <div>
                             <div className="flex items-center gap-2 mb-1">
                               <div className="text-xs text-zinc-300 uppercase tracking-widest font-bold">
-                                {isRoyalRumble ? "Special Event" : "vs Opponent"}
+                                {battle.ticketsOnSaleSoon ? "Tickets on sale soon" : isRoyalRumble ? "Special Event" : "vs Opponent"}
                               </div>
                               {battle.winner && (
                                 <div className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter ${
@@ -422,7 +422,7 @@ export default function MCProfile() {
                         </div>
                         <div 
                           className="bg-zinc-800 p-3 rounded-full group-hover:bg-brand group-hover:text-black transition-all"
-                          aria-label={isRoyalRumble ? "Watch Royal Rumble" : `Watch battle vs ${opponent?.name}`}
+                          aria-label={battle.ticketsOnSaleSoon ? `View upcoming battle vs ${opponent?.name}` : isRoyalRumble ? "Watch Royal Rumble" : `Watch battle vs ${opponent?.name}`}
                         >
                           <Play size={20} fill="currentColor" />
                         </div>

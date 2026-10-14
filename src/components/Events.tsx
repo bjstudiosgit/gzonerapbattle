@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Calendar, MapPin, Star, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { flyerImage } from "../lib/images";
+import { novemberBattles } from "../data/battles";
 
 const defaultEventImage = "/gzonebattlemay.png";
 const aprilShowdownEventImage = flyerImage("/flyers/26thAprilall.png", "event");
@@ -169,6 +170,21 @@ const events = [
       { episode: "1x30", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
       { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
     ]
+  },
+  {
+    id: 11,
+    title: "G ZONE: 14TH NOVEMBER",
+    date: "14th November 2026",
+    location: "Peacocks Boxing, Canning Town",
+    price: "TICKETS ON SALE SOON",
+    image: novemberBattles[0].flyer!,
+    images: novemberBattles.map((battle) => battle.flyer!),
+    description: "Six new Season 1 battles: episodes 1x32–1x37. Tickets on sale soon.",
+    isCompleted: false,
+    card: novemberBattles.map((battle) => {
+      const [mc1, mc2] = battle.title.split(" vs ");
+      return { episode: battle.episode, mc1, mc2, isMain: false };
+    }),
   }
 ];
 
@@ -201,7 +217,7 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
           : "border-white/10 hover:border-brand/40"
       }`}
     >
-      <div className="relative h-44 overflow-hidden md:h-64">
+      <div className={isFlyerImage && !isCompleted ? "relative aspect-[3/4] overflow-hidden" : "relative h-44 overflow-hidden md:h-64"}>
         {"video" in event ? (
           <video
             src={event.video}
@@ -222,7 +238,7 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
                   alt={event.title}
                   width={640}
                   height={360}
-                  className={`absolute inset-0 w-full h-full object-cover object-top bg-black transition-opacity duration-700 ease-in-out ${
+                  className={`absolute inset-0 w-full h-full ${isCompleted ? "object-cover object-top" : "object-contain"} bg-black transition-opacity duration-700 ease-in-out ${
                     isCurrent ? "opacity-95 z-10" : "opacity-0 pointer-events-none z-0"
                   }`}
                   referrerPolicy="no-referrer"
@@ -345,7 +361,7 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
           </div>
         ) : !isCompleted && event.card ? (
           <div className="w-full bg-brand/20 text-brand py-5 rounded-2xl font-black flex items-center justify-center gap-3 border border-brand/40 uppercase tracking-[0.3em] text-xs">
-            ON SALE SOON! <Ticket size={16} />
+            Tickets on sale soon <Ticket size={16} className="shrink-0" />
           </div>
         ) : !isCompleted ? (
           <div className="w-full bg-zinc-900/50 text-zinc-500 py-5 rounded-2xl font-black flex items-center justify-center gap-3 border border-white/5 uppercase tracking-[0.3em] text-xs cursor-not-allowed">
@@ -389,7 +405,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The 26th September event is complete. Badee Harz vs Roman (1x27) is out now. Tymeless vs K.I.M.E (1x30), Marni Gramz vs Btizz (1x29), and 1Flaymah vs Z.K (1x31) are still in production.
+              The next Gzone event is 14 November 2026 at Peacocks Boxing, Canning Town. Six new battles are confirmed for Season 1, episodes 1x32–1x37. Tickets on sale soon.
             </p>
           </motion.div>
         </div>
