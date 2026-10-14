@@ -196,9 +196,9 @@ function MCCardView({
   isCenter: boolean;
   onHoverPlay: () => void;
 }) {
-  const { mc, rank, points } = item;
+  const { mc, rank } = item;
   const stars = getRankStars(rank);
-  const isMostWanted = rank > 0 && rank <= 3;
+  const isMostWanted = rank > 0 && rank <= 5;
 
   if (!isCenter) {
     return (
@@ -267,18 +267,14 @@ function MCCardView({
             </div>
           )}
 
-          <p className="text-brand text-[10px] font-black tracking-[0.3em] uppercase mb-1">
-            {mc.nickname ? `"${mc.nickname}"` : mc.style}
-          </p>
+          {mc.location && (
+            <p className="text-brand text-[10px] font-black tracking-[0.3em] uppercase mb-1">{mc.location}</p>
+          )}
           <h3 className="text-4xl sm:text-5xl font-display uppercase leading-none mb-3">{mc.name}</h3>
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4 text-[11px] font-black tracking-widest uppercase">
             <span className="text-emerald-400">{mc.wins}W</span>
             <span className="text-red-400">{mc.losses}L</span>
-            <span className="w-1 h-1 rounded-full bg-zinc-600" />
-            <span className="text-zinc-300">{mc.battles} Battles</span>
-            <span className="w-1 h-1 rounded-full bg-zinc-600" />
-            <span className="text-brand">{points} pts</span>
           </div>
 
           <Link
@@ -304,7 +300,7 @@ function StaffCardView({
   onHoverPlay: () => void;
 }) {
   const isMystery = item.isMystery;
-  const image = item.id === "ginga-jay" ? "/jay.png" : portraitImage(item.listImage || item.image, "card");
+  const image = portraitImage(item.listImage || item.image, "card");
   const bioPreview = item.bio.split("\n")[0];
 
   if (!isCenter) {

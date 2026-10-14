@@ -24,7 +24,7 @@ export const hosts: Host[] = [
     id: "ginga-jay",
     name: "Ginga Jay",
     role: "Main Host / Co Owner",
-    image: "/portraits/ginga-jay-bio.png",
+    image: "/portraits/ginga-jay-updated-2026.png",
     bio: "The main voice of Ginga Entertainment and the Gzone. Ginga Jay brings unmatched energy and charisma to the stage, keeping the crowd engaged and the battles flowing. As an entertainer first and foremost, he knows exactly how to set the mood for a high-stakes clash.",
     fields: ["Entertainer"],
     leagueRoleDescription: "As Main Host and Co-Owner, Ginga Jay is the driving force behind the energy and atmosphere of GZone. Known for his larger-than-life personality, quick wit, and commanding stage presence, he keeps audiences engaged from the first introduction to the final verdict. Whether hosting live events, delivering expert commentary, or helping shape the future of the platform, Ginga Jay remains the brainchild of the Ginga Entertainment family. 🎤🔥",

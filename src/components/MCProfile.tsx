@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { guestMcs, mcs } from "../data/mcs";
 import { battles as allBattles, seasonOneBattles } from "../data/battles";
 import { initialStreetEpisodes } from "../pages/GzoneStreetFreestyles";
-import { ArrowLeft, Mic2, Trophy, Zap, Play, MapPin, Weight, Instagram, Youtube, Quote, Crown, Facebook, Mail, Music, Star } from "lucide-react";
+import { ArrowLeft, Trophy, Play, MapPin, Instagram, Youtube, Quote, Crown, Facebook, Mail, Music, Star } from "lucide-react";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { portraitImage } from "../lib/images";
 import { sortBattlesById } from "../lib/battleUtils";
@@ -29,7 +29,6 @@ export default function MCProfile() {
   const points = mcRanking?.totalScore || 0;
   const wins = overallRecord?.wins ?? mc.wins;
   const losses = overallRecord?.losses ?? mc.losses;
-  const battleCount = overallRecord?.battles ?? mc.battles;
   const isWasted = mc.isActive === false;
   const streetFreestyle = initialStreetEpisodes.find(episode => episode.artist.toLowerCase() === mc.name.toLowerCase());
 
@@ -100,7 +99,7 @@ export default function MCProfile() {
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
 
               {/* MOST WANTED badge for the top-ranked MCs */}
-              {rank > 0 && rank <= 3 && !isWasted && (
+              {rank > 0 && rank <= 5 && !isWasted && (
                 <div className="absolute top-1/2 left-1/2 z-30 w-max -translate-x-1/2 -translate-y-1/2 scale-75 pointer-events-none md:scale-90">
                   <div className="transform -rotate-12 border-4 border-red-600 bg-black/40 px-5 py-2 backdrop-blur-sm shadow-[0_0_50px_rgba(220,38,38,0.3)]">
                     <span className="whitespace-nowrap font-display text-5xl uppercase tracking-[-0.06em] text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] md:text-6xl">
@@ -187,17 +186,6 @@ export default function MCProfile() {
                   </div>
                 )}
               </div>
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                {mc.tags && mc.tags.length > 0 && (
-                  <div className="flex gap-2">
-                    {mc.tags.map(tag => (
-                      <span key={tag} className="bg-brand text-black text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl shadow-brand/30 border border-white/10">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
 
               {mc.quote && (
                 <div className="mb-8 border-l-4 border-brand pl-6 py-2">
@@ -212,12 +200,6 @@ export default function MCProfile() {
               )}
 
               <div className="flex flex-wrap gap-4 mt-6">
-                {mc.weightClass && (
-                  <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
-                    <Weight size={16} className="text-brand" />
-                    <span className="font-bold uppercase tracking-widest text-[10px]">{mc.weightClass}</span>
-                  </div>
-                )}
                 {mc.location && (
                   <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                     <MapPin size={16} className="text-brand" />
@@ -227,14 +209,6 @@ export default function MCProfile() {
                 <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
                   <Trophy size={16} className="text-brand" />
                   <span className="font-bold uppercase tracking-widest text-[10px]">{wins}-{losses} Record</span>
-                </div>
-                <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
-                  <Mic2 size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{battleCount === 1 ? "1 Battle" : `${battleCount} Battles`}</span>
-                </div>
-                <div className="flex items-center gap-2 bg-[#161a22] px-4 py-2 rounded-xl border border-brand/35 hover:border-brand hover:shadow-[0_0_10px_rgba(242,125,38,0.35)] transition-all group cursor-default">
-                  <Zap size={16} className="text-brand" />
-                  <span className="font-bold uppercase tracking-widest text-[10px]">{mc.style}</span>
                 </div>
               </div>
               

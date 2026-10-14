@@ -227,11 +227,10 @@ const MapPage: React.FC = () => {
                             </div>
                             <div className="flex-1 min-w-0">
                               <h3 className="text-white font-display text-2xl uppercase truncate group-hover:text-brand transition-colors">{mc.name}</h3>
-                              <p className="text-zinc-500 text-[10px] font-black tracking-widest truncate mt-0.5 opacity-60">{mc.style}</p>
                             </div>
                             <div className="text-right shrink-0">
                               <div className="text-sm font-mono text-brand font-black">{mc.wins}W - {mc.losses}L</div>
-                              <div className="text-[9px] text-zinc-600 uppercase font-black tracking-tighter mt-0.5">Rating</div>
+                              <div className="text-[9px] text-zinc-600 uppercase font-black tracking-tighter mt-0.5">Record</div>
                             </div>
                           </div>
                         </Link>
