@@ -19,7 +19,7 @@ export type StaffCardPerson = {
   isMystery?: boolean;
 };
 
-export function StaffCard({ person, index, rank, topLabel, hideRoleBadge = false }: { person: StaffCardPerson; index: number; rank?: number; topLabel?: string; hideRoleBadge?: boolean }) {
+export function StaffCard({ person, index }: { person: StaffCardPerson; index: number }) {
   const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
@@ -41,17 +41,10 @@ export function StaffCard({ person, index, rank, topLabel, hideRoleBadge = false
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
-      {topLabel ? (
-        <span className="absolute right-3 top-3 z-20 rounded bg-brand px-2 py-1 text-[10px] font-black uppercase tracking-wider text-black">{topLabel}</span>
-      ) : rank ? (
-        <span className="absolute right-3 top-3 z-20 rounded bg-brand px-2 py-1 font-display text-xl leading-none text-black">#{rank}</span>
-      ) : null}
       <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
-        {!hideRoleBadge && (
-          <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
-            {person.role}
-          </span>
-        )}
+        <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
+          {person.role}
+        </span>
         <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${person.id === "louis-bowers" ? "text-xl" : "truncate text-2xl"}`}>
           {person.name}
         </h4>

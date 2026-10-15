@@ -28,6 +28,7 @@ export default function MCsPage() {
   const guestRappers = guestMcs;
   const gingaJay = hosts.find(host => host.id === "ginga-jay");
   const darrenStewart = hosts.find(host => host.id === "darren-stewart");
+  const passive = hosts.find(host => host.id === "passive");
 
   const getPoints = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.totalScore || 0;
@@ -63,19 +64,20 @@ export default function MCsPage() {
         {/* Battle rappers, with wasted MCs continuing the same roster */}
         <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
-            {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Host" }} index={0} topLabel="Hosted By" hideRoleBadge />}
-            {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Host" }} index={1} rank={2} />}
+            {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Hosted By" }} index={0} />}
+            {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Co-hosted By" }} index={1} />}
+            {passive && <StaffCard person={{ ...passive, type: "hosts", role: "Co-hosted By" }} index={2} />}
             {rosterMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index + 2} rank={index + 3} points={getPoints(mc.id)} />
+              <MCCard key={mc.id} mc={mc} index={index + 3} rank={index + 1} points={getPoints(mc.id)} />
             ))}
             {[...otherMcs, ...guestRappers].map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index + 2} isRapper />
+              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index + 3} isRapper />
             ))}
           </div>
         </div>
 
       </div>
-      <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart"]} />
+      <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart", "passive"]} />
     </div>
   );
 }
