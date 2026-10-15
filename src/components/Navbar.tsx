@@ -1,11 +1,12 @@
 import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Vote, MapPin } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
-import LiveTicker from "./LiveTicker";
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   const navLinks = [
@@ -20,6 +21,14 @@ export default function Navbar() {
   ];
 
   const isHome = location.pathname === "/";
+  const hasNavBackground = isOpen || !isHome || isScrolled;
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     setIsOpen(false);
     soundManager.playImpact();
@@ -35,11 +44,8 @@ export default function Navbar() {
 
   return (
     <>
-    <div className="fixed top-0 left-0 right-0 z-[110]">
-      <LiveTicker />
-    </div>
-    <nav className={`fixed top-10 left-0 right-0 z-[100] transition-all duration-300 ${isOpen || !isHome ? 'bg-zinc-950' : 'bg-transparent'}`}>
-      <div className={`absolute inset-0 ${isOpen || !isHome ? 'opacity-100' : 'opacity-0'} bg-zinc-950 pointer-events-none transition-opacity duration-300`} />
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${hasNavBackground ? 'bg-zinc-950' : 'bg-zinc-950 sm:bg-transparent'}`}>
+      <div className={`absolute inset-0 ${hasNavBackground ? 'opacity-100' : 'opacity-0'} bg-zinc-950 pointer-events-none transition-opacity duration-300`} />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="flex items-center justify-between h-20">
@@ -123,7 +129,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-          <div className="2xl:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-6rem)]">
+          <div className="2xl:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-5rem)]">
             <div className="px-4 py-8 space-y-2">
               {navLinks.map((link) => (
                 <Link

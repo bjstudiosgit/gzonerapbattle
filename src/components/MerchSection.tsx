@@ -96,7 +96,7 @@ export default function MerchSection({ showShopAll = true }: MerchSectionProps) 
       <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none" />
       <div className="absolute top-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand/10 blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={showShopAll ? "relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" : "relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6"}>
         {/* Header with Navigation Controls */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}

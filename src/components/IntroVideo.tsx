@@ -11,6 +11,9 @@ export default function IntroVideo() {
   const releasedEpisodeCount = battles.filter(
     (battle) => battle.videoUrl && !battle.isUnreleased && !battle.isPlaceholder,
   ).length;
+  const releasedRoyalRumbleCount = battles.filter(
+    (battle) => battle.league === "royal-rumble" && battle.videoUrl && !battle.isUnreleased && !battle.isPlaceholder,
+  ).length;
   const heroRevealLeadSeconds = 4;
   const [videoEnded, setVideoEnded] = useState(false);
   const [introAudioFinished, setIntroAudioFinished] = useState(true);
@@ -32,7 +35,7 @@ export default function IntroVideo() {
     <section className="relative w-full min-h-screen overflow-x-hidden">
 
       {/* Shared Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]">
         <motion.div 
           animate={{ 
             opacity: videoEnded ? 0.3 : 1,
@@ -123,9 +126,9 @@ export default function IntroVideo() {
 
                   <div className="mb-10 h-px w-full max-w-3xl bg-brand/70" />
 
-                  <div className="mb-12 grid w-full max-w-3xl grid-cols-5">
+                  <div className="mb-12 grid w-full max-w-3xl grid-cols-3 sm:grid-cols-6">
                     <div className="px-2 py-2 text-center sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">17.2K</div>
+                      <div className="font-display text-xl sm:text-3xl text-brand">18.8K</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Subscribers</div>
                     </div>
                     <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">
@@ -136,23 +139,33 @@ export default function IntroVideo() {
                       <div className="font-display text-xl sm:text-3xl text-brand">{mcs.length}</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Pro MCs</div>
                     </div>
-                    <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">
+                    <div className="border-t border-white/15 px-2 py-2 text-center sm:border-l sm:border-t-0 sm:py-3">
                       <div className="font-display text-xl sm:text-3xl text-brand">1</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Season</div>
                     </div>
-                    <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">
+                    <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
                       <div className="font-display text-xl sm:text-3xl text-brand">{releasedEpisodeCount}</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Episodes</div>
                     </div>
-                  </div>
-
-                  <div>
-                    <div className="flex w-full max-w-3xl flex-col items-start justify-center gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="font-display text-3xl sm:text-5xl uppercase italic leading-none text-white">
-                        Next battle. <span className="text-brand">Be there.</span>
-                      </p>
+                    <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
+                      <div className="font-display text-xl sm:text-3xl text-brand">{releasedRoyalRumbleCount}</div>
+                      <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-normal sm:tracking-[0.12em] text-white">Royal Rumbles</div>
                     </div>
                   </div>
+
+                  <a
+                    href="https://www.youtube.com/@gingajay"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow us on YouTube (opens in a new tab)"
+                    className="group flex flex-nowrap items-center gap-x-3 gap-y-1 font-display text-[clamp(1rem,5.5vw,3rem)] uppercase italic leading-none text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                  >
+                    <span>Did you?</span>
+                    <span className="inline-flex flex-nowrap items-center gap-x-4 gap-y-1">
+                      <span className="text-brand">Follow us on</span>
+                      <img src="/youtube-logo-fullcolor-white.png" alt="YouTube" className="h-[clamp(1.5rem,7.5vw,3.5rem)] w-auto transition-[filter] group-hover:brightness-110" />
+                    </span>
+                  </a>
                 </motion.div>
                 
                 <motion.div
@@ -161,13 +174,13 @@ export default function IntroVideo() {
                   transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
                   className="hidden lg:flex relative justify-end items-end z-0 self-end translate-x-10 xl:translate-x-16"
                 >
-                  <div className="relative group w-full max-w-[560px] xl:max-w-[660px] ml-auto">
+                  <div className="relative w-full max-w-[560px] xl:max-w-[660px] ml-auto">
                     {/* Ambient Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand/30 blur-[100px] rounded-full opacity-50 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand/30 blur-[100px] rounded-full opacity-50 pointer-events-none" />
                     <img 
                       src="/gingerjaymodelpoint.png" 
                       alt="Ginga Jay" 
-                      className="relative z-10 w-full max-h-[82vh] object-contain object-right-bottom transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-4 drop-shadow-[0_30px_60px_rgba(0,0,0,0.85)]"
+                      className="relative z-10 w-full max-h-[82vh] object-contain object-right-bottom drop-shadow-[0_30px_60px_rgba(0,0,0,0.85)]"
                       referrerPolicy="no-referrer"
                     />
                   </div>

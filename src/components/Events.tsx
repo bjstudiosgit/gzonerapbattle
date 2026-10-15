@@ -166,9 +166,9 @@ const events = [
     isCompleted: true,
     card: [
       { episode: "1x27", mc1: "BADEE HARZ", mc2: "ROMAN", winner: "ROMAN" },
-      { episode: "1x29", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
-      { episode: "1x30", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
-      { episode: "1x31", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
+      { episode: "1x28", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
+      { episode: "1x29", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
+      { episode: "1x30", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
     ]
   },
   {
@@ -179,7 +179,7 @@ const events = [
     price: "TICKETS ON SALE SOON",
     image: novemberBattles[0].flyer!,
     images: novemberBattles.map((battle) => battle.flyer!),
-    description: "Six new Season 1 battles: episodes 1x32–1x37. Tickets on sale soon.",
+    description: "Six new Season 1 battles: episodes 1x31–1x36. Tickets on sale soon.",
     isCompleted: false,
     card: novemberBattles.map((battle) => {
       const [mc1, mc2] = battle.title.split(" vs ");
@@ -405,7 +405,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The next Gzone event is 14 November 2026 at Peacocks Boxing, Canning Town. Six new battles are confirmed for Season 1, episodes 1x32–1x37. Tickets on sale soon.
+              The next Gzone event is 14 November 2026 at Peacocks Boxing, Canning Town. Six new battles are confirmed for Season 1, episodes 1x31–1x36. Tickets on sale soon.
             </p>
           </motion.div>
         </div>

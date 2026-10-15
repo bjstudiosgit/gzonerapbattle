@@ -2,9 +2,10 @@ import HostsAndJudges from "../components/HostsAndJudges";
 
 type StaffPageProps = {
   embedded?: boolean;
+  excludeIds?: string[];
 };
 
-export default function StaffPage({ embedded = false }: StaffPageProps) {
+export default function StaffPage({ embedded = false, excludeIds = [] }: StaffPageProps) {
   return (
     <div className={embedded ? "relative mt-20 md:mt-28" : "min-h-screen pt-44 pb-24 relative overflow-hidden bg-zinc-950"}>
       {/* Decorative Background Elements */}
@@ -31,7 +32,7 @@ export default function StaffPage({ embedded = false }: StaffPageProps) {
         </header>
 
         <div className={embedded ? "" : "bg-zinc-950/40 backdrop-blur-3xl p-4 md:p-16 rounded-[5rem] border border-white/5 shadow-[0_0_150px_rgba(0,0,0,0.6)] ring-1 ring-white/10 overflow-hidden"}>
-          <HostsAndJudges embedded={embedded} />
+          <HostsAndJudges embedded={embedded} excludeIds={excludeIds} />
         </div>
       </div>
     </div>

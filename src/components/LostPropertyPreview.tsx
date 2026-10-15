@@ -20,7 +20,7 @@ export default function LostPropertyPreview() {
       <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-10 lg:gap-16 items-start">
-          <div className="lg:sticky lg:top-32">
+          <div className="lg:sticky lg:top-24">
             <h3 className="text-4xl md:text-6xl font-display uppercase leading-none text-white mb-6">
               Gzone <span className="text-brand">Museum</span>
             </h3>

@@ -42,6 +42,8 @@ export default function MCCarousel({ items, autoAdvanceMs }: CarouselProps) {
   const [paused, setPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const touchX = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (active > count - 1) setActive(Math.max(0, count - 1));
@@ -79,7 +81,15 @@ export default function MCCarousel({ items, autoAdvanceMs }: CarouselProps) {
   }, [next, previous]);
 
   useEffect(() => {
-    if (paused || count <= 1) return;
+    const element = carouselRef.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.25 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || paused || count <= 1) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const delay = autoAdvanceMs ?? DEFAULT_AUTO_ADVANCE_MS;
     if (delay <= 0) return;
@@ -87,7 +97,7 @@ export default function MCCarousel({ items, autoAdvanceMs }: CarouselProps) {
       setActive((index) => (index + 1) % count);
     }, delay);
     return () => window.clearInterval(interval);
-  }, [paused, count, autoAdvanceMs]);
+  }, [isVisible, paused, count, autoAdvanceMs]);
 
   const handleTouchStart = (event: React.TouchEvent) => {
     touchX.current = event.touches[0].clientX;
@@ -107,6 +117,7 @@ export default function MCCarousel({ items, autoAdvanceMs }: CarouselProps) {
 
   return (
     <div
+      ref={carouselRef}
       className="relative select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}

@@ -87,19 +87,22 @@ function Home() {
 
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
+      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 py-8 md:py-10">
+        <GlobalDisclaimer />
+      </div>
       <FeaturedVideo />
       <UpcomingEventLanding />
-      <section className="relative w-full overflow-hidden py-16 md:py-24">
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-6xl font-display uppercase tracking-tighter leading-tight text-brand">
-              Ginga Entertainment presents
+      <section className="relative w-full overflow-hidden pt-6 pb-16 sm:pt-10 md:pb-24">
+        <div className="relative z-20 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6">
+          <div className="mb-8">
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.05] text-brand">
+              Ginga Entertainment Ltd presents
             </h2>
-            <p className="text-zinc-300 text-sm sm:text-xl leading-relaxed max-w-3xl mx-auto mt-4">
+            <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed">
               TRICKYY - THE FALL OF THE ROMAN EMPIRE
             </p>
           </div>
-          <div className="relative w-full max-w-6xl mx-auto aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(242,125,38,0.2)] bg-[#050505]">
+          <div className="relative w-full aspect-video rounded-sm sm:rounded-lg overflow-hidden border border-white/10 bg-[#050505]">
             <iframe
               className="w-full h-full border-0"
               src="https://www.youtube-nocookie.com/embed/tBspxqBPZ1I"
@@ -116,9 +119,6 @@ function Home() {
       <MerchSection showShopAll={false} />
       <MCBios />
       <LostPropertyPreview />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-        <GlobalDisclaimer />
-      </div>
     </main>
   );
 }

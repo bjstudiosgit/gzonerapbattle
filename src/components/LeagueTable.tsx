@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Clock, Trophy, Info, ArrowUpRight, Star } from "lucide-react";
-import { mcs } from "../data/mcs";
+import { Clock, Trophy, ArrowUpRight, Star } from "lucide-react";
+import { guestMcs, mcs } from "../data/mcs";
 import { seasonOneBattles, type Battle } from "../data/battles";
 import { calculateRankings, getRankStars } from "../lib/ranking";
 import { portraitImage } from "../lib/images";
@@ -25,7 +25,7 @@ export default function LeagueTable({
   
   let rankings = calculatedRankings
     .map((rankData) => {
-      const mcData = mcs.find(m => m.id === rankData.id);
+      const mcData = mcs.find(m => m.id === rankData.id) || guestMcs.find(m => m.id === rankData.id);
       return {
         rank: rankData.rank,
         id: rankData.id,
@@ -207,15 +207,7 @@ export default function LeagueTable({
           </div>
           
           <div className="p-1 border-t border-white/10 bg-zinc-950/80">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-10 py-10">
-              <div className="hidden lg:flex items-center gap-4 group cursor-help">
-                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-brand/40 group-hover:text-brand transition-colors">
-                  <Info size={14} />
-                </div>
-                <p className="text-[9px] md:text-[10px] text-zinc-500 font-black tracking-[0.2em] leading-relaxed max-w-sm">
-                  League data is updated in real-time following each official clash at Peacock Gymnasium.
-                </p>
-              </div>
+            <div className="flex flex-col md:flex-row items-center justify-end gap-6 px-10 py-10">
 
               {limit && limit < calculatedRankings.length ? (
                 <Link 

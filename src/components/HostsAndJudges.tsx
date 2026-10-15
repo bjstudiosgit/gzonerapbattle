@@ -19,7 +19,7 @@ export type StaffCardPerson = {
   isMystery?: boolean;
 };
 
-export function StaffCard({ person, index }: { person: StaffCardPerson; index: number }) {
+export function StaffCard({ person, index, rank, topLabel, hideRoleBadge = false }: { person: StaffCardPerson; index: number; rank?: number; topLabel?: string; hideRoleBadge?: boolean }) {
   const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
@@ -41,10 +41,17 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
+      {topLabel ? (
+        <span className="absolute right-3 top-3 z-20 rounded bg-brand px-2 py-1 text-[10px] font-black uppercase tracking-wider text-black">{topLabel}</span>
+      ) : rank ? (
+        <span className="absolute right-3 top-3 z-20 rounded bg-brand px-2 py-1 font-display text-xl leading-none text-black">#{rank}</span>
+      ) : null}
       <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
-        <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
-          {person.role}
-        </span>
+        {!hideRoleBadge && (
+          <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
+            {person.role}
+          </span>
+        )}
         <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${person.id === "louis-bowers" ? "text-xl" : "truncate text-2xl"}`}>
           {person.name}
         </h4>
@@ -68,8 +75,9 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
   const darrenStewart = staffHosts.find((h) => h.id === "darren-stewart");
   const passive = staffHosts.find((h) => h.id === "passive");
   const louisBowers = staffHosts.find((h) => h.id === "louis-bowers");
+  const behindTheScenesIds = ["del-sajiwandani", "scientificbrad", "n-studios"];
   const remainingHosts = staffHosts.filter(
-    (h) => !["ginga-jay", "darren-stewart", "passive", "louis-bowers"].includes(h.id)
+    (h) => !["ginga-jay", "darren-stewart", "passive", "louis-bowers", ...behindTheScenesIds].includes(h.id)
   );
 
   const staff = [
@@ -80,6 +88,9 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
     ...remainingHosts,
     ...staffJudges.filter((person) => person.role !== "Celebrity Guest"),
   ].filter((person) => !excludeIds.includes(person.id));
+  const behindTheScenes = staffHosts.filter(
+    (person) => behindTheScenesIds.includes(person.id) && !excludeIds.includes(person.id)
+  );
   const celebrityGuests = staffJudges.filter(
     (person) => person.role === "Celebrity Guest" && !excludeIds.includes(person.id)
   );
@@ -95,6 +106,16 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
             <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
           ))}
         </div>
+        {behindTheScenes.length > 0 && (
+          <div className={embedded ? "mt-20 md:mt-28" : "mt-16 border-t border-white/10 pt-12"}>
+            <h2 className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Behind the Scenes</h2>
+            <div className={embedded ? "grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5" : "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6"}>
+              {behindTheScenes.map((person, index) => (
+                <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
+              ))}
+            </div>
+          </div>
+        )}
         {celebrityGuests.length > 0 && (
           <div className={embedded ? "mt-20 md:mt-28" : "mt-16 border-t border-white/10 pt-12"}>
             <h2 className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Celebrity Guests</h2>

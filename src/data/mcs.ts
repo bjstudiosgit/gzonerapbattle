@@ -354,7 +354,7 @@ export const mcs: MC[] = [
     style: "Technical / Wordplay",
     image: "/portraits/grams-closeup-2026-v2.png",
     bio: "A cold-blooded lyricist known for intricate wordplay and surgical delivery. After rising through the PenGame scene and overcoming controversy, Marni Gramz doesn't wait for permission, he takes the arena. Now in the Gzone, the rules are simple: no politics, no protection… just war.",
-    isActive: true,
+    isActive: false,
     location: "London",
     coordinates: [51.5074, -0.1278],
     instagram: "https://instagram.com",

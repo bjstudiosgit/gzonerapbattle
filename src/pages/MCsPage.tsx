@@ -2,6 +2,8 @@ import { Star } from "lucide-react";
 import { guestMcs, mcs } from "../data/mcs";
 import MCCard from "../components/MCCard";
 import StaffPage from "./StaffPage";
+import { StaffCard } from "../components/HostsAndJudges";
+import { hosts } from "../data/hosts";
 
 import { calculateRankings } from "../lib/ranking";
 import { seasonOneBattles } from "../data/battles";
@@ -24,6 +26,8 @@ export default function MCsPage() {
   const rosterMcs = [...battleMcs, ...inactiveMcs];
   const otherMcs = activeMcs.filter(mc => mc.battles === 0 && !featuredBattleIds.has(mc.id)).sort((a, b) => (a.id === "mello" ? -1 : b.id === "mello" ? 1 : 0));
   const guestRappers = guestMcs;
+  const gingaJay = hosts.find(host => host.id === "ginga-jay");
+  const darrenStewart = hosts.find(host => host.id === "darren-stewart");
 
   const getPoints = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.totalScore || 0;
@@ -59,17 +63,19 @@ export default function MCsPage() {
         {/* Battle rappers, with wasted MCs continuing the same roster */}
         <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
+            {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Host" }} index={0} topLabel="Hosted By" hideRoleBadge />}
+            {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Host" }} index={1} rank={2} />}
             {rosterMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index} rank={index + 1} points={getPoints(mc.id)} />
+              <MCCard key={mc.id} mc={mc} index={index + 2} rank={index + 3} points={getPoints(mc.id)} />
             ))}
             {[...otherMcs, ...guestRappers].map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index} isRapper />
+              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index + 2} isRapper />
             ))}
           </div>
         </div>
 
       </div>
-      <StaffPage embedded />
+      <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart"]} />
     </div>
   );
 }

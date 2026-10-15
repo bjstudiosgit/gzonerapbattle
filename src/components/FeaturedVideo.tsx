@@ -16,65 +16,45 @@ export default function FeaturedVideo() {
   const featuredTitle = featuredBattle?.title?.replace(/\svs\s/i, " VS ") ?? "New battle";
 
   return (
-    <section className="relative w-full min-h-[40vh] overflow-hidden flex flex-col items-center justify-center py-12 md:py-24">
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-carbon opacity-15 z-10" />
-      </div>
-
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center">
+    <section aria-labelledby="latest-battle-heading" className="relative w-full overflow-hidden pt-6 pb-16 sm:pt-10 md:pb-24">
+      <div className="relative z-20 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 w-full"
+          className="mb-8 md:mb-10 w-full"
         >
-          <h2 className="text-3xl md:text-6xl font-display uppercase mb-6 tracking-tighter leading-tight text-brand">
-            <span className="block">Latest Battle</span>
-            {featuredBattle && <span className="block text-white">{featuredTitle} out now!</span>}
-          </h2>
-          <p className="text-zinc-300 text-sm sm:text-xl leading-relaxed tracking-normal text-center max-w-3xl mx-auto">
-            {featuredBattle ? (
-              featuredBattle.league === "royal-rumble" ? (
-                <>{featuredBattle.title} is now live in the Gzone arena.</>
-              ) : featuredBattle.episode ? (
-                <>
-                  <span>Episode {featuredBattle.episode}</span>
-                  {" "}{featuredBattle.title} is now live in the Gzone arena.
-                </>
-              ) : (
-                <>{featuredBattle.title} is now live in the Gzone arena.</>
-              )
-            ) : (
-              <>The latest battle is now live in the Gzone arena.</>
-            )}
+          <p className="mb-4 flex items-center gap-3 text-[10px] sm:text-xs font-black uppercase tracking-[0.24em] text-brand">
+            <span aria-hidden="true" className="h-px w-8 bg-brand" />
+            Latest Battle
+            <span aria-hidden="true" className="text-zinc-600">/</span>
+            <span className="text-zinc-400">Out now</span>
           </p>
+          <h2 id="latest-battle-heading" className="max-w-5xl font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.05] text-white">
+            {featuredTitle}
+          </h2>
+
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative w-full max-w-6xl aspect-video group"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative w-full aspect-video"
         >
-          {/* Intense Orange Glow Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-brand to-orange-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
-          
-          <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(242,125,38,0.25)] bg-[#050505]">
+          <div className="relative w-full h-full rounded-sm sm:rounded-lg overflow-hidden border border-white/10 bg-[#050505]">
 
             <iframe
               className="w-full h-full border-0"
               src={featuredBattleEmbedSrc}
-              title="YouTube video player"
+              title={featuredTitle}
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-            
-            {/* Cinematic Vignette for the video */}
-            <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] pointer-events-none" />
 
             {/* WANTED Stamp Overlay */}
             {featuredBattle?.isWanted && (

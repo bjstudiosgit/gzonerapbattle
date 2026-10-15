@@ -1,43 +1,37 @@
 import { Star } from "lucide-react";
-import { battles } from "../data/battles";
+import { seasonOneBattles } from "../data/battles";
 import { hosts } from "../data/hosts";
 import { judges } from "../data/judges";
-import { mcs } from "../data/mcs";
+import { guestMcs, mcs } from "../data/mcs";
 import { calculateRankings } from "../lib/ranking";
 import MCCarousel, { type CarouselItem } from "./MCCarousel";
 
 export default function MCBios() {
-  const rankings = calculateRankings(battles, mcs);
+  const rankings = calculateRankings(seasonOneBattles, mcs);
+  const rankedIds = new Set(rankings.map((ranking) => ranking.id));
 
-  const activeMcs = mcs
-    .filter((mc) => mc.isActive !== false && mc.id !== "ldn-mikez")
-    .sort((a, b) => {
-      const rankA = rankings.find((ranking) => ranking.id === a.id)?.rank || 999;
-      const rankB = rankings.find((ranking) => ranking.id === b.id)?.rank || 999;
-      return rankA - rankB;
-    });
+  const rankedMcs: CarouselItem[] = rankings.flatMap((ranking) => {
+    const mc = mcs.find((item) => item.id === ranking.id) ?? guestMcs.find((item) => item.id === ranking.id);
+    return mc ? [{
+      type: "mc" as const,
+      mc,
+      rank: ranking.rank,
+      points: ranking.totalScore,
+    }] : [];
+  });
 
-  const getDisplayRank = (mcId: string) => {
-    const position = activeMcs.findIndex((mc) => mc.id === mcId);
-    return position >= 0 ? position + 1 : rankings.find((ranking) => ranking.id === mcId)?.rank || 0;
-  };
-
-  const getPoints = (mcId: string) =>
-    rankings.find((ranking) => ranking.id === mcId)?.totalScore || 0;
+  const otherRappers: CarouselItem[] = [...mcs, ...guestMcs]
+    .filter((mc) => mc.isActive !== false && !rankedIds.has(mc.id))
+    .map((mc) => ({
+      type: "mc" as const,
+      mc,
+      rank: 0,
+      points: 0,
+    }));
 
   const items: CarouselItem[] = [
-    ...hosts.map((host) => ({
-      type: "staff" as const,
-      id: host.id,
-      name: host.name,
-      role: host.role,
-      nickname: host.nickname,
-      image: host.image,
-      listImage: host.listImage,
-      bio: host.bio,
-      profileType: "host" as const,
-      isMystery: undefined,
-    })),
+    ...rankedMcs,
+    ...otherRappers,
     ...judges.map((judge) => ({
       type: "staff" as const,
       id: judge.id,
@@ -50,17 +44,23 @@ export default function MCBios() {
       profileType: "judge" as const,
       isMystery: judge.isMystery,
     })),
-    ...activeMcs.map((mc) => ({
-      type: "mc" as const,
-      mc,
-      rank: getDisplayRank(mc.id),
-      points: getPoints(mc.id),
+    ...hosts.map((host) => ({
+      type: "staff" as const,
+      id: host.id,
+      name: host.name,
+      role: host.role,
+      nickname: host.nickname,
+      image: host.image,
+      listImage: host.listImage,
+      bio: host.bio,
+      profileType: "host" as const,
+      isMystery: undefined,
     })),
   ];
 
   return (
     <section id="mcs" className="py-24 md:py-32 relative scroll-mt-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 relative z-10">
         <div className="text-center mb-16">
           <h3 className="text-4xl md:text-7xl font-display uppercase leading-none">
             Gzone <span className="text-brand">&quot;Most Wanted&quot;</span> Season One

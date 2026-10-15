@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Ticket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { novemberBattles } from '../data/battles';
 
@@ -21,36 +20,19 @@ export const UpcomingEventLanding = () => {
   }, []);
 
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden bg-[#050505]">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand/10 blur-[130px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand/5 blur-[120px] rounded-full" />
-        <div
-          className="absolute top-0 left-0 w-full h-full opacity-[0.03]"
-          style={{
-            backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+    <section aria-labelledby="upcoming-event-heading" className="relative w-full overflow-hidden pt-6 pb-16 sm:pt-10 md:pb-24">
+      <div className="relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           {/* Left Side: Auto-Scrolling Flyer Showcase */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/2 order-2 lg:order-1"
+            className="w-full order-2 lg:order-1 lg:col-span-5"
           >
-            <div className="relative group max-w-md mx-auto lg:max-w-lg">
-              {/* Glow Effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-brand via-orange-600 to-brand rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-700 pointer-events-none" />
-
-              {/* Main Flyer Card */}
-              <div className="relative bg-zinc-950 rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[3/4] w-full flex items-center justify-center">
+            <div className="relative max-w-md mx-auto lg:max-w-none">
+              <div className="relative bg-zinc-950 rounded-sm sm:rounded-lg overflow-hidden border border-white/10 aspect-[3/4] w-full flex items-center justify-center">
                 {novemberFlyers.map((flyer, idx) => {
                   const isActive = idx === activeFlyerIndex;
                   return (
@@ -70,7 +52,7 @@ export const UpcomingEventLanding = () => {
           </motion.div>
 
           {/* Right Side: Event Details & Battles in Text */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2">
+          <div className="w-full order-1 lg:order-2 lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +61,11 @@ export const UpcomingEventLanding = () => {
               className="space-y-6 max-w-xl"
             >
               <div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-display uppercase leading-[1.02] tracking-tight text-white mb-2">
+                <p className="mb-4 flex items-center gap-3 text-[10px] sm:text-xs font-black uppercase tracking-[0.24em] text-brand">
+                  <span aria-hidden="true" className="h-px w-8 bg-brand" />
+                  Next Event
+                </p>
+                <h2 id="upcoming-event-heading" className="text-4xl sm:text-5xl md:text-6xl font-display uppercase leading-[1.02] tracking-tight text-white mb-2">
                   14 November 2026
                 </h2>
                 <p className="font-display text-lg sm:text-xl uppercase tracking-wider text-brand">
@@ -89,30 +75,30 @@ export const UpcomingEventLanding = () => {
 
               <div className="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4">
                 <p>
-                  Six new Season 1 battles are coming to the Gzone. Join us at Peacocks Boxing in Canning Town on 14 November.
+                  Deeno and K.I.M.E. Mello and Ryno. Tricky and 7wxve. Six matchups, one night at Peacocks Boxing. Who are you backing?
                 </p>
 
                 <ul className="space-y-2 font-display text-lg sm:text-xl uppercase tracking-wide">
                   {novemberBattles.map((battle) => (
                     <li key={battle.id}>
                       <Link to={`/battle/${battle.slug}`} className="hover:text-brand transition-colors">
-                        <span className="text-brand mr-3">{battle.episode}</span>{battle.title}
+                        {battle.title}
                       </Link>
                     </li>
                   ))}
                 </ul>
 
                 <p className="text-zinc-400 text-sm sm:text-base">
-                  Tickets on sale soon. Keep an eye on Gzone for the ticket release announcement.
+                  Keep an eye on Gzone for the ticket release announcement.
                 </p>
               </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <div className="pt-2">
                 <Link
                   to="/events"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-brand/40 bg-brand/15 text-brand px-8 py-4 font-display text-lg uppercase tracking-wider text-center"
+                  className="inline-block font-display text-3xl sm:text-4xl uppercase leading-none tracking-tight text-brand transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
                 >
-                  Tickets on sale soon <Ticket size={18} />
+                  Tickets on sale soon
                 </Link>
               </div>
             </motion.div>

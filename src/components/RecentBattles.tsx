@@ -29,7 +29,7 @@ export default function RecentBattles() {
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent z-20" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <h3 className="text-4xl md:text-6xl font-display uppercase leading-tight mb-6">
             In Production - <br className="sm:hidden" />
@@ -38,7 +38,7 @@ export default function RecentBattles() {
           <p className="text-brand font-bold tracking-[0.4em] text-[10px] md:text-base">Season 1 "Most Wanted"</p>
         </div>
 
-        <div className={`grid grid-cols-1 sm:grid-cols-2 ${recentBattles.length === 3 ? "lg:grid-cols-3 max-w-6xl mx-auto" : "lg:grid-cols-4"} gap-6 md:gap-8`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${recentBattles.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"} gap-6 md:gap-8`}>
           {recentBattles.map((battle, index) => {
             const mc1 = mcs.find(m => m.id === battle.mc1);
             const mc2 = mcs.find(m => m.id === battle.mc2);
@@ -61,9 +61,9 @@ export default function RecentBattles() {
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/40 aspect-[4/5] sm:aspect-square lg:aspect-[3/4] shadow-2xl transition-transform hover:-translate-y-2 duration-500"
               >
                 <Link 
-                  to={battle.ticketUrl || `/battle/${battle.slug}`} 
+                  to={`/battle/${battle.slug}`}
                   className="absolute inset-0 z-30" 
-                  aria-label={battle.ticketUrl ? `Tickets for ${mc1Name} vs ${mc2Name}` : `Watch ${mc1Name} vs ${mc2Name}`}
+                  aria-label={`View ${mc1Name} vs ${mc2Name} battle`}
                 />
                 
                 <div className="absolute inset-0 z-0">

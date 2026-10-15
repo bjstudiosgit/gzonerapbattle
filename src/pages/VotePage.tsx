@@ -201,7 +201,7 @@ export default function VotePage() {
       <div className="scanline" />
       
       {/* Header */}
-      <header className="border-y border-zinc-800 bg-black/95 p-4 flex flex-col md:flex-row items-center justify-between gap-4 sticky top-28 md:top-32 z-50 backdrop-blur-xl">
+      <header className="border-y border-zinc-800 bg-black/95 p-4 flex flex-col md:flex-row items-center justify-between gap-4 sticky top-20 z-50 backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <div className="bg-orange-500 p-1.5 shadow-[0_0_15px_rgba(249,115,22,0.5)]">
             <Mic2 className="w-6 h-6 text-white" />

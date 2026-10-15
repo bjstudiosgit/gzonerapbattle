@@ -1,11 +1,11 @@
-import { battles, freestyleBattles, lastUpdated, royalRumbleBattles, seasonOneBattles } from "../data/battles";
+import { freestyleBattles, royalRumbleBattles, seasonOneBattles } from "../data/battles";
 import type { Battle } from "../data/battles";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { guestMcs, mcs } from "../data/mcs";
 import { Link, useNavigate } from "react-router-dom";
-import { Play, Eye, Calendar, Trophy, Star } from "lucide-react";
-import { calculateTotalViews, parseViews, sortBattlesById } from "../lib/battleUtils";
+import { Play, Calendar, Trophy, Star } from "lucide-react";
+import { parseViews, sortBattlesById } from "../lib/battleUtils";
 
 function ScheduleLink({ href, children }: { href: string; children: ReactNode }) {
   const className = "text-brand animate-pulse underline decoration-brand/30 underline-offset-4";
@@ -239,7 +239,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
 export default function BattlesPage() {
   const orderedBattles = sortBattlesById(seasonOneBattles);
   const [rumbleViews, setRumbleViews] = useState<Record<string, string>>({});
-  const totalViewsStr = calculateTotalViews(battles);
+
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;
   const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && Boolean(battle.winner || battle.resultLabel)).length;
   const outstandingCount = orderedBattles.filter((battle) => battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel).length;
@@ -294,17 +294,8 @@ export default function BattlesPage() {
             </p>
           </div>
           
-          {/* Dashboard Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 w-full lg:w-auto">
-            <div className="bg-zinc-900/60 backdrop-blur-xl border border-white/10 p-5 md:p-6 rounded-[2rem] flex-1 md:min-w-[220px] shadow-2xl group hover:border-brand/30 transition-colors">
-              <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-400 mb-3">
-                <Eye size={16} className="text-brand" />
-                <span className="text-[10px] uppercase tracking-widest font-black">Total Engagement</span>
-              </div>
-              <div className="text-4xl md:text-5xl font-display text-white mb-1 group-hover:text-brand transition-colors">{totalViewsStr}</div>
-              <div className="text-[9px] text-zinc-500 uppercase tracking-widest text-center md:text-left font-bold opacity-60">Synced: {lastUpdated}</div>
-            </div>
-            
+          {/* Season progress */}
+          <div className="w-full lg:w-auto">
             <div className="bg-zinc-900/60 backdrop-blur-xl border border-white/10 p-5 md:p-6 rounded-[2rem] flex-1 md:min-w-[280px] shadow-2xl group hover:border-brand/30 transition-colors">
               <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-400 mb-5">
                 <Play size={16} className="text-brand" />
