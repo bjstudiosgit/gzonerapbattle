@@ -290,7 +290,7 @@ export default function BattlesPage() {
               </div>
             </div>
             <p className="text-zinc-400 text-[0.95rem] md:text-lg max-w-full md:max-w-3xl leading-[1.6] md:leading-relaxed tracking-tight font-medium opacity-80 mx-auto lg:mx-0">
-              The "Most Wanted" season is still unfolding. Watch the clashes already live, follow the battles in production, and revisit the moments shaping Gzone history.
+              Deeno brings the power, Tymeless keeps the bars sharp, and Roman keeps stacking wins. The Royal Rumble brought even more MCs into the mix. Season 1 is still moving, with fresh clashes on the way.
             </p>
           </div>
           
