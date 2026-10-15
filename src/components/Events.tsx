@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Calendar, MapPin, Star, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { flyerImage } from "../lib/images";
-import { novemberBattles } from "../data/battles";
+import { novemberBattles, novemberTicketUrl } from "../data/battles";
 
 const defaultEventImage = "/gzonebattlemay.png";
 const aprilShowdownEventImage = flyerImage("/flyers/26thAprilall.png", "event");
@@ -176,10 +176,11 @@ const events = [
     title: "G ZONE: 14TH NOVEMBER",
     date: "14th November 2026",
     location: "Peacocks Boxing, Canning Town",
-    price: "TICKETS ON SALE SOON",
+    price: "TICKETS ON SALE NOW",
     image: novemberBattles[0].flyer!,
     images: novemberBattles.map((battle) => battle.flyer!),
-    description: "Six new Season 1 battles: episodes 1x31–1x36. Tickets on sale soon.",
+    description: "Six new Season 1 battles: episodes 1x31–1x36. Tickets are on sale now.",
+    ticketLink: novemberTicketUrl,
     isCompleted: false,
     card: novemberBattles.map((battle) => {
       const [mc1, mc2] = battle.title.split(" vs ");
@@ -405,7 +406,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              The next Gzone event is 14 November 2026 at Peacocks Boxing, Canning Town. Six new battles are confirmed for Season 1, episodes 1x31–1x36. Tickets on sale soon.
+              The next Gzone event is 14 November 2026 at Peacocks Boxing, Canning Town. Six new battles are confirmed for Season 1, episodes 1x31–1x36. Tickets are on sale now.
             </p>
           </motion.div>
         </div>

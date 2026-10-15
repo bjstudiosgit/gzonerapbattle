@@ -29,6 +29,8 @@ export interface NotableBar {
   explanation: string;
 }
 
+export const novemberTicketUrl = "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-league-tickets-2003436461387";
+
 export const novemberBattles: Battle[] = [
   {
     "id": "34",
@@ -42,9 +44,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x31",
     "league": "season1",
     "flyer": "/flyers/deenovskime.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "Deeno vs K.I.M.E is confirmed for Season 1, episode 1x31, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "Deeno vs K.I.M.E is confirmed for Season 1, episode 1x31, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   },
   {
     "id": "35",
@@ -58,9 +60,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x32",
     "league": "season1",
     "flyer": "/flyers/mellovsryno.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "Mello vs Ryno is confirmed for Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "Mello vs Ryno is confirmed for Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   },
   {
     "id": "36",
@@ -74,9 +76,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x33",
     "league": "season1",
     "flyer": "/flyers/princvsdeluxx.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "Prince vs Deluxx is confirmed for Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "Prince vs Deluxx is confirmed for Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   },
   {
     "id": "37",
@@ -90,9 +92,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x34",
     "league": "season1",
     "flyer": "/flyers/trickyvs7wxve.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "Tricky vs 7wxve is confirmed for Season 1, episode 1x34, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "Tricky vs 7wxve is confirmed for Season 1, episode 1x34, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   },
   {
     "id": "38",
@@ -106,9 +108,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x35",
     "league": "season1",
     "flyer": "/flyers/btizzvsyekim.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "Btizz vs Yekim is confirmed for Season 1, episode 1x35, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "Btizz vs Yekim is confirmed for Season 1, episode 1x35, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   },
   {
     "id": "39",
@@ -122,9 +124,9 @@ export const novemberBattles: Battle[] = [
     "episode": "1x36",
     "league": "season1",
     "flyer": "/flyers/romanvs1flaymah.png",
-    "ticketUrl": "/events",
-    "ticketsOnSaleSoon": true,
-    "summary": "1Flaymah vs Roman is confirmed for Season 1, episode 1x36, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets on sale soon."
+    "ticketUrl": novemberTicketUrl,
+    "ticketsOnSaleSoon": false,
+    "summary": "1Flaymah vs Roman is confirmed for Season 1, episode 1x36, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
   }
 ];
 

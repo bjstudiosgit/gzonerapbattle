@@ -25,7 +25,7 @@ const allFlyers: PromoFlyer[] = [
     event: "14th November 2026",
     date: "14 Nov 2026",
     category: "upcoming",
-    categoryLabel: "Tickets on sale soon",
+    categoryLabel: "Tickets on sale now",
     src: battle.flyer!,
     aspect: "aspect-[3/4]",
     direct: true,

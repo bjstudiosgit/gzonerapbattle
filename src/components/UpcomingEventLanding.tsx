@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { novemberBattles } from '../data/battles';
+import { novemberBattles, novemberTicketUrl } from '../data/battles';
 
 const novemberFlyers = novemberBattles.map((battle) => ({
   id: battle.slug,
@@ -89,17 +89,19 @@ export const UpcomingEventLanding = () => {
                 </ul>
 
                 <p className="text-zinc-400 text-sm sm:text-base">
-                  Keep an eye on Gzone for the ticket release announcement.
+                  Tickets are on sale now through Eventbrite.
                 </p>
               </div>
 
               <div className="pt-2">
-                <Link
-                  to="/events"
+                <a
+                  href={novemberTicketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block font-display text-3xl sm:text-4xl uppercase leading-none tracking-tight text-brand transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
                 >
-                  Tickets on sale soon
-                </Link>
+                  Get tickets
+                </a>
               </div>
             </motion.div>
           </div>
