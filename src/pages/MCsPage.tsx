@@ -4,6 +4,7 @@ import MCCard from "../components/MCCard";
 import StaffPage from "./StaffPage";
 import { StaffCard } from "../components/HostsAndJudges";
 import { hosts } from "../data/hosts";
+import { judges } from "../data/judges";
 
 import { calculateRankings } from "../lib/ranking";
 import { seasonOneBattles } from "../data/battles";
@@ -29,6 +30,8 @@ export default function MCsPage() {
   const gingaJay = hosts.find(host => host.id === "ginga-jay");
   const darrenStewart = hosts.find(host => host.id === "darren-stewart");
   const passive = hosts.find(host => host.id === "passive");
+  const adrianDash = hosts.find(host => host.id === "adrian-dash");
+  const celebrityGuests = judges.filter(person => person.role === "Celebrity Guest");
 
   const getPoints = (mcId: string) => {
     return rankings.find(r => r.id === mcId)?.totalScore || 0;
@@ -79,11 +82,23 @@ export default function MCsPage() {
             {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Hosted By" }} index={0} plainRole />}
             {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Co-hosted By" }} index={1} plainRole />}
             {passive && <StaffCard person={{ ...passive, type: "hosts", role: "Co-hosted By" }} index={2} plainRole />}
+            {adrianDash && <StaffCard person={{ ...adrianDash, type: "hosts", role: "Co-hosted By" }} index={3} plainRole />}
           </div>
         </section>
 
+        {celebrityGuests.length > 0 && (
+          <section className="mb-20 md:mb-28" aria-labelledby="celebrity-guests-heading">
+            <h2 id="celebrity-guests-heading" className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Celebrity Guests</h2>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5">
+              {celebrityGuests.map((person, index) => (
+                <StaffCard key={person.id} person={{ ...person, type: "judges" }} index={index} />
+              ))}
+            </div>
+          </section>
+        )}
+
       </div>
-      <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart", "passive"]} />
+      <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart", "passive", "adrian-dash", ...celebrityGuests.map(person => person.id)]} />
     </div>
   );
 }

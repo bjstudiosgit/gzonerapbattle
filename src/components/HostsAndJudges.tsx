@@ -80,10 +80,8 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
     ...(louisBowers ? [louisBowers] : []),
     ...remainingHosts,
     ...staffJudges.filter((person) => person.role !== "Celebrity Guest"),
+    ...staffHosts.filter((person) => behindTheScenesIds.includes(person.id)),
   ].filter((person) => !excludeIds.includes(person.id));
-  const behindTheScenes = staffHosts.filter(
-    (person) => behindTheScenesIds.includes(person.id) && !excludeIds.includes(person.id)
-  );
   const celebrityGuests = staffJudges.filter(
     (person) => person.role === "Celebrity Guest" && !excludeIds.includes(person.id)
   );
@@ -99,16 +97,6 @@ export default function HostsAndJudges({ embedded = false, excludeIds = [] }: Ho
             <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
           ))}
         </div>
-        {behindTheScenes.length > 0 && (
-          <div className={embedded ? "mt-20 md:mt-28" : "mt-16 border-t border-white/10 pt-12"}>
-            <h2 className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Behind the Scenes</h2>
-            <div className={embedded ? "grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5" : "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6"}>
-              {behindTheScenes.map((person, index) => (
-                <StaffCard key={`${person.type}-${person.id}`} person={person} index={index} />
-              ))}
-            </div>
-          </div>
-        )}
         {celebrityGuests.length > 0 && (
           <div className={embedded ? "mt-20 md:mt-28" : "mt-16 border-t border-white/10 pt-12"}>
             <h2 className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Celebrity Guests</h2>
