@@ -64,17 +64,23 @@ export default function MCsPage() {
         {/* Battle rappers, with wasted MCs continuing the same roster */}
         <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
-            {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Hosted By" }} index={0} />}
-            {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Co-hosted By" }} index={1} />}
-            {passive && <StaffCard person={{ ...passive, type: "hosts", role: "Co-hosted By" }} index={2} />}
             {rosterMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index + 3} rank={index + 1} points={getPoints(mc.id)} />
+              <MCCard key={mc.id} mc={mc} index={index} rank={index + 1} points={getPoints(mc.id)} />
             ))}
             {[...otherMcs, ...guestRappers].map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index + 3} isRapper />
+              <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index} isRapper />
             ))}
           </div>
         </div>
+
+        <section className="my-20 md:my-28" aria-labelledby="hosted-by-heading">
+          <h2 id="hosted-by-heading" className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Hosted By</h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5">
+            {gingaJay && <StaffCard person={{ ...gingaJay, type: "hosts", role: "Hosted By" }} index={0} plainRole />}
+            {darrenStewart && <StaffCard person={{ ...darrenStewart, type: "hosts", role: "Co-hosted By" }} index={1} plainRole />}
+            {passive && <StaffCard person={{ ...passive, type: "hosts", role: "Co-hosted By" }} index={2} plainRole />}
+          </div>
+        </section>
 
       </div>
       <StaffPage embedded excludeIds={["ginga-jay", "darren-stewart", "passive"]} />

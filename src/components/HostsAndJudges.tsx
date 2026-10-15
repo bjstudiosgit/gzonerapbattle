@@ -19,7 +19,7 @@ export type StaffCardPerson = {
   isMystery?: boolean;
 };
 
-export function StaffCard({ person, index }: { person: StaffCardPerson; index: number }) {
+export function StaffCard({ person, index, plainRole = false }: { person: StaffCardPerson; index: number; plainRole?: boolean }) {
   const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
@@ -42,7 +42,7 @@ export function StaffCard({ person, index }: { person: StaffCardPerson; index: n
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
-        <span className="mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black">
+        <span className={plainRole ? "mb-2 inline-block text-xs font-black uppercase tracking-[0.2em] text-brand" : "mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black"}>
           {person.role}
         </span>
         <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${person.id === "louis-bowers" ? "text-xl" : "truncate text-2xl"}`}>
