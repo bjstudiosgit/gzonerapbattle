@@ -226,3 +226,14 @@
 .backstage-reaction-heading a { display:inline-flex; align-items:center; gap:8px; font-size:9px; font-weight:900; letter-spacing:1px; }
 .backstage-reaction iframe { display:block; width:100%; aspect-ratio:16/9; border:0; background:#111; }
 @media(max-width:760px) { .backstage-reaction-heading { padding:18px; } .backstage-reaction-heading h3 { font-size:25px; } }
+.backstage-mailing-wide { display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:center; margin-bottom:40px; padding:40px; }
+.backstage-mailing-wide h2 { font-size:clamp(30px,3.4vw,46px); margin-top:16px; }
+.backstage-mailing-copy>p { max-width:510px; margin-top:18px; color:#625343; font-size:14px; line-height:1.8; }
+.backstage-mailing-preferences { min-width:0; border-left:1px solid #19140f25; padding-left:36px; }
+.backstage-email-status { display:flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:1.5px; }
+.backstage-mailing-wide .backstage-email-address { border-top:0; margin-top:8px; }
+.backstage-mailing-wide .backstage-small { color:#625343; line-height:1.7; }
+@media(max-width:760px) {
+  .backstage-mailing-wide { grid-template-columns:1fr; gap:26px; padding:24px; }
+  .backstage-mailing-preferences { border-left:0; border-top:1px solid #19140f25; padding:24px 0 0; }
+}

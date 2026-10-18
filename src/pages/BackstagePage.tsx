@@ -56,7 +56,7 @@ export default function BackstagePage() {
       <div className="backstage-shell">
         {session ? <>
           <header className="backstage-member-header">
-            <div><h1>WELCOME <em>BACKSTAGE.</em></h1><p>Your corner of the Gzone. Make yourself at home.</p></div>
+            <div><h1>WELCOME <em>BACKSTAGE.</em></h1><p>Pull up. Press play. Jay has plenty to say.</p></div>
             <button className="backstage-secondary" onClick={leave} disabled={busy}><LogOut size={16} /> SIGN OUT</button>
           </header>
           {error && <p role="alert" className="backstage-message">{error}</p>}
@@ -167,17 +167,26 @@ function MembersArea({ session }: { session: BackstageSession }) {
 
   return <>
     <section className="backstage-member-videos" aria-labelledby="member-videos-title">
-      <div className="backstage-section-heading"><div><span className="backstage-section-kicker"><Clapperboard size={15} /> THE EXCLUSIVES</span><h2 id="member-videos-title">THE CAMERAS KEEP ROLLING.</h2></div><span className="backstage-members-label"><Check size={14} /> PASS ACCEPTED</span></div>
+      <div className="backstage-section-heading"><div><h2 id="member-videos-title">PRESS PLAY. BRACE YOURSELF.</h2></div></div>
       <article className="backstage-reaction" aria-labelledby="reaction-title">
-        <div className="backstage-reaction-heading"><h3 id="reaction-title">Jay Reacts - Anbu vs DrizzGB</h3><a href="https://www.bilibili.com/video/BV127n76jEXC/" target="_blank" rel="noopener noreferrer">WATCH ON BILIBILI <ArrowUpRight size={16} /></a></div>
+        <div className="backstage-reaction-heading"><h3 id="reaction-title">Jay Reacts - Anbu vs DrizzGB</h3></div>
         <iframe src="https://player.bilibili.com/player.html?bvid=BV127n76jEXC&autoplay=0&danmaku=0&poster=1" title="Jay Reacts - Anbu vs DrizzGB" allow="fullscreen; picture-in-picture" allowFullScreen />
       </article>
       {videosLoading ? <p role="status" className="backstage-empty">Opening the video room…</p> : videoError ? <p role="alert" className="backstage-message">{videoError}</p> : videos.length ? <div className="backstage-member-video-grid">{videos.map(video => <article className="backstage-member-video" key={video.id}><span className="backstage-section-kicker">MEMBERS’ EXCLUSIVE</span><Clapperboard size={42} /><h3>{video.title}</h3><p>{video.description}</p><button className="backstage-primary" disabled={openingVideo !== null} onClick={event => play(video, event.currentTarget)}>{openingVideo === video.id ? "OPENING…" : "WATCH NOW"}<Play size={16} /></button></article>)}</div> : null}
     </section>
-    <div className="backstage-member-grid">
-      <MailingArtwork />
-      <section className="backstage-mailing" aria-labelledby="mailing-title"><Mail size={35} /><span className="backstage-section-kicker">THE INSIDE LINE</span><h2 id="mailing-title">GOOD STUFF.<br />STRAIGHT TO YOU.</h2><p>New drops, event news and Gzone extras. Join the mailing list and keep a little Backstage in your inbox.</p><div className="backstage-email-address">{session.user.email}</div><button className="backstage-primary" disabled={saving || emailUpdates === null} onClick={updatePreference}>{saving ? "SAVING…" : emailUpdates === null ? "LOADING YOUR PREFERENCE…" : emailUpdates ? "UNSUBSCRIBE FROM EMAILS" : "YES, KEEP ME IN THE LOOP"}{!saving && emailUpdates !== null && (emailUpdates ? <Check size={17} /> : <ArrowRight size={17} />)}</button><p className="backstage-small">{emailUpdates ? "You’re subscribed. You can leave the list any time." : "Optional updates. Your membership works either way."}</p>{preferenceMessage && <p role="status" className="backstage-preference-message">{preferenceMessage}</p>}</section>
-    </div>
+    <section className="backstage-mailing backstage-mailing-wide" aria-labelledby="mailing-title">
+      <div className="backstage-mailing-copy">
+        <h2 id="mailing-title">FRESH REACTIONS.<br />FIRST IN YOUR INBOX.</h2>
+        <p>Another battle. Another reaction. Get the nod when a new video lands, plus event news and extras from the Gzone.</p>
+      </div>
+      <div className="backstage-mailing-preferences">
+        <span className="backstage-email-status">{emailUpdates === null ? "CHECKING YOUR PREFERENCE…" : emailUpdates ? <><Check size={16} /> YOU’RE IN THE LOOP</> : "WANT THE NEXT DROP?"}</span>
+        <div className="backstage-email-address">{session.user.email}</div>
+        <button className="backstage-primary" disabled={saving || emailUpdates === null} onClick={updatePreference}>{saving ? "SAVING…" : emailUpdates === null ? "LOADING…" : emailUpdates ? "UNSUBSCRIBE FROM EMAILS" : "KEEP ME IN THE LOOP"}{!saving && emailUpdates === false && <ArrowRight size={17} />}</button>
+        <p className="backstage-small">{emailUpdates ? "Updates are on. Leave the list whenever you like." : "Your inbox, your call. Backstage access stays yours."}</p>
+        {preferenceMessage && <p role="status" className="backstage-preference-message">{preferenceMessage}</p>}
+      </div>
+    </section>
     {playing && <dialog ref={playerRef} className="backstage-player" onCancel={event => { event.preventDefault(); closePlayer(); }} onClick={event => { if (event.target === event.currentTarget) closePlayer(); }} aria-labelledby="backstage-player-title"><div className="backstage-player-top"><h2 id="backstage-player-title">{playing.title}</h2><button autoFocus aria-label="Close video" onClick={closePlayer}><X size={24} /></button></div><video src={playing.url} controls autoPlay playsInline onError={() => setVideoError("Playback stopped. Close the player and open the video again.")} />{videoError && <p role="alert">{videoError}</p>}</dialog>}
   </>;
 }
