@@ -167,10 +167,10 @@ function MembersArea({ session }: { session: BackstageSession }) {
 
   return <>
     <section className="backstage-member-videos" aria-labelledby="member-videos-title">
-      <div className="backstage-section-heading"><div><h2 id="member-videos-title">PRESS PLAY. BRACE YOURSELF.</h2></div></div>
+      <div className="backstage-section-heading"><div><h2 id="member-videos-title">Ginga Reactions</h2></div></div>
       <article className="backstage-reaction" aria-labelledby="reaction-title">
         <div className="backstage-reaction-heading"><h3 id="reaction-title">Jay Reacts - Anbu vs DrizzGB</h3></div>
-        <div className="backstage-player-viewport"><iframe src="https://player.bilibili.com/player.html?bvid=BV127n76jEXC&autoplay=0&danmaku=0&poster=1" title="Jay Reacts - Anbu vs DrizzGB" allow="fullscreen; picture-in-picture" allowFullScreen /></div>
+        <div className="backstage-player-viewport"><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=117464134328167&bvid=BV127n76jEXC&cid=42857466864&p=1" title="Jay Reacts - Anbu vs DrizzGB" scrolling="no" frameBorder="0" allowFullScreen /></div>
       </article>
       {videosLoading ? <p role="status" className="backstage-empty">Opening the video room…</p> : videoError ? <p role="alert" className="backstage-message">{videoError}</p> : videos.length ? <div className="backstage-member-video-grid">{videos.map(video => <article className="backstage-member-video" key={video.id}><span className="backstage-section-kicker">MEMBERS’ EXCLUSIVE</span><Clapperboard size={42} /><h3>{video.title}</h3><p>{video.description}</p><button className="backstage-primary" disabled={openingVideo !== null} onClick={event => play(video, event.currentTarget)}>{openingVideo === video.id ? "OPENING…" : "WATCH NOW"}<Play size={16} /></button></article>)}</div> : null}
     </section>
