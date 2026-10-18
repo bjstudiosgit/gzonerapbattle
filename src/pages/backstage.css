@@ -237,3 +237,7 @@
   .backstage-mailing-wide { grid-template-columns:1fr; gap:26px; padding:24px; }
   .backstage-mailing-preferences { border-left:0; border-top:1px solid #19140f25; padding:24px 0 0; }
 }
+/* Give the embedded player a desktop viewport while fitting the phone screen. */
+.backstage-player-viewport { position:relative; aspect-ratio:16/9; overflow:hidden; background:#111; }
+@media(max-width:760px) { .backstage-player-viewport iframe { position:absolute; width:400%; height:400%; max-width:none; transform:scale(.25); transform-origin:top left; } }
+.backstage-player-viewport iframe:fullscreen { width:100%; height:100%; transform:none; }
