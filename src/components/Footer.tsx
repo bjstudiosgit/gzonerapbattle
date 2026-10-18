@@ -56,6 +56,7 @@ export default function Footer() {
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Community</h5>
               <ul className="space-y-2">
                 <li><Link to="/whoswho" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Production</Link></li>
+                <li><Link to="/backstage" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Backstage</Link></li>
                 <li><Link to="/photos" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Photos</Link></li>
                 <li><Link to="/league" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">League</Link></li>
                 <li><Link to="/apply" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Apply Now</Link></li>

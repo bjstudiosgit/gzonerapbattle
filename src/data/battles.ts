@@ -139,7 +139,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tapped24",
     "date": "25 Dec 2025",
     "videoUrl": "https://www.youtube-nocookie.com/embed/09ZD_UjdoVw",
-    "views": "55.8K",
+    "views": "55.9K",
     "winner": "deeno",
     "isMainEvent": true,
     "props": [
@@ -155,7 +155,7 @@ export const battles: Battle[] = [
     "title": "PR1NC3 vs Roman",
     "date": "1 Jan 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/QByqdZAF3L0",
-    "views": "24.5K",
+    "views": "25.1K",
     "winner": "roman"
   },
   {
@@ -188,7 +188,7 @@ export const battles: Battle[] = [
     "title": "CJ Zino vs Proty",
     "date": "15 Feb 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/T0zo6YgfxB4",
-    "views": "11.7K",
+    "views": "11.8K",
     "winner": "proty",
     "episode": "1x5"
   },
@@ -239,7 +239,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs Roman",
     "date": "4 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/OGagI2K6StY",
-    "views": "25.5K",
+    "views": "25.6K",
     "winner": "roman",
     "episode": "1x9",
     "props": [
@@ -255,7 +255,7 @@ export const battles: Battle[] = [
     "title": "Tapped24 vs AJNA",
     "date": "19 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oUDDrQtoTHM",
-    "views": "15.0K",
+    "views": "15.1K",
     "winner": "ajna",
     "props": [
       { "name": "Pack of baby wipes", "user": "Tapped24", "icon": "🧼" }
@@ -269,7 +269,7 @@ export const battles: Battle[] = [
     "title": "Ryno vs Tymeless",
     "date": "26 Mar 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Omge-TNTrhQ",
-    "views": "17.9K",
+    "views": "18.0K",
     "winner": "tymeless",
     "props": [
       { "name": "Alleged photo of Ryno kissing a man", "user": "Tymeless", "icon": "📸" },
@@ -381,7 +381,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Badee Harz",
     "date": "23 May 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/yCkMZvg-cUg",
-    "views": "36.4K",
+    "views": "36.9K",
     "winner": "deeno",
     "props": [
       { "name": "A bag with 0.1 gram of crack", "user": "Deeno", "icon": "💎" },
@@ -399,7 +399,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Tymeless",
     "date": "19 Jun 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/JoW3ZGND5YM",
-    "views": "28.3K",
+    "views": "31.1K",
     "winner": "tymeless",
     "props": [
       { "name": "Toilet plunger", "user": "TymeLess", "icon": "🪠" },
@@ -488,7 +488,7 @@ export const battles: Battle[] = [
     "title": "Deeno vs Afrodon",
     "date": "1 Aug 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/_lObp_xBr20",
-    "views": "7.7K",
+    "views": "7.8K",
     "winner": "deeno",
     "isPlaceholder": false,
     "episode": "Fx1",
@@ -503,7 +503,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-11T13:00:06-07:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/4uYGPr_RZ1I",
-    "views": "13.6K",
+    "views": "13.7K",
     "winner": "1flaymr",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -520,7 +520,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-18T12:00:00-07:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/s3ez2EAfov0",
-    "views": "13.0K",
+    "views": "13.2K",
     "winner": "deeno",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -540,7 +540,7 @@ export const battles: Battle[] = [
     "date": "29 Aug 2026",
     "releaseDate": "2026-09-27T00:00:00+01:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Gk0V3bWjv2w",
-    "views": "7.4K",
+    "views": "7.5K",
     "winner": "zk",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -577,7 +577,7 @@ export const battles: Battle[] = [
     "resultLabel": "Official Result",
     "isUnreleased": true,
     "isPlaceholder": false,
-    "episode": "1x28",
+    "episode": "1x30",
     "flyer": "/flyers/september-26-2026-marni-gramz-vs-btizz.jpg",
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
   },
@@ -590,7 +590,7 @@ export const battles: Battle[] = [
     "date": "02 Oct 2026",
     "releaseDate": "2026-10-02T19:00:00+01:00",
     "videoUrl": "https://www.youtube-nocookie.com/embed/oAgeLuYN344",
-    "views": "16.0K",
+    "views": "17.1K",
     "winner": "roman",
     "resultLabel": "Official Result",
     "isUnreleased": false,
@@ -609,7 +609,7 @@ export const battles: Battle[] = [
     "title": "Royal Rumble EP1: The Royal Rumble",
     "date": "4 Sept 2026",
     "videoUrl": "https://www.youtube-nocookie.com/embed/d5YMlQZdNO4",
-    "views": "73.0K",
+    "views": "79.1K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP1",
@@ -625,7 +625,7 @@ export const battles: Battle[] = [
     "mc2": "",
     "title": "Royal Rumble EP2: Day of Reckoning",
     "videoUrl": "https://www.youtube-nocookie.com/embed/Cjh9PfQYe44",
-    "views": "9.1K",
+    "views": "9.7K",
     "isPlaceholder": false,
     "isUnreleased": false,
     "episode": "EP2",
@@ -641,12 +641,13 @@ export const battles: Battle[] = [
     "date": "26 Sep 2026",
     "winner": "1flaymr",
     "resultLabel": "Official Result",
-    "isUnreleased": true,
+    "isUnreleased": false,
     "isPlaceholder": false,
-    "episode": "1x30",
+    "episode": "1x28",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/nIlog2sd0eY",
+    "views": "4.0K",
     "flyer": "/flyers/september-26-2026-1flaymah-vs-zk.png",
-    "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407",
-    "summary": "1Flaymah defeated Z.K in Season 1, episode 1x30, at Peacocks Boxing, Canning Town. The battle is currently in production."
+    "summary": "Z.K and 1Flaymah opened the night at Peacocks Boxing with three rounds of personal jokes, punchlines and crowd-stopping reloads. Z.K brought Grimsby pride, scaffolding references and a run of comparisons ranging from the Jackson 5 to a Primark mannequin, while reminding the room he was chasing a third straight win. 1Flaymah answered with dancehall delivery, an alphabet scheme and a Bruno Fernandes punchline, before closing with a zombie-killer flip on Z.K's name. The host kept the energy moving through the pull-ups, and the final audience vote gave 1Flaymah the win."
   },
   ...novemberBattles
 ];
@@ -655,7 +656,7 @@ export const seasonOneBattles = battles.filter((battle) => battle.league !== "fr
 export const freestyleBattles = battles.filter((battle) => battle.league === "freestyle");
 export const royalRumbleBattles = battles.filter((battle) => battle.league === "royal-rumble");
 
-export const lastUpdated = "14 Oct 2026";
+export const lastUpdated = "18 Oct 2026";
 
 export const tapped24NotableBars: NotableBar[] = [
   {

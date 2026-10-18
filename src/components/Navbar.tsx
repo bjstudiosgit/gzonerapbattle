@@ -1,4 +1,4 @@
-import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, Vote, MapPin } from "lucide-react";
+import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, DoorOpen, MapPin } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
@@ -17,7 +17,7 @@ export default function Navbar() {
     { name: "Merch", href: "/merch", icon: ShoppingBag },
     { name: "Apply", href: "/apply", icon: FileText },
     { name: "Tickets", href: "/events", icon: Ticket },
-    { name: "Vote", href: "/vote", icon: Vote },
+    { name: "Backstage", href: "/backstage", icon: DoorOpen },
   ];
 
   const isHome = location.pathname === "/";

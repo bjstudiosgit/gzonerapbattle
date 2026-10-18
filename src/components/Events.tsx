@@ -162,13 +162,13 @@ const events = [
       "/flyers/september-26-2026-badee-harz-vs-roman.jpg",
       "/flyers/september-26-2026-1flaymah-vs-zk.png"
     ],
-    description: "The 26th September event is complete. Badee Harz vs Roman is out now.",
+    description: "The 26th September event is complete. Badee Harz vs Roman and 1Flaymah vs Z.K are out now.",
     isCompleted: true,
     card: [
       { episode: "1x27", mc1: "BADEE HARZ", mc2: "ROMAN", winner: "ROMAN" },
-      { episode: "1x28", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
+      { episode: "1x30", mc1: "MARNI GRAMZ", mc2: "BTIZZ", winner: "BTIZZ" },
       { episode: "1x29", mc1: "TYMELESS", mc2: "K.I.M.E", winner: "TYMELESS" },
-      { episode: "1x30", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
+      { episode: "1x28", mc1: "1Flaymah", mc2: "Z.K", winner: "1Flaymah" }
     ]
   },
   {

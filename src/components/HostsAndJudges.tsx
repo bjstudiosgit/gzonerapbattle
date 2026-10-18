@@ -17,6 +17,7 @@ export type StaffCardPerson = {
   listImage?: string;
   type: "hosts" | "judges";
   isMystery?: boolean;
+  instagram?: string;
 };
 
 export function StaffCard({ person, index, plainRole = false }: { person: StaffCardPerson; index: number; plainRole?: boolean }) {
@@ -45,12 +46,20 @@ export function StaffCard({ person, index, plainRole = false }: { person: StaffC
         <span className={plainRole ? "mb-2 inline-block text-xs font-black uppercase tracking-[0.2em] text-brand" : "mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black"}>
           {person.role}
         </span>
-        <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${person.id === "louis-bowers" ? "text-xl" : "truncate text-2xl"}`}>
+        <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${(person.id === "louis-bowers" || person.role === "Celebrity Guest") ? "text-xl" : "truncate text-2xl"}`}>
           {person.name}
         </h4>
       </div>
     </motion.div>
   );
+
+  if (person.role === "Celebrity Guest") {
+    return person.instagram ? (
+      <a href={person.instagram} target="_blank" rel="noopener noreferrer" className="block w-full h-full" aria-label={`View ${person.name} on Instagram`}>
+        {card}
+      </a>
+    ) : <div className="block w-full h-full">{card}</div>;
+  }
 
   return person.isMystery ? (
     <div className="block w-full h-full">{card}</div>

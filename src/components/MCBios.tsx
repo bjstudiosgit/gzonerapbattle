@@ -43,6 +43,7 @@ export default function MCBios() {
       bio: judge.bio,
       profileType: "judge" as const,
       isMystery: judge.isMystery,
+      externalUrl: judge.role === "Celebrity Guest" ? judge.instagram : undefined,
     })),
     ...hosts.map((host) => ({
       type: "staff" as const,

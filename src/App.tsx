@@ -38,9 +38,17 @@ const PhotosPage = lazy(() => import("./pages/PhotosPage"));
 const BattleDetail = lazy(() => import("./pages/BattleDetail"));
 const LostProperty = lazy(() => import("./components/LostProperty"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const BackstagePage = lazy(() => import("./pages/BackstagePage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
 const Outside = lazy(() => import("./pages/Outside"));
+
+function LegacyVoteRedirect() {
+  const { search, hash } = useLocation();
+  const view = new URLSearchParams(search).get("view");
+  const target = view === "admin" || view === "display" ? "/backstage/voting" : "/backstage";
+  return <Navigate to={`${target}${search}${hash}`} replace />;
+}
 
 function LegacyProfileRedirect() {
   const { id, slug } = useParams();
@@ -198,7 +206,9 @@ function Main() {
           <Route path="/battle/:slug" element={<BattleDetail />} />
           <Route path="/lost-property" element={<LostProperty />} />
           <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/vote" element={<VotePage />} />
+          <Route path="/backstage" element={<BackstagePage />} />
+          <Route path="/backstage/voting" element={<VotePage />} />
+          <Route path="/vote" element={<LegacyVoteRedirect />} />
           <Route path="/vote/live" element={<VoteLivePage />} />
           <Route path="/outside" element={<Outside />} />
           <Route path="/gzone-street-freestyles" element={<Navigate to="/outside?series=freestyles" replace />} />

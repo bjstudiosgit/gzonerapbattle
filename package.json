@@ -13,6 +13,7 @@
     "fetch-views": "tsx fetch_views.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "@tailwindcss/vite": "^4.1.14",
     "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^4.3.4",

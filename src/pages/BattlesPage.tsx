@@ -237,7 +237,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
 }
 
 export default function BattlesPage() {
-  const orderedBattles = sortBattlesById(seasonOneBattles);
+  const orderedBattles = [...seasonOneBattles].sort((a, b) => Number(a.episode?.split("x")[1] || 0) - Number(b.episode?.split("x")[1] || 0));
   const [rumbleViews, setRumbleViews] = useState<Record<string, string>>({});
 
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;

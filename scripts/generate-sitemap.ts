@@ -27,7 +27,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/promo", changefreq: "monthly", priority: "0.6" },
   { path: "/merch", changefreq: "monthly", priority: "0.6" },
   { path: "/apply", changefreq: "monthly", priority: "0.6" },
-  { path: "/vote", changefreq: "weekly", priority: "0.6" },
+  { path: "/backstage", changefreq: "weekly", priority: "0.6" },
   { path: "/lost-property", changefreq: "weekly", priority: "0.5" },
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },
 ];
@@ -75,7 +75,7 @@ ${publicationDate ? `      <video:publication_date>${publicationDate}</video:pub
 const profileEntries: SitemapEntry[] = [
   ...[...mcs, ...guestMcs].map((mc) => ({ path: `/${mc.slug}`, changefreq: "monthly" as const, priority: "0.7" })),
   ...hosts.map((host) => ({ path: `/${host.id}`, changefreq: "monthly" as const, priority: "0.6" })),
-  ...judges.map((judge) => ({ path: `/${judge.id}`, changefreq: "monthly" as const, priority: "0.6" })),
+  ...judges.filter((judge) => judge.role !== "Celebrity Guest").map((judge) => ({ path: `/${judge.id}`, changefreq: "monthly" as const, priority: "0.6" })),
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
