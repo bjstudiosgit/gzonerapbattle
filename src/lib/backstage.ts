@@ -109,3 +109,41 @@ export async function saveBackstageUsername(value: string): Promise<BackstagePro
   if (error) throw new Error("Your username couldn’t be saved. Please try again.");
   return data;
 }
+
+export type GingahooMessage = { id: string; user_name: string; text: string; created_at: string };
+
+export async function getGingahooMessages(): Promise<GingahooMessage[]> {
+  const { data, error } = await client().from("backstage_chat_messages")
+    .select("id,user_name,text,created_at").order("created_at", { ascending: false })
+    .order("id", { ascending: false }).limit(50);
+  if (error) throw error;
+  return data ?? [];
+}
+
+export async function sendGingahooMessage(text: string, id: string): Promise<GingahooMessage> {
+  const { data, error } = await client().rpc("send_gingahoo_message", { message_text: text, message_id: id }).single<GingahooMessage>();
+  if (error?.code === "P0001") throw new Error(error.message);
+  if (error || !data) throw new Error("Your message didn’t send. Try again.");
+  return data;
+}
+
+export function watchGingahooMessages(onMessage: (message: GingahooMessage) => void, onConnection: (connected: boolean) => void) {
+  const chatClient = client();
+  const channel = chatClient.channel("backstage-gingahoo")
+    .on("postgres_changes", { event: "INSERT", schema: "public", table: "backstage_chat_messages" },
+      payload => onMessage(payload.new as GingahooMessage))
+    .subscribe(status => onConnection(status === "SUBSCRIBED"));
+  return () => { void chatClient.removeChannel(channel); };
+}
+
+export async function getMyGingahooMessages(before?: Pick<GingahooMessage, "id" | "created_at">): Promise<{ messages: GingahooMessage[]; hasMore: boolean }> {
+  const session = await getBackstageSession();
+  if (!session) throw new Error("Sign in to see your comments.");
+  let query = client().from("backstage_chat_messages")
+    .select("id,user_name,text,created_at").eq("user_id", session.user.id)
+    .order("created_at", { ascending: false }).order("id", { ascending: false }).limit(26);
+  if (before) query = query.or(`created_at.lt.${before.created_at},and(created_at.eq.${before.created_at},id.lt.${before.id})`);
+  const { data, error } = await query;
+  if (error) throw error;
+  return { messages: (data ?? []).slice(0, 25), hasMore: (data?.length ?? 0) > 25 };
+}

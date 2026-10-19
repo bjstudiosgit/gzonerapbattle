@@ -39,3 +39,27 @@
   .backstage-account-card,.backstage-onboarding { padding:24px; }
   .backstage-onboarding h2 { font-size:34px; }
 }
+
+/* Account controls alongside a member's own chat history. */
+.backstage-page:has(.backstage-settings-layout) { min-height:0; padding-bottom:32px; }
+.backstage-settings-layout { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); align-items:start; gap:24px; margin-bottom:0; }
+.backstage-settings-layout>.backstage-settings-grid { grid-template-columns:1fr; min-width:0; margin-bottom:0; }
+.backstage-settings-layout>.backstage-comments { align-self:stretch; }
+.backstage-comments .backstage-account-card-top { gap:9px; }
+.backstage-comments-refresh { margin-left:auto; display:flex; padding:6px; border-radius:3px; }
+.backstage-comments-refresh:hover:not(:disabled) { background:#ed782818; }
+.backstage-comments-refresh:disabled { opacity:.4; cursor:wait; }
+.backstage-comments-list { list-style:none; margin:24px 0 0; max-height:560px; overflow-y:auto; overscroll-behavior:contain; scrollbar-color:#c9b79e transparent; }
+.backstage-comments-list li { padding:18px 0; border-top:1px solid #19140f18; }
+.backstage-comments-list li>div { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; align-items:baseline; }
+.backstage-comments-list strong { font-size:11px; color:#9a4a16; overflow-wrap:anywhere; }
+.backstage-comments-list time { font-size:10px; color:#776351; }
+.backstage-comments-list li>p { margin-top:8px; color:#19140f; white-space:pre-wrap; overflow-wrap:anywhere; }
+.backstage-comments-empty { display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; padding:44px 0 20px; color:#9a4a16; }
+.backstage-comments-empty a { font-size:10px; font-weight:900; letter-spacing:1px; display:flex; gap:8px; align-items:center; }
+.backstage-comments-note { margin-top:24px; }
+.backstage-comments-more { margin-top:20px; width:100%; }
+@media(max-width:760px) {
+  .backstage-settings-layout { grid-template-columns:1fr; gap:18px; }
+  .backstage-comments-list { max-height:450px; }
+}

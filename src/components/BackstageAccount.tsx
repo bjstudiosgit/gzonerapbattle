@@ -4,8 +4,9 @@ import { ArrowLeft, ArrowRight, Check, LoaderCircle, LockKeyhole, LogOut, Mail, 
 import { getBackstageProfile, saveBackstageUsername, getEmailPreference, saveEmailPreference, pendingUpdatesKey, type BackstageProfile, type BackstageSession } from "../lib/backstage";
 import { normalizeUsername, validateUsername } from "../lib/backstageUsername";
 import "../pages/backstage-account.css";
+import BackstageComments from "./BackstageComments";
 
-type Props = { session: BackstageSession; busy: boolean; onSignOut: () => void; signOutError: string; children: ReactNode };
+type Props = { session: BackstageSession; busy: boolean; onSignOut: () => void; signOutError: string; children: (profile: BackstageProfile) => ReactNode };
 
 export default function BackstageAccount({ session, busy, onSignOut, signOutError, children }: Props) {
   const settingsOpen = useLocation().pathname === "/backstage/settings";
@@ -99,7 +100,7 @@ export default function BackstageAccount({ session, busy, onSignOut, signOutErro
         <UsernameForm onSaved={finishSetup} />
         <div className="backstage-account-footnote"><LockKeyhole size={15} /> Google handles sign-in. You choose the name.</div>
       </section>
-      : settingsOpen ? <div className="backstage-settings-grid">
+      : settingsOpen ? <div className="backstage-settings-layout"><BackstageComments key={session.user.id} /><div className="backstage-settings-grid">
         <section className="backstage-account-card" aria-labelledby="username-settings-title">
           <div className="backstage-account-card-top"><UserRound size={22} /><span className="backstage-account-kicker">YOUR GZONE IDENTITY</span></div>
           <h2 id="username-settings-title">YOUR USERNAME</h2>
@@ -120,7 +121,7 @@ export default function BackstageAccount({ session, busy, onSignOut, signOutErro
           {emailMessage && <p role="status" className="backstage-account-success">{emailMessage}</p>}
         </section>
         <p className="backstage-settings-privacy">Google handles sign-in securely. Gzone never sees or stores your Google password. Your Google name and email aren’t shown to other members, and you’re always in control of email updates. <Link to="/privacy">Privacy policy</Link></p>
-      </div> : children}
+      </div></div> : children(profile)}
   </>;
 }
 

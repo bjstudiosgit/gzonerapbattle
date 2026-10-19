@@ -5,6 +5,7 @@ import { ArrowUpRight, Clapperboard, LoaderCircle, LockKeyhole, Play, Ticket, X 
 import { BackstageSignInError, backstageConfigured, getBackstageSession, watchBackstageSession, signInBackstage, signOutBackstage, pendingUpdatesKey, getBackstageVideos, getBackstageVideoUrl, type BackstageSession, type BackstageVideo } from "../lib/backstage";
 import "./backstage.css";
 import BackstageAccount from "../components/BackstageAccount";
+import GingahooChat from "../components/GingahooChat";
 
 export default function BackstagePage() {
   const [session, setSession] = useState<BackstageSession | null>(null);
@@ -54,7 +55,7 @@ export default function BackstagePage() {
       <div className="backstage-shell">
         {session ? <>
           <BackstageAccount key={session.user.id} session={session} busy={busy} onSignOut={leave} signOutError={error}>
-            <MembersArea session={session} />
+            {profile => <MembersArea session={session} username={profile.username} />}
           </BackstageAccount>
         </> : <>
           <section className="backstage-entrance" aria-labelledby="backstage-heading">
@@ -104,7 +105,7 @@ function PassPreview() {
   );
 }
 
-function MembersArea({ session }: { session: BackstageSession }) {
+function MembersArea({ session, username }: { session: BackstageSession; username: string }) {
   const [videos, setVideos] = useState<BackstageVideo[]>([]);
   const [videosLoading, setVideosLoading] = useState(true);
   const [videoError, setVideoError] = useState("");
@@ -149,6 +150,7 @@ function MembersArea({ session }: { session: BackstageSession }) {
       </article>
       {videosLoading ? <p role="status" className="backstage-empty">Opening the video room…</p> : videoError ? <p role="alert" className="backstage-message">{videoError}</p> : videos.length ? <div className="backstage-member-video-grid">{videos.map(video => <article className="backstage-member-video" key={video.id}><span className="backstage-section-kicker">MEMBERS’ EXCLUSIVE</span><Clapperboard size={42} /><h3>{video.title}</h3><p>{video.description}</p><button className="backstage-primary" disabled={openingVideo !== null} onClick={event => play(video, event.currentTarget)}>{openingVideo === video.id ? "OPENING…" : "WATCH NOW"}<Play size={16} /></button></article>)}</div> : null}
     </section>
+    <GingahooChat username={username} />
     {playing && <dialog ref={playerRef} className="backstage-player" onCancel={event => { event.preventDefault(); closePlayer(); }} onClick={event => { if (event.target === event.currentTarget) closePlayer(); }} aria-labelledby="backstage-player-title"><div className="backstage-player-top"><h2 id="backstage-player-title">{playing.title}</h2><button autoFocus aria-label="Close video" onClick={closePlayer}><X size={24} /></button></div><video src={playing.url} controls autoPlay playsInline onError={() => setVideoError("Playback stopped. Close the player and open the video again.")} />{videoError && <p role="alert">{videoError}</p>}</dialog>}
   </>;
 }
