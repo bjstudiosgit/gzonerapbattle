@@ -152,7 +152,7 @@ function UsernameForm({ initialUsername = "", onSaved }: { initialUsername?: str
   }
 
   return <form className="backstage-username-form" onSubmit={submit}>
-    <label htmlFor="backstage-username">Username</label>
+    <label htmlFor="backstage-username">{isNew ? "Username" : "Change Username"}</label>
     <div className="backstage-username-input"><span aria-hidden="true">@</span><input id="backstage-username" name="username" value={username} onChange={event => { setUsername(event.target.value); setError(""); setSaved(false); }} placeholder="your_gzone_name" autoComplete="username" autoCapitalize="none" autoCorrect="off" spellCheck={false} maxLength={24} disabled={saving} aria-invalid={Boolean(error)} aria-describedby={error ? "username-help username-error" : "username-help"} required /></div>
     <p id="username-help" className="backstage-field-help">3–24 characters. Letters, numbers and underscores. Saved in lowercase.</p>
     {error && <p id="username-error" role="alert" className="backstage-account-error">{error}</p>}

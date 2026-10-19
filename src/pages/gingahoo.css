@@ -6,7 +6,9 @@
 .gingahoo-connection { display:flex; align-items:center; gap:8px; font-size:9px; letter-spacing:1.3px; font-weight:800; color:#766453; white-space:nowrap; }
 .gingahoo-connection i { width:7px; height:7px; border-radius:50%; background:#a4917c; }
 .gingahoo-connection.is-live { color:#32633a; }
-.gingahoo-connection.is-live i { background:#43844d; box-shadow:0 0 0 4px #43844d12; }
+.gingahoo-connection.is-live i { background:#43844d; box-shadow:0 0 0 4px #43844d12; animation:gingahoo-live-pulse 2.8s ease-in-out infinite; }
+@keyframes gingahoo-live-pulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+@media(prefers-reduced-motion:reduce) { .gingahoo-connection.is-live i { animation:none; } }
 .gingahoo-room-line { display:flex; gap:10px; align-items:center; padding:13px 30px; border-bottom:1px solid #19140f15; background:#f5eddf; }
 .gingahoo-room-line svg { color:#af4d10; flex-shrink:0; }
 .gingahoo-room-line p { font-size:13px; }

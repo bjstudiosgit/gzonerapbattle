@@ -115,7 +115,7 @@ export type GingahooMessage = { id: string; user_name: string; text: string; cre
 export async function getGingahooMessages(): Promise<GingahooMessage[]> {
   const { data, error } = await client().from("backstage_chat_messages")
     .select("id,user_name,text,created_at").order("created_at", { ascending: false })
-    .order("id", { ascending: false }).limit(50);
+    .order("id", { ascending: false }).limit(20);
   if (error) throw error;
   return data ?? [];
 }
@@ -127,11 +127,13 @@ export async function sendGingahooMessage(text: string, id: string): Promise<Gin
   return data;
 }
 
-export function watchGingahooMessages(onMessage: (message: GingahooMessage) => void, onConnection: (connected: boolean) => void) {
+export function watchGingahooMessages(onMessage: (message: GingahooMessage) => void, onConnection: (connected: boolean) => void, onDelete: (id: string) => void) {
   const chatClient = client();
   const channel = chatClient.channel("backstage-gingahoo")
     .on("postgres_changes", { event: "INSERT", schema: "public", table: "backstage_chat_messages" },
       payload => onMessage(payload.new as GingahooMessage))
+    .on("postgres_changes", { event: "DELETE", schema: "public", table: "backstage_chat_messages" },
+      payload => { if (payload.old.id) onDelete(payload.old.id as string); })
     .subscribe(status => onConnection(status === "SUBSCRIBED"));
   return () => { void chatClient.removeChannel(channel); };
 }
@@ -146,4 +148,14 @@ export async function getMyGingahooMessages(before?: Pick<GingahooMessage, "id" 
   const { data, error } = await query;
   if (error) throw error;
   return { messages: (data ?? []).slice(0, 25), hasMore: (data?.length ?? 0) > 25 };
+}
+
+export async function deleteMyGingahooMessage(id: string): Promise<void> {
+  const session = await getBackstageSession();
+  if (!session) throw new Error("Sign in to delete your comment.");
+  const { data, error } = await client().from("backstage_chat_messages").delete()
+    .eq("id", id).eq("user_id", session.user.id).select("id").maybeSingle();
+  if (error) throw new Error("Your comment couldn’t be deleted. Please try again.");
+  // No matching row also means it was already deleted in another tab.
+  if (data && data.id !== id) throw new Error("Your comment couldn’t be deleted.");
 }

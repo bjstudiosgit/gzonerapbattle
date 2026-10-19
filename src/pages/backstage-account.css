@@ -63,3 +63,8 @@
   .backstage-settings-layout { grid-template-columns:1fr; gap:18px; }
   .backstage-comments-list { max-height:450px; }
 }
+
+.backstage-comments-list li>.backstage-comment-actions { justify-content:flex-start; align-items:center; gap:12px; margin-top:14px; }
+.backstage-comment-actions>span { font-size:11px; color:#776351; }
+.backstage-comment-actions button { display:inline-flex; align-items:center; gap:5px; min-height:32px; font-size:9px; font-weight:800; letter-spacing:.5px; color:#9d331d; }
+.backstage-comment-actions button:hover:not(:disabled) { text-decoration:underline; text-underline-offset:3px; }

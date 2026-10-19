@@ -5,7 +5,7 @@ import "../pages/gingahoo.css";
 
 function latestMessages(items: GingahooMessage[]) {
   return [...new Map(items.map(item => [item.id, item])).values()]
-    .sort((a, b) => a.created_at.localeCompare(b.created_at) || a.id.localeCompare(b.id)).slice(-50);
+    .sort((a, b) => a.created_at.localeCompare(b.created_at) || a.id.localeCompare(b.id)).slice(-20);
 }
 
 export default function GingahooChat({ username }: { username: string }) {
@@ -32,7 +32,7 @@ export default function GingahooChat({ username }: { username: string }) {
       try {
         const items = await getGingahooMessages();
         if (active && current === requestNumber) {
-          setMessages(previous => latestMessages([...items, ...previous]));
+          setMessages(latestMessages(items));
           setLoadError("");
         }
       } catch {
@@ -42,11 +42,16 @@ export default function GingahooChat({ username }: { username: string }) {
       }
     }
     const unsubscribe = watchGingahooMessages(
-      message => { if (active) setMessages(previous => latestMessages([...previous, message])); },
+      message => { if (active) { setMessages(previous => latestMessages([...previous, message])); void refresh(); } },
       online => {
         if (!active) return;
         setConnected(online);
         if (online) void refresh(); // Recover messages missed during a reconnect.
+      },
+      id => {
+        if (!active) return;
+        setMessages(previous => previous.filter(message => message.id !== id));
+        void refresh();
       },
     );
     void refresh();
