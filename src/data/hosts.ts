@@ -75,7 +75,7 @@ export const hosts: Host[] = [
     id: "adrian-dash",
     name: "Adrian Dash",
     role: "Co-Host",
-    image: "/portraits/adrian-dash.png",
+    image: "/portraits/adrian-dash-cutout.png",
     bio: "Adrian Dash is a co-host of the GZone Rap Battle League, helping present the battles and bring the live event to the audience.",
     fields: [],
     leagueRoleDescription: "Adrian Dash joins the GZone hosting team to help present live battles and guide the audience through each event.",
