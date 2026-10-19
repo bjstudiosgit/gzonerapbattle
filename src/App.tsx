@@ -207,6 +207,7 @@ function Main() {
           <Route path="/lost-property" element={<LostProperty />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/backstage" element={<BackstagePage />} />
+          <Route path="/backstage/settings" element={<BackstagePage />} />
           <Route path="/backstage/voting" element={<VotePage />} />
           <Route path="/vote" element={<LegacyVoteRedirect />} />
           <Route path="/vote/live" element={<VoteLivePage />} />

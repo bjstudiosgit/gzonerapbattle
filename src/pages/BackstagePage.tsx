@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { ArrowRight, ArrowUpRight, Check, Clapperboard, LoaderCircle, LockKeyhole, LogOut, Play, Ticket, X } from "lucide-react";
-import { BackstageSignInError, backstageConfigured, getBackstageSession, watchBackstageSession, signInBackstage, signOutBackstage, getEmailPreference, saveEmailPreference, getBackstageVideos, getBackstageVideoUrl, type BackstageSession, type BackstageVideo } from "../lib/backstage";
+import { ArrowUpRight, Clapperboard, LoaderCircle, LockKeyhole, Play, Ticket, X } from "lucide-react";
+import { BackstageSignInError, backstageConfigured, getBackstageSession, watchBackstageSession, signInBackstage, signOutBackstage, pendingUpdatesKey, getBackstageVideos, getBackstageVideoUrl, type BackstageSession, type BackstageVideo } from "../lib/backstage";
 import "./backstage.css";
-
-const pendingUpdatesKey = "gzone.backstage.pending-updates";
+import BackstageAccount from "../components/BackstageAccount";
 
 export default function BackstagePage() {
   const [session, setSession] = useState<BackstageSession | null>(null);
@@ -33,8 +32,7 @@ export default function BackstagePage() {
     }
     setBusy(true);
     try {
-      if (updates) sessionStorage.setItem(pendingUpdatesKey, "yes");
-      else sessionStorage.removeItem(pendingUpdatesKey);
+      sessionStorage.setItem(pendingUpdatesKey, updates ? "yes" : "no");
       await signInBackstage();
     } catch (cause) {
       setError(cause instanceof BackstageSignInError ? cause.message : "We couldn’t open Google sign-in. Please try again.");
@@ -45,7 +43,7 @@ export default function BackstagePage() {
   async function leave() {
     setBusy(true);
     setError("");
-    try { await signOutBackstage(); setSession(null); }
+    try { await signOutBackstage(); sessionStorage.removeItem(pendingUpdatesKey); setSession(null); }
     catch { setError("Sign-out didn’t finish. Please try again."); }
     finally { setBusy(false); }
   }
@@ -55,12 +53,9 @@ export default function BackstagePage() {
       <Helmet><title>Backstage | The Gzone</title><meta name="description" content="The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." /><link rel="canonical" href="https://www.gzonerapbattle.co.uk/backstage" /></Helmet>
       <div className="backstage-shell">
         {session ? <>
-          <header className="backstage-member-header">
-            <div><h1>WELCOME <em>BACKSTAGE.</em></h1><p>Pull up. Press play. Jay has plenty to say.</p></div>
-            <button className="backstage-secondary" onClick={leave} disabled={busy}><LogOut size={16} /> SIGN OUT</button>
-          </header>
-          {error && <p role="alert" className="backstage-message">{error}</p>}
-          <MembersArea key={session.user.id} session={session} />
+          <BackstageAccount key={session.user.id} session={session} busy={busy} onSignOut={leave} signOutError={error}>
+            <MembersArea session={session} />
+          </BackstageAccount>
         </> : <>
           <section className="backstage-entrance" aria-labelledby="backstage-heading">
             <div className="backstage-hero-copy">
@@ -110,9 +105,6 @@ function PassPreview() {
 }
 
 function MembersArea({ session }: { session: BackstageSession }) {
-  const [emailUpdates, setEmailUpdates] = useState<boolean | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [preferenceMessage, setPreferenceMessage] = useState("");
   const [videos, setVideos] = useState<BackstageVideo[]>([]);
   const [videosLoading, setVideosLoading] = useState(true);
   const [videoError, setVideoError] = useState("");
@@ -123,18 +115,6 @@ function MembersArea({ session }: { session: BackstageSession }) {
 
   useEffect(() => {
     let active = true;
-    async function loadPreference() {
-      try {
-        let optedIn = await getEmailPreference();
-        if (sessionStorage.getItem(pendingUpdatesKey) === "yes") {
-          await saveEmailPreference(true);
-          sessionStorage.removeItem(pendingUpdatesKey);
-          optedIn = true;
-        }
-        if (active) setEmailUpdates(optedIn);
-      } catch { if (active) setPreferenceMessage("Your email preferences couldn’t load. Please refresh to try again."); }
-    }
-    loadPreference();
     getBackstageVideos().then(items => { if (active) setVideos(items); }).catch(() => {
       if (active) setVideoError("The video room couldn’t load. Please refresh to try again.");
     }).finally(() => { if (active) setVideosLoading(false); });
@@ -144,18 +124,6 @@ function MembersArea({ session }: { session: BackstageSession }) {
   useEffect(() => {
     if (playing) playerRef.current?.showModal();
   }, [playing]);
-
-  async function updatePreference() {
-    if (emailUpdates === null) return;
-    setSaving(true);
-    setPreferenceMessage("");
-    try {
-      await saveEmailPreference(!emailUpdates);
-      setEmailUpdates(!emailUpdates);
-      setPreferenceMessage(!emailUpdates ? "You’re on the list. Keep an eye on your inbox." : "You’re unsubscribed. Your Backstage access stays yours.");
-    } catch { setPreferenceMessage("That change didn’t save. Please try again."); }
-    finally { setSaving(false); }
-  }
 
   async function play(video: BackstageVideo, button: HTMLButtonElement) {
     setOpeningVideo(video.id);
@@ -180,17 +148,6 @@ function MembersArea({ session }: { session: BackstageSession }) {
         <div className="backstage-player-viewport"><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=117464134328167&bvid=BV127n76jEXC&cid=42857466864&p=1" title="Jay Reacts - Anbu vs DrizzGB" scrolling="no" frameBorder="0" allowFullScreen /></div>
       </article>
       {videosLoading ? <p role="status" className="backstage-empty">Opening the video room…</p> : videoError ? <p role="alert" className="backstage-message">{videoError}</p> : videos.length ? <div className="backstage-member-video-grid">{videos.map(video => <article className="backstage-member-video" key={video.id}><span className="backstage-section-kicker">MEMBERS’ EXCLUSIVE</span><Clapperboard size={42} /><h3>{video.title}</h3><p>{video.description}</p><button className="backstage-primary" disabled={openingVideo !== null} onClick={event => play(video, event.currentTarget)}>{openingVideo === video.id ? "OPENING…" : "WATCH NOW"}<Play size={16} /></button></article>)}</div> : null}
-    </section>
-    <section className="backstage-mailing backstage-mailing-wide" aria-labelledby="mailing-title">
-      <div className="backstage-mailing-copy">
-        <h2 id="mailing-title">FRESH REACTIONS.<br />FIRST IN YOUR INBOX.</h2>
-      </div>
-      <div className="backstage-mailing-preferences">
-        <span className="backstage-email-status">{emailUpdates === null ? "CHECKING YOUR PREFERENCE…" : emailUpdates ? <><Check size={16} /> YOU’RE IN THE LOOP</> : "WANT THE NEXT DROP?"}</span>
-        <div className="backstage-email-address">{session.user.email}</div>
-        <button className="backstage-primary" disabled={saving || emailUpdates === null} onClick={updatePreference}>{saving ? "SAVING…" : emailUpdates === null ? "LOADING…" : emailUpdates ? "UNSUBSCRIBE FROM EMAILS" : "KEEP ME IN THE LOOP"}{!saving && emailUpdates === false && <ArrowRight size={17} />}</button>
-        {preferenceMessage && <p role="status" className="backstage-preference-message">{preferenceMessage}</p>}
-      </div>
     </section>
     {playing && <dialog ref={playerRef} className="backstage-player" onCancel={event => { event.preventDefault(); closePlayer(); }} onClick={event => { if (event.target === event.currentTarget) closePlayer(); }} aria-labelledby="backstage-player-title"><div className="backstage-player-top"><h2 id="backstage-player-title">{playing.title}</h2><button autoFocus aria-label="Close video" onClick={closePlayer}><X size={24} /></button></div><video src={playing.url} controls autoPlay playsInline onError={() => setVideoError("Playback stopped. Close the player and open the video again.")} />{videoError && <p role="alert">{videoError}</p>}</dialog>}
   </>;

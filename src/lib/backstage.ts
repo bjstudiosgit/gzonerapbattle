@@ -1,5 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
+import { normalizeUsername, validateUsername } from "./backstageUsername";
+
+export const pendingUpdatesKey = "gzone.backstage.pending-updates";
+export type BackstageProfile = { user_id: string; username: string };
+
 export type BackstageSession = { user: { id: string; email?: string } };
 export type BackstageVideo = { id: string; title: string; description: string; storage_path: string };
 
@@ -55,13 +60,13 @@ export async function signOutBackstage(): Promise<void> {
   if (error) throw error;
 }
 
-export async function getEmailPreference(): Promise<boolean> {
+export async function getEmailPreference(): Promise<boolean | null> {
   const session = await getBackstageSession();
   if (!session) throw new Error("Sign in to manage email updates.");
   const { data, error } = await client().from("backstage_email_preferences")
     .select("opted_in").eq("user_id", session.user.id).maybeSingle();
   if (error) throw error;
-  return data?.opted_in ?? false;
+  return data?.opted_in ?? null;
 }
 
 export async function saveEmailPreference(optedIn: boolean): Promise<void> {
@@ -80,4 +85,27 @@ export async function getBackstageVideoUrl(path: string): Promise<string> {
   const { data, error } = await client().storage.from("backstage-videos").createSignedUrl(path, 3600);
   if (error) throw error;
   return data.signedUrl;
+}
+
+export async function getBackstageProfile(): Promise<BackstageProfile | null> {
+  const session = await getBackstageSession();
+  if (!session) throw new Error("Sign in to load your profile.");
+  const { data, error } = await client().from("backstage_profiles")
+    .select("user_id,username").eq("user_id", session.user.id).maybeSingle();
+  if (error) throw error;
+  return data;
+}
+
+export async function saveBackstageUsername(value: string): Promise<BackstageProfile> {
+  const username = normalizeUsername(value);
+  const validationError = validateUsername(username);
+  if (validationError) throw new Error(validationError);
+  const session = await getBackstageSession();
+  if (!session) throw new Error("Please sign in again to save your username.");
+  const { data, error } = await client().from("backstage_profiles")
+    .upsert({ user_id: session.user.id, username }, { onConflict: "user_id" })
+    .select("user_id,username").single();
+  if (error?.code === "23505") throw new Error("That username is already taken. Try another.");
+  if (error) throw new Error("Your username couldn’t be saved. Please try again.");
+  return data;
 }

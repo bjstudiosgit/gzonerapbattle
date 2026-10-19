@@ -1,12 +1,11 @@
 import { motion } from "motion/react";
-import { battles } from "../data/battles";
-import { sortBattlesById } from "../lib/battleUtils";
+import { seasonOneBattles } from "../data/battles";
 
 export default function FeaturedVideo() {
-  const releasedBattles = sortBattlesById(battles.filter((battle) => !battle.isUnreleased && Boolean(battle.videoUrl)))
-    .sort((a, b) => new Date(a.releaseDate || a.date || 0).getTime() - new Date(b.releaseDate || b.date || 0).getTime());
-  const featuredBattle = battles.find((battle) => battle.slug === "royal-rumble-ep2")
-    ?? (releasedBattles.length > 0 ? releasedBattles[releasedBattles.length - 1] : null);
+  const releasedBattles = seasonOneBattles
+    .filter((battle) => !battle.isUnreleased && !battle.isPlaceholder && Boolean(battle.videoUrl))
+    .sort((a, b) => Number(a.episode?.split("x")[1] || 0) - Number(b.episode?.split("x")[1] || 0));
+  const featuredBattle = releasedBattles[releasedBattles.length - 1] ?? null;
   const featuredBattleEmbedSrc = featuredBattle?.videoUrl
     ? featuredBattle.videoUrl.includes("watch?v=")
       ? featuredBattle.videoUrl.replace("watch?v=", "embed/")
