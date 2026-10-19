@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { ArrowRight, ArrowUpRight, Check, Clapperboard, LoaderCircle, LockKeyhole, LogOut, Mail, Play, Ticket, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Clapperboard, LoaderCircle, LockKeyhole, LogOut, Play, Ticket, X } from "lucide-react";
 import { BackstageSignInError, backstageConfigured, getBackstageSession, watchBackstageSession, signInBackstage, signOutBackstage, getEmailPreference, saveEmailPreference, getBackstageVideos, getBackstageVideoUrl, type BackstageSession, type BackstageVideo } from "../lib/backstage";
 import "./backstage.css";
 
@@ -68,7 +68,7 @@ export default function BackstagePage() {
               <div className="backstage-hero-intro">
                 <p className="backstage-entrance-label">THE GZONE MEMBERS’ AREA</p>
                 <h1 id="backstage-heading">BACK<span>STAGE<span className="backstage-period">.</span></span></h1>
-                <p className="backstage-hero-description">More Gzone. Off the stage.<br />Sign in for exclusive videos, behind-the-scenes moments and the reactions you want.</p>
+                <p className="backstage-hero-description">The battle ends. The reactions don’t.<br />Get inside for raw reactions, exclusive footage and Gzone moments you won’t find anywhere else!</p>
               </div>
             </div>
             <div className="backstage-pass-wrap">
@@ -76,20 +76,18 @@ export default function BackstagePage() {
               <div className="backstage-pass" id="backstage-pass" tabIndex={-1}>
                 <div className="backstage-pass-slot" aria-hidden="true" />
                 <div className="backstage-pass-top"><span>Ginga Entertainment Ltd</span><Ticket size={25} /></div>
-                <div className="backstage-pass-label">THIS ONE’S GOT YOUR NAME ON IT.</div>
-                <h2>VIP BACKSTAGE<br />PASS</h2>
+                <h2>ADMIT ONE<br /><span>ADULTS ONLY</span></h2>
                 <button className="backstage-google-button" onClick={enter} disabled={busy || checking || !backstageConfigured}>
                   {busy || checking ? <LoaderCircle size={20} className="backstage-spin" /> : <span className="backstage-google-mark" aria-hidden="true">G</span>}
-                  {checking ? "CHECKING YOUR PASS…" : busy ? "HEADING TO GOOGLE…" : backstageConfigured ? "CONTINUE WITH GOOGLE" : "GOOGLE SIGN-IN · COMING SOON"}
+                  {checking ? "CHECKING YOUR PASS…" : busy ? "HEADING TO GOOGLE…" : backstageConfigured ? "SIGN UP / LOG IN WITH GOOGLE" : "GOOGLE SIGN-IN · COMING SOON"}
                   {!busy && !checking && <ArrowUpRight size={18} />}
                 </button>
-                <MailingArtwork />
+                <PassPreview />
                 <label className="backstage-opt-in"><input type="checkbox" checked={updates} onChange={event => setUpdates(event.target.checked)} /><span>Send me Gzone drops, event news and extras.<small>Optional. Unsubscribe whenever you want.</small></span></label>
                 {error && <p className="backstage-pass-error" role="alert">{error}</p>}
-                <p className="backstage-pass-privacy">Your email stays with the crew.<br />Read our <Link to="/privacy">privacy policy</Link>.</p>
-                <div className="backstage-pass-stub"><div className="backstage-barcode" aria-hidden="true" /><span>ONE ACCOUNT.<br /><strong>ALL THE EXTRAS.</strong></span><LockKeyhole size={20} aria-hidden="true" /></div>
+                <p className="backstage-pass-privacy">You’re in control. Sign in with Google and choose whether to receive emails. Unsubscribe anytime in Backstage — your access stays yours.<br />Read our <Link to="/privacy">privacy policy</Link>.</p>
+                <div className="backstage-pass-stub"><div className="backstage-barcode" aria-hidden="true" /><LockKeyhole size={20} aria-hidden="true" /></div>
               </div>
-              <div className="backstage-pass-caption"><LockKeyhole size={12} /> SIGN IN TO GET BEHIND THE SCENES</div>
             </div>
           </section>
         </>}
@@ -98,8 +96,17 @@ export default function BackstagePage() {
   );
 }
 
-function MailingArtwork() {
-  return <div className="backstage-mail-art" aria-hidden="true"><span className="backstage-mail-route" /><div className="backstage-envelope"><Mail size={57} strokeWidth={1} /><span>STRAIGHT FROM<br /><strong>THE GZONE.</strong></span></div><span className="backstage-mail-stamp">THE<br />INSIDE<br />LINE ↗</span></div>;
+function PassPreview() {
+  return (
+    <div className="backstage-pass-preview">
+      <p>GINGA JAY UNCUT</p>
+      <ul>
+        <li><Play size={15} aria-hidden="true" /><span>Raw reactions</span></li>
+        <li><Clapperboard size={15} aria-hidden="true" /><span>Exclusive videos</span></li>
+        <li><Ticket size={15} aria-hidden="true" /><span>Behind the scenes</span></li>
+      </ul>
+    </div>
+  );
 }
 
 function MembersArea({ session }: { session: BackstageSession }) {
@@ -177,13 +184,11 @@ function MembersArea({ session }: { session: BackstageSession }) {
     <section className="backstage-mailing backstage-mailing-wide" aria-labelledby="mailing-title">
       <div className="backstage-mailing-copy">
         <h2 id="mailing-title">FRESH REACTIONS.<br />FIRST IN YOUR INBOX.</h2>
-        <p>Another battle. Another reaction. Get the nod when a new video lands, plus event news and extras from the Gzone.</p>
       </div>
       <div className="backstage-mailing-preferences">
         <span className="backstage-email-status">{emailUpdates === null ? "CHECKING YOUR PREFERENCE…" : emailUpdates ? <><Check size={16} /> YOU’RE IN THE LOOP</> : "WANT THE NEXT DROP?"}</span>
         <div className="backstage-email-address">{session.user.email}</div>
         <button className="backstage-primary" disabled={saving || emailUpdates === null} onClick={updatePreference}>{saving ? "SAVING…" : emailUpdates === null ? "LOADING…" : emailUpdates ? "UNSUBSCRIBE FROM EMAILS" : "KEEP ME IN THE LOOP"}{!saving && emailUpdates === false && <ArrowRight size={17} />}</button>
-        <p className="backstage-small">{emailUpdates ? "Updates are on. Leave the list whenever you like." : "Your inbox, your call. Backstage access stays yours."}</p>
         {preferenceMessage && <p role="status" className="backstage-preference-message">{preferenceMessage}</p>}
       </div>
     </section>
