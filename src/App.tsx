@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, useParams, Navigat
 import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
 import GlobalDisclaimer from "./components/GlobalDisclaimer";
+import BackstagePromo from "./components/BackstagePromo";
 
 const Footer = lazy(() => import("./components/Footer"));
 const ArenaAtmosphere = lazy(() => import("./components/ArenaAtmosphere"));
@@ -101,6 +102,7 @@ function Home() {
       </div>
       <FeaturedVideo />
       <UpcomingEventLanding />
+      <BackstagePromo />
       <section className="relative w-full overflow-hidden pt-6 pb-16 sm:pt-10 md:pb-24">
         <div className="relative z-20 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6">
           <div className="mb-8">
