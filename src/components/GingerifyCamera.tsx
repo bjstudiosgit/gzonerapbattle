@@ -310,26 +310,21 @@ export default function GingerifyCamera() {
   };
 
   return (
-    <div className="min-h-0 rounded-xl bg-[#0a0a0a] text-white font-sans flex flex-col items-center justify-center p-4 overflow-hidden">
+    <div className="min-h-0 rounded-xl bg-[#0a0a0a] text-white font-sans flex flex-col items-center justify-center p-1 md:p-4 overflow-hidden">
       {/* Top Bar */}
-      <div className="w-full max-w-4xl mb-6 flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-0 px-6 py-4 bg-zinc-900/40 backdrop-blur-md rounded-2xl border border-white/5 shadow-xl">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <h1 className="text-3xl font-black tracking-tighter uppercase italic text-white/90 flex items-center gap-3">
-            <span className="text-[36px] leading-none text-orange-500 flex-shrink-0">G</span>
+      <div className="w-full max-w-4xl mb-3 md:mb-6 flex flex-row items-center md:items-end justify-between gap-2 px-3 md:px-6 py-3 md:py-4 bg-zinc-900/40 backdrop-blur-md rounded-2xl border border-white/5 shadow-xl">
+        <div className="flex flex-col items-start text-left min-w-0">
+          <h1 className="text-lg sm:text-3xl font-black tracking-tighter uppercase italic text-white/90 flex items-center gap-2 md:gap-3">
+            <span className="text-2xl md:text-[36px] leading-none text-orange-500 flex-shrink-0">G</span>
             Fifty Shades of Jay
           </h1>
         </div>
 
-        <div className="flex gap-3 mb-1">
-          <div className="px-3 py-1.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full font-mono text-[9px] uppercase tracking-wider flex items-center gap-2">
-            <div className={`w-1.5 h-1.5 rounded-full ${isWebcamStarted ? 'bg-orange-500 animate-pulse' : 'bg-red-500'}`} />
-            <span className={isWebcamStarted ? 'text-orange-400' : 'text-red-400'}>Ginga Cam</span>
-          </div>
-        </div>
+
       </div>
 
       {/* Main Viewport */}
-      <div className="relative w-full max-w-4xl aspect-video bg-[#151619] rounded-2xl border border-white/5 shadow-2xl overflow-hidden group">
+      <div className="relative w-full max-w-4xl aspect-[4/3] sm:aspect-video bg-[#151619] rounded-2xl border border-white/5 shadow-2xl overflow-hidden group">
         <video
           ref={videoRef}
           className="hidden"
@@ -346,11 +341,11 @@ export default function GingerifyCamera() {
 
         {/* System State Overlay */}
         {(!isWebcamStarted && !error) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-sm z-20 gap-12">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-sm z-20 gap-4 md:gap-12 p-3">
             {!isLoading && (
               <button
                 onClick={startWebcam}
-                className="group relative px-10 py-4 bg-white text-black rounded-full font-black uppercase italic tracking-tighter text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                className="group relative px-6 md:px-10 py-3 md:py-4 bg-white text-black rounded-full font-black uppercase italic tracking-tighter text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
               >
                 <Camera className="w-6 h-6" />
                 Start camera
@@ -358,7 +353,7 @@ export default function GingerifyCamera() {
             )}
 
             <div className="flex flex-col items-center">
-              <RefreshCw className={`w-12 h-12 text-orange-400 mb-4 ${isLoading ? 'animate-spin' : 'opacity-20'}`} />
+              <RefreshCw className={`w-7 h-7 md:w-12 md:h-12 text-orange-400 mb-2 md:mb-4 ${isLoading ? 'animate-spin' : 'opacity-20'}`} />
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-orange-400/60">
                 {isLoading ? 'Initializing AI Models...' : 'Awaiting Camera Feed...'}
               </p>
@@ -384,16 +379,16 @@ export default function GingerifyCamera() {
       </div>
 
       {/* Control Panel */}
-      <div className="mt-8 w-full max-w-4xl bg-[#151619] border border-white/10 rounded-3xl p-6 shadow-2xl relative">
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-orange-500 text-black font-mono text-[10px] font-bold uppercase tracking-widest rounded-full">
+      <div className="mt-4 md:mt-8 w-full max-w-4xl bg-[#151619] border border-white/10 rounded-2xl md:rounded-3xl p-3 md:p-6 shadow-2xl relative">
+        <div className="hidden md:block absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-orange-500 text-black font-mono text-[10px] font-bold uppercase tracking-widest rounded-full">
           Fifty Shades of Jay
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 px-2">
-          <span className="text-xs font-mono text-white/50 uppercase tracking-widest">Hair Palette</span>
+        <div className="flex flex-row justify-between items-center mb-3 md:mb-6 gap-2 px-1">
+          <div className="min-w-0"><span className="text-[10px] md:text-xs font-mono text-white/50 uppercase tracking-widest">Hair Palette</span><p className="text-xs text-orange-300 truncate" aria-live="polite">{COLORS.find(color => color.value === selectedColor)?.name}</p></div>
           <button
             onClick={() => setIsPaleSkinEnabled(!isPaleSkinEnabled)}
-            className={`px-4 py-2 rounded-full font-mono text-[10px] uppercase tracking-widest border transition-all flex items-center gap-2 ${
+            className={`shrink-0 px-3 md:px-4 min-h-11 py-2 rounded-full font-mono text-[10px] uppercase tracking-widest border transition-all flex items-center gap-2 ${
               isPaleSkinEnabled
                 ? 'bg-orange-500 text-black border-orange-500 shadow-[0_0_15px_rgba(255,120,0,0.4)]'
                 : 'bg-black text-white/50 border-white/20 hover:border-orange-500/50 hover:text-orange-400'
@@ -404,10 +399,12 @@ export default function GingerifyCamera() {
           </button>
         </div>
 
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-x-2 gap-y-6 max-h-60 overflow-y-auto p-2 custom-scrollbar">
+        <div className="grid grid-flow-col grid-rows-2 auto-cols-[64px] sm:grid-flow-row sm:grid-rows-none sm:auto-cols-auto sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-x-2 gap-y-4 sm:gap-y-6 sm:max-h-60 overflow-x-auto sm:overflow-x-hidden sm:overflow-y-auto p-2 pb-4 custom-scrollbar">
           {COLORS.map((color) => (
             <button
               key={color.name}
+              aria-label={color.name}
+              aria-pressed={selectedColor === color.value}
               onClick={() => setSelectedColor(color.value)}
               className={`group relative flex flex-col items-center gap-2 transition-all ${
                 selectedColor === color.value ? 'scale-110' : 'opacity-60 hover:opacity-100'
@@ -435,7 +432,7 @@ export default function GingerifyCamera() {
       </div>
 
       {/* Footer Info */}
-      <div className="mt-12 flex gap-8 text-[10px] font-mono uppercase tracking-[0.2em] text-white/20">
+      <div className="mt-4 md:mt-12 flex flex-wrap justify-center gap-2 md:gap-8 text-[10px] font-mono uppercase tracking-[0.2em] text-white/20">
         <div className="flex items-center gap-2">
           <span className="text-white/40">Model:</span> Hair Segmenter v1.0
         </div>

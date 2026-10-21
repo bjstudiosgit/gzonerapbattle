@@ -18,7 +18,6 @@ export default function BackstagePromo() {
           <p className="mt-3 text-[11px] text-[#583016]">Sign in with Google · Adults only</p>
         </div>
         <div className="relative min-h-64 md:min-h-full overflow-hidden bg-[#21170f]">
-          <span className="absolute top-7 right-7 z-10 text-[10px] font-black tracking-[0.2em] text-orange-300 border border-orange-300/30 rounded-full px-4 py-2">GINGA JAY UNCUT</span>
           <img src="/portraits/ginga-jay-updated-2026.png" alt="Ginga Jay" loading="lazy" width={1320} height={1191} className="absolute inset-0 w-full h-full object-cover object-top opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#21170f] via-transparent to-[#21170f]/20" />
           <p className="absolute bottom-7 left-7 right-7 font-display text-5xl lg:text-6xl text-[#fff2dc] uppercase leading-none">Same Gzone.<br /><span className="text-orange-400">Less filter.</span></p>
