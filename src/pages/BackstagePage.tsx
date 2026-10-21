@@ -6,6 +6,7 @@ import { BackstageSignInError, backstageConfigured, getBackstageSession, watchBa
 import "./backstage.css";
 import BackstageAccount from "../components/BackstageAccount";
 import GingahooChat from "../components/GingahooChat";
+import BackstageGingerify from "../components/BackstageGingerify";
 
 export default function BackstagePage() {
   const [session, setSession] = useState<BackstageSession | null>(null);
@@ -142,6 +143,7 @@ function MembersArea({ session, username }: { session: BackstageSession; usernam
   }
 
   return <>
+    <BackstageGingerify />
     <section className="backstage-member-videos" aria-labelledby="member-videos-title">
       <div className="backstage-section-heading"><div><h2 id="member-videos-title">Ginga Reactions</h2></div></div>
       <article className="backstage-reaction" aria-labelledby="reaction-title">

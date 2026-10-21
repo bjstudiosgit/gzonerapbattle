@@ -2,7 +2,8 @@
 .gingahoo { margin:32px 0 40px; overflow:hidden; border:1px solid #19140f30; border-radius:6px; background:#fffaf2; color:#19140f; box-shadow:0 14px 36px #622e1314; }
 .gingahoo-header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:27px 30px 22px; border-bottom:1px solid #19140f20; }
 .gingahoo-header h2 { font-family:var(--font-display); font-size:44px; font-weight:400; line-height:1; margin-top:0; }
-.gingahoo-header h2>span { color:#ef7824; }
+.gingahoo-header h2 .gingahoo-ginga { color:#bc4e12; background:linear-gradient(135deg,#ed862b,#a63c0a); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.gingahoo-header h2 .gingahoo-dot { color:#ed862b; }
 .gingahoo-connection { display:flex; align-items:center; gap:8px; font-size:9px; letter-spacing:1.3px; font-weight:800; color:#766453; white-space:nowrap; }
 .gingahoo-connection i { width:7px; height:7px; border-radius:50%; background:#a4917c; }
 .gingahoo-connection.is-live { color:#32633a; }

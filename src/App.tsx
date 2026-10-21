@@ -39,6 +39,7 @@ const BattleDetail = lazy(() => import("./pages/BattleDetail"));
 const LostProperty = lazy(() => import("./components/LostProperty"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const BackstagePage = lazy(() => import("./pages/BackstagePage"));
+const GingerifyPage = lazy(() => import("./pages/GingerifyPage"));
 const VotePage = lazy(() => import("./pages/VotePage"));
 const VoteLivePage = lazy(() => import("./pages/VoteLivePage"));
 const Outside = lazy(() => import("./pages/Outside"));
@@ -207,6 +208,7 @@ function Main() {
           <Route path="/lost-property" element={<LostProperty />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/backstage" element={<BackstagePage />} />
+          <Route path="/backstage/gingerify" element={<GingerifyPage />} />
           <Route path="/backstage/settings" element={<BackstagePage />} />
           <Route path="/backstage/voting" element={<VotePage />} />
           <Route path="/vote" element={<LegacyVoteRedirect />} />

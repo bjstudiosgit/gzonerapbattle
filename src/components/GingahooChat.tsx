@@ -95,7 +95,7 @@ export default function GingahooChat({ username }: { username: string }) {
 
   return <section className="gingahoo" aria-labelledby="gingahoo-title">
     <header className="gingahoo-header">
-      <div><h2 id="gingahoo-title">GINGAHOO<span>.</span></h2></div>
+      <div><h2 id="gingahoo-title"><span className="gingahoo-ginga">GINGA</span>HOO<span className="gingahoo-dot">.</span></h2></div>
       <span className={connected ? "gingahoo-connection is-live" : "gingahoo-connection"} role="status"><i aria-hidden="true" />{connected ? "LIVE CHAT" : "CONNECTING…"}</span>
     </header>
     <div className="gingahoo-room-line"><MessageSquare size={17} aria-hidden="true" /><p>Watched it? Have your say.</p></div>

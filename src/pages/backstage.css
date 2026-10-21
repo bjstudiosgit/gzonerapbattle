@@ -266,3 +266,29 @@
 .backstage-pass-preview ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
 .backstage-pass-preview li { display:flex; align-items:center; gap:10px; color:#24170f; font-size:12px; font-weight:700; }
 .backstage-pass-preview li svg { color:#c45a0d; flex-shrink:0; }
+/* Ginga Cam invitation */
+.gingerify-card { display:grid; grid-template-columns:230px 1fr; margin:0 0 32px; overflow:hidden; border:1px solid #19140f30; border-radius:12px; background:#f4eee2; color:#24170f; box-shadow:0 12px 30px #622e1315; }
+.gingerify-card-art { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:30px 20px; background:radial-gradient(circle at 50% 45%,#773a1d,transparent 72%),#21170f; color:#ff9b48; }
+.gingerify-card-live { display:flex; align-items:center; gap:7px; font-size:9px; font-weight:900; letter-spacing:2px; }
+.gingerify-card-live i { width:6px; height:6px; border-radius:50%; background:#ff9b48; box-shadow:0 0 12px #ff9b4880; }
+.gingerify-card-swatches { display:flex; padding-left:6px; }
+.gingerify-card-swatches i { width:27px; height:27px; border-radius:50%; border:2px solid #21170f; margin-left:-6px; }
+.gingerify-card-art-caption { font-size:8px; font-weight:800; letter-spacing:2px; color:#dfb995; }
+.gingerify-card-copy { padding:32px 36px; }
+.gingerify-card-kicker { display:block; font-size:9px; font-weight:900; letter-spacing:1.7px; color:#945022; margin-bottom:12px; }
+.gingerify-card-copy h3 { font-family:var(--font-display); font-size:clamp(34px,4vw,52px); line-height:1; margin:0 0 14px; }
+.gingerify-card-copy h3 em { color:#bc4e12; font-style:normal; }
+.gingerify-card-copy>p { font-size:14px; line-height:1.7; color:#675341; margin:0; }
+.gingerify-card-bottom { display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:24px; }
+.gingerify-card-button { order:2; margin-left:auto; display:inline-flex; align-items:center; justify-content:center; gap:20px; background:#24170f; color:#fff1df; padding:16px 22px; border-radius:5px; font-size:10px; font-weight:900; letter-spacing:1px; transition:background .2s,transform .2s; }
+.gingerify-card-button:hover { background:#a84410; transform:translateY(-2px); }
+.gingerify-card-privacy { display:flex; align-items:center; gap:9px; color:#776553; font-size:10px; line-height:1.6; }
+.gingerify-card-privacy svg { flex-shrink:0; color:#9a6b44; }
+@media(max-width:640px) {
+  .gingerify-card { grid-template-columns:1fr; }
+  .gingerify-card-art { flex-direction:row; flex-wrap:wrap; gap:18px; padding:22px; }
+  .gingerify-card-art>svg { width:38px; height:38px; }
+  .gingerify-card-art-caption { display:none; }
+  .gingerify-card-copy { padding:26px 24px; }
+  .gingerify-card-bottom { gap:18px; }
+}
