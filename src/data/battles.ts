@@ -558,11 +558,18 @@ export const battles: Battle[] = [
     "mc2": "kime",
     "title": "Tymeless vs K.I.M.E",
     "date": "26 Sep 2026",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/JYLCFI0nYuU",
     "winner": "tymeless",
     "resultLabel": "Official Result",
-    "isUnreleased": true,
+    "isUnreleased": false,
     "isPlaceholder": false,
     "episode": "1x29",
+    "props": [
+      { "name": "Fake moustache", "user": "Tymeless", "icon": "🥸" },
+      { "name": "Lime", "user": "Tymeless", "icon": "🍋‍🟩" },
+      { "name": "Flip Board Paper", "user": "Tymeless", "icon": "📋" },
+      { "name": "Baby shoes", "user": "Tymeless", "icon": "👟" }
+    ],
     "flyer": "/flyers/september-26-2026-tymeless-vs-kime.jpg",
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
   },
