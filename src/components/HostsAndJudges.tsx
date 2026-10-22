@@ -20,7 +20,7 @@ export type StaffCardPerson = {
   instagram?: string;
 };
 
-export function StaffCard({ person, index, plainRole = false }: { person: StaffCardPerson; index: number; plainRole?: boolean }) {
+export function StaffCard({ person, index, plainRole = false, hideRole = false }: { person: StaffCardPerson; index: number; plainRole?: boolean; hideRole?: boolean }) {
   const image = portraitImage(person.listImage || person.image, "card");
 
   const card = (
@@ -43,9 +43,9 @@ export function StaffCard({ person, index, plainRole = false }: { person: StaffC
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
-        <span className={plainRole ? "mb-2 inline-block text-xs font-black uppercase tracking-[0.2em] text-brand" : "mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black"}>
+        {!hideRole && <span className={plainRole ? "mb-2 inline-block text-xs font-black uppercase tracking-[0.2em] text-brand" : "mb-2 inline-block rounded bg-brand px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-black"}>
           {person.role}
-        </span>
+        </span>}
         <h4 className={`font-display uppercase leading-none text-white transition-colors group-hover:text-brand ${(person.id === "louis-bowers" || person.role === "Celebrity Guest") ? "text-xl" : "truncate text-2xl"}`}>
           {person.name}
         </h4>

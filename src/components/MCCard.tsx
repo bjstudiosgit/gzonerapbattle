@@ -11,13 +11,15 @@ interface MCCardProps {
   index?: number;
   rank?: number;
   points?: number;
+  wins?: number;
+  losses?: number;
   isRapper?: boolean;
 }
 
-export default function MCCard({ mc, index = 0, rank = 0, points = 0, isRapper = false }: MCCardProps) {
+export default function MCCard({ mc, index = 0, rank = 0, points = 0, wins = mc.wins, losses = mc.losses, isRapper = false }: MCCardProps) {
   const isWasted = mc.isActive === false;
 
-  const starCount = getRankStars(rank);
+  const starCount = Math.max(getRankStars(rank), wins > 0 ? 1 : 0);
 
   // 3D Tilt Logic
   const x = useMotionValue(0);
@@ -107,10 +109,10 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0, isRapper =
         {/* Content Bottom */}
         <div className="absolute bottom-0 left-0 right-0 z-20 p-4 flex flex-col justify-end">
           <div className="mb-1">
-            {starCount > 0 && !isWasted && (
-              <div className="flex items-center gap-0.5 mb-2">
-                {[...Array(starCount)].map((_, i) => (
-                  <Star key={i} size={10} className="text-yellow-500 fill-yellow-500 animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />
+            {rank > 0 && !isWasted && (
+              <div className="flex items-center gap-0.5 mb-2" aria-label={`${starCount} of 5 League stars`}>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={10} className={i < starCount ? "text-yellow-500 fill-yellow-500 animate-pulse" : "text-zinc-600"} style={i < starCount ? { animationDelay: `${i * 150}ms` } : undefined} />
                 ))}
               </div>
             )}
@@ -122,7 +124,7 @@ export default function MCCard({ mc, index = 0, rank = 0, points = 0, isRapper =
               <p className="mt-1 text-brand font-bold text-[10px] uppercase tracking-[0.2em]">Rapper</p>
             ) : (
               <div className="flex items-center gap-2 mt-1">
-                <p className="text-brand font-bold text-[10px] tracking-[0.2em]">{mc.wins}W - {mc.losses}L</p>
+                <p className="text-brand font-bold text-[10px] tracking-[0.2em]">{wins}W - {losses}L</p>
                 {mc.location && <span className="w-1 h-1 rounded-full bg-zinc-600" />}
                 {mc.location && <p className="text-zinc-400 font-bold text-[10px] tracking-[0.2em] truncate">{mc.location}</p>}
               </div>

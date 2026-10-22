@@ -37,6 +37,12 @@ export default function MCsPage() {
     return rankings.find(r => r.id === mcId)?.totalScore || 0;
   };
 
+  const getRank = (mcId: string) => {
+    return rankings.find(r => r.id === mcId)?.rank || 0;
+  };
+
+  const getRecord = (mcId: string) => rankings.find(r => r.id === mcId);
+
   return (
     <div className="pt-32 lg:pt-44 pb-16 lg:pb-24 min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none z-0" />
@@ -68,7 +74,7 @@ export default function MCsPage() {
         <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
             {rosterMcs.map((mc, index) => (
-              <MCCard key={mc.id} mc={mc} index={index} rank={index + 1} points={getPoints(mc.id)} />
+              <MCCard key={mc.id} mc={mc} index={index} rank={getRank(mc.id)} points={getPoints(mc.id)} wins={getRecord(mc.id)?.wins ?? mc.wins} losses={getRecord(mc.id)?.losses ?? mc.losses} />
             ))}
             {[...otherMcs, ...guestRappers].map((mc, index) => (
               <MCCard key={mc.id} mc={mc} index={rosterMcs.length + index} isRapper />
@@ -91,7 +97,7 @@ export default function MCsPage() {
             <h2 id="celebrity-guests-heading" className="mb-8 font-display text-4xl uppercase text-white md:text-6xl">Celebrity Guests</h2>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-5">
               {celebrityGuests.map((person, index) => (
-                <StaffCard key={person.id} person={{ ...person, type: "judges" }} index={index} />
+                <StaffCard key={person.id} person={{ ...person, type: "judges" }} index={index} hideRole />
               ))}
             </div>
           </section>

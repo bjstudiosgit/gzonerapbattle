@@ -166,18 +166,11 @@ export default function BattleDetail() {
                 {battle.title}
               </h1>
 
-              {(battle.isUnreleased || battle.isMainEvent) && (
+              {battle.isUnreleased && (
                 <div className="flex justify-center gap-4 mb-8">
-                  {battle.isMainEvent && (
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand text-black font-black uppercase tracking-[0.2em] text-xs shadow-[0_0_20px_rgba(242,125,38,0.4)]">
-                      Main Event
-                    </div>
-                  )}
-                  {battle.isUnreleased && (
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                      <Clock size={16} /> {isUpcoming ? (battle.ticketsOnSaleSoon ? "Tickets on sale soon" : "Upcoming Battle") : "Unreleased Battle"}
-                    </div>
-                  )}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
+                    <Clock size={16} /> {isUpcoming ? (battle.ticketsOnSaleSoon ? "Tickets on sale soon" : "Upcoming Battle") : "Unreleased Battle"}
+                  </div>
                 </div>
               )}
 
@@ -336,20 +329,7 @@ export default function BattleDetail() {
                 </div>
               </section>
             ) : !isUpcoming && battle.league !== "royal-rumble" ? (
-              <section className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5 lg:min-h-[320px]">
-                <div className="text-center mb-6 md:mb-8">
-                  <h2 className="text-2xl font-display uppercase text-white">Battle Result</h2>
-                  <p className="text-zinc-400 text-sm mt-2 tracking-widest">
-                    {battle.winner
-                      ? battle.resultLabel || (battle.slug === 'deeno-vs-afrodon'
-                        ? "GZone Crowd Decision"
-                        : battle.slug === 'zk-vs-cj-zino'
-                          ? "Official Audience Decision"
-                          : "Official Judges' Decision")
-                      : "Awaiting Decision"}
-                  </p>
-                </div>
-
+              <section aria-label="Battle result" className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5">
                 <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
                   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
                     VS

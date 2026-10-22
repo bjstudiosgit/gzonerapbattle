@@ -138,17 +138,6 @@ const events = [
     ]
   },
   {
-    id: 7,
-    title: "G ZONE: STREET EDITION",
-    date: "Dates to be confirmed",
-    location: "The Streets",
-    price: "APPLICATIONS OPEN",
-    image: defaultEventImage,
-    video: "/streetpromo.mp4",
-    description: "Gzone is coming to Manchester to find street-ready battle rappers. The best performers from Street Edition will earn spots in Gzone Season 2.",
-    applyLink: "/apply"
-  },
-  {
     id: 10,
     title: "G ZONE: 26TH SEPTEMBER",
     date: "26th September 2026",
@@ -219,16 +208,7 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
       }`}
     >
       <div className={isFlyerImage && !isCompleted ? "relative aspect-[3/4] overflow-hidden" : "relative h-44 overflow-hidden md:h-64"}>
-        {"video" in event ? (
-          <video
-            src={event.video}
-            className="h-full w-full object-cover opacity-80 transition-transform duration-[1.5s] group-hover:scale-105"
-            autoPlay
-            controls
-            loop
-            playsInline
-          />
-        ) : images && images.length > 1 ? (
+        {images && images.length > 1 ? (
           <>
             {images.map((imgSrc, imgIdx) => {
               const isCurrent = imgIdx === imageIndex;

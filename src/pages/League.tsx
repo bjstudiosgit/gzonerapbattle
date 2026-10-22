@@ -162,10 +162,10 @@ export default function League() {
                 </div>
 
                 <div className="relative z-10 text-center">
-                  {/* MOST WANTED badge for the #1 Champion */}
-                  {mc.rank === 1 && (
+                  {/* MOST WANTED badge for every starred rank, matching the MC table */}
+                  {getRankStars(mc.rank) > 0 && (
                     <div className="absolute top-1/2 left-1/2 z-30 w-max -translate-x-1/2 -translate-y-1/2 scale-[0.62] pointer-events-none md:scale-90">
-                      <div className="transform -rotate-12 border-4 border-red-600 bg-black/45 px-5 py-2 backdrop-blur-sm shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                      <div className="transform -rotate-12 animate-pulse border-4 border-red-600 bg-black/45 px-5 py-2 backdrop-blur-sm shadow-[0_0_30px_rgba(220,38,38,0.3)]">
                         <span className="whitespace-nowrap font-display text-4xl uppercase tracking-[-0.06em] text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)] md:text-5xl">
                           MOST WANTED
                         </span>
