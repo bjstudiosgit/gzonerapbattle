@@ -119,7 +119,7 @@ export default function IntroVideo() {
                       <span className="ml-2 text-yellow-400 tracking-[0.12em]">★★★★★</span>
                     </p>
                     <div className="mt-3 h-px w-full max-w-3xl bg-brand/70" />
-                    <p className="mt-4 max-w-3xl text-justify text-sm sm:text-xl leading-relaxed text-zinc-300">
+                    <p className="mt-4 max-w-3xl font-sans font-normal text-justify text-sm sm:text-xl leading-relaxed text-zinc-300">
                       The GZone is a UK battle rap league based at the World Famous Peacocks Gym in Canning Town, bringing hungry newcomers and established MCs together for live, uncensored clashes. Hosted by Ginga Jay and Darren &quot;The Dentist&quot; Stewart, with Passive as co-host and Flex FM&apos;s Most Wanted 2 as official DJs, GZone combines battle rap, live entertainment and UK underground culture in one high-pressure arena.
                     </p>
                   </div>
@@ -128,28 +128,28 @@ export default function IntroVideo() {
 
                   <div className="mb-12 grid w-full max-w-3xl grid-cols-3 sm:grid-cols-6">
                     <div className="px-2 py-2 text-center sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">20.0K</div>
+                      <div className="font-display text-xl sm:text-3xl text-brand">21.6K</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Subscribers</div>
                     </div>
                     <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">
                       <div className="font-display text-xl sm:text-3xl text-brand">{totalViewsStr}+</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Total Views</div>
                     </div>
-                    <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">{mcs.length}</div>
-                      <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Pro MCs</div>
-                    </div>
                     <div className="border-t border-white/15 px-2 py-2 text-center sm:border-l sm:border-t-0 sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">1</div>
-                      <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Season</div>
-                    </div>
-                    <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
                       <div className="font-display text-xl sm:text-3xl text-brand">{releasedEpisodeCount}</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Episodes</div>
                     </div>
                     <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
+                      <div className="font-display text-xl sm:text-3xl text-brand">8</div>
+                      <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Freestyles</div>
+                    </div>
+                    <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
                       <div className="font-display text-xl sm:text-3xl text-brand">{releasedRoyalRumbleCount}</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-normal sm:tracking-[0.12em] text-white">Royal Rumbles</div>
+                    </div>
+                    <div className="border-l border-t border-white/15 px-2 py-2 text-center sm:border-t-0 sm:py-3">
+                      <div className="font-display text-xl sm:text-3xl text-brand">{mcs.length}</div>
+                      <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Artists</div>
                     </div>
                   </div>
 

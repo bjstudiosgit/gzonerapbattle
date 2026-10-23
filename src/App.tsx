@@ -97,9 +97,6 @@ function Home() {
 
   return (
     <main className={showIntro ? "" : "pt-28 md:pt-32"}>
-      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 py-8 md:py-10">
-        <GlobalDisclaimer />
-      </div>
       <FeaturedVideo />
       <UpcomingEventLanding />
       <BackstagePromo />
@@ -130,6 +127,9 @@ function Home() {
       <MerchSection showShopAll={false} />
       <MCBios />
       <LostPropertyPreview />
+      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 py-8 md:py-10">
+        <GlobalDisclaimer />
+      </div>
     </main>
   );
 }
