@@ -1,0 +1,45 @@
+-- Approved starting price: 99p. No closing date set yet.
+-- Never reprice or reopen an existing auction when this is rerun.
+-- Preserve catalogue prop order: item IDs are used by bids.
+begin;
+insert into public.museum_auctions(item_id,item_name,status,starting_pence,increment_pence) values
+('roman-vs-badee-harz-1', 'Trojan Condom', 'open', 99, 20),
+('tymeless-vs-kime-1', 'Fake moustache', 'open', 99, 20),
+('tymeless-vs-kime-2', 'Lime', 'open', 99, 20),
+('tymeless-vs-kime-3', 'Flip Board Paper', 'open', 99, 20),
+('tymeless-vs-kime-4', 'Baby shoes', 'open', 99, 20),
+('deeno-vs-cj-zino-1', 'A jar of Marmalade', 'open', 99, 20),
+('7wxve-vs-zk-1', 'Pink handbag', 'open', 99, 20),
+('deeno-vs-btizz-1', 'Google Maps screenshot of Btizz''s modest family home', 'open', 99, 20),
+('deeno-vs-btizz-2', 'Mock headstone photograph bearing Btizz’s name', 'open', 99, 20),
+('deeno-vs-btizz-3', 'Adoption papers presented to prove Deeno was going to “father” Btizz', 'open', 99, 20),
+('zk-vs-cj-zino-1', 'Mini football used to demonstrate volleying CJ-Zino', 'open', 99, 20),
+('deeno-vs-tymeless-1', 'Toilet plunger', 'open', 99, 20),
+('deeno-vs-tymeless-2', 'Childhood photo of Deeno', 'open', 99, 20),
+('deeno-vs-tymeless-3', 'Lemon 1', 'open', 99, 20),
+('deeno-vs-tymeless-4', 'Lemon 2', 'open', 99, 20),
+('deeno-vs-tymeless-5', 'Lemon 3', 'open', 99, 20),
+('nattyebk-vs-zk-1', 'Screenshot presented during the clash', 'open', 99, 20),
+('nattyebk-vs-zk-2', 'Photograph of nude male', 'open', 99, 20),
+('deeno-vs-badee-harz-2', 'A bag of ashes', 'open', 99, 20),
+('tapped24-vs-grams-1', 'Screenshot of photo Grams liked on Instagram', 'open', 99, 20),
+('tapped24-vs-grams-2', 'Badees pink panties', 'open', 99, 20),
+('pr1nc3-vs-nattyebk-1', 'Listerine', 'open', 99, 20),
+('pr1nc3-vs-nattyebk-2', 'Luxury Brand Bar of Soap', 'open', 99, 20),
+('pr1nc3-vs-nattyebk-3', 'Salt', 'open', 99, 20),
+('ryno-vs-tymeless-1', 'Alleged photo of Ryno kissing a man', 'open', 99, 20),
+('ryno-vs-tymeless-2', 'A bag of ashes', 'open', 99, 20),
+('ryno-vs-tymeless-3', 'A pair of socks', 'open', 99, 20),
+('ryno-vs-tymeless-4', 'A toothbrush', 'open', 99, 20),
+('ryno-vs-tymeless-5', 'Chicken & Mushroom Pot Noodle', 'open', 99, 20),
+('ryno-vs-tymeless-6', 'A bar of soap', 'open', 99, 20),
+('ryno-vs-tymeless-7', 'A roll of packing tape', 'open', 99, 20),
+('ryno-vs-tymeless-8', 'Keys to a property', 'open', 99, 20),
+('tapped24-vs-ajna-1', 'Pack of baby wipes', 'open', 99, 20),
+('tapped24-vs-roman-1', 'Screenshots of text messages', 'open', 99, 20),
+('tapped24-vs-roman-2', 'Screenshots of text messages', 'open', 99, 20),
+('2mwad-vs-ryno-1', 'NFA Document from Police', 'open', 99, 20),
+('deeno-vs-tapped24-1', 'Screenshots of text messages', 'open', 99, 20),
+('deeno-vs-tapped24-2', 'Document from Police', 'open', 99, 20)
+on conflict (item_id) do nothing;
+commit;

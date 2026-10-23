@@ -16,10 +16,12 @@ const supabase = backstageConfigured ? createClient(projectUrl!, publishableKey!
   auth: { flowType: "pkce", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
 }) : null;
 
-function client() {
+export function backstageClient() {
   if (!supabase) throw new Error("Backstage sign-in is not connected yet.");
   return supabase;
 }
+
+const client = backstageClient;
 
 export async function getBackstageSession(): Promise<BackstageSession | null> {
   if (!supabase) return null;

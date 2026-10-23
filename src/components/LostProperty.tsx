@@ -1,58 +1,147 @@
-import { battles } from "../data/battles";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ArrowRight, X, Gavel, UserRound, RefreshCw, Check, ExternalLink } from 'lucide-react';
+import { Helmet } from 'react-helmet';
+import { museumItems, type MuseumItem } from '../data/museum';
+import { getBackstageSession, watchBackstageSession, type BackstageSession } from '../lib/backstage';
+import { auctionOpen, getMuseumAuctions, minimumBid, money, placeMuseumBid, rememberMuseumItem, type MuseumAuction } from '../lib/museumAuctions';
+import MuseumArt from './MuseumArt';
+import './museum.css';
+
+const restricted = (item: MuseumItem) => /\bcrack\b/i.test(item.name);
+const dateLabel = (date: string) => new Date(date).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' });
 
 export default function LostProperty() {
-  // Collect all props
-  const allProps: any[] = [];
+  const [params, setParams] = useSearchParams();
+  const selected = museumItems.find(item => item.id === params.get('item'));
+  const [session, setSession] = useState<BackstageSession | null>(null);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [authError, setAuthError] = useState('');
+  const [auctions, setAuctions] = useState<MuseumAuction[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
+  const [retry, setRetry] = useState(0);
+  const [now, setNow] = useState(Date.now());
+  const offset = useRef(0);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
 
-  battles.forEach(battle => {
-    if (battle.props && battle.props.length > 0) {
-      battle.props.forEach(prop => {
-        allProps.push({
-          ...prop,
-          battleTitle: battle.title,
-          battleDate: battle.date
-        });
-      });
+  useEffect(() => {
+    let active = true;
+    const apply = (next: BackstageSession | null) => { if (active) { setSession(next); setAuthChecking(false); setAuthError(''); } };
+    const stop = watchBackstageSession(apply);
+    getBackstageSession().then(apply).catch(() => { if (active) { setAuthChecking(false); setAuthError('We couldn’t check your membership. Refresh the page to try again.'); } });
+    return () => { active = false; stop(); };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    let inFlight = false;
+    setLoading(true);
+    setAuctions([]);
+    async function refresh() {
+      if (inFlight || document.hidden) return;
+      inFlight = true;
+      try {
+        const next = await getMuseumAuctions();
+        if (active) {
+          if (next[0]) offset.current = Date.parse(next[0].server_time) - Date.now();
+          setNow(Date.now() + offset.current); setAuctions(next); setLoadError('');
+        }
+      } catch (cause) { if (active) setLoadError(cause instanceof Error ? cause.message : 'Bids couldn’t load.'); }
+      finally { inFlight = false; if (active) setLoading(false); }
     }
-  });
+    void refresh();
+    const interval = window.setInterval(refresh, 15000);
+    const tick = window.setInterval(() => setNow(Date.now() + offset.current), 1000);
+    document.addEventListener('visibilitychange', refresh);
+    return () => { active = false; window.clearInterval(interval); window.clearInterval(tick); document.removeEventListener('visibilitychange', refresh); };
+  }, [session?.user.id, retry]);
 
-  if (allProps.length === 0) return null;
+  useEffect(() => {
+    if (selected && !dialog.current?.open) dialog.current?.showModal();
+    if (!selected && dialog.current?.open) dialog.current?.close();
+    if (!selected) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; opener.current?.focus(); };
+  }, [selected?.id]);
 
-  return (
-    <section className="py-16 pt-32 bg-zinc-900/30 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-display uppercase text-white mb-12">
-          Gzone Museum
-        </h2>
-        
-        <div className="mb-12">
-          <h3 className="text-2xl font-display uppercase text-brand mb-6">Season 1 "Most Wanted"</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {allProps.map((prop, index) => {
-              const isMetCollected = String(prop.name).toLowerCase().includes("0.1 gram of crack");
+  const close = useCallback(() => setParams(current => { const next = new URLSearchParams(current); next.delete('item'); return next; }, { preventScrollReset: true }), [setParams]);
+  function open(item: MuseumItem, button: HTMLElement) {
+    opener.current = button;
+    setParams({ item: item.id }, { preventScrollReset: true });
+  }
+  const activeAuction = auctions.find(auction => auction.item_id === selected?.id);
+  return <main className="gbay-page">
+    <Helmet><title>gingaBay — Gzone Museum BETA | The Gzone</title><meta name="description" content="The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." /></Helmet>
+    <div className="gbay-shell">
+      <header className="gbay-header">
+        <div className="gbay-brand"><h1>ginga<span>Bay</span><span className="gbay-dot">.</span></h1><span className="gbay-beta">BETA</span></div>
+        <div className="gbay-intro"><h2>THEY BROUGHT THE PROPS.<br />YOU BRING THE BIDS.</h2><p>Welcome to gingaBay — bid on the props used in Gzone battles. Fancy Tymeless’s fake moustache? Get involved from <strong>99p</strong>, with bids going up just <strong>20p</strong> at a time. Sign in, pick your prop and give your mates something to bid against.</p></div>
+      </header>
+      <div className="gbay-members-strip"><Gavel size={19} /><p>{session ? 'Your bids are saved to your Gzone account.' : 'Anyone can browse. Gzone members can bid.'}</p><Link to="/backstage/settings">{session ? 'View my bids' : 'Sign in / join Gzone'} <ArrowRight size={15} /></Link></div>
+      <section aria-labelledby="gbay-items-title" className="gbay-catalogue">
+        <div className="gbay-section-title"><h2 id="gbay-items-title">FROM THE BATTLES</h2><span>{museumItems.length} props · Season 1</span></div>
+        <p className="gbay-photo-note">Illustrations shown where item photographs are not yet available. Open an item for bidding and collection details.</p>
+        {loadError && <div className="gbay-notice" role="status"><span>Live bidding is unavailable right now. You can still explore the museum.</span><button onClick={() => setRetry(value => value + 1)}><RefreshCw size={14} /> Retry</button></div>}
+        <div className="gbay-grid">{museumItems.map(item => {
+          const auction = auctions.find(entry => entry.item_id === item.id);
+          const openNow = !restricted(item) && auctionOpen(auction, now);
+          return <button key={item.id} className="gbay-item" onClick={event => open(item, event.currentTarget)} aria-label={`View ${item.name}${openNow ? ' and bid' : ''}`}>
+            <MuseumArt item={item} photo={auction?.image_url} />
+            <div className="gbay-item-meta"><span>LOT {item.number}</span><span className={openNow ? 'gbay-open' : ''}>{restricted(item) ? 'Archive only' : loading ? 'Loading bids…' : loadError ? 'Bids unavailable' : openNow ? 'Bidding open' : auction?.status === 'cancelled' ? 'Withdrawn' : auction ? 'Bidding closed' : 'Opening soon'}</span></div>
+            <h3>{item.name}</h3><p className="gbay-owner">Used by <strong>{item.user}</strong></p><p className="gbay-battle">{item.battleTitle}</p>
+            <div className="gbay-item-price">{restricted(item) ? <strong className="gbay-archive-label">In the archive</strong> : <><strong>{money(auction?.current_pence ?? auction?.starting_pence ?? 99)}</strong><span>{auction?.current_pence != null ? `${auction.bid_count} ${auction.bid_count === 1 ? 'bid' : 'bids'}` : 'Starting bid'}</span></>}<ArrowRight size={18} /></div>
+            {auction?.is_leading && <p className="gbay-leading"><Check size={13} /> {openNow ? 'You’re leading' : 'Your bid is highest'}</p>}
+            {openNow && <p className="gbay-ending">{auction?.ends_at ? `Ends ${dateLabel(auction.ends_at)} UK` : 'Closing date to be announced'}</p>}
+          </button>;
+        })}</div>
+      </section>
+    </div>
+    <dialog ref={dialog} onClose={close} onClick={event => { if (event.target === event.currentTarget) close(); }} className="gbay-dialog" aria-labelledby="gbay-lot-title">
+      <button className="gbay-close" aria-label="Close item" onClick={close}><X size={22} /></button>
+      {selected && <div className="gbay-detail"><div><MuseumArt item={selected} photo={activeAuction?.image_url} /><p className="gbay-photo-note">{activeAuction?.image_url ? 'See the condition details before bidding.' : 'Illustration, not a photograph of the actual item.'}</p><Link className="gbay-watch" to={`/battle/${selected.battleSlug}`}>Watch the battle <ExternalLink size={14} /></Link></div><div className="gbay-detail-copy"><p className="gbay-kicker">GZONE MUSEUM BETA · LOT {selected.number}</p><h2 id="gbay-lot-title">{selected.name}</h2><p className="gbay-owner">Used by <strong>{selected.user}</strong></p><p className="gbay-battle">{selected.battleTitle}</p>
+        <BidPanel key={`${selected.id}:${session?.user.id ?? 'guest'}`} item={selected} auction={activeAuction} session={session} checking={authChecking} unavailable={Boolean(loadError) || loading} now={now} onRefresh={() => setRetry(value => value + 1)} />
+        {authError && <p role="alert" className="gbay-error">{authError}</p>}
+        <dl className="gbay-facts"><div><dt>Condition</dt><dd>{activeAuction?.condition_note ?? 'Condition details to be confirmed by Gzone.'}</dd></div><div><dt>From the battle</dt><dd>{selected.battleDate ?? 'Season 1'}{selected.episode && ` · ${selected.episode}`}</dd></div></dl>
+      </div></div>}
+    </dialog>
+  </main>;
+}
 
-              return (
-                <div
-                  key={index}
-                  className="relative bg-zinc-950 p-6 rounded-xl border border-white/10 flex items-start gap-4 h-full overflow-hidden"
-                >
-                  <div className="w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700 text-2xl shrink-0">
-                    {prop.icon}
-                  </div>
-                  <div className="flex flex-col justify-center min-w-0">
-                    <p className="text-white font-bold leading-snug whitespace-normal break-words">{prop.name}</p>
-                    <p className="text-zinc-400 text-sm leading-snug whitespace-normal break-words">
-                      Used by {prop.user} in {prop.battleTitle}
-                    </p>
-                    <p className="text-zinc-500 text-xs mt-1">Date: {prop.battleDate}</p>
+function BidPanel({ item, auction, session, checking, unavailable, now, onRefresh }: { item: MuseumItem; auction?: MuseumAuction; session: BackstageSession | null; checking: boolean; unavailable: boolean; now: number; onRefresh: () => void }) {
+  const [review, setReview] = useState<number | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const request = useRef<{ amount: number; id: string } | null>(null);
+  const open = auctionOpen(auction, now) && !restricted(item);
+  const min = auction ? minimumBid(auction) : 99;
+  async function submit() {
+    if (busy || review === null || !open || unavailable || review !== min) return;
+    setBusy(true); setError('');
+    if (request.current?.amount !== review) request.current = { amount: review, id: crypto.randomUUID() };
+    try {
+      await placeMuseumBid(item.id, review, request.current.id);
+      setSuccess(`Your ${money(review)} bid has been saved to your account.`);
+      setReview(null); request.current = null; onRefresh();
+    } catch (cause) { setError(cause instanceof Error ? cause.message : 'Your bid couldn’t be confirmed. Please try again.'); onRefresh(); }
+    finally { setBusy(false); }
+  }
+  if (restricted(item)) return <div className="gbay-bid-panel"><strong>Archive only</strong><p>This exhibit is not offered for sale.</p></div>;
+  return <div className="gbay-bid-panel">
+    <p>{auction?.current_pence != null ? 'Current bid' : 'Starting bid'}</p><div className="gbay-big-price">{money(auction?.current_pence ?? auction?.starting_pence ?? 99)}<span>{auction ? `${auction.bid_count} bids` : 'From 99p'}</span></div>
+    <p className="gbay-ending">{auction?.status === 'cancelled' ? 'This listing has been withdrawn.' : auction && !open ? Date.parse(auction.starts_at) > now ? `Opens ${dateLabel(auction.starts_at)} UK` : 'Bidding has ended.' : auction?.ends_at ? `Ends ${dateLabel(auction.ends_at)} UK` : 'Closing date to be announced.'}</p>
+    {success && <p className="gbay-success" role="status"><Check size={17} /> {success} <Link to="/backstage/settings">View my bids</Link></p>}
+    {!session ? <><p className="gbay-signin-copy">Sign in with your Gzone membership to place a bid and keep track of it in your account.</p><Link className="gbay-primary" to="/backstage" onClick={() => rememberMuseumItem(item.id)}><UserRound size={17} /> {checking ? 'Checking membership…' : 'Sign in / join to bid'} <ArrowRight size={17} /></Link></>
+      : unavailable ? <p role="status">Live bidding is unavailable. Please retry from the museum page.</p>
+      : !auction ? <p>Bidding on this item is opening soon.</p>
+      : !open ? <Link className="gbay-text-link" to="/backstage/settings">View your bidding history <ArrowRight size={14} /></Link>
+      : auction.is_leading ? <p className="gbay-leading"><Check size={17} /> You hold the highest bid. Follow it in <Link to="/backstage/settings">your settings</Link>.</p>
+      : review !== null ? <div className="gbay-confirm"><h3>CONFIRM YOUR BID</h3><p>You’re bidding <strong>{money(review)}</strong> for <strong>{item.name}</strong>. This bid will be registered against your Gzone account.</p><p>Just for fun — no commitment to buy and no payment taken.</p><button className="gbay-primary" disabled={busy || review !== min} onClick={submit}>{busy ? 'Saving your bid…' : `Confirm ${money(review)} bid`}</button>{review !== min && <p role="alert" className="gbay-error">The next bid is now {money(min)}. Go back to use the updated amount.</p>}<button className="gbay-text-link" disabled={busy} onClick={() => setReview(null)}>Back</button></div>
+      : <div><p className="gbay-small">Just for fun. No commitment to buy. Each new bid goes up by 20p.</p><button className="gbay-primary" onClick={() => { setError(''); setReview(min); }}>Bid {money(min)} <ArrowRight size={17} /></button></div>}
 
-                </div>
-              </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+    {error && <p className="gbay-error" role="alert">{error}</p>}
+  </div>;
 }

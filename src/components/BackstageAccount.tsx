@@ -5,6 +5,8 @@ import { getBackstageProfile, saveBackstageUsername, getEmailPreference, saveEma
 import { normalizeUsername, validateUsername } from "../lib/backstageUsername";
 import "../pages/backstage-account.css";
 import BackstageComments from "./BackstageComments";
+import BackstageMuseumBids from "./BackstageMuseumBids";
+import { museumReturnKey, pendingMuseumReturn } from "../lib/museumAuctions";
 
 type Props = { session: BackstageSession; busy: boolean; onSignOut: () => void; signOutError: string; children: (profile: BackstageProfile) => ReactNode };
 
@@ -20,6 +22,15 @@ export default function BackstageAccount({ session, busy, onSignOut, signOutErro
   const [emailMessage, setEmailMessage] = useState("");
   const [emailSaving, setEmailSaving] = useState(false);
   const [emailRetry, setEmailRetry] = useState(0);
+
+  useEffect(() => {
+    if (!profile || loading || profileError || settingsOpen) return;
+    const destination = pendingMuseumReturn();
+    if (destination) {
+      sessionStorage.removeItem(museumReturnKey);
+      navigate(destination, { replace: true });
+    }
+  }, [profile, loading, profileError, settingsOpen, navigate]);
 
   useEffect(() => {
     let active = true;
@@ -100,7 +111,7 @@ export default function BackstageAccount({ session, busy, onSignOut, signOutErro
         <UsernameForm onSaved={finishSetup} />
         <div className="backstage-account-footnote"><LockKeyhole size={15} /> Google handles sign-in. You choose the name.</div>
       </section>
-      : settingsOpen ? <div className="backstage-settings-layout"><BackstageComments key={session.user.id} /><div className="backstage-settings-grid">
+      : settingsOpen ? <div className="backstage-settings-layout"><BackstageMuseumBids key={`bids-${session.user.id}`} /><BackstageComments key={session.user.id} /><div className="backstage-settings-grid">
         <section className="backstage-account-card" aria-labelledby="username-settings-title">
           <div className="backstage-account-card-top"><UserRound size={22} /><span className="backstage-account-kicker">YOUR GZONE IDENTITY</span></div>
           <h2 id="username-settings-title">YOUR USERNAME</h2>

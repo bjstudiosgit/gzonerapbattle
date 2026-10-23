@@ -100,6 +100,7 @@ function Home() {
       <FeaturedVideo />
       <UpcomingEventLanding />
       <BackstagePromo />
+      <LostPropertyPreview />
       <section className="relative w-full overflow-hidden pt-6 pb-16 sm:pt-10 md:pb-24">
         <div className="relative z-20 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6">
           <div className="mb-8">
@@ -126,7 +127,6 @@ function Home() {
       <RecentBattles />
       <MerchSection showShopAll={false} />
       <MCBios />
-      <LostPropertyPreview />
       <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 py-8 md:py-10">
         <GlobalDisclaimer />
       </div>

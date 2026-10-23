@@ -1,0 +1,30 @@
+.museum-storefront{display:grid;grid-template-columns:1fr 1.2fr;border-top:3px solid #f58220;background:#0b0b0b;overflow:hidden}
+.museum-storefront-intro{padding:48px 40px;display:flex;flex-direction:column;align-items:flex-start}
+.museum-storefront-intro h2{font-family:var(--font-display);font-size:clamp(60px,5.8vw,88px);line-height:1;white-space:nowrap;color:#fff}.museum-storefront-intro h2>span{color:#f58220}.museum-storefront-intro h2 small{display:inline-block;font-family:Arial,sans-serif;font-size:9px;letter-spacing:1px;vertical-align:top;margin:8px 0 0 10px;border:1px solid #666;padding:4px}
+.museum-storefront-tagline{font-family:var(--font-display);font-size:clamp(28px,2.8vw,40px);line-height:1.05;text-transform:uppercase;margin-top:24px;color:#fff2dc}
+.museum-storefront-description{font-size:14px;line-height:1.7;color:#a1a1aa;max-width:410px;margin-top:20px}
+.museum-storefront-price{display:flex;gap:32px;margin:28px 0;padding:20px 0;border-top:1px solid #333;border-bottom:1px solid #333;width:100%}.museum-storefront-price>div{display:flex;flex-direction:column;gap:6px}.museum-storefront-price>div+div{border-left:1px solid #333;padding-left:32px}.museum-storefront-price strong{font-family:var(--font-display);font-size:48px;color:#fff;line-height:1}.museum-storefront-price strong span{font-size:32px;color:#f58220}.museum-storefront-price div>span{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#a1a1aa}
+.museum-storefront-shop{display:inline-flex;align-items:center;justify-content:space-between;gap:48px;padding:16px 24px;background:#f58220;color:#111;font-size:14px;font-weight:700}.museum-storefront-shop:hover{background:#fff2dc}.museum-storefront-note{font-size:11px;color:#999;margin-top:12px}
+.museum-storefront-gallery{min-width:0;display:flex;flex-direction:column;background:#f6f4f0;color:#181818;padding:28px 0}
+.museum-storefront-toolbar{padding:0 28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}.museum-storefront-toolbar p{font-size:10px;font-weight:700;letter-spacing:1.5px}.museum-storefront-toolbar p span{display:block;font-size:12px;font-weight:400;letter-spacing:0;color:#737373;margin-top:7px}
+.museum-storefront-controls{display:flex;gap:8px}.museum-storefront-controls button{height:40px;width:40px;display:grid;place-items:center;border:1px solid #ccc;background:transparent;cursor:pointer}.museum-storefront-controls button:hover:not(:disabled){background:#f58220;border-color:#f58220}.museum-storefront-controls button:disabled{opacity:.25;cursor:default}
+.museum-storefront-lots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;flex:1;min-height:0}
+.museum-storefront-lot{flex:0 0 100%;scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;background:#fff;color:#181818;padding:24px;border-right:1px solid #e5e2dd}.museum-storefront-lot:hover{background:#fffaf3}.museum-storefront-lot:focus-visible,.museum-storefront-controls button:focus-visible,.museum-storefront-lots:focus-visible{outline:3px solid #f58220;outline-offset:-3px}
+.museum-storefront-lot-number{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1px;color:#737373}.museum-storefront-lot-number svg{color:#bc570a}
+.museum-storefront .gbay-art{position:relative;width:100%;min-height:210px;flex:1;display:flex;justify-content:center;align-items:center;background:transparent;border:0;overflow:hidden;aspect-ratio:auto}.museum-storefront .gbay-illustration{height:auto;width:100%;max-height:270px}.museum-storefront .gbay-art-label{position:absolute;bottom:8px;left:0;font-size:8px;color:#777;letter-spacing:0}.museum-storefront .gbay-art img{width:100%;max-height:270px;object-fit:contain}
+.museum-storefront-caption{padding-top:18px;border-top:1px solid #e5e5e5;min-height:120px}.museum-storefront-caption h3{font-size:16px;font-weight:700;line-height:1.4}.museum-storefront-caption p{font-size:12px;color:#666;margin-top:6px}.museum-storefront-caption>span{display:flex;align-items:center;gap:8px;font-size:11px;color:#a74a08;margin-top:18px;font-weight:600}.museum-storefront-gallery-note{padding:20px 28px 0;font-size:11px;line-height:1.5;color:#737373}
+@media(max-width:900px){.museum-storefront{grid-template-columns:1fr}.museum-storefront-intro{padding:32px}.museum-storefront-description{max-width:600px}.museum-storefront-price{max-width:410px}.museum-storefront .gbay-art{min-height:220px}}
+@media(max-width:480px){.museum-storefront-intro{padding:28px 24px}.museum-storefront-intro h2{font-size:60px}.museum-storefront-lot{flex-basis:100%;padding:22px}.museum-storefront-toolbar{padding-left:24px;padding-right:24px}.museum-storefront .gbay-art{min-height:210px}.museum-storefront-gallery-note{padding-left:24px}}
+
+.museum-storefront-lots::-webkit-scrollbar{display:none}
+
+/* Homepage carousel: artwork only; shopping uses the main CTA. */
+.museum-storefront-gallery{position:relative;background:#fff;padding:0}
+.museum-storefront-toolbar{position:absolute;top:24px;right:24px;z-index:2;padding:0}
+.museum-storefront-controls button{background:#fff}
+.museum-storefront-lot{padding:60px 32px; border:0;background:#fff}
+.museum-storefront-lot:hover{background:#fff}
+.museum-storefront .gbay-art{min-height:320px}
+.museum-storefront .gbay-illustration,.museum-storefront .gbay-art img{max-height:440px}
+.museum-storefront .gbay-art-label{display:none}
+@media(max-width:480px){.museum-storefront-lot{padding:60px 24px 24px}.museum-storefront .gbay-art{min-height:260px}}

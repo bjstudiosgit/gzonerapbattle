@@ -7,6 +7,7 @@ import "./backstage.css";
 import BackstageAccount from "../components/BackstageAccount";
 import GingahooChat from "../components/GingahooChat";
 import BackstageGingerify from "../components/BackstageGingerify";
+import { pendingMuseumReturn } from "../lib/museumAuctions";
 
 export default function BackstagePage() {
   const [session, setSession] = useState<BackstageSession | null>(null);
@@ -54,6 +55,7 @@ export default function BackstagePage() {
     <main className={`backstage-page${session ? " backstage-members" : " backstage-public"}`}>
       <Helmet><title>Backstage | The Gzone</title><meta name="description" content="The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." /><link rel="canonical" href="https://www.gzonerapbattle.co.uk/backstage" /></Helmet>
       <div className="backstage-shell">
+        {!session && pendingMuseumReturn() && <p className="backstage-message">Sign in to bid on gingaBay. We’ll take you back to your item after you’ve signed in and chosen your Gzone username.</p>}
         {session ? <>
           <BackstageAccount key={session.user.id} session={session} busy={busy} onSignOut={leave} signOutError={error}>
             {profile => <MembersArea session={session} username={profile.username} />}

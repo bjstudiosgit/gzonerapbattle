@@ -12,7 +12,7 @@ export default function PrivacyPage() {
           <h1 className="text-4xl md:text-6xl font-display uppercase text-white mb-8 border-l-8 border-brand pl-6">
             Privacy <span className="text-brand">Policy</span>
           </h1>
-          
+
           <div className="prose prose-invert prose-orange max-w-none space-y-8 text-zinc-400 leading-relaxed">
             <section>
               <h2 className="text-2xl font-display uppercase text-white mb-4">Introduction</h2>
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
                     </tr>
                     <tr>
                       <td className="p-4 border border-white/10 font-bold text-white">Transactional and marketing data</td>
-                      <td className="p-4 border border-white/10 text-sm">Purchase details from ticket and merchandise providers, your marketing preferences and any communications you send to us.</td>
+                      <td className="p-4 border border-white/10 text-sm">Purchase details from ticket and merchandise providers, your marketing preferences and any communications you send to us. For gingaBay bids, we store the item, amount, submission time and your member account ID in Supabase. Your bid history is visible to you and authorised Gzone administrators; public listings show prices and bid counts without identifying bidders. gingaBay does not collect payment details.</td>
                       <td className="p-4 border border-white/10 text-sm">To fulfil orders, manage payments, comply with accounting obligations, and send marketing or service updates.</td>
                     </tr>
                     <tr className="bg-white/5">

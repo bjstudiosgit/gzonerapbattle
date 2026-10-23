@@ -1,4 +1,4 @@
-import { Ticket, Users, Trophy, Menu, X, Youtube, Play, ShoppingBag, FileText, DoorOpen, MapPin } from "lucide-react";
+import { Ticket, Users, Trophy, Menu, X, Youtube, Instagram, Play, ShoppingBag, FileText, DoorOpen, MapPin, Gavel } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { soundManager } from "../lib/sounds";
@@ -17,6 +17,7 @@ export default function Navbar() {
     { name: "Merch", href: "/merch", icon: ShoppingBag },
     { name: "Apply", href: "/apply", icon: FileText },
     { name: "Tickets", href: "/events", icon: Ticket },
+    { name: "gingaBay", href: "/lost-property", icon: Gavel },
     { name: "Backstage", href: "/backstage", icon: DoorOpen },
   ];
 
@@ -46,21 +47,21 @@ export default function Navbar() {
     <>
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${hasNavBackground ? 'bg-zinc-950' : 'bg-zinc-950 sm:bg-transparent'}`}>
       <div className={`absolute inset-0 ${hasNavBackground ? 'opacity-100' : 'opacity-0'} bg-zinc-950 pointer-events-none transition-opacity duration-300`} />
-      
+
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center shrink-0">
-            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 group/logo">
-              <div className="w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
+            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-1.5 sm:gap-2 group/logo">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
                 <img src="/gzonetransparent.png" alt="Gzone Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-black text-lg tracking-[0.2em] uppercase leading-none text-white group-hover:text-brand transition-colors">THE <span className="text-brand group-hover:text-white">GZONE</span></span>
-                <span className="text-[8px] text-zinc-500 uppercase font-black tracking-[0.25em] mt-1 opacity-60">Peacock Gymnasium</span>
+                <span className="font-black text-sm tracking-[0.12em] sm:text-lg sm:tracking-[0.2em] uppercase leading-none text-white group-hover:text-brand transition-colors">THE <span className="text-brand group-hover:text-white">GZONE</span></span>
+                <span className="hidden min-[350px]:block text-[8px] text-zinc-500 uppercase font-black tracking-[0.25em] mt-1 opacity-60">Peacock Gymnasium</span>
               </div>
             </Link>
           </div>
-          
+
           <div className="hidden 2xl:flex flex-1 justify-end">
             <div className="ml-8 flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => (
@@ -76,13 +77,13 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              
+
               <div className="h-4 w-px bg-white/10 mx-4" />
-              
+
               <div className="flex items-center gap-2">
-                <a 
-                  href="https://www.tiktok.com/@the.gzone.rbl" 
-                  target="_blank" 
+                <a
+                  href="https://www.tiktok.com/@the.gzone.rbl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 bg-white/5 hover:bg-brand text-zinc-400 hover:text-black rounded-xl transition-all duration-300 flex items-center justify-center border border-white/5 hover:border-brand shadow-xl"
                   aria-label="TikTok"
@@ -91,9 +92,9 @@ export default function Navbar() {
                     <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47-.13 1.89-.12 3.78-.12 5.67 0 1.23-.19 2.48-.65 3.62-.46 1.14-1.2 2.18-2.12 3.01-1.84 1.67-4.45 2.37-6.87 1.85-2.42-.52-4.55-2.26-5.54-4.52-.99-2.26-.8-4.99.51-7.09 1.31-2.1 3.73-3.48 6.22-3.5V11.5c-1.12.01-2.26.47-3.01 1.3-.75.83-1.1 1.97-1.01 3.08.09 1.11.64 2.17 1.51 2.85.87.68 2.03.95 3.13.75 1.1-.2 2.06-.93 2.6-1.91.54-.98.67-2.13.67-3.23V0l.02.02z"/>
                   </svg>
                 </a>
-                <a 
-                  href="https://www.youtube.com/@gingajay" 
-                  target="_blank" 
+                <a
+                  href="https://www.youtube.com/@gingajay"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 bg-white/5 hover:bg-brand text-zinc-400 hover:text-black rounded-xl transition-all duration-300 flex items-center justify-center border border-white/5 hover:border-brand shadow-xl"
                   aria-label="YouTube"
@@ -104,21 +105,27 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="2xl:hidden flex items-center gap-3">
-            <a 
-              href="https://www.tiktok.com/@the.gzone.rbl" 
-              target="_blank" 
+          <div className="2xl:hidden flex items-center gap-1.5 sm:gap-3">
+            <a
+              href="https://www.tiktok.com/@the.gzone.rbl"
+              target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/5 border border-white/10 text-zinc-400 rounded-2xl flex items-center justify-center"
+              className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 border border-white/10 text-zinc-400 rounded-2xl flex items-center justify-center"
               aria-label="TikTok"
             >
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47-.13 1.89-.12 3.78-.12 5.67 0 1.23-.19 2.48-.65 3.62-.46 1.14-1.2 2.18-2.12 3.01-1.84 1.67-4.45 2.37-6.87 1.85-2.42-.52-4.55-2.26-5.54-4.52-.99-2.26-.8-4.99.51-7.09 1.31-2.1 3.73-3.48 6.22-3.5V11.5c-1.12.01-2.26.47-3.01 1.3-.75.83-1.1 1.97-1.01 3.08.09 1.11.64 2.17 1.51 2.85.87.68 2.03.95 3.13.75 1.1-.2 2.06-.93 2.6-1.91.54-.98.67-2.13.67-3.23V0l.02.02z"/>
               </svg>
             </a>
+            <a href="https://www.instagram.com/thegzonerbl/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 border border-white/10 text-zinc-400 rounded-2xl flex items-center justify-center" aria-label="Instagram">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.youtube.com/@gingajay" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 border border-white/10 text-zinc-400 rounded-2xl flex items-center justify-center" aria-label="YouTube">
+              <Youtube size={18} />
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="w-10 h-10 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-brand transition-all"
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-brand transition-all"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
