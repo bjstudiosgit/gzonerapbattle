@@ -35,9 +35,9 @@ export async function retractMuseumBid(bidId: string) {
 }
 export const museumReturnKey = 'gzone.museum.return';
 export function rememberMuseumItem(itemId: string) {
-  sessionStorage.setItem(museumReturnKey, `/lost-property?item=${encodeURIComponent(itemId)}`);
+  sessionStorage.setItem(museumReturnKey, `/gingabay?item=${encodeURIComponent(itemId)}`);
 }
 export function pendingMuseumReturn() {
   const path = sessionStorage.getItem(museumReturnKey);
-  return path && /^\/lost-property\?item=[a-zA-Z0-9%_-]+$/.test(path) ? path : null;
+  return path && /^\/gingabay\?item=[a-zA-Z0-9%_-]+$/.test(path) ? path : null;
 }

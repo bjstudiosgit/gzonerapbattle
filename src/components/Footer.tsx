@@ -47,7 +47,7 @@ export default function Footer() {
                 <li><Link to="/merch" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
                 <li><Link to="/map" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
                 <li><Link to="/flyers" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
-                <li><Link to="/lost-property" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Museum</Link></li>
+                <li><Link to="/gingabay" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Museum</Link></li>
                 <li><Link to="/privacy" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Privacy Policy</Link></li>
               </ul>
             </div>

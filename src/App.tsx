@@ -207,7 +207,7 @@ function Main() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/battle/:slug" element={<BattleDetail />} />
-          <Route path="/lost-property" element={<LostProperty />} />
+          <Route path="/gingabay" element={<LostProperty />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/backstage" element={<BackstagePage />} />
           <Route path="/backstage/gingerify" element={<GingerifyPage />} />

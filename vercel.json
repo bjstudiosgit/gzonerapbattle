@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/lost-property", "destination": "/gingabay", "permanent": true },
     { "source": "/freestyle", "destination": "/battles", "permanent": true },
     { "source": "/royal-rumble", "destination": "/battles", "permanent": true },
     { "source": "/royalrumble", "destination": "/battles", "permanent": true },

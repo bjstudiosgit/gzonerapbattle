@@ -52,7 +52,7 @@ export default function LostPropertyPreview() {
           <p className="museum-storefront-tagline">Props from the battle.<br />Bids from the crowd.</p>
           <p className="museum-storefront-description">Pick a piece of Gzone history and join the bidding. Browse the props, see the latest bids and choose your favourite.</p>
           <p className="museum-storefront-terms">Bids start at <strong>99p</strong> <span aria-hidden="true">·</span> go up by <strong>20p</strong></p>
-          <Link to="/lost-property" className="museum-storefront-shop">Explore all props <ArrowRight size={18} /></Link>
+          <Link to="/gingabay" className="museum-storefront-shop">Explore all props <ArrowRight size={18} /></Link>
           <p className="museum-storefront-note">Virtual ownership, just for fun.</p>
         </div>
         <div className="museum-storefront-gallery">
@@ -69,7 +69,7 @@ export default function LostPropertyPreview() {
                 <MuseumArt item={item} photo={auction?.image_url} />
                 <div className="museum-storefront-caption">
                   <div><p className="museum-storefront-eyebrow">From {item.battleTitle}</p><h3>{item.name}</h3><p>Used by {item.user}</p></div>
-                  <div className="museum-storefront-bid">{auction ? <><span>{auction.current_pence === null ? 'Starting bid' : 'Current bid'}</span><strong>{money(auction.current_pence ?? auction.starting_pence)}</strong><small>{auction.bid_count} {auction.bid_count === 1 ? 'bid' : 'bids'}</small></> : <span>See bidding details</span>}<Link to={`/lost-property?item=${encodeURIComponent(item.id)}`} aria-label={`View ${item.name} and bidding details`}>View prop <ArrowRight size={16} /></Link></div>
+                  <div className="museum-storefront-bid">{auction ? <><span>{auction.current_pence === null ? 'Starting bid' : 'Current bid'}</span><strong>{money(auction.current_pence ?? auction.starting_pence)}</strong><small>{auction.bid_count} {auction.bid_count === 1 ? 'bid' : 'bids'}</small></> : <span>See bidding details</span>}<Link to={`/gingabay?item=${encodeURIComponent(item.id)}`} aria-label={`View ${item.name} and bidding details`}>View prop <ArrowRight size={16} /></Link></div>
                 </div>
               </div>;
             })}

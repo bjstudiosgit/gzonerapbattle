@@ -91,7 +91,7 @@ export default function LostProperty() {
     </button>;
   }
   return <main className="gbay-page">
-    <Helmet><title>gingaBay — Gzone Museum BETA | The Gzone</title><meta name="description" content="The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." /></Helmet>
+    <Helmet><title>gingaBay — Gzone Museum BETA | The Gzone</title><meta name="description" content="The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." /><link rel="canonical" href="https://www.gzonerapbattle.co.uk/gingabay" /><meta property="og:url" content="https://www.gzonerapbattle.co.uk/gingabay" /></Helmet>
     <div className="gbay-shell">
       <header className="gbay-header">
         <div className="gbay-brand"><h1>ginga<span>Bay</span><span className="gbay-dot">.</span></h1><span className="gbay-beta">BETA</span></div>
