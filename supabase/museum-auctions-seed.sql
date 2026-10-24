@@ -8,6 +8,8 @@ insert into public.museum_auctions(item_id,item_name,status,starting_pence,incre
 ('tymeless-vs-kime-2', 'Lime', 'open', 99, 20),
 ('tymeless-vs-kime-3', 'Flip Board Paper', 'open', 99, 20),
 ('tymeless-vs-kime-4', 'Baby shoes', 'open', 99, 20),
+('tymeless-vs-kime-5', 'Key Stage 2 Mathematics Sheet', 'open', 99, 20),
+('tymeless-vs-kime-6', 'K.I.M.E Sheet', 'open', 99, 20),
 ('deeno-vs-cj-zino-1', 'A jar of Marmalade', 'open', 99, 20),
 ('7wxve-vs-zk-1', 'Pink handbag', 'open', 99, 20),
 ('deeno-vs-btizz-1', 'Google Maps screenshot of Btizz''s modest family home', 'open', 99, 20),

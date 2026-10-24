@@ -2,10 +2,21 @@ import { useState } from 'react';
 import { FileText, Image, KeyRound, Smartphone, Package, ShoppingBag, FlaskConical, Utensils, Circle, Brush } from 'lucide-react';
 import type { MuseumItem } from '../data/museum';
 
+export const revisionSheetPhotos = [
+  { src: '/museum/key-stage-revision-sheets-battle-cutout.webp', label: 'Sheet 1' },
+  { src: '/museum/key-stage-revision-sheets-battle-cutout-2.webp', label: 'Sheet 2' },
+];
+
+export const gravePhotos = [
+  { src: '/museum/btizz-grave-battle-duo.webp', label: 'Battle view' },
+  { src: '/museum/btizz-grave-photo-cutout.webp', label: 'Close-up' },
+];
+
 // Stylised catalogue illustrations, never presented as photos of the sale item.
-export default function MuseumArt({ item, photo }: { item: MuseumItem; photo?: string | null }) {
+export default function MuseumArt({ item, photo, imageIndex = 0 }: { item: MuseumItem; photo?: string | null; imageIndex?: number }) {
   const [failedPhoto, setFailedPhoto] = useState<string | null>(null);
   const validPhoto = photo && (/^https:\/\//.test(photo) || /^\/(?!\/)/.test(photo));
+  const referenceImage = item.name === 'Trojan Condom' ? '/museum/trojan-condom-battle-cutout.webp' : item.name === 'Tymeless Lime' ? '/museum/tymeless-lime-battle-duo.webp' : item.name === 'Key Stage 2 English Revision Sheets' ? (revisionSheetPhotos[imageIndex] ?? revisionSheetPhotos[0]).src : item.name === 'Key Stage 2 Mathematics Sheet' ? '/museum/key-stage-mathematics-sheet-cutout.webp' : item.name === 'K.I.M.E Sheet' ? '/museum/key-stage-revision-sheets-kime-cutout.webp' : item.name === 'Fake Beard' ? '/museum/fake-beard-cutout.webp' : item.name === 'K.I.M.E baby shoes' ? '/museum/kime-baby-shoes-battle-cutout.webp' : item.name === 'A jar of Marmalade' ? '/museum/marmalade-jar-battle-duo.webp' : item.name === 'Pink handbag' ? '/museum/pink-handbag-battle-cutout.webp' : item.name === "Google Maps screenshot of Btizz's modest family home" ? '/museum/btizz-home-battle-duo.webp' : item.name === 'Mock headstone photograph bearing Btizz’s name' ? (gravePhotos[imageIndex] ?? gravePhotos[0]).src : item.name === 'Adoption papers presented to prove Deeno was going to “father” Btizz' ? '/museum/btizz-adoption-papers-battle-cutout.webp' : null;
   const name = item.name.toLowerCase();
   const lime = /lime|lemon/.test(name);
   const moustache = /moustache/.test(name);
@@ -13,7 +24,7 @@ export default function MuseumArt({ item, photo }: { item: MuseumItem; photo?: s
   const board = /flip board/.test(name);
   const Icon = /screenshot|messages/.test(name) ? Smartphone : /photo/.test(name) ? Image : /paper|document/.test(name) ? FileText : /keys/.test(name) ? KeyRound : /handbag/.test(name) ? ShoppingBag : /toothbrush/.test(name) ? Brush : /marmalade|listerine/.test(name) ? FlaskConical : /noodle/.test(name) ? Utensils : /football/.test(name) ? Circle : Package;
   return <div className="gbay-art">
-    {validPhoto && failedPhoto !== photo ? <img src={photo} alt={item.name} loading="lazy" onError={() => setFailedPhoto(photo)} /> : <>
+    {validPhoto && failedPhoto !== photo ? <img src={photo} alt={item.name} loading="lazy" onError={() => setFailedPhoto(photo)} /> : referenceImage ? <img src={referenceImage} alt={item.name === 'Trojan Condom' ? 'Performer holding the condom wrapper during the battle' : item.name === 'A jar of Marmalade' ? 'Two performers with the marmalade jar held up during the battle' : item.name === 'Pink handbag' ? 'Performer holding the pink handbag during the battle' : item.name === "Google Maps screenshot of Btizz's modest family home" ? 'Two performers with the house print held up during the battle' : item.name === 'Mock headstone photograph bearing Btizz’s name' ? (imageIndex === 1 ? 'Close-up of the printed mock headstone photo' : 'Performer holding up the mock headstone photo during the battle') : item.name === 'Adoption papers presented to prove Deeno was going to “father” Btizz' ? 'Performer holding the adoption papers during the battle' : item.name === 'Fake Beard' ? 'Tymeless wearing the Fake Beard during the battle' : item.name === 'Tymeless Lime' ? 'Two battle participants with the lime held up' : item.name === 'Key Stage 2 English Revision Sheets' ? `Performer holding ${revisionSheetPhotos[imageIndex]?.label ?? 'Sheet 1'} during the battle` : item.name === 'Key Stage 2 Mathematics Sheet' ? 'Performer holding the Mathematics sheet during the battle' : item.name === 'K.I.M.E Sheet' ? 'Performer holding the K.I.M.E sheet during the battle' : item.name === 'K.I.M.E baby shoes' ? 'Performer holding the K.I.M.E baby shoes and box during the battle' : `Reference image of ${item.name}`} loading="lazy" /> : <>
       <svg className="gbay-illustration" viewBox="0 0 300 240" role="img" aria-label={`Illustration of ${item.name}`}>
         <ellipse cx="150" cy="208" rx="83" ry="9" fill="#161616" opacity=".08" />
         {lime ? <g transform="rotate(-18 150 120)"><circle cx="150" cy="120" r="73" fill={name.includes('lemon') ? '#e8bc21' : '#4e882c'} /><circle cx="150" cy="120" r="65" fill="#f4f0be" /><circle cx="150" cy="120" r="57" fill={name.includes('lemon') ? '#f2d85b' : '#a5c459'} />{Array.from({ length: 8 }, (_, i) => <path key={i} d="M150 120 L150 63" stroke="#f6f2ce" strokeWidth="5" transform={`rotate(${i * 45} 150 120)`} />)}<circle cx="150" cy="120" r="8" fill="#fbf6dc" /></g>

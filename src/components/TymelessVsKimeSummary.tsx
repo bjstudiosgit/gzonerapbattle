@@ -12,7 +12,7 @@ const rounds = [
 const callbacks = [
   ["Pronunciation becomes a shared angle", "Tymeless's first round uses speech therapy and the seashells tongue-twister. K.I.M.E uses the same phrase in round two before turning it towards begging. That is a clear connection in the exchange, but the wording alone does not establish whether K.I.M.E wrote it in advance or improvised it in the room."],
   ["The classroom is an extended construction", "The pronunciation pairs, initials, teaching commands and educational titles belong to one sustained routine. They should be read together: the vowel jokes establish the lesson, the acronym attacks rename the pupil, and the classroom language gives Tymeless authority within the scene he creates."],
-  ["Props become part of the contest", "Tymeless uses a fake moustache, lime, flip board paper and baby shoes. The lime is directly connected to the spoken 'leem/lime' joke. Ginga Jay praises the props as creative, while K.I.M.E later declares that he needs no props and has straight bars. That contrast makes the presentation itself part of the battle."],
+  ["Props become part of the contest", "Tymeless uses a fake beard, lime, Key Stage 2 English revision sheets and K.I.M.E baby shoes. The lime is directly connected to the spoken 'leem/lime' joke. Ginga Jay praises the props as creative, while K.I.M.E later declares that he needs no props and has straight bars. That contrast makes the presentation itself part of the battle."],
   ["Lemons and the lime", "K.I.M.E says Tymeless spent his begging money on lemons, bringing the opponent's prop reputation into his character attack. Tymeless's lime then belongs to his own pronunciation lesson. The connection is noticeable."],
 ];
 

@@ -565,10 +565,12 @@ export const battles: Battle[] = [
     "isPlaceholder": false,
     "episode": "1x29",
     "props": [
-      { "name": "Fake moustache", "user": "Tymeless", "icon": "🥸" },
-      { "name": "Lime", "user": "Tymeless", "icon": "🍋‍🟩" },
-      { "name": "Flip Board Paper", "user": "Tymeless", "icon": "📋" },
-      { "name": "Baby shoes", "user": "Tymeless", "icon": "👟" }
+      { "name": "Fake Beard", "user": "Tymeless", "icon": "🧔" },
+      { "name": "Tymeless Lime", "user": "Tymeless", "icon": "🍋‍🟩" },
+      { "name": "Key Stage 2 English Revision Sheets", "user": "Tymeless", "icon": "📋" },
+      { "name": "K.I.M.E baby shoes", "user": "Tymeless", "icon": "👟" },
+      { "name": "Key Stage 2 Mathematics Sheet", "user": "Tymeless", "icon": "📋" },
+      { "name": "K.I.M.E Sheet", "user": "Tymeless", "icon": "📋" }
     ],
     "flyer": "/flyers/september-26-2026-tymeless-vs-kime.jpg",
     "ticketUrl": "https://www.eventbrite.co.uk/e/the-gzone-rap-battle-26th-sep-tickets-1999763816407"
