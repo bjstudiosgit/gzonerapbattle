@@ -85,13 +85,13 @@ const MapPage: React.FC = () => {
               {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
                 <>
                   <div className="absolute top-8 right-8 z-20 flex flex-col gap-3">
-                    <button onClick={() => zoomIn()} className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
+                    <button type="button" onClick={() => zoomIn()} aria-label="Zoom in" className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
                       <ZoomIn className="w-6 h-6 group-hover/zoom:scale-110 transition-transform" />
                     </button>
-                    <button onClick={() => zoomOut()} className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
+                    <button type="button" onClick={() => zoomOut()} aria-label="Zoom out" className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
                       <ZoomOut className="w-6 h-6 group-hover/zoom:scale-110 transition-transform" />
                     </button>
-                    <button onClick={() => resetTransform()} className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
+                    <button type="button" onClick={() => resetTransform()} aria-label="Reset map zoom" className="p-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl hover:bg-brand hover:text-black transition-all text-white shadow-2xl group/zoom">
                       <RotateCcw className="w-6 h-6 group-hover/zoom:rotate-[-45deg] transition-transform" />
                     </button>
                   </div>
@@ -123,11 +123,21 @@ const MapPage: React.FC = () => {
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 whileHover={{ scale: 1.4 }}
+                                role="button"
+                                tabIndex={0}
+                                aria-pressed={isSelected}
+                                aria-label={`${location}: ${data.mcs.length} representative${data.mcs.length > 1 ? 's' : ''}`}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setSelectedLocation(location);
                                 }}
-                                className="cursor-pointer relative group/pin"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    setSelectedLocation(location);
+                                  }
+                                }}
+                                className="cursor-pointer relative group/pin rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 focus-visible:ring-offset-black"
                               >
                                 <div className={`
                                   w-8 h-8 rounded-full border-2 border-white/90 shadow-[0_0_25px_rgba(0,0,0,0.8)] transition-all duration-500 flex items-center justify-center
@@ -191,7 +201,9 @@ const MapPage: React.FC = () => {
                       </div>
                     </div>
                     <button 
+                      type="button"
                       onClick={() => setSelectedLocation(null)}
+                      aria-label="Close location details"
                       className="p-3 bg-white/5 hover:bg-brand hover:text-black rounded-full transition-all duration-300"
                     >
                       <X className="w-6 h-6" />
@@ -257,23 +269,6 @@ const MapPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 5px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.02);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(242, 125, 38, 0.2);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(242, 125, 38, 0.4);
-        }
-      `}} />
     </div>
   );
 };

@@ -168,6 +168,7 @@ function Main() {
   
   return (
     <div className="min-h-screen selection:bg-brand selection:text-black bg-black">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Helmet>
         <title>Gzone Rap Battle League, Where we dont play!</title>
         <meta name="description" content="The Gzone Rap Battle League - Where reputations are built or buried. Watch the best MCs clash in the UK's premier battle rap arena." />
@@ -186,8 +187,9 @@ function Main() {
         </Suspense>
       )}
       
-      <Suspense fallback={isStandaloneVoteLive ? <StandaloneRouteFallback /> : <RouteFallback />}>
-        <Routes location={location}>
+      <div id="main-content" tabIndex={-1} className="outline-none">
+        <Suspense fallback={isStandaloneVoteLive ? <StandaloneRouteFallback /> : <RouteFallback />}>
+          <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/apply" element={<ApplyPage />} />
           <Route path="/success" element={<SuccessPage />} />
@@ -231,6 +233,7 @@ function Main() {
           <Route path="/:slug" element={<PersonProfile />} />
         </Routes>
       </Suspense>
+      </div>
       
       {showFooter && !isStandaloneVoteLive && (
         <Suspense fallback={null}>

@@ -1,27 +1,48 @@
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet";
 import { battles as allBattles, deenoNotableBars, tapped24NotableBars } from "../data/battles";
 import { guestMcs, mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
-import { BadeeHarzVs1FlaymahSummary, BadeeHarzVs1FlaymahResult, BadeeHarzVs1FlaymahHighlights } from "../components/BadeeHarzVs1FlaymahSummary";
-import { DeenoVsCjZinoSummary } from "../components/DeenoVsCjZinoSummary";
-import { SevenWxveVsZkSummary, SevenWxveVsZkResult, SevenWxveVsZkHighlights } from "../components/SevenWxveVsZkSummary";
-import { TymelessVsKimeSummary } from "../components/TymelessVsKimeSummary";
-import { BadeeHarzVsRomanSummary } from "../components/BadeeHarzVsRomanSummary";
-import { ZkVs1FlaymahSummary, ZkVs1FlaymahResult, ZkVs1FlaymahHighlights } from "../components/ZkVs1FlaymahSummary";
+import { limitResultCopy } from "../lib/text";
 
-const RESULT_CHARACTER_LIMIT = 310;
-
-const limitResultCopy = (paragraphs: readonly string[]) => {
-  const copy = paragraphs.join(" ");
-  if (copy.length <= RESULT_CHARACTER_LIMIT) return copy;
-
-  const shortened = copy.slice(0, RESULT_CHARACTER_LIMIT + 1);
-  const lastSpace = shortened.lastIndexOf(" ");
-  return `${shortened.slice(0, lastSpace > 0 ? lastSpace : RESULT_CHARACTER_LIMIT).trimEnd()}...`;
-};
+const BadeeHarzVs1FlaymahSummary = lazy(() =>
+  import("../components/BadeeHarzVs1FlaymahSummary").then((module) => ({ default: module.BadeeHarzVs1FlaymahSummary }))
+);
+const BadeeHarzVs1FlaymahResult = lazy(() =>
+  import("../components/BadeeHarzVs1FlaymahSummary").then((module) => ({ default: module.BadeeHarzVs1FlaymahResult }))
+);
+const BadeeHarzVs1FlaymahHighlights = lazy(() =>
+  import("../components/BadeeHarzVs1FlaymahSummary").then((module) => ({ default: module.BadeeHarzVs1FlaymahHighlights }))
+);
+const DeenoVsCjZinoSummary = lazy(() =>
+  import("../components/DeenoVsCjZinoSummary").then((module) => ({ default: module.DeenoVsCjZinoSummary }))
+);
+const SevenWxveVsZkSummary = lazy(() =>
+  import("../components/SevenWxveVsZkSummary").then((module) => ({ default: module.SevenWxveVsZkSummary }))
+);
+const SevenWxveVsZkResult = lazy(() =>
+  import("../components/SevenWxveVsZkSummary").then((module) => ({ default: module.SevenWxveVsZkResult }))
+);
+const SevenWxveVsZkHighlights = lazy(() =>
+  import("../components/SevenWxveVsZkSummary").then((module) => ({ default: module.SevenWxveVsZkHighlights }))
+);
+const TymelessVsKimeSummary = lazy(() =>
+  import("../components/TymelessVsKimeSummary").then((module) => ({ default: module.TymelessVsKimeSummary }))
+);
+const BadeeHarzVsRomanSummary = lazy(() =>
+  import("../components/BadeeHarzVsRomanSummary").then((module) => ({ default: module.BadeeHarzVsRomanSummary }))
+);
+const ZkVs1FlaymahSummary = lazy(() =>
+  import("../components/ZkVs1FlaymahSummary").then((module) => ({ default: module.ZkVs1FlaymahSummary }))
+);
+const ZkVs1FlaymahResult = lazy(() =>
+  import("../components/ZkVs1FlaymahSummary").then((module) => ({ default: module.ZkVs1FlaymahResult }))
+);
+const ZkVs1FlaymahHighlights = lazy(() =>
+  import("../components/ZkVs1FlaymahSummary").then((module) => ({ default: module.ZkVs1FlaymahHighlights }))
+);
 
 export default function BattleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -362,13 +383,15 @@ export default function BattleDetail() {
               </section>
             ) : null}
 
-            {battle.slug === 'tymeless-vs-kime' && <TymelessVsKimeSummary props={battle.props} />}
+            <Suspense fallback={null}>
+              {battle.slug === 'tymeless-vs-kime' && <TymelessVsKimeSummary props={battle.props} />}
 
-            {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
-            {battle.slug === 'deeno-vs-cj-zino' && <DeenoVsCjZinoSummary />}
-            {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary props={battle.props} />}
-            {battle.slug === '1flaymah-vs-zk' && <ZkVs1FlaymahSummary />}
-            {battle.slug === 'roman-vs-badee-harz' && <BadeeHarzVsRomanSummary props={battle.props} />}
+              {battle.slug === 'badee-harz-vs-1-flaymah' && <BadeeHarzVs1FlaymahSummary />}
+              {battle.slug === 'deeno-vs-cj-zino' && <DeenoVsCjZinoSummary />}
+              {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary props={battle.props} />}
+              {battle.slug === '1flaymah-vs-zk' && <ZkVs1FlaymahSummary />}
+              {battle.slug === 'roman-vs-badee-harz' && <BadeeHarzVsRomanSummary props={battle.props} />}
+            </Suspense>
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
               <>
@@ -4715,25 +4738,27 @@ export default function BattleDetail() {
               </a>
             </div>
 
-            {battle.slug === 'badee-harz-vs-1-flaymah' && (
-              <>
-                <BadeeHarzVs1FlaymahResult />
-                <BadeeHarzVs1FlaymahHighlights />
-              </>
-            )}
+            <Suspense fallback={null}>
+              {battle.slug === 'badee-harz-vs-1-flaymah' && (
+                <>
+                  <BadeeHarzVs1FlaymahResult />
+                  <BadeeHarzVs1FlaymahHighlights />
+                </>
+              )}
 
-            {battle.slug === '1flaymah-vs-zk' && (
-              <>
-                <ZkVs1FlaymahResult />
-                <ZkVs1FlaymahHighlights />
-              </>
-            )}
-            {battle.slug === '7wxve-vs-zk' && (
-              <>
-                <SevenWxveVsZkResult />
-                <SevenWxveVsZkHighlights />
-              </>
-            )}
+              {battle.slug === '1flaymah-vs-zk' && (
+                <>
+                  <ZkVs1FlaymahResult />
+                  <ZkVs1FlaymahHighlights />
+                </>
+              )}
+              {battle.slug === '7wxve-vs-zk' && (
+                <>
+                  <SevenWxveVsZkResult />
+                  <SevenWxveVsZkHighlights />
+                </>
+              )}
+            </Suspense>
 
             {([
               ["deeno-vs-tapped24", [

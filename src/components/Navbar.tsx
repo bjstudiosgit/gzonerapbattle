@@ -30,6 +30,19 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     setIsOpen(false);
     soundManager.playImpact();
@@ -53,7 +66,7 @@ export default function Navbar() {
           <div className="flex items-center shrink-0">
             <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-1.5 sm:gap-2 group/logo">
               <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
-                <img src="/gzonetransparent.png" alt="Gzone Logo" className="w-full h-full object-contain" />
+                <img src="/gzonetransparent.png" alt="Gzone Logo" width={40} height={40} className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-black text-sm tracking-[0.12em] sm:text-lg sm:tracking-[0.2em] uppercase leading-none text-white group-hover:text-brand transition-colors">THE <span className="text-brand group-hover:text-white">GZONE</span></span>
@@ -70,6 +83,7 @@ export default function Navbar() {
                   to={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   onMouseEnter={() => soundManager.playHover()}
+                  aria-current={location.pathname === link.href ? "page" : undefined}
                   className={`relative shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center gap-2 group/nav
                     ${location.pathname === link.href ? 'text-brand bg-brand/10' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
                 >
@@ -124,9 +138,12 @@ export default function Navbar() {
               <Youtube size={18} />
             </a>
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-brand transition-all"
               aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -136,13 +153,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-          <div className="2xl:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-5rem)]">
+          <div id="mobile-navigation" className="2xl:hidden relative z-10 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 overflow-y-auto max-h-[calc(100vh-5rem)]">
             <div className="px-4 py-8 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
+                  aria-current={location.pathname === link.href ? "page" : undefined}
                   className={`flex items-center gap-6 px-6 py-5 rounded-[1.2rem] text-base font-display uppercase tracking-widest transition-all
                     ${location.pathname === link.href ? 'bg-brand text-black shadow-2xl shadow-brand/20' : 'text-zinc-400 active:bg-white/5'}`}
                 >

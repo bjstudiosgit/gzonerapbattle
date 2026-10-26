@@ -21,8 +21,16 @@ The official website for The GZone Rap Battle platform. This repository contains
    ```
    The built files will be output to the `dist` directory.
 
+4. **Check types and run tests:**
+   ```bash
+   npm run lint
+   npm test
+   ```
+
 ## Tech Stack
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
+
+See [`docs/IMPROVEMENTS.md`](docs/IMPROVEMENTS.md) for the security, performance, accessibility, and testing changes.

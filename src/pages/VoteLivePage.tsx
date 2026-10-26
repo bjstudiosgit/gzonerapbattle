@@ -3,64 +3,33 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import {
-  collection,
   doc,
   increment,
-  onSnapshot,
-  orderBy,
-  query,
   serverTimestamp,
-  setDoc,
-  updateDoc,
-  where,
+  writeBatch,
 } from 'firebase/firestore';
-import {
-  GoogleAuthProvider,
-  User,
-  onAuthStateChanged,
-  signInWithPopup,
-} from 'firebase/auth';
+import type { User } from 'firebase/auth';
 import { motion } from 'motion/react';
 import { Check, LogIn, Radio, ShieldAlert, ShieldCheck, Signal, Vote, MapPin, RefreshCw } from 'lucide-react';
-import { auth, db, handleFirestoreError, OperationType } from '../lib/voteFirebase';
-import {
-  LOCATION_REFRESH_MS,
-  VoteLocationStatus,
-  evaluateArenaPosition,
-  formatMeters,
-} from '../lib/voteLocation';
+import { db, handleFirestoreError, OperationType } from '../lib/voteFirebase';
+import { formatMeters } from '../lib/voteLocation';
 import { votingCopy, withArtistName } from '../lib/votingCopy';
+import { useVoteAuth } from '../hooks/useVoteAuth';
+import { useUserVotes, useVotingBattles } from '../hooks/useVoteData';
+import { useArenaLocation, type VoteLocationState } from '../hooks/useArenaLocation';
+import { signInForVoting } from '../lib/voteAuth';
+import type { VoteMap, VotingBattle } from '../lib/voteTypes';
 
-interface Battle {
-  id: string;
-  title: string;
-  artistA: string;
-  artistB: string;
-  status: 'pending' | 'active' | 'finished';
-  votesA: number;
-  votesB: number;
-  createdAt: any;
-  updatedAt: any;
-}
-
-interface VoteLocationState {
-  status: VoteLocationStatus;
-  error: string | null;
-  result: ReturnType<typeof evaluateArenaPosition> | null;
-  lastCheckedAt: number | null;
-}
-
-const googleProvider = new GoogleAuthProvider();
-
-function getBattleStatusLabel(battle?: Battle) {
+function getBattleStatusLabel(battle?: VotingBattle) {
   if (!battle) return votingCopy.status.noBattle.title;
   if (battle.status === 'active') return votingCopy.status.open.title;
   if (battle.status === 'finished') return votingCopy.status.closed.title;
   return votingCopy.status.standby.title;
 }
+
 
 function useNativeViewportLock() {
   useEffect(() => {
@@ -81,171 +50,22 @@ function useNativeViewportLock() {
 }
 
 export default function VoteLivePage() {
-  const [user, setUser] = useState<User | null>(auth.currentUser);
-  const [battles, setBattles] = useState<Battle[]>([]);
-  const [votedBattles, setVotedBattles] = useState<Record<string, 'A' | 'B'>>({});
-  const [isAuthReady, setIsAuthReady] = useState(false);
-  const [authError, setAuthError] = useState<string | null>(null);
-  const [voteError, setVoteError] = useState<string | null>(null);
-  const [locationState, setLocationState] = useState<VoteLocationState>({
-    status: 'idle',
-    error: null,
-    result: null,
-    lastCheckedAt: null,
-  });
+  const { user, isAuthReady, authError, setAuthError } = useVoteAuth();
+  const battles = useVotingBattles();
+  const votedBattles = useUserVotes(user);
+  const { locationState, requestArenaCheck } = useArenaLocation(Boolean(user));
+  const [voteError, setVoteError] = React.useState<string | null>(null);
 
   useNativeViewportLock();
 
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      setIsAuthReady(true);
-      setAuthError(votingCopy.auth.timeout);
-    }, 8000);
-
-    const unsubscribe = onAuthStateChanged(auth, (activeUser) => {
-      setUser(activeUser);
-      setIsAuthReady(true);
-      window.clearTimeout(timeoutId);
-      if (activeUser) setAuthError(null);
-    });
-
-    return () => {
-      unsubscribe();
-      window.clearTimeout(timeoutId);
-    };
-  }, []);
-
-  useEffect(() => {
-    const battlesQuery = query(collection(db, 'battles'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(
-      battlesQuery,
-      (snapshot) => {
-        setBattles(snapshot.docs.map((battleDoc) => ({ id: battleDoc.id, ...battleDoc.data() } as Battle)));
-      },
-      (error) => {
-        try {
-          handleFirestoreError(error, OperationType.LIST, 'battles');
-        } catch {
-          setAuthError(votingCopy.status.noBattle.message);
-        }
-      }
-    );
-
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (!user) {
-      setVotedBattles({});
-      return;
-    }
-
-    const votesQuery = query(collection(db, 'votes'), where('voterId', '==', user.uid));
-    const unsubscribe = onSnapshot(
-      votesQuery,
-      (snapshot) => {
-        const votes: Record<string, 'A' | 'B'> = {};
-        snapshot.docs.forEach((voteDoc) => {
-          const data = voteDoc.data();
-          votes[data.battleId] = data.choice;
-        });
-        setVotedBattles(votes);
-      },
-      (error) => {
-        console.warn('Votes snapshot error:', error);
-      }
-    );
-
-    return () => unsubscribe();
-  }, [user]);
-
   const handleGoogleLogin = async () => {
-    try {
-      setAuthError(null);
-      googleProvider.setCustomParameters({ prompt: 'select_account' });
-      await signInWithPopup(auth, googleProvider);
-    } catch (error: any) {
-      if (error.code === 'auth/popup-blocked') {
-        setAuthError(votingCopy.auth.popupBlocked);
-      } else if (error.code === 'auth/popup-closed-by-user') {
-        setAuthError(votingCopy.auth.popupClosed);
-      } else {
-        setAuthError(error.message || votingCopy.auth.timeout);
-      }
-    }
+    setAuthError(null);
+    const message = await signInForVoting();
+    if (message) setAuthError(message);
   };
-
-  const requestArenaCheck = () => {
-    if (!navigator.geolocation) {
-      setLocationState({
-        status: 'unsupported',
-        error: votingCopy.location.required,
-        result: null,
-        lastCheckedAt: Date.now(),
-      });
-      return;
-    }
-
-    setLocationState((current) => ({
-      ...current,
-      status: 'checking',
-      error: null,
-    }));
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const result = evaluateArenaPosition(
-          position.coords.latitude,
-          position.coords.longitude,
-          position.coords.accuracy
-        );
-
-        setLocationState({
-          status: result.withinArena ? 'granted' : 'blocked',
-          error: result.withinArena
-            ? null
-            : votingCopy.location.shortMessage,
-          result,
-          lastCheckedAt: Date.now(),
-        });
-      },
-      (error) => {
-        let message = votingCopy.location.required;
-        if (error.code === error.PERMISSION_DENIED) {
-          message = votingCopy.location.denied;
-        } else if (error.code === error.POSITION_UNAVAILABLE) {
-          message = votingCopy.location.unavailable;
-        } else if (error.code === error.TIMEOUT) {
-          message = votingCopy.location.timeout;
-        }
-
-        setLocationState({
-          status: 'blocked',
-          error: message,
-          result: null,
-          lastCheckedAt: Date.now(),
-        });
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 0,
-      }
-    );
-  };
-
-  useEffect(() => {
-    if (!user) return;
-    requestArenaCheck();
-
-    const intervalId = window.setInterval(() => {
-      requestArenaCheck();
-    }, LOCATION_REFRESH_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, [user]);
 
   const castVote = async (battleId: string, choice: 'A' | 'B') => {
+
     if (!user || votedBattles[battleId]) return;
     if (locationState.status !== 'granted' || !locationState.result?.withinArena) {
       setVoteError(votingCopy.location.required);
@@ -255,16 +75,18 @@ export default function VoteLivePage() {
     const voteId = `${user.uid}_${battleId}`;
     try {
       setVoteError(null);
-      await setDoc(doc(db, 'votes', voteId), {
+      const batch = writeBatch(db);
+      batch.set(doc(db, 'votes', voteId), {
         battleId,
         voterId: user.uid,
         choice,
         timestamp: serverTimestamp()
       });
-      await updateDoc(doc(db, 'battles', battleId), {
+      batch.update(doc(db, 'battles', battleId), {
         [choice === 'A' ? 'votesA' : 'votesB']: increment(1),
         updatedAt: serverTimestamp(),
       });
+      await batch.commit();
     } catch (error) {
       try {
         handleFirestoreError(error, OperationType.WRITE, `votes/${voteId}`);
@@ -325,7 +147,7 @@ export default function VoteLivePage() {
   );
 }
 
-function LiveHeader({ battle }: { battle?: Battle }) {
+function LiveHeader({ battle }: { battle?: VotingBattle }) {
   const status = getBattleStatusLabel(battle);
   const isOpen = battle?.status === 'active';
 
@@ -384,9 +206,9 @@ function LiveVotingPanel({
   onVote,
   onRefreshLocation,
 }: {
-  activeBattle?: Battle;
+  activeBattle?: VotingBattle;
   user: User | null;
-  votedBattles: Record<string, 'A' | 'B'>;
+  votedBattles: VoteMap;
   authError: string | null;
   voteError: string | null;
   locationState: VoteLocationState;

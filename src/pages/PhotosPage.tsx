@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { X, Download, Images } from "lucide-react";
 
 type PhotoGroup = {
@@ -22,6 +22,33 @@ function buildSrc(folder: string, file: string) {
 export default function PhotosPage() {
   const [active, setActive] = useState<{ src: string; alt: string } | null>(null);
   const grouped = useMemo(() => photoGroups, []);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActive(null);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      lastFocusedRef.current?.focus();
+    };
+  }, [active]);
+
+  const openPhoto = (src: string, alt: string) => {
+    lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    setActive({ src, alt });
+  };
 
   const handleDownload = async (src: string, filename: string) => {
     const response = await fetch(src);
@@ -73,12 +100,14 @@ export default function PhotosPage() {
                     <button
                       key={file}
                       type="button"
-                      onClick={() => setActive({ src, alt: `${group.label} photo ${index + 1}` })}
+                      onClick={() => openPhoto(src, `${group.label} photo ${index + 1}`)}
                       className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 bg-white/5 text-left"
                     >
                       <img
                         src={src}
                         alt={`${group.label} photo ${index + 1}`}
+                        width={800}
+                        height={1000}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                         decoding="async"
@@ -97,9 +126,13 @@ export default function PhotosPage() {
         <div
           className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
           onClick={() => setActive(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={active.alt}
         >
-          <div className="relative max-w-6xl w-full max-h-[90vh]">
+          <div className="relative max-w-6xl w-full max-h-[90vh]" onClick={(event) => event.stopPropagation()}>
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={() => setActive(null)}
               className="absolute -top-14 right-0 w-10 h-10 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center"

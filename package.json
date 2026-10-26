@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
+    "test": "tsx --test tests/run.ts",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "fetch-views": "tsx fetch_views.ts"
   },

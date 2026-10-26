@@ -16,7 +16,9 @@ async function testConnection() {
     }
   }
 }
-testConnection();
+if (import.meta.env.DEV) {
+  void testConnection();
+}
 
 export enum OperationType {
   CREATE = 'create',

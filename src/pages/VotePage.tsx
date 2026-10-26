@@ -4,37 +4,30 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { 
-  collection, 
-  onSnapshot, 
-  doc, 
-  updateDoc, 
-  setDoc, 
-  serverTimestamp, 
+import {
+  collection,
+  onSnapshot,
+  doc,
+  updateDoc,
+  setDoc,
+  serverTimestamp,
   increment,
-  query,
-  orderBy,
-  where,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  writeBatch
 } from 'firebase/firestore';
-import { 
-  onAuthStateChanged, 
-  signInWithPopup, 
-  GoogleAuthProvider,
-  signOut
-} from 'firebase/auth';
+import { signOut, type User } from 'firebase/auth';
 import { db, auth, OperationType, handleFirestoreError } from '../lib/voteFirebase';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Vote, 
-  Settings, 
-  Monitor, 
-  Plus, 
-  Play, 
-  Square, 
+import {
+  Vote,
+  Settings,
+  Monitor,
+  Plus,
+  Play,
+  Square,
   Trash2,
-  Check, 
+  Check,
   Users,
   X as CloseIcon,
   Mic2,
@@ -44,57 +37,21 @@ import {
   ShieldAlert,
   RefreshCw
 } from 'lucide-react';
-import {
-  LOCATION_REFRESH_MS,
-  VoteLocationStatus,
-  evaluateArenaPosition,
-  formatMeters,
-} from '../lib/voteLocation';
+import { formatMeters } from '../lib/voteLocation';
 import { votingCopy, withArtistName } from '../lib/votingCopy';
-
-const googleProvider = new GoogleAuthProvider();
-
-// --- Types ---
-interface Battle {
-  id: string;
-  title: string;
-  artistA: string;
-  artistB: string;
-  status: 'pending' | 'active' | 'finished';
-  votesA: number;
-  votesB: number;
-  createdAt: any;
-  updatedAt: any;
-}
-
-interface CurrentVote {
-  battleId: string;
-  choice: 'A' | 'B';
-}
-
-interface AdminRecord {
-  id: string; // The email is the ID
-  email: string;
-  addedBy: string;
-  addedAt: any;
-}
-
-interface VoteLocationState {
-  status: VoteLocationStatus;
-  error: string | null;
-  result: ReturnType<typeof evaluateArenaPosition> | null;
-  lastCheckedAt: number | null;
-}
+import { useVoteAuth } from '../hooks/useVoteAuth';
+import { useUserVotes, useVotingBattles } from '../hooks/useVoteData';
+import { useArenaLocation } from '../hooks/useArenaLocation';
+import { signInForVoting } from '../lib/voteAuth';
+import type { VoteMap, VotingBattle } from '../lib/voteTypes';
 
 // --- App Component ---
 export default function VotePage() {
-  const [user, setUser] = useState(auth.currentUser);
+  const { user, isAuthReady, authError, setAuthError } = useVoteAuth();
   const [view, setView] = useState<'voter' | 'admin' | 'display'>('voter');
-  const [activeBattles, setActiveBattles] = useState<Battle[]>([]);
+  const activeBattles = useVotingBattles();
   const [admins, setAdmins] = useState<string[]>([]);
-  const [votedBattles, setVotedBattles] = useState<Record<string, 'A' | 'B'>>({});
-  const [isAuthReady, setIsAuthReady] = useState(false);
-  const [authError, setAuthError] = useState<string | null>(null);
+  const votedBattles = useUserVotes(user);
 
   // Parse URL for direct view/battle access
   useEffect(() => {
@@ -104,88 +61,25 @@ export default function VotePage() {
     if (viewParam === 'display') setView('display');
   }, []);
 
-  // Auth & Initial Setup
-  useEffect(() => {
-    // Safety timeout for auth readiness
-    const timeoutId = setTimeout(() => {
-      if (!isAuthReady) {
-        setIsAuthReady(true);
-        setAuthError(votingCopy.auth.timeout);
-      }
-    }, 8000);
-
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setIsAuthReady(true);
-      clearTimeout(timeoutId);
-      if (u) setAuthError(null);
-    });
-    return () => {
-      unsubscribe();
-      clearTimeout(timeoutId);
-    };
-  }, [isAuthReady]);
-
   const handleGoogleLogin = async () => {
-    try {
-      setAuthError(null);
-      googleProvider.setCustomParameters({ prompt: 'select_account' });
-      await signInWithPopup(auth, googleProvider);
-    } catch (error: any) {
-      console.error("Login failed", error);
-      if (error.code === 'auth/popup-blocked') {
-        setAuthError(votingCopy.auth.popupBlocked);
-      } else if (error.code === 'auth/popup-closed-by-user') {
-        setAuthError(votingCopy.auth.popupClosed);
-      } else {
-        setAuthError(error.message || votingCopy.auth.timeout);
-      }
-    }
+    setAuthError(null);
+    const message = await signInForVoting();
+    if (message) setAuthError(message);
   };
 
   const handleLogout = () => signOut(auth);
-
-  // Listen to Battles
-  useEffect(() => {
-    const q = query(collection(db, 'battles'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const battles = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Battle));
-      setActiveBattles(battles);
-    }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'battles');
-    });
-    return () => unsubscribe();
-  }, []);
 
   // Listen to Admins
   useEffect(() => {
     if (!user) return;
     const unsubscribe = onSnapshot(collection(db, 'admins'), (snapshot) => {
       setAdmins(snapshot.docs.map(doc => doc.id));
-    }, (error) => {
+    }, () => {
       // Users might not have access if not admin, so we ignore failures here
-      console.log("Admin list check suppressed (expected if not admin)");
     });
     return () => unsubscribe();
   }, [user]);
 
-  // Listen to User's Votes
-  useEffect(() => {
-    if (!user) return;
-    const q = query(collection(db, 'votes'), where('voterId', '==', user.uid));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const votes: Record<string, 'A' | 'B'> = {};
-      snapshot.docs.forEach(doc => {
-        const data = doc.data();
-        votes[data.battleId] = data.choice;
-      });
-      setVotedBattles(votes);
-    }, (error) => {
-      // It might fail if index is building, but we handle it
-      console.warn("Votes snapshot error (probably missing index):", error);
-    });
-    return () => unsubscribe();
-  }, [user]);
 
   if (!isAuthReady) {
     return (
@@ -217,10 +111,11 @@ export default function VotePage() {
           </div>
         </div>
         
-        <nav className="flex gap-1 bg-zinc-900 border border-zinc-800 p-1 rounded">
+        <nav className="flex gap-1 bg-zinc-900 border border-zinc-800 p-1 rounded" aria-label="Voting views">
           <button 
             onClick={() => setView('voter')}
             id="nav-vote"
+            aria-pressed={view === 'voter'}
             className={`px-4 py-1.5 flex items-center gap-2 text-[10px] uppercase font-black transition-all rounded-sm ${view === 'voter' ? 'bg-zinc-100 text-black' : 'text-zinc-400 hover:text-white'}`}
           >
             <Vote size={12} /> Vote Now
@@ -228,6 +123,7 @@ export default function VotePage() {
           <button 
             onClick={() => setView('display')}
             id="nav-display"
+            aria-pressed={view === 'display'}
             className={`px-4 py-1.5 flex items-center gap-2 text-[10px] uppercase font-black transition-all rounded-sm ${view === 'display' ? 'bg-zinc-100 text-black' : 'text-zinc-400 hover:text-white'}`}
           >
             <Monitor size={12} /> Results
@@ -235,6 +131,7 @@ export default function VotePage() {
           <button 
             onClick={() => setView('admin')}
             id="nav-admin"
+            aria-pressed={view === 'admin'}
             className={`px-4 py-1.5 flex items-center gap-2 text-[10px] uppercase font-black transition-all rounded-sm ${view === 'admin' ? 'bg-zinc-100 text-black' : 'text-zinc-400 hover:text-white'}`}
           >
             <Settings size={12} /> Admin Access
@@ -265,109 +162,35 @@ export default function VotePage() {
 
 // --- Views ---
 
-function VoterView({ battles, votedBattles, user, authError, onLogin }: { battles: Battle[], votedBattles: Record<string, 'A' | 'B'>, user: any, authError: string | null, onLogin: () => void }) {
+function VoterView({ battles, votedBattles, user, authError, onLogin }: { battles: VotingBattle[], votedBattles: VoteMap, user: User | null, authError: string | null, onLogin: () => void }) {
   const activeBattle = battles.find(b => b.status === 'active');
-  const [locationState, setLocationState] = useState<VoteLocationState>({
-    status: 'idle',
-    error: null,
-    result: null,
-    lastCheckedAt: null,
-  });
-
-  const requestArenaCheck = () => {
-    if (!navigator.geolocation) {
-      setLocationState({
-        status: 'unsupported',
-        error: votingCopy.location.required,
-        result: null,
-        lastCheckedAt: Date.now(),
-      });
-      return;
-    }
-
-    setLocationState((current) => ({
-      ...current,
-      status: 'checking',
-      error: null,
-    }));
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const result = evaluateArenaPosition(
-          position.coords.latitude,
-          position.coords.longitude,
-          position.coords.accuracy
-        );
-
-        setLocationState({
-          status: result.withinArena ? 'granted' : 'blocked',
-          error: result.withinArena
-            ? null
-            : votingCopy.location.shortMessage,
-          result,
-          lastCheckedAt: Date.now(),
-        });
-      },
-      (error) => {
-        let message = votingCopy.location.required;
-        if (error.code === error.PERMISSION_DENIED) {
-          message = votingCopy.location.denied;
-        } else if (error.code === error.POSITION_UNAVAILABLE) {
-          message = votingCopy.location.unavailable;
-        } else if (error.code === error.TIMEOUT) {
-          message = votingCopy.location.timeout;
-        }
-
-        setLocationState({
-          status: 'blocked',
-          error: message,
-          result: null,
-          lastCheckedAt: Date.now(),
-        });
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 0,
-      }
-    );
-  };
-
-  useEffect(() => {
-    if (!user) return;
-    requestArenaCheck();
-
-    const intervalId = window.setInterval(() => {
-      requestArenaCheck();
-    }, LOCATION_REFRESH_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, [user]);
+  const { locationState, requestArenaCheck } = useArenaLocation(Boolean(user));
+  const [voteError, setVoteError] = useState<string | null>(null);
 
   const castVote = async (battleId: string, choice: 'A' | 'B') => {
     if (!user) return;
     if (locationState.status !== 'granted' || !locationState.result?.withinArena) {
-      setLocationState((current) => ({
-        ...current,
-        status: current.status === 'unsupported' ? 'unsupported' : 'blocked',
-        error: current.error || votingCopy.location.required,
-      }));
+      requestArenaCheck();
       return;
     }
     const voteId = `${user.uid}_${battleId}`;
     try {
-      await setDoc(doc(db, 'votes', voteId), {
+      setVoteError(null);
+      const batch = writeBatch(db);
+      batch.set(doc(db, 'votes', voteId), {
         battleId,
         voterId: user.uid,
         choice,
         timestamp: serverTimestamp()
       });
-      await updateDoc(doc(db, 'battles', battleId), {
+      batch.update(doc(db, 'battles', battleId), {
         [choice === 'A' ? 'votesA' : 'votesB']: increment(1),
-        updatedAt: serverTimestamp()
+        updatedAt: serverTimestamp(),
       });
+      await batch.commit();
     } catch (error) {
-      handleFirestoreError(error, OperationType.WRITE, `votes/${voteId}`);
+      console.error('Vote write failed:', error);
+      setVoteError('Your vote could not be confirmed. Please try again.');
     }
   };
 
@@ -525,6 +348,12 @@ function VoterView({ battles, votedBattles, user, authError, onLogin }: { battle
               </div>
             </div>
 
+            {voteError && (
+              <p role="alert" className="text-[10px] text-red-300 uppercase leading-relaxed border border-red-500/30 bg-red-500/10 p-3">
+                {voteError}
+              </p>
+            )}
+
             {userVote && (
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -598,7 +427,7 @@ function VoterView({ battles, votedBattles, user, authError, onLogin }: { battle
   );
 }
 
-function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { battles: Battle[], user: any, admins: string[], authError: string | null, onLogin: () => void, onLogout: () => void }) {
+function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { battles: VotingBattle[], user: User | null, admins: string[], authError: string | null, onLogin: () => void, onLogout: () => void }) {
   const [showAdd, setShowAdd] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [newBattle, setNewBattle] = useState({ title: '', artistA: '', artistB: '', startNow: false });
@@ -652,7 +481,7 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
     }
   };
 
-  const updateStatus = async (id: string, status: Battle['status']) => {
+  const updateStatus = async (id: string, status: VotingBattle['status']) => {
     try {
       await updateDoc(doc(db, 'battles', id), { 
         status,
@@ -762,7 +591,9 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
         <div className="bg-zinc-900 border border-zinc-800 p-8 space-y-6">
             <h3 className="text-xl font-black uppercase italic">Administrator Registry</h3>
             <form onSubmit={addAdmin} className="flex gap-2">
+                <label htmlFor="admin-email" className="sr-only">Admin email address</label>
                 <input 
+                    id="admin-email"
                     type="email"
                     required
                     placeholder="ADMIN EMAIL ADDRESS"
@@ -799,6 +630,7 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
            <button 
             type="button"
             onClick={() => setShowAdd(false)}
+            aria-label="Close new battle form"
             className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
           >
             <CloseIcon size={24} />
@@ -806,8 +638,9 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
           <h3 className="text-2xl font-black uppercase italic tracking-tighter">Initialise Battle Sequence</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-2">
-              <label className="block text-[10px] uppercase mb-2 text-zinc-500 font-black tracking-widest">Round Official Label</label>
+              <label htmlFor="battle-title" className="block text-[10px] uppercase mb-2 text-zinc-500 font-black tracking-widest">Round Official Label</label>
               <input 
+                id="battle-title"
                 required
                 className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-orange-500 outline-none mono text-sm"
                 placeholder="e.g. SEMI-FINAL 02"
@@ -816,8 +649,9 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
               />
             </div>
             <div>
-              <label className="block text-[10px] uppercase mb-2 text-orange-500/70 font-black tracking-widest">Entry A Name</label>
+              <label htmlFor="battle-artist-a" className="block text-[10px] uppercase mb-2 text-orange-500/70 font-black tracking-widest">Entry A Name</label>
               <input 
+                id="battle-artist-a"
                 required
                 className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-orange-500 outline-none mono text-sm"
                 placeholder="ARTIST NAME"
@@ -826,8 +660,9 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
               />
             </div>
             <div>
-              <label className="block text-[10px] uppercase mb-2 text-zinc-300 font-black tracking-widest">Entry B Name</label>
+              <label htmlFor="battle-artist-b" className="block text-[10px] uppercase mb-2 text-zinc-300 font-black tracking-widest">Entry B Name</label>
               <input 
+                id="battle-artist-b"
                 required
                 className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none mono text-sm"
                 placeholder="ARTIST NAME"
@@ -933,7 +768,7 @@ function AdminView({ battles, user, admins, authError, onLogin, onLogout }: { ba
   );
 }
 
-function DisplayView({ battles }: { battles: Battle[] }) {
+function DisplayView({ battles }: { battles: VotingBattle[] }) {
   const activeBattle = battles.find(b => b.status === 'active') || battles.find(b => b.status === 'finished');
   
   if (!activeBattle) {

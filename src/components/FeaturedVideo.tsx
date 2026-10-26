@@ -1,16 +1,20 @@
+import { useState } from "react";
 import { motion } from "motion/react";
+import { Play } from "lucide-react";
 import { seasonOneBattles } from "../data/battles";
+import { youTubeEmbedUrl, youTubeThumbnailUrl } from "../lib/youtube";
 
 export default function FeaturedVideo() {
+  const [isPlaying, setIsPlaying] = useState(false);
   const releasedBattles = seasonOneBattles
     .filter((battle) => !battle.isUnreleased && !battle.isPlaceholder && Boolean(battle.videoUrl))
     .sort((a, b) => Number(a.episode?.split("x")[1] || 0) - Number(b.episode?.split("x")[1] || 0));
   const featuredBattle = releasedBattles[releasedBattles.length - 1] ?? null;
-  const featuredBattleEmbedSrc = featuredBattle?.videoUrl
-    ? featuredBattle.videoUrl.includes("watch?v=")
-      ? featuredBattle.videoUrl.replace("watch?v=", "embed/")
-      : featuredBattle.videoUrl
-    : "https://www.youtube-nocookie.com/embed/-bKXRy3RxoY";
+  const featuredVideoUrl = featuredBattle?.videoUrl ?? "https://www.youtube.com/watch?v=-bKXRy3RxoY";
+  const featuredBattleEmbedSrc = youTubeEmbedUrl(featuredVideoUrl, { autoplay: true })
+    ?? youTubeEmbedUrl("https://www.youtube.com/watch?v=-bKXRy3RxoY", { autoplay: true });
+  const featuredThumbnail = youTubeThumbnailUrl(featuredVideoUrl, "maxresdefault")
+    ?? youTubeThumbnailUrl(featuredVideoUrl);
 
   const featuredTitle = featuredBattle?.title?.replace(/\svs\s/i, " VS ") ?? "New battle";
 
@@ -45,15 +49,50 @@ export default function FeaturedVideo() {
         >
           <div className="relative w-full h-full rounded-sm sm:rounded-lg overflow-hidden border border-white/10 bg-[#050505]">
 
-            <iframe
-              className="w-full h-full border-0"
-              src={featuredBattleEmbedSrc}
-              title={featuredTitle}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+            {isPlaying && featuredBattleEmbedSrc ? (
+              <iframe
+                className="w-full h-full border-0"
+                src={featuredBattleEmbedSrc}
+                title={featuredTitle}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIsPlaying(true)}
+                className="group absolute inset-0 h-full w-full overflow-hidden text-left"
+                aria-label={`Play ${featuredTitle}`}
+              >
+                {featuredThumbnail && (
+                  <img
+                    src={featuredThumbnail}
+                    alt={`${featuredTitle} video thumbnail`}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(event) => {
+                      const image = event.currentTarget;
+                      if (image.dataset.fallback) return;
+                      image.dataset.fallback = "true";
+                      image.src = youTubeThumbnailUrl(featuredVideoUrl) ?? "";
+                    }}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
+                <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-brand text-black shadow-[0_0_40px_rgba(242,125,38,0.45)] transition-transform duration-300 group-hover:scale-110">
+                    <Play size={30} fill="currentColor" className="ml-1" />
+                  </span>
+                </span>
+                <span className="absolute bottom-5 left-5 right-5 text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
+                  Tap to play
+                </span>
+              </button>
+            )}
 
             {/* WANTED Stamp Overlay */}
             {featuredBattle?.isWanted && (

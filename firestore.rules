@@ -110,21 +110,27 @@ service cloud.firestore {
 
       allow update: if (
         (isAdmin() && isValidBattle(incoming()) && incoming().updatedAt == request.time) ||
-        // Atomicity: Increment count when a new vote is detected
-        (isSignedIn() && isValidBattle(incoming()) && (
+        // Atomic vote + increment: the vote doc and battle counter must commit together.
+        (isSignedIn() && isValidBattle(incoming()) && incoming().updatedAt == request.time && (
           (incoming().diff(existing()).affectedKeys().hasOnly(['votesA', 'updatedAt']) && 
            incoming().votesA == existing().votesA + 1 && 
-           get(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'A') ||
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'A' &&
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.voterId == request.auth.uid &&
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.timestamp == request.time) ||
           (incoming().diff(existing()).affectedKeys().hasOnly(['votesB', 'updatedAt']) && 
            incoming().votesB == existing().votesB + 1 &&
-           get(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'B')
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.choice == 'B' &&
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.voterId == request.auth.uid &&
+           getAfter(/databases/$(database)/documents/votes/$(request.auth.uid + '_' + battleId)).data.timestamp == request.time)
         ))
       );
     }
 
     match /votes/{voteId} {
       allow get: if isSignedIn() && resource.data.voterId == request.auth.uid;
-      allow list: if isSignedIn() && request.query.limit <= 100 && resource.data.voterId == request.auth.uid;
+      allow list: if isSignedIn()
+        && (request.query.limit == null || request.query.limit <= 100)
+        && resource.data.voterId == request.auth.uid;
 
       allow create: if isSignedIn() 
         && voteId == request.auth.uid + '_' + incoming().battleId

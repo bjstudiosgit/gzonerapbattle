@@ -1,15 +1,12 @@
-const defaultRecipient = "bradleyjsmithuk@gmail.com";
+import {
+  ApplyPayload,
+  validateApplication,
+} from "./src/lib/applicationPayload";
 
-export interface ApplyPayload {
-  fullName: string;
-  mcName: string;
-  email: string;
-  phone: string;
-  city: string;
-  battleExperience: string;
-  about: string;
-  links?: string;
-}
+const defaultRecipient = "bradleyjsmithuk@gmail.com";
+const FORM_SUBMIT_TIMEOUT_MS = 10000;
+
+export type { ApplyPayload };
 
 export class ApplyProxyError extends Error {
   status: number;
@@ -21,41 +18,48 @@ export class ApplyProxyError extends Error {
   }
 }
 
-export async function submitApplication(payload: ApplyPayload) {
-  const fullName = payload.fullName?.trim();
-  const email = payload.email?.trim();
-
-  if (!fullName || !email) {
-    throw new ApplyProxyError("Name and email are required.", 400);
+export async function submitApplication(input: unknown) {
+  const validation = validateApplication(input);
+  if (validation.ok === false) {
+    throw new ApplyProxyError(validation.error, 400);
   }
 
-  const recipient = process.env.APPLY_EMAIL || defaultRecipient;
-  const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      _subject: `New G-Zone MC application: ${payload.mcName || fullName}`,
-      "Full Name": fullName,
-      "MC Name": payload.mcName,
-      Email: email,
-      Phone: payload.phone,
-      "City / Area": payload.city,
-      Experience: payload.battleExperience,
-      "Why they want to battle": payload.about,
-      "Optional links": payload.links || "None provided",
-    }),
-  });
+  const payload = validation.value;
+  const recipient = (process.env.APPLY_EMAIL || defaultRecipient).trim();
+  if (!/^[^\s@/]+@[^\s@/]+\.[^\s@/]+$/.test(recipient)) {
+    throw new ApplyProxyError("The application service is not configured correctly.", 502);
+  }
+  const subject = `New G-Zone MC application: ${payload.mcName || payload.fullName}`;
+
+  let response: Response;
+  try {
+    response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      signal: AbortSignal.timeout(FORM_SUBMIT_TIMEOUT_MS),
+      body: JSON.stringify({
+        _subject: subject.replace(/[\r\n]+/g, " "),
+        "Full Name": payload.fullName,
+        "MC Name": payload.mcName,
+        Email: payload.email,
+        Phone: payload.phone,
+        "City / Area": payload.city,
+        Experience: payload.battleExperience,
+        "Why they want to battle": payload.about,
+        "Optional links": payload.links || "None provided",
+      }),
+    });
+  } catch {
+    throw new ApplyProxyError("The application service is temporarily unavailable.", 502);
+  }
 
   const result = await response.json().catch(() => null);
 
   if (!response.ok || result?.success === false || result?.success === "false") {
-    throw new ApplyProxyError(
-      result?.message || "The application service is temporarily unavailable.",
-      response.status || 502
-    );
+    throw new ApplyProxyError("The application service is temporarily unavailable.", 502);
   }
 
   return { success: true };

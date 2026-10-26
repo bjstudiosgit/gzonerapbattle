@@ -13,7 +13,7 @@ export default function ApplyPage() {
           <a
             href="https://www.instagram.com/thegzonerbl/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="break-all font-display text-3xl uppercase text-brand underline decoration-brand/30 underline-offset-8 md:text-5xl"
           >
             @thegzonerbl
