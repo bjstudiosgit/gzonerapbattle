@@ -6,9 +6,7 @@
     { "source": "/royalrumble", "destination": "/battles", "permanent": true },
     { "source": "/RoyalRumble", "destination": "/battles", "permanent": true }
   ],
-  "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/" }
-  ],
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
