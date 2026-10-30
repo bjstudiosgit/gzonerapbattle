@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "motion/react";
 import { Download, Eye, X, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { flyerImage } from "../lib/images";

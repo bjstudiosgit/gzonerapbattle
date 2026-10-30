@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowRight, ExternalLink, Eye, Play } from "lucide-react";
 import { initialStreetEpisodes } from "./GzoneStreetFreestyles";
 import { initialCypherEpisodes } from "./GzoneCyphers";

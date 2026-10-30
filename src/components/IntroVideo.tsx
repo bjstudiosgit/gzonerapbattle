@@ -61,7 +61,6 @@ export default function IntroVideo() {
             <source src="/introdesktop.mp4" media="(min-width: 1024px)" type="video/mp4" />
             <source src="/introtablet.mp4" media="(min-width: 768px)" type="video/mp4" />
             <source src="/intromobile.mp4" type="video/mp4" />
-            <track kind="captions" label="English" />
           </video>
         </motion.div>
         
@@ -108,18 +107,18 @@ export default function IntroVideo() {
                   className="relative z-10 max-w-4xl"
                 >
                   <div className="mb-4">
-                    <h1 className="whitespace-nowrap font-display uppercase text-[clamp(1.6rem,4.5vw,4.5rem)] leading-none tracking-tight text-white drop-shadow-[0_12px_35px_rgba(0,0,0,0.9)]">
+                    <h1 className="md:whitespace-nowrap font-display uppercase text-[clamp(1.6rem,4.5vw,4.5rem)] leading-none tracking-tight text-white drop-shadow-[0_12px_35px_rgba(0,0,0,0.9)]">
                       <span className="text-brand">Gzone</span> Rap Battle League
                     </h1>
                   </div>
 
                   <div className="mb-6 max-w-3xl">
-                    <p className="whitespace-nowrap text-[clamp(0.65rem,1.35vw,1.25rem)] font-black uppercase tracking-[0.1em] text-white">
+                    <p className="md:whitespace-nowrap text-[clamp(0.65rem,1.35vw,1.25rem)] font-black uppercase tracking-[0.1em] text-white">
                       Season 1 <span className="text-brand">&quot;Most Wanted&quot;</span> Where we don&apos;t play!
-                      <span className="ml-2 text-yellow-400 tracking-[0.12em]">★★★★★</span>
+                      <span aria-hidden="true" className="ml-2 text-yellow-400 tracking-[0.12em]">★★★★★</span>
                     </p>
                     <div className="mt-3 h-px w-full max-w-3xl bg-brand/70" />
-                    <p className="mt-4 max-w-3xl font-sans font-normal text-justify text-sm sm:text-xl leading-relaxed text-zinc-300">
+                    <p className="mt-4 max-w-3xl font-sans font-normal sm:text-justify text-sm sm:text-xl leading-relaxed text-zinc-300">
                       The GZone is a UK battle rap league based at the World Famous Peacocks Gym in Canning Town, bringing hungry newcomers and established MCs together for live, uncensored clashes. Hosted by Ginga Jay and Darren &quot;The Dentist&quot; Stewart, with Passive as co-host and Flex FM&apos;s Most Wanted 2 as official DJs, GZone combines battle rap, live entertainment and UK underground culture in one high-pressure arena.
                     </p>
                   </div>

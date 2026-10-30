@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Eye, ExternalLink, Users, Mic2, Calendar } from "lucide-react";
 
 export interface CypherEpisode {

@@ -149,7 +149,7 @@ export default function RecentBattles() {
                     <span className="text-brand font-black text-[9px] tracking-[0.4em] uppercase mb-1.5 block drop-shadow-lg">
                       Episode {battle.episode || `1x${String(battles.findIndex(b => b.id === battle.id) + 1).padStart(2, '0')}`}
                     </span>
-                    <h4 className="text-2xl md:text-3xl font-display uppercase leading-none group-hover:text-brand transition-colors drop-shadow-2xl">
+                    <h4 className={`text-2xl md:text-3xl font-display uppercase leading-none group-hover:text-brand transition-colors drop-shadow-2xl ${isInProduction ? "sr-only" : ""}`}>
                       <span className="relative z-40 pointer-events-none">{mc1Name}</span> 
                       <span className="text-brand/50 mx-1.5">VS</span> 
                       <span className="relative z-40 pointer-events-none">{mc2Name}</span>

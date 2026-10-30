@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, X, Gavel, UserRound, RefreshCw, Check, ExternalLink } from 'lucide-react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { museumItems, type MuseumItem } from '../data/museum';
 import { getBackstageSession, watchBackstageSession, type BackstageSession } from '../lib/backstage';
 import { auctionOpen, getMuseumAuctions, minimumBid, money, placeMuseumBid, rememberMuseumItem, type MuseumAuction } from '../lib/museumAuctions';

@@ -1,4 +1,4 @@
-import { Youtube } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -33,6 +33,9 @@ export default function Footer() {
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47-.13 1.89-.12 3.78-.12 5.67 0 1.23-.19 2.48-.65 3.62-.46 1.14-1.2 2.18-2.12 3.01-1.84 1.67-4.45 2.37-6.87 1.85-2.42-.52-4.55-2.26-5.54-4.52-.99-2.26-.8-4.99.51-7.09 1.31-2.1 3.73-3.48 6.22-3.5V11.5c-1.12.01-2.26.47-3.01 1.3-.75.83-1.1 1.97-1.01 3.08.09 1.11.64 2.17 1.51 2.85.87.68 2.03.95 3.13.75 1.1-.2 2.06-.93 2.6-1.91.54-.98.67-2.13.67-3.23V0l.02.02z"/>
                 </svg>
               </a>
+              <a href="https://www.instagram.com/thegzonerbl/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:bg-brand hover:text-black hover:border-brand transition-all duration-300 shadow-xl" aria-label="Instagram">
+                <Instagram size={20} />
+              </a>
             </div>
           </div>
           
@@ -40,36 +43,35 @@ export default function Footer() {
             <div>
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Directory</h5>
               <ul className="space-y-2">
-                <li><Link to="/battles" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Rap Battles</Link></li>
-                <li><Link to="/outside" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Outside</Link></li>
-                <li><Link to="/events" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Next Event</Link></li>
-                <li><Link to="/whoswho" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
-                <li><Link to="/merch" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
-                <li><Link to="/map" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
-                <li><Link to="/flyers" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
-                <li><Link to="/gingabay" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Museum</Link></li>
-                <li><Link to="/privacy" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Privacy Policy</Link></li>
+                <li><Link to="/battles" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Gzone Rap Battles</Link></li>
+                <li><Link to="/outside" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Outside</Link></li>
+                <li><Link to="/events" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Next Event</Link></li>
+                <li><Link to="/whoswho" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
+                <li><Link to="/merch" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
+                <li><Link to="/map" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
+                <li><Link to="/flyers" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
+                <li><Link to="/gingabay" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">gingaBay</Link></li>
+                <li><Link to="/privacy" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Privacy Policy</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Community</h5>
               <ul className="space-y-2">
-                <li><Link to="/whoswho" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Production</Link></li>
-                <li><Link to="/backstage" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Backstage</Link></li>
-                <li><Link to="/photos" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Photos</Link></li>
-                <li><Link to="/league" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">League</Link></li>
-                <li><Link to="/apply" className="text-zinc-500 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Apply Now</Link></li>
+                <li><Link to="/backstage" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Backstage</Link></li>
+                <li><Link to="/photos" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Photos</Link></li>
+                <li><Link to="/league" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">League</Link></li>
+                <li><Link to="/apply" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Apply Now</Link></li>
               </ul>
             </div>
           </div>
         </div>
         
         <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row lg:flex-nowrap justify-between items-center gap-6">
-          <p className="shrink-0 whitespace-nowrap text-zinc-600 text-[10px] font-black tracking-[0.24em] order-2 lg:order-1">
-            © 2026 GINJA ENTERTAINMENT LTD. Company number 16258136
+          <p className="text-center lg:text-left text-zinc-400 text-[10px] font-black tracking-[0.24em] order-2 lg:order-1">
+            © 2026 GINGA ENTERTAINMENT LTD. Company number 16258136
           </p>
-          <div className="flex flex-nowrap justify-center gap-x-8 text-zinc-600 text-[10px] uppercase font-black tracking-[0.24em] order-1 lg:order-2">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-zinc-400 text-[10px] uppercase font-black tracking-[0.24em] order-1 lg:order-2">
             <span className="whitespace-nowrap">Powered by <a href="https://www.bjstudio.co.uk" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-brand transition-colors">BJSTUDIO</a></span>
             <span className="whitespace-nowrap">Proudly supported by <a href="https://www.lordofthearchives.co.uk" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-brand transition-colors">Lord of the Archives</a></span>
           </div>

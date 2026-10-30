@@ -5,7 +5,7 @@
 
 import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import GlobalDisclaimer from "./components/GlobalDisclaimer";
 import BackstagePromo from "./components/BackstagePromo";
@@ -170,9 +170,14 @@ function Main() {
     <div className="min-h-screen selection:bg-brand selection:text-black bg-black">
       <a href="#main-content" className="skip-link">Skip to content</a>
       <Helmet>
-        <title>Gzone Rap Battle League, Where we dont play!</title>
-        <meta name="description" content="The Gzone Rap Battle League - Where reputations are built or buried. Watch the best MCs clash in the UK's premier battle rap arena." />
+        <meta name="description" content="Watch the rawest UK battle rap league. Gzone Rap Battles features uncensored MC clashes, freestyle battles and underground rap events from Peacocks Gym." />
+        <link rel="canonical" href={`https://www.gzonerapbattle.co.uk${location.pathname}`} />
+        <meta property="og:url" content={`https://www.gzonerapbattle.co.uk${location.pathname}`} />
       </Helmet>
+      {location.pathname === '/' && <Helmet>
+        <title>Gzone Rap Battle League, Where we don't play!</title>
+        <meta name="description" content="The Gzone Rap Battle League - Where reputations are built or buried. Watch the best MCs clash in the UK's premier battle rap arena." />
+      </Helmet>}
       <ScrollToTop />
       {showAtmosphere && !isStandaloneVoteLive && (
         <Suspense fallback={null}>

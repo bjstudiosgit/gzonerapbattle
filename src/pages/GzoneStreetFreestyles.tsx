@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { MapPin, Eye, ExternalLink } from "lucide-react";
 
 export const initialStreetEpisodes = [

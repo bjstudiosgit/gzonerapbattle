@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import GingerifyCamera from "../components/GingerifyCamera";
 import { getBackstageSession, watchBackstageSession, type BackstageSession } from "../lib/backstage";
 

@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { guestMcs, mcs } from "../data/mcs";
 import { battles as allBattles, seasonOneBattles } from "../data/battles";
 import { initialStreetEpisodes } from "../pages/GzoneStreetFreestyles";
