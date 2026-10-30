@@ -5,46 +5,19 @@ import { hosts } from "../src/data/hosts";
 import { judges } from "../src/data/judges";
 import { guestMcs, mcs } from "../src/data/mcs";
 import { portraitImage } from "../src/lib/images";
+import { defaultDescription, defaultSocialImage, siteOrigin, staticPages, type SitePage } from "../src/data/sitePages";
+import { battleDescription } from "../src/lib/battleSeo";
 
-const origin = "https://www.gzonerapbattle.co.uk";
+const origin = siteOrigin;
 const dist = resolve("dist");
 const template = readFileSync(join(dist, "index.html"), "utf8");
-const defaultImage = `${origin}/gzonebattlemay.png`;
-const defaultDescription = "Watch the rawest UK battle rap league. Gzone Rap Battles features uncensored MC clashes, freestyle battles and underground rap events from Peacocks Gym.";
-
-type Page = { path: string; title: string; description: string; image?: string; canonical?: string; noindex?: boolean };
-const pages: Page[] = [
-  { path: "/", title: "Gzone Rap Battle League, Where we don't play!", description: defaultDescription },
-  { path: "/battles", title: "Battles | Gzone", description: "Watch Gzone rap battles, Royal Rumble episodes and freestyle clashes." },
-  { path: "/outside", title: "Outside | Gzone", description: "Watch GStreet Freestyles and Gzone Cyphers." },
-  { path: "/league", title: "League | Gzone", description: "Follow the Gzone Rap Battle League." },
-  { path: "/events", title: "Events | Gzone", description: "See upcoming Gzone battle events and tickets." },
-  { path: "/whoswho", title: "Who's Who | Gzone", description: "Meet the battle rappers, artists and Gzone team." },
-  { path: "/photos", title: "Photos | Gzone", description: "Explore photos from Gzone rap battle events." },
-  { path: "/map", title: "MC Map | Gzone", description: "Discover Gzone MCs on the map." },
-  { path: "/flyers", title: "Flyers | Gzone", description: "Download Gzone event artwork and battle flyers." },
-  { path: "/merch", title: "Merch | Gzone", description: "Explore Gzone Rap Battle League merchandise." },
-  { path: "/apply", title: "Apply | Gzone", description: "Apply to battle at Gzone." },
-  { path: "/backstage", title: "Backstage | Gzone", description: "The Gzone members' area." },
-  { path: "/gingabay", title: "gingaBay — Gzone Museum BETA | The Gzone", description: "The props. The punchlines. Bid on a piece of Gzone history from 99p." },
-  { path: "/privacy", title: "Privacy Policy | Gzone", description: "Read the Gzone privacy policy." },
-  { path: "/success", title: "Application received | Gzone", description: "Your Gzone application was received.", noindex: true },
-  { path: "/backstage/settings", title: "Backstage Settings | Gzone", description: "Manage your Gzone backstage account.", noindex: true },
-  { path: "/backstage/gingerify", title: "Fifty Shades of Jay | Gzone Backstage", description: "Gzone backstage members' content.", noindex: true },
-  { path: "/backstage/voting", title: "Voting | Gzone Backstage", description: "Gzone backstage voting.", noindex: true },
-  { path: "/vote/live", title: "Live Vote | Gzone", description: "Gzone live voting display.", noindex: true },
-];
+const pages: SitePage[] = [...staticPages];
 
 for (const battle of battles) {
-  const upcoming = battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel;
-  const league = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
   const mc1 = [...mcs, ...guestMcs].find((mc) => mc.id === battle.mc1);
   const mc2 = [...mcs, ...guestMcs].find((mc) => mc.id === battle.mc2);
-  const description = upcoming
-    ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${league}.`
-    : battle.league === "royal-rumble"
-      ? `Watch ${battle.title} from the Gzone Rap Battle League.`
-      : `Watch ${mc1?.name ?? battle.mc1} vs ${mc2?.name ?? battle.mc2} from the Gzone ${league}.`;
+  const winner = [...mcs, ...guestMcs].find((mc) => mc.id === battle.winner)?.name;
+  const description = battleDescription(battle, mc1?.name, mc2?.name, winner);
   const videoId = battle.videoUrl?.split("/").pop();
   pages.push({
     path: `/battle/${battle.slug}`,
@@ -82,16 +55,13 @@ const replaceTag = (html: string, tag: string, replacement: string) => {
   return html.replace(tag, replacement);
 };
 
-function render(page: Page) {
+function render(page: SitePage) {
   const url = `${origin}${page.canonical || page.path}`;
-  const image = page.image || defaultImage;
+  const image = page.image || defaultSocialImage;
   let html = template;
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escape(page.title)}</title>`);
-  html = replaceTag(html, '<meta property="og:title" content="Gzone Rap Battle League" />', `<meta property="og:title" content="${escape(page.title)}" />`);
-  html = replaceTag(html, '<meta property="og:description" content="The rawest UK battle rap league." />', `<meta property="og:description" content="${escape(page.description)}" />`);
-  html = replaceTag(html, `<meta property="og:image" content="${defaultImage}" />`, `<meta property="og:image" content="${escape(image)}" />`);
-  html = replaceTag(html, `<meta property="og:url" content="${origin}/" />`, `<meta property="og:url" content="${escape(url)}" />`);
-  html = html.replace("</head>", `    <meta name="description" content="${escape(page.description)}" />\n    <link rel="canonical" href="${escape(url)}" />\n    ${page.noindex ? '<meta name="robots" content="noindex" />\n    ' : ""}</head>`);
+  html = replaceTag(html, `<meta name="description" content="${defaultDescription}" />`, `<meta data-rh="true" name="description" content="${escape(page.description)}" />`);
+  html = html.replace("</head>", `    <meta data-rh="true" property="og:title" content="${escape(page.title)}" />\n    <meta data-rh="true" property="og:description" content="${escape(page.description)}" />\n    <meta data-rh="true" property="og:url" content="${escape(url)}" />\n    <meta data-rh="true" property="og:image" content="${escape(image)}" />\n    <meta data-rh="true" name="twitter:card" content="summary_large_image" />\n    <link data-rh="true" rel="canonical" href="${escape(url)}" />\n    ${page.noindex ? '<meta data-rh="true" name="robots" content="noindex" />\n    ' : ""}</head>`);
   return html;
 }
 

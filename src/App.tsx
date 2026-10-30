@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import GlobalDisclaimer from "./components/GlobalDisclaimer";
 import BackstagePromo from "./components/BackstagePromo";
+import { defaultDescription, defaultSocialImage, siteOrigin, staticPages } from "./data/sitePages";
 
 const Footer = lazy(() => import("./components/Footer"));
 const ArenaAtmosphere = lazy(() => import("./components/ArenaAtmosphere"));
@@ -136,6 +137,7 @@ function Home() {
 
 function Main() {
   const location = useLocation();
+  const pageMeta = staticPages.find((page) => page.path === location.pathname);
   const [showAtmosphere, setShowAtmosphere] = useState(false);
   const [showFooter, setShowFooter] = useState(false);
   const isStandaloneVoteLive = location.pathname === "/vote/live";
@@ -170,14 +172,15 @@ function Main() {
     <div className="min-h-screen selection:bg-brand selection:text-black bg-black">
       <a href="#main-content" className="skip-link">Skip to content</a>
       <Helmet>
-        <meta name="description" content="Watch the rawest UK battle rap league. Gzone Rap Battles features uncensored MC clashes, freestyle battles and underground rap events from Peacocks Gym." />
-        <link rel="canonical" href={`https://www.gzonerapbattle.co.uk${location.pathname}`} />
-        <meta property="og:url" content={`https://www.gzonerapbattle.co.uk${location.pathname}`} />
+        {pageMeta && <title>{pageMeta.title}</title>}
+        <meta name="description" content={pageMeta?.description || defaultDescription} />
+        {pageMeta && <meta property="og:title" content={pageMeta.title} />}
+        {pageMeta && <meta property="og:description" content={pageMeta.description} />}
+        {pageMeta && <meta property="og:image" content={pageMeta.image || defaultSocialImage} />}
+        <link rel="canonical" href={`${siteOrigin}${location.pathname}`} />
+        <meta property="og:url" content={`${siteOrigin}${location.pathname}`} />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      {location.pathname === '/' && <Helmet>
-        <title>Gzone Rap Battle League, Where we don't play!</title>
-        <meta name="description" content="The Gzone Rap Battle League - Where reputations are built or buried. Watch the best MCs clash in the UK's premier battle rap arena." />
-      </Helmet>}
       <ScrollToTop />
       {showAtmosphere && !isStandaloneVoteLive && (
         <Suspense fallback={null}>

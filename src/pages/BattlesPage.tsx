@@ -280,9 +280,9 @@ export default function BattlesPage() {
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between mb-16 md:mb-24 gap-8 md:gap-12 text-center lg:text-left">
           <div className="flex-1 w-full">
             <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6 mb-8 md:mb-12">
-              <h2 className="text-[clamp(2rem,10vw,3rem)] md:text-7xl font-display uppercase text-white tracking-tighter leading-[0.95] whitespace-normal md:whitespace-nowrap">
+              <h1 className="text-[clamp(2rem,10vw,3rem)] md:text-7xl font-display uppercase text-white tracking-tighter leading-[0.95] whitespace-normal md:whitespace-nowrap">
                 <>Season 1 <br className="md:hidden" /><span className="text-brand">"Most Wanted"</span></>
-              </h2>
+              </h1>
               <div className="flex items-center gap-2 md:gap-3 scale-75 md:scale-100 origin-center md:origin-left">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="text-yellow-500 fill-yellow-500 animate-pulse" size={20} />

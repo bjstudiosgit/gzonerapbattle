@@ -53,7 +53,7 @@ export default function BackstagePage() {
 
   return (
     <main className={`backstage-page${session ? " backstage-members" : " backstage-public"}`}>
-      <Helmet><title>Backstage | The Gzone</title><meta name="description" content="The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." /><link rel="canonical" href="https://www.gzonerapbattle.co.uk/backstage" /></Helmet>
+      <Helmet><title>Backstage | The Gzone</title><meta name="description" content="The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." /></Helmet>
       <div className="backstage-shell">
         {!session && pendingMuseumReturn() && <p className="backstage-message">Sign in to bid on gingaBay. We’ll take you back to your item after you’ve signed in and chosen your Gzone username.</p>}
         {session ? <>

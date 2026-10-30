@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { judges } from "../data/judges";
 import { ArrowLeft, Star, MapPin, Instagram, Youtube, Quote } from "lucide-react";
 import { portraitImage } from "../lib/images";
+import { Helmet } from "react-helmet-async";
+import { siteOrigin } from "../data/sitePages";
 
 export default function JudgeProfile() {
   const { id, slug } = useParams<{ id: string; slug: string }>();
@@ -18,6 +20,7 @@ export default function JudgeProfile() {
 
   return (
     <div className="min-h-screen pt-32 pb-24 relative overflow-hidden">
+      <Helmet><title>{judge.name} | Gzone</title><meta name="description" content={judge.bio} /><meta property="og:title" content={`${judge.name} | Gzone`} /><meta property="og:description" content={judge.bio} /><meta property="og:image" content={`${siteOrigin}${portraitImage(judge.image, "profile")}`} /></Helmet>
       <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none z-0" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[120px] pointer-events-none z-0" />

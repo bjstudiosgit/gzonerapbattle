@@ -6,6 +6,7 @@ import { battles as allBattles, deenoNotableBars, tapped24NotableBars } from "..
 import { guestMcs, mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
 import { limitResultCopy } from "../lib/text";
+import { battleDescription } from "../lib/battleSeo";
 
 const BadeeHarzVs1FlaymahSummary = lazy(() =>
   import("../components/BadeeHarzVs1FlaymahSummary").then((module) => ({ default: module.BadeeHarzVs1FlaymahSummary }))
@@ -61,11 +62,8 @@ export default function BattleDetail() {
   const mc2 = [...mcs, ...guestMcs].find(m => m.id === battle.mc2);
   const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel);
   const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
-  const description = isUpcoming
-    ? battle.summary || `Upcoming battle: ${battle.title} from the Gzone ${leagueName}.`
-    : battle.league === "royal-rumble"
-      ? `Watch ${battle.title} from the Gzone Rap Battle League.`
-      : `Watch ${mc1?.name} vs ${mc2?.name} from the Gzone ${leagueName}.`;
+  const winner = [...mcs, ...guestMcs].find(m => m.id === battle.winner)?.name;
+  const description = battleDescription(battle, mc1?.name, mc2?.name, winner);
   const archivePath = battle.league === "royal-rumble" ? "/battles#royal-rumble" : battle.league === "freestyle" ? "/battles#freestyle" : "/battles";
   const archiveLabel = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle" : "Battles";
 

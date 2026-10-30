@@ -89,14 +89,14 @@ export default function IntroVideo() {
               Skip Intro <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </motion.div>
-        ) : (
-          <>
+        ) : null}
           <motion.div
             key="hero-content"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: videoEnded ? 1 : 0 }}
             transition={{ duration: 0.5 }}
-            className="relative z-30 flex min-h-[calc(100svh-2rem)] items-center pt-24 pb-10 md:min-h-screen md:pt-32 md:pb-16"
+            aria-hidden={!videoEnded}
+            className={`relative z-30 flex min-h-[calc(100svh-2rem)] items-center pt-24 pb-10 md:min-h-screen md:pt-32 md:pb-16 ${videoEnded ? '' : 'pointer-events-none'}`}
           >
             <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 w-full">
               <div className="grid lg:grid-cols-[1.28fr_0.72fr] gap-8 items-center relative">
@@ -187,8 +187,6 @@ export default function IntroVideo() {
               </div>
             </div>
           </motion.div>
-        </>
-        )}
       </AnimatePresence>
 
       {/* Cinematic Vignette */}
