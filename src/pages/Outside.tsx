@@ -86,20 +86,26 @@ export default function Outside() {
       </Helmet>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <header className="mb-10 text-center lg:mb-16 lg:text-left">
-          <h1 className="font-display text-[clamp(3rem,9vw,5rem)] uppercase leading-[0.95] tracking-tighter text-white">
+        <header className="mb-8 border-b border-white/10 pb-8 md:mb-12 md:pb-10">
+          <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-brand">Beyond the battle stage</p>
+          <h1 className="font-display text-[clamp(4rem,11vw,8rem)] uppercase leading-[0.85] tracking-tighter text-white">
             OUT<span className="text-brand">SIDE</span>
+            <span className="mt-3 block text-[clamp(1.5rem,4vw,2.75rem)] leading-none tracking-normal text-white">GStreet Freestyles</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-sm font-medium leading-relaxed tracking-tight text-zinc-400 md:text-lg lg:mx-0">
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-400 md:text-base">
             GStreet Freestyles and Gzone Cyphers, together in one place. Explore solo performances and full-circle sessions from across the Gzone.
           </p>
+          <nav aria-label="Browse series" className="mt-6 flex flex-wrap gap-2">
+            <a href="#freestyles-heading" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:text-brand">GStreet Freestyles <span className="text-zinc-500">{initialStreetEpisodes.length}</span></a>
+            <a href="#cyphers-heading" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:text-brand">Gzone Cyphers <span className="text-zinc-500">{initialCypherEpisodes.length}</span></a>
+          </nav>
         </header>
 
         <section ref={playerRef} aria-label="Featured video" className="grid scroll-mt-32 overflow-hidden rounded-xl border border-white/10 bg-zinc-950 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="flex min-w-0 flex-col justify-between gap-8 p-5 sm:p-8 lg:p-10">
+          <div className="order-2 flex min-w-0 flex-col justify-between gap-6 p-5 sm:p-8 lg:order-1 lg:p-10">
             <div className="min-w-0" aria-live="polite">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">On screen <span className="ml-2 text-brand">{seriesNames[active.series]}</span></p>
-              <p className="mt-10 text-xs font-bold uppercase tracking-widest text-brand">{active.label}</p>
+              <p className="mt-5 text-xs font-bold uppercase tracking-widest text-brand lg:mt-10">{active.label}</p>
               <h2 className="mt-2 font-display text-4xl uppercase leading-tight sm:text-5xl">{active.title}</h2>
               <p className="mt-4 text-sm leading-relaxed text-zinc-400">{active.detail}</p>
             </div>
@@ -111,7 +117,7 @@ export default function Outside() {
               </div>
             </div>
           </div>
-          <div className="relative aspect-video min-w-0 bg-black lg:self-center">
+          <div className="relative order-1 aspect-video min-w-0 bg-black lg:order-2 lg:self-center">
             {isPlaying ? (
               <iframe key={active.videoId} src={`https://www.youtube-nocookie.com/embed/${active.videoId}?autoplay=1&rel=0&playsinline=1${active.startTime ? `&start=${active.startTime}` : ""}`}
                 title={`${seriesNames[active.series]} — ${active.label} — ${active.title}`}
@@ -135,21 +141,21 @@ export default function Outside() {
         <section id="sessions" aria-label="Session library" className="mt-12 scroll-mt-32 md:mt-16">
           {(["freestyles", "cyphers"] as const).map((series) => (
             <section key={series} aria-labelledby={`${series}-heading`} className="mb-12 last:mb-0">
-              <div className="mb-5 flex items-baseline justify-between gap-3">
-                <h2 id={`${series}-heading`} className="font-display text-3xl uppercase sm:text-4xl">{series === "freestyles" ? <>GStreet <span className="text-brand">Freestyles</span></> : <>Gzone <span className="text-brand">Cyphers</span></>}</h2>
+              <div className="mb-5 flex items-baseline justify-between gap-3 border-b border-white/10 pb-4">
+                <h2 id={`${series}-heading`} className="scroll-mt-32 font-display text-3xl uppercase sm:text-4xl">{series === "freestyles" ? <>GStreet <span className="text-brand">Freestyles</span></> : <>Gzone <span className="text-brand">Cyphers</span></>}</h2>
                 <span className="hidden text-[10px] font-bold uppercase tracking-widest text-zinc-500 sm:block">{series === "freestyles" ? "One mic. One MC." : "Back to back."}</span>
               </div>
-              <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {sessions.filter((session) => session.series === series).map((session) => (
-                  <button key={session.id} type="button" aria-label={`Play ${seriesNames[series]} ${session.label} — ${session.title}`} aria-pressed={active.videoId === session.videoId} onClick={() => selectSession(session)} className={`group flex min-w-0 items-center gap-3 rounded-lg border p-2 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:gap-4 ${active.videoId === session.videoId ? "border-brand/70 bg-brand/10" : "border-white/10 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06]"}`}>
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-brand">{session.label}</span>
-                      <h3 className={`mt-1 truncate font-display text-lg uppercase leading-tight sm:text-xl ${active.videoId === session.videoId ? "text-brand" : "text-white group-hover:text-brand"}`}>{session.title}</h3>
-                      <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-zinc-400"><Eye size={12} />{viewCounts[session.videoId] ?? session.views}<span className="sr-only"> views</span></span>
-                    </div>
-                    <div className="relative aspect-video w-28 shrink-0 overflow-hidden rounded sm:w-36">
+                  <button key={session.id} type="button" aria-label={`Play ${seriesNames[series]} ${session.label} — ${session.title}`} aria-pressed={active.videoId === session.videoId} onClick={() => selectSession(session)} className={`group flex min-w-0 flex-col overflow-hidden rounded-lg border text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${active.videoId === session.videoId ? "border-brand/70 bg-brand/10" : "border-white/10 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.06]"}`}>
+                    <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
                       <img src={`https://img.youtube.com/vi/${session.videoId}/hqdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105" />
-                      <span className={`absolute bottom-2 right-2 rounded-full p-2 ${active.videoId === session.videoId ? "bg-brand text-black" : "bg-black/70 text-white group-hover:bg-brand group-hover:text-black"}`} aria-hidden="true"><Play size={14} fill="currentColor" /></span>
+                      <span className={`absolute bottom-3 right-3 rounded-full p-2.5 ${active.videoId === session.videoId ? "bg-brand text-black" : "bg-black/75 text-white group-hover:bg-brand group-hover:text-black"}`} aria-hidden="true"><Play size={14} fill="currentColor" /></span>
+                    </div>
+                    <div className="flex w-full flex-1 flex-col p-4">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-brand">{session.label}</span>
+                      <h3 className={`mt-2 font-display text-xl uppercase leading-tight ${active.videoId === session.videoId ? "text-brand" : "text-white group-hover:text-brand"}`}>{session.title}</h3>
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-xs text-zinc-400"><Eye size={13} />{viewCounts[session.videoId] ?? session.views} views</span>
                     </div>
                   </button>
                 ))}

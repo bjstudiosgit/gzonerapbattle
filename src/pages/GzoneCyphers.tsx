@@ -35,7 +35,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "LwiRdIpkwNs",
     videoUrl: "https://www.youtube.com/watch?v=LwiRdIpkwNs&t=34s",
     startTime: 34,
-    views: "9.1K",
+    views: "9.2K",
   },
   {
     id: "feb-2026",
@@ -46,7 +46,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     videoId: "qANdhQ1otLc",
     videoUrl: "https://www.youtube.com/watch?v=qANdhQ1otLc&t=39s",
     startTime: 39,
-    views: "4.1K",
+    views: "4.2K",
   },
   {
     id: "aug-2026-pt1",
@@ -56,7 +56,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Afrodon • Mercedes • Foxamous • Btizz • CJ-Zino • Redzman • ZK • Lincz",
     videoId: "oDqjEXwyUy0",
     videoUrl: "https://www.youtube.com/watch?v=oDqjEXwyUy0",
-    views: "3.7K",
+    views: "3.8K",
   },
   {
     id: "aug-2026-pt2",

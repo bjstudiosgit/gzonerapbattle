@@ -41,13 +41,21 @@ const ZkVs1FlaymahSummary = lazy(() =>
 const ZkVs1FlaymahResult = lazy(() =>
   import("../components/ZkVs1FlaymahSummary").then((module) => ({ default: module.ZkVs1FlaymahResult }))
 );
+const MarniGramzVsBtizzSummary = lazy(() =>
+  import("../components/MarniGramzVsBtizzSummary").then((module) => ({ default: module.MarniGramzVsBtizzSummary }))
+);
 const ZkVs1FlaymahHighlights = lazy(() =>
   import("../components/ZkVs1FlaymahSummary").then((module) => ({ default: module.ZkVs1FlaymahHighlights }))
 );
 
 export default function BattleDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const battle = allBattles.find(b => b.slug === slug);
+  const battle = allBattles.find(
+    (b) =>
+      b.slug === slug ||
+      (slug === "btizz-vs-marni-gramz" && b.slug === "marni-gramz-vs-btizz") ||
+      (slug === "badee-harz-vs-roman" && b.slug === "roman-vs-badee-harz")
+  );
   const [shareStatus, setShareStatus] = useState<"idle" | "copied">("idle");
 
   if (!battle) {
@@ -389,6 +397,7 @@ export default function BattleDetail() {
               {battle.slug === '7wxve-vs-zk' && <SevenWxveVsZkSummary props={battle.props} />}
               {battle.slug === '1flaymah-vs-zk' && <ZkVs1FlaymahSummary />}
               {battle.slug === 'roman-vs-badee-harz' && <BadeeHarzVsRomanSummary props={battle.props} />}
+              {battle.slug === 'marni-gramz-vs-btizz' && <MarniGramzVsBtizzSummary props={battle.props} />}
             </Suspense>
 
             {battle.slug === 'deeno-vs-btizz' && battle.props && (
@@ -3410,9 +3419,9 @@ export default function BattleDetail() {
               </>
             )}
 
-            {!isUpcoming && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
+            {!isUpcoming && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'marni-gramz-vs-btizz' && battle.slug !== 'btizz-vs-marni-gramz' && battle.slug !== 'royal-rumble' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
-                {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
+                {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && battle.slug !== 'marni-gramz-vs-btizz' && battle.slug !== 'btizz-vs-marni-gramz' && battle.slug !== 'royal-rumble' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-brand" />
                     <h2 className="text-3xl font-display uppercase text-white mb-8 flex items-center gap-4">
