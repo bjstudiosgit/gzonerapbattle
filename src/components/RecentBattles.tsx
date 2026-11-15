@@ -7,7 +7,7 @@ import { portraitImage } from "../lib/images";
 
 export default function RecentBattles() {
   const recentBattles = [...battles]
-    .filter((b) => b.isUnreleased && !b.videoUrl && Boolean(b.winner || b.resultLabel))
+    .filter((b) => b.isUnreleased && !b.videoUrl && Boolean(b.isInProduction || b.winner || b.resultLabel))
     .sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
   const getYouTubeId = (url?: string) => {
@@ -47,7 +47,7 @@ export default function RecentBattles() {
             const mc2Name = mc2?.name || titleMc2 || battle.mc2;
             const videoId = getYouTubeId(battle.videoUrl);
             const isLive = Boolean(battle.videoUrl);
-            const isInProduction = !isLive && Boolean(battle.winner || battle.resultLabel);
+            const isInProduction = !isLive && Boolean(battle.isInProduction || battle.winner || battle.resultLabel);
             const isTicketsOnSaleSoon = !isLive && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
             const isTicketsOnSale = !isLive && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
             

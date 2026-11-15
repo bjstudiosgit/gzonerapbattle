@@ -184,7 +184,7 @@ export default function LeagueTable({
                            <span className="font-mono text-sm md:text-lg font-black text-zinc-400">{mc.battles}</span>
                            {mc.unreleased > 0 && (
                             <span className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand text-[8px] font-black tracking-widest whitespace-nowrap">
-                              <Clock size={10} strokeWidth={3} /> {mc.unreleased} <span className="hidden sm:inline">Unreleased</span>
+                              <Clock size={10} strokeWidth={3} /> {mc.unreleased} <span className="hidden sm:inline">In Production</span>
                             </span>
                            )}
                         </div>

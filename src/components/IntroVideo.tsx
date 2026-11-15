@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { mcs } from "../data/mcs";
 import { battles } from "../data/battles";
+import { youtubeSubscribers, formatSubscriberCount } from "../data/channelStats";
 import { calculateTotalViews } from "../lib/battleUtils";
 import { soundManager } from "../lib/sounds";
 
@@ -127,7 +128,7 @@ export default function IntroVideo() {
 
                   <div className="mb-12 grid w-full max-w-3xl grid-cols-3 sm:grid-cols-6">
                     <div className="px-2 py-2 text-center sm:py-3">
-                      <div className="font-display text-xl sm:text-3xl text-brand">22.1K</div>
+                      <div className="font-display text-xl sm:text-3xl text-brand">{formatSubscriberCount(youtubeSubscribers)}</div>
                       <div className="mt-1 text-[7px] sm:text-[9px] font-black uppercase tracking-[0.12em] text-white">Subscribers</div>
                     </div>
                     <div className="border-l border-white/15 px-2 py-2 text-center sm:py-3">

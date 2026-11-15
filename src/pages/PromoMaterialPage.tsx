@@ -10,7 +10,7 @@ export type PromoFlyer = {
   title: string;
   event: string;
   date: string;
-  category: "upcoming" | "september-26" | "august-29" | "royal-rumble" | "april-showdown";
+  category: "november-14" | "upcoming" | "september-26" | "august-29" | "royal-rumble" | "april-showdown";
   categoryLabel: string;
   src: string;
   aspect: string;
@@ -18,14 +18,14 @@ export type PromoFlyer = {
 };
 
 const allFlyers: PromoFlyer[] = [
-  // 14th November 2026 (Upcoming)
+  // 14th November 2026 (Completed)
   ...novemberBattles.map<PromoFlyer>((battle) => ({
     id: battle.slug,
     title: `${battle.episode} · ${battle.title}`,
     event: "14th November 2026",
     date: "14 Nov 2026",
-    category: "upcoming",
-    categoryLabel: "Tickets on sale now",
+    category: "november-14",
+    categoryLabel: "Event complete",
     src: battle.flyer!,
     aspect: "aspect-[3/4]",
     direct: true,
@@ -208,10 +208,10 @@ const allFlyers: PromoFlyer[] = [
 const filterCategories = [
   { id: "all", label: "All Flyers", count: allFlyers.length },
   {
-    id: "upcoming",
+    id: "november-14",
     label: "14 Nov 2026",
     count: allFlyers.filter((f) => f.category === "upcoming").length,
-    isUpcoming: true,
+    isUpcoming: false,
   },
   {
     id: "september-26",

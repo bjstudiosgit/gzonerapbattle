@@ -11,6 +11,7 @@ export interface Battle {
   winner?: string;
   resultLabel?: string;
   isUnreleased?: boolean;
+  isInProduction?: boolean;
   isPlaceholder?: boolean;
   isMainEvent?: boolean;
   isWanted?: boolean;
@@ -39,14 +40,15 @@ export const novemberBattles: Battle[] = [
     "mc2": "kime",
     "title": "Deeno vs K.I.M.E",
     "date": "14 Nov 2026",
+    "winner": "deeno",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
+    "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x31",
     "league": "season1",
     "flyer": "/flyers/deenovskime.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "Deeno vs K.I.M.E is confirmed for Season 1, episode 1x31, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
+    "summary": "Deeno vs K.I.M.E took place in Season 1, episode 1x31, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
   {
     "id": "35",
@@ -55,14 +57,15 @@ export const novemberBattles: Battle[] = [
     "mc2": "ryno",
     "title": "Mello vs Ryno",
     "date": "14 Nov 2026",
+    "winner": "ryno",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
+    "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x32",
     "league": "season1",
     "flyer": "/flyers/mellovsryno.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "Mello vs Ryno is confirmed for Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
+    "summary": "Mello vs Ryno took place in Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
   {
     "id": "36",
@@ -71,14 +74,15 @@ export const novemberBattles: Battle[] = [
     "mc2": "deluxx",
     "title": "Prince vs Deluxx",
     "date": "14 Nov 2026",
+    "winner": "pr1nc3",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
+    "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x33",
     "league": "season1",
     "flyer": "/flyers/princvsdeluxx.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "Prince vs Deluxx is confirmed for Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
+    "summary": "Prince vs Deluxx took place in Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
   {
     "id": "37",
@@ -87,14 +91,15 @@ export const novemberBattles: Battle[] = [
     "mc2": "7wxve",
     "title": "Tricky vs 7wxve",
     "date": "14 Nov 2026",
+    "winner": "tricky",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
+    "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x34",
     "league": "season1",
     "flyer": "/flyers/trickyvs7wxve.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "Tricky vs 7wxve is confirmed for Season 1, episode 1x34, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
+    "summary": "Tricky vs 7wxve took place in Season 1, episode 1x34, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
   {
     "id": "38",
@@ -103,31 +108,16 @@ export const novemberBattles: Battle[] = [
     "mc2": "yekim",
     "title": "Btizz vs Yekim",
     "date": "14 Nov 2026",
+    "winner": "yekim",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
+    "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x35",
     "league": "season1",
     "flyer": "/flyers/btizzvsyekim.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "Btizz vs Yekim is confirmed for Season 1, episode 1x35, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
+    "summary": "Btizz vs Yekim took place in Season 1, episode 1x35, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
-  {
-    "id": "39",
-    "slug": "1flaymah-vs-roman",
-    "mc1": "1flaymr",
-    "mc2": "roman",
-    "title": "1Flaymah vs Roman",
-    "date": "14 Nov 2026",
-    "isUnreleased": true,
-    "isPlaceholder": false,
-    "episode": "1x36",
-    "league": "season1",
-    "flyer": "/flyers/romanvs1flaymah.png",
-    "ticketUrl": novemberTicketUrl,
-    "ticketsOnSaleSoon": false,
-    "summary": "1Flaymah vs Roman is confirmed for Season 1, episode 1x36, on 14 November 2026 at Peacocks Boxing, Canning Town. Tickets are on sale now."
-  }
 ];
 
 export const battles: Battle[] = [

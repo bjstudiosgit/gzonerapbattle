@@ -48,7 +48,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
             const mc1Name = titleMc1 || mc1?.name || battle.mc1;
             const mc2Name = titleMc2 || mc2?.name || battle.mc2;
             const isVsBattle = battle.title.toLowerCase().includes(" vs ");
-            const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
+            const isInProduction = !battle.videoUrl && Boolean(battle.isInProduction || battle.winner || battle.resultLabel);
             const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
             const isTicketsOnSale = !battle.videoUrl && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
 
@@ -130,7 +130,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
               const mc2Name = titleMc2 || mc2?.name || battle.mc2;
               const scheduleText = battle.date || "Coming Soon";
               const scheduleLink = battle.ticketUrl || "/events";
-              const isInProduction = !battle.videoUrl && Boolean(battle.winner || battle.resultLabel);
+              const isInProduction = !battle.videoUrl && Boolean(battle.isInProduction || battle.winner || battle.resultLabel);
               const isTicketsOnSaleSoon = !battle.videoUrl && !isInProduction && (Boolean(battle.ticketsOnSaleSoon) || !battle.ticketUrl || battle.ticketUrl === "/events");
               const isTicketsOnSale = !battle.videoUrl && !isInProduction && !isTicketsOnSaleSoon && Boolean(battle.ticketUrl);
               const shouldShowComingSoon = battle.isUnreleased && Boolean(battle.ticketUrl);
@@ -190,7 +190,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
                       <div className="lg:hidden flex items-center gap-4 text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">
                         <span className="flex items-center gap-1.5">
                           <Calendar size={12} className="text-brand/40 shrink-0" />
-                          {battle.isUnreleased || shouldShowComingSoon ? (
+                          {!isInProduction && (battle.isUnreleased || shouldShowComingSoon) ? (
                             <ScheduleLink href={scheduleLink}>
                               {scheduleText}
                             </ScheduleLink>
@@ -208,7 +208,7 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
                   <td className="hidden lg:table-cell px-6 md:px-8 py-10 whitespace-nowrap min-w-[200px]">
                     <div className="flex items-center gap-3 text-zinc-300 text-sm font-black uppercase tracking-widest whitespace-nowrap">
                       <Calendar size={18} className="text-brand opacity-40 shrink-0" />
-                      {battle.isUnreleased || shouldShowComingSoon ? (
+                      {!isInProduction && (battle.isUnreleased || shouldShowComingSoon) ? (
                         <ScheduleLink href={scheduleLink}>
                           {scheduleText}
                         </ScheduleLink>
@@ -241,7 +241,7 @@ export default function BattlesPage() {
   const [rumbleViews, setRumbleViews] = useState<Record<string, string>>({});
 
   const liveNowCount = orderedBattles.filter((battle) => battle.videoUrl).length;
-  const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && Boolean(battle.winner || battle.resultLabel)).length;
+  const inProductionCount = orderedBattles.filter((battle) => !battle.videoUrl && Boolean(battle.isInProduction || battle.winner || battle.resultLabel)).length;
   const outstandingCount = orderedBattles.filter((battle) => battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel).length;
   const seasonBattleCount = orderedBattles.length;
 

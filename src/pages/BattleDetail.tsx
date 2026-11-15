@@ -7,6 +7,7 @@ import { guestMcs, mcs } from "../data/mcs";
 import { ArrowLeft, Play, Share2, Trophy, Clock, AlertCircle } from "lucide-react";
 import { limitResultCopy } from "../lib/text";
 import { battleDescription } from "../lib/battleSeo";
+import { youtubeSubscribers, youtubeSubscriberGoal, formatSubscriberCount } from "../data/channelStats";
 
 const BadeeHarzVs1FlaymahSummary = lazy(() =>
   import("../components/BadeeHarzVs1FlaymahSummary").then((module) => ({ default: module.BadeeHarzVs1FlaymahSummary }))
@@ -68,7 +69,7 @@ export default function BattleDetail() {
 
   const mc1 = [...mcs, ...guestMcs].find(m => m.id === battle.mc1);
   const mc2 = [...mcs, ...guestMcs].find(m => m.id === battle.mc2);
-  const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel);
+  const isUpcoming = Boolean(battle.isUnreleased && !battle.videoUrl && !battle.winner && !battle.resultLabel && !battle.isInProduction);
   const leagueName = battle.league === "royal-rumble" ? "Royal Rumble" : battle.league === "freestyle" ? "Freestyle League" : "Season 1";
   const winner = [...mcs, ...guestMcs].find(m => m.id === battle.winner)?.name;
   const description = battleDescription(battle, mc1?.name, mc2?.name, winner);
@@ -117,7 +118,7 @@ export default function BattleDetail() {
 
   const shareBattle = async () => {
     const title = `${battle.title} | Gzone Rap Battle`;
-    const text = `${isUpcoming ? "Upcoming battle:" : "Watch"} ${battle.title} on Gzone Rap Battle League.`;
+    const text = `${isUpcoming ? "Upcoming battle:" : battle.videoUrl ? "Watch" : "In production:"} ${battle.title} on Gzone Rap Battle League.`;
     const url = shareUrl || (typeof window !== "undefined" ? window.location.href : "");
 
     try {
@@ -192,14 +193,6 @@ export default function BattleDetail() {
               <h1 className="text-4xl md:text-7xl font-display uppercase leading-tight mb-5 md:mb-8">
                 {battle.title}
               </h1>
-
-              {battle.isUnreleased && (
-                <div className="flex justify-center gap-4 mb-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20 font-bold uppercase tracking-[0.2em] text-xs">
-                    <Clock size={16} /> {isUpcoming ? (battle.ticketsOnSaleSoon ? "Tickets on sale soon" : "Upcoming Battle") : "Unreleased Battle"}
-                  </div>
-                </div>
-              )}
 
               <div className={`${isUpcoming && battle.flyer ? "aspect-[3/4] max-w-lg mx-auto" : "aspect-video"} bg-zinc-900 rounded-3xl border border-white/10 overflow-hidden relative group`}>
                 {battle.videoUrl ? (
@@ -356,36 +349,16 @@ export default function BattleDetail() {
                 </div>
               </section>
             ) : !isUpcoming && battle.league !== "royal-rumble" ? (
-              <section aria-label="Battle result" className="bg-zinc-900/50 p-5 md:p-8 rounded-3xl border border-white/5">
-                <div className="grid grid-cols-2 gap-3 md:gap-8 relative">
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center font-display text-zinc-400 z-10">
-                    VS
-                  </div>
-
-                  {/* MC1 Result */}
-                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc1?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                    {battle.winner === mc1?.id && (
-                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                        <Trophy size={14} /> Official Winner
-                      </div>
-                    )}
-                    <div className={`relative z-10 ${battle.winner === mc1?.id ? 'mt-8' : ''}`}>
-                      <Link to={`/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc1?.name}</Link>
-                    </div>
-                  </div>
-
-                  {/* MC2 Result */}
-                  <div className={`relative overflow-hidden rounded-2xl border p-4 md:p-8 text-center ${battle.winner === mc2?.id ? 'border-brand bg-brand/5 ring-2 ring-brand ring-offset-2 md:ring-offset-4 ring-offset-zinc-950' : 'border-white/5 bg-zinc-900/30'}`}>
-                    {battle.winner === mc2?.id && (
-                      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest bg-brand/10 px-3 py-1 rounded-full">
-                        <Trophy size={14} /> Official Winner
-                      </div>
-                    )}
-                    <div className={`relative z-10 ${battle.winner === mc2?.id ? 'mt-8' : ''}`}>
-                      <Link to={`/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">{mc2?.name}</Link>
-                    </div>
-                  </div>
-                </div>
+              <section aria-label="Battle result" className="flex items-center justify-center gap-4 sm:gap-8 text-center">
+                <Link to={`/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">
+                  {mc1?.name}
+                  {battle.winner === mc1?.id && <Trophy size={20} className="text-brand shrink-0" aria-label="Winner" />}
+                </Link>
+                <span className="text-zinc-500 font-display text-sm">VS</span>
+                <Link to={`/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">
+                  {mc2?.name}
+                  {battle.winner === mc2?.id && <Trophy size={20} className="text-brand shrink-0" aria-label="Winner" />}
+                </Link>
               </section>
             ) : null}
 
@@ -4730,10 +4703,19 @@ export default function BattleDetail() {
             </div>
 
             <div className="bg-brand/10 p-8 rounded-3xl border border-brand/20">
-              <h3 className="text-xl font-display uppercase mb-4 text-brand">Support the Zone</h3>
+              <h3 className="text-xl font-display uppercase mb-3 text-brand">Help us reach 100K</h3>
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                Watch the battles on YouTube and leave your comments there to support the culture.
+                Every sub brings us closer to 100K.
               </p>
+              <div className="mb-6">
+                <div className="flex items-end justify-between gap-3 mb-3">
+                  <span className="text-white font-display text-2xl">{formatSubscriberCount(youtubeSubscribers)} <span className="text-zinc-400 font-sans text-xs font-bold">SUBSCRIBERS</span></span>
+                  <span className="text-white font-display text-2xl">{formatSubscriberCount(youtubeSubscriberGoal)} <span className="text-zinc-400 font-sans text-xs font-bold">GOAL</span></span>
+                </div>
+                <div role="progressbar" aria-label="YouTube subscriber goal" aria-valuemin={0} aria-valuemax={youtubeSubscriberGoal} aria-valuenow={youtubeSubscribers} aria-valuetext={`${formatSubscriberCount(youtubeSubscribers)} of ${formatSubscriberCount(youtubeSubscriberGoal)} subscribers`} className="h-3 w-full rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full rounded-full bg-brand" style={{ width: `${Math.min(100, youtubeSubscribers / youtubeSubscriberGoal * 100)}%` }} />
+                </div>
+              </div>
               <a
                 href="https://www.youtube.com/@gingajay"
                 target="_blank"
