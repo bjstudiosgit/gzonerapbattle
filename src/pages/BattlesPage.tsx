@@ -275,7 +275,7 @@ export default function BattlesPage() {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[120px] pointer-events-none z-0" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none z-0" />
       
-      <div className="page-shell w-full max-w-[1200px] mx-auto px-[14px] md:px-5 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Cinematic Header Section */}
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between mb-16 md:mb-24 gap-8 md:gap-12 text-center lg:text-left">
           <div className="flex-1 w-full">
@@ -296,7 +296,7 @@ export default function BattlesPage() {
           
           {/* Season progress */}
           <div className="w-full lg:w-auto">
-            <div className="bg-zinc-900/60 backdrop-blur-xl border border-white/10 p-5 md:p-6 rounded-[2rem] flex-1 md:min-w-[280px] shadow-2xl group hover:border-brand/30 transition-colors">
+            <div className="flex-1 md:min-w-[280px] group">
               <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-400 mb-5">
                 <Play size={16} className="text-brand" />
                 <span className="text-[10px] uppercase tracking-widest font-black">Season 1 Progress</span>

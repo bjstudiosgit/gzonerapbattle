@@ -19,11 +19,11 @@ export default function Footer() {
                 <span className="text-[7px] text-zinc-500 uppercase font-black tracking-[0.3em] mt-1.5 opacity-60">In Association with <br /> Peacock Gymnasium</span>
               </div>
             </Link>
-            
+
             <p className="text-zinc-500 text-sm md:text-base font-black tracking-widest leading-relaxed max-w-md mb-10 opacity-80">
               The UK’s uncensored arena for the next generation of MCs. Where battle rap meets real entertainment.
             </p>
-            
+
             <div className="flex gap-4">
               <a href="https://www.youtube.com/@gingajay" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:bg-brand hover:text-black hover:border-brand transition-all duration-300 shadow-xl" aria-label="YouTube">
                 <Youtube size={20} />
@@ -38,7 +38,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-12 lg:col-span-2">
             <div>
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Directory</h5>
@@ -50,11 +50,11 @@ export default function Footer() {
                 <li><Link to="/merch" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
                 <li><Link to="/map" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
                 <li><Link to="/flyers" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
-                <li><Link to="/gingabay" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">gingaBay</Link></li>
+                <li><Link to="/museum" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">GZone Museum</Link></li>
                 <li><Link to="/privacy" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Privacy Policy</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h5 className="font-black uppercase tracking-[0.3em] text-[10px] mb-8 text-brand">Community</h5>
               <ul className="space-y-2">
@@ -66,7 +66,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row lg:flex-nowrap justify-between items-center gap-6">
           <p className="text-center lg:text-left text-zinc-400 text-[10px] font-black tracking-[0.24em] order-2 lg:order-1">
             © 2026 GINGA ENTERTAINMENT LTD. Company number 16258136

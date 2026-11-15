@@ -62,7 +62,7 @@ export default function League() {
   };
 
   return (
-    <div className="min-h-screen pt-24 md:pt-32 lg:pt-44 pb-16 lg:pb-24 relative overflow-hidden bg-zinc-950">
+    <div className="min-h-screen pt-32 md:pt-44 pb-16 md:pb-24 relative overflow-hidden bg-zinc-950">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand/5 blur-[150px] rounded-full opacity-50" />
@@ -72,16 +72,16 @@ export default function League() {
           Champions
         </div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <header className="mb-10 lg:mb-24 relative">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12 text-center lg:text-left">
             <div className="w-full">
-              <div className="flex flex-col items-center lg:items-start gap-3 md:gap-4 lg:gap-6 mb-5 lg:mb-12">
-                <h2 className="whitespace-nowrap text-[clamp(2rem,7vw,5rem)] font-display uppercase text-white tracking-tighter leading-[0.9]">
-                  Season 1 <span className="text-brand">&quot;Most Wanted&quot;</span>
+              <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6 mb-8 md:mb-12">
+                <h2 className="text-[clamp(2rem,10vw,3rem)] md:text-7xl font-display uppercase text-white tracking-tighter leading-[0.95] whitespace-normal md:whitespace-nowrap">
+                  Season 1 <br className="md:hidden" /><span className="text-brand">&quot;Most Wanted&quot;</span>
                 </h2>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 md:gap-3 scale-75 md:scale-100 origin-center md:origin-left">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="text-yellow-500 fill-yellow-500 animate-pulse" size={20} />
                   ))}
@@ -89,10 +89,10 @@ export default function League() {
               </div>
 
               <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-90 mx-auto lg:mx-0 mb-0">
-                The scoring system is simple: 3 points for a win and 1 point for a loss.
-                Track the rankings, monitor win/loss ratios, and see who is currently leading Season 1.
+                Every battle counts. MCs earn 3 points for a win and 1 for a loss.
+                Check the standings, see the records and find out who is leading Season 1.
               </p>
-              
+
             </div>
           </div>
         </header>
@@ -115,8 +115,8 @@ export default function League() {
                 } ${tier.border} ${tier.shadow} lg:h-[38rem] ${
                   isChampion ? 'lg:scale-110 lg:z-20' : 'lg:scale-100'
                 } ${
-                  index === 0 ? 'lg:order-2' : 
-                  index === 1 ? 'lg:order-1' : 
+                  index === 0 ? 'lg:order-2' :
+                  index === 1 ? 'lg:order-1' :
                   'lg:order-3'
                 }`}
               >
@@ -149,7 +149,7 @@ export default function League() {
 
                  <div className="relative z-10 flex items-center justify-between mb-20 md:mb-32">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-display text-3xl border-2 transition-all ${
-                    isGold ? 'bg-yellow-500 text-black border-yellow-500' : 
+                    isGold ? 'bg-yellow-500 text-black border-yellow-500' :
                     mc.rank === 2 ? 'bg-zinc-400 text-black border-zinc-400' :
                     'bg-amber-700 text-black border-amber-700'
                   }`}>
@@ -182,13 +182,13 @@ export default function League() {
                       </div>
                     </div>
                   )}
-                  
+
                   <Link to={`/${mc.slug}`} className="block group/link">
                     <h3 className={`text-3xl md:text-5xl font-display uppercase leading-none mb-4 md:mb-6 transition-colors ${tier.text} group-hover/link:opacity-80`}>
                       {mc.name.split(' ')[0]} <br/> <span className="text-white">{mc.name.split(' ')[1] || ''}</span>
                     </h3>
                   </Link>
-                  
+
                   <div className="flex flex-col items-center gap-3 text-[9px] md:text-[11px] uppercase font-black tracking-[0.22em] md:tracking-[0.4em] text-zinc-500 mt-6 md:mt-10">
                      <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
                        <span className={tier.text}>{mc.wins} Wins</span>
@@ -202,7 +202,7 @@ export default function League() {
 
                 {/* Progress Strip */}
                   <div className="absolute bottom-0 left-0 w-full h-1.5 bg-white/5 overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 2, delay: index * 0.3 }}
@@ -217,9 +217,9 @@ export default function League() {
         </div>
 
 
-        
+
         {/* Full Table Reveal */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

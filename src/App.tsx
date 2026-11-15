@@ -217,7 +217,8 @@ function Main() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/battle/:slug" element={<BattleDetail />} />
-          <Route path="/gingabay" element={<LostProperty />} />
+          <Route path="/museum" element={<LostProperty />} />
+          <Route path="/gingabay" element={<Navigate to={{ pathname: "/museum", search: window.location.search }} replace />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/backstage" element={<BackstagePage />} />
           <Route path="/backstage/gingerify" element={<GingerifyPage />} />

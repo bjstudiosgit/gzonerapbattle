@@ -17,7 +17,7 @@ export const staticPages: SitePage[] = [
   { path: "/merch", title: "Merch | Gzone", description: "Explore Gzone Rap Battle League merchandise." },
   { path: "/apply", title: "Apply | Gzone", description: "Apply to battle at Gzone." },
   { path: "/backstage", title: "Backstage | The Gzone", description: "The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." },
-  { path: "/gingabay", title: "gingaBay — Gzone Museum BETA | The Gzone", description: "The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." },
+  { path: "/museum", title: "GZone Museum | The Gzone", description: "The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." },
   { path: "/privacy", title: "Privacy Policy | Gzone", description: "Read the Gzone privacy policy." },
   { path: "/success", title: "Application received | Gzone", description: "Your Gzone application was received.", noindex: true },
   { path: "/backstage/settings", title: "Backstage Settings | Gzone", description: "Manage your Gzone backstage account.", noindex: true },

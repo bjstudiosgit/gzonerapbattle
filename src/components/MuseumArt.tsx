@@ -199,6 +199,7 @@ export function getMuseumItemReference(item: MuseumItem, imageIndex = 0): { src:
   }
 
   // Catalogue illustrations (isBattlePhoto: false)
+  if (name === 'A bag with 0.1 gram of crack') return { src: '/museum/crack-bag-cutout.png', alt: 'A small clear bag containing 0.1 gram of crack', isBattlePhoto: false };
   if (name === 'Lemon 3') return { src: '/museum/lemon-3-battle-cutout.png', alt: 'Lemon 3 illustration', isBattlePhoto: false };
   if (name === 'Lemon 2') return { src: '/museum/lemon-2-battle-cutout.png', alt: 'Lemon 2 illustration', isBattlePhoto: false };
   if (name === 'Lemon 1') return { src: '/museum/lemon-1-battle-cutout.png', alt: 'Lemon 1 illustration', isBattlePhoto: false };

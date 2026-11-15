@@ -85,26 +85,21 @@ export default function Outside() {
         })}</script>
       </Helmet>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <header className="mb-8 border-b border-white/10 pb-8 md:mb-12 md:pb-10">
-          <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-brand">Beyond the battle stage</p>
-          <h1 className="font-display text-[clamp(4rem,11vw,8rem)] uppercase leading-[0.85] tracking-tighter text-white">
-            OUT<span className="text-brand">SIDE</span>
-            <span className="mt-3 block text-[clamp(1.5rem,4vw,2.75rem)] leading-none tracking-normal text-white">GStreet Freestyles</span>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-8 border-b border-white/10 pb-8 text-left md:mb-12 md:pb-10">
+          <h1 className="font-display text-[clamp(2rem,7vw,5rem)] uppercase leading-[0.9] tracking-tighter text-white">
+            OUT<span className="text-brand">SIDE</span>{" "}
+            <span className="text-white">GStreet Freestyles</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-400 md:text-base">
-            GStreet Freestyles and Gzone Cyphers, together in one place. Explore solo performances and full-circle sessions from across the Gzone.
+          <p className="mt-5 w-full text-sm leading-relaxed text-zinc-400 md:text-lg">
+            GZone steps outside the battle ring. Watch raw solo freestyles and cyphers from MCs across the scene.
           </p>
-          <nav aria-label="Browse series" className="mt-6 flex flex-wrap gap-2">
-            <a href="#freestyles-heading" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:text-brand">GStreet Freestyles <span className="text-zinc-500">{initialStreetEpisodes.length}</span></a>
-            <a href="#cyphers-heading" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:text-brand">Gzone Cyphers <span className="text-zinc-500">{initialCypherEpisodes.length}</span></a>
-          </nav>
         </header>
 
         <section ref={playerRef} aria-label="Featured video" className="grid scroll-mt-32 overflow-hidden rounded-xl border border-white/10 bg-zinc-950 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div className="order-2 flex min-w-0 flex-col justify-between gap-6 p-5 sm:p-8 lg:order-1 lg:p-10">
             <div className="min-w-0" aria-live="polite">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">On screen <span className="ml-2 text-brand">{seriesNames[active.series]}</span></p>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand">{seriesNames[active.series]}</p>
               <p className="mt-5 text-xs font-bold uppercase tracking-widest text-brand lg:mt-10">{active.label}</p>
               <h2 className="mt-2 font-display text-4xl uppercase leading-tight sm:text-5xl">{active.title}</h2>
               <p className="mt-4 text-sm leading-relaxed text-zinc-400">{active.detail}</p>

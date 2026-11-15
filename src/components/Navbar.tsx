@@ -17,7 +17,7 @@ export default function Navbar() {
     { name: "Merch", href: "/merch", icon: ShoppingBag },
     { name: "Apply", href: "/apply", icon: FileText },
     { name: "Tickets", href: "/events", icon: Ticket },
-    { name: "gingaBay", href: "/gingabay", icon: Gavel },
+    { name: "GZone Museum", href: "/museum", icon: Gavel },
     { name: "Backstage", href: "/backstage", icon: DoorOpen },
   ];
 

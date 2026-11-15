@@ -11,7 +11,7 @@ import { seasonOneBattles } from "../data/battles";
 
 export default function MCsPage() {
   const rankings = calculateRankings(seasonOneBattles, mcs);
-  
+
   // Sort active MCs based on their calculated rank
   const activeMcs = mcs
     .filter(mc => mc.isActive !== false)
@@ -44,22 +44,22 @@ export default function MCsPage() {
   const getRecord = (mcId: string) => rankings.find(r => r.id === mcId);
 
   return (
-    <div className="pt-32 lg:pt-44 pb-16 lg:pb-24 min-h-screen relative overflow-hidden">
+    <div className="pt-32 md:pt-44 pb-16 md:pb-24 min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-carbon opacity-10 pointer-events-none z-0" />
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[140px] pointer-events-none z-0" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10 lg:mb-24 text-center lg:text-left">
           <div className="w-full">
-            <div className="flex flex-col items-center lg:items-start gap-3 md:gap-4 lg:gap-6 mb-5 lg:mb-12">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display uppercase text-white tracking-tighter leading-[0.9]">
-                Season 1 <span className="text-brand">"Most Wanted"</span>
-                <span className="ml-4 inline-flex items-center gap-2 align-middle">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="text-yellow-500 fill-yellow-500 animate-pulse" size={20} />
-                  ))}
-                </span>
+            <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6 mb-8 md:mb-12">
+              <h2 className="text-[clamp(2rem,10vw,3rem)] md:text-7xl font-display uppercase text-white tracking-tighter leading-[0.95] whitespace-normal md:whitespace-nowrap">
+                Season 1 <br className="md:hidden" /><span className="text-brand">"Most Wanted"</span>
               </h2>
+              <div className="flex items-center gap-2 md:gap-3 scale-75 md:scale-100 origin-center md:origin-left">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-500 fill-yellow-500 animate-pulse" size={20} />
+                ))}
+              </div>
             </div>
             <p className="text-zinc-400 text-sm md:text-lg w-full leading-relaxed tracking-tight font-medium opacity-80">
               From Deeno’s raw power and Roman’s stage presence to Btizz’s humour, Tymeless’s dark bars and AJNA’s fierce delivery,

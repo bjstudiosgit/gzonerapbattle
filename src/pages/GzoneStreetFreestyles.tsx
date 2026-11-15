@@ -12,7 +12,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "Vxk1x9BKPUs",
     videoUrl: "https://www.youtube.com/watch?v=Vxk1x9BKPUs",
-    views: "589",
+    views: "595",
   },
   {
     id: "ep2",
@@ -22,7 +22,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "sKrMgvf3IBI",
     videoUrl: "https://www.youtube.com/watch?v=sKrMgvf3IBI",
-    views: "6.5K",
+    views: "6.6K",
   },
   {
     id: "ep3",
@@ -32,7 +32,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "lvPH1WSZ2r0",
     videoUrl: "https://www.youtube.com/watch?v=lvPH1WSZ2r0",
-    views: "2.7K",
+    views: "2.8K",
   },
   {
     id: "ep4",
@@ -42,7 +42,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "g3XHI940boA",
     videoUrl: "https://www.youtube.com/watch?v=g3XHI940boA",
-    views: "535",
+    views: "541",
   },
   {
     id: "ep5",
@@ -52,7 +52,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "OMdxdbUuXko",
     videoUrl: "https://www.youtube.com/watch?v=OMdxdbUuXko",
-    views: "614",
+    views: "621",
   },
   {
     id: "ep6",
@@ -62,7 +62,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "h_wUxCFaKc8",
     videoUrl: "https://www.youtube.com/watch?v=h_wUxCFaKc8",
-    views: "573",
+    views: "584",
   },
   {
     id: "ep7",
@@ -72,7 +72,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "lycEg4YcZjE",
     videoUrl: "https://www.youtube.com/watch?v=lycEg4YcZjE",
-    views: "437",
+    views: "458",
   },
   {
     id: "ep8",
@@ -82,7 +82,7 @@ export const initialStreetEpisodes = [
     location: "Peacocks Gym, Canning Town",
     videoId: "5L22b72sVqw",
     videoUrl: "https://www.youtube.com/watch?v=5L22b72sVqw",
-    views: "408",
+    views: "425",
   },
 ];
 

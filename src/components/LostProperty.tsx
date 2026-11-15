@@ -81,20 +81,23 @@ export default function LostProperty() {
   function renderItem(item: MuseumItem) {
     const auction = auctions.find(entry => entry.item_id === item.id);
     const openNow = !restricted(item) && auctionOpen(auction, now);
+    const policeExhibit = restricted(item);
     return <button key={item.id} className="gbay-item" onClick={event => open(item, event.currentTarget)} aria-label={`View ${item.name}${openNow ? ' and bid' : ''}`}>
-      <MuseumArt item={item} photo={auction?.image_url} />
-      <div className="gbay-item-meta">{!openNow && <span>{restricted(item) ? 'Archive only' : loading ? 'Loading bids…' : loadError ? 'Bids unavailable' : auction?.status === 'cancelled' ? 'Withdrawn' : auction ? 'Bidding closed' : 'Opening soon'}</span>}</div>
+      <div className="gbay-exhibit-image"><MuseumArt item={item} photo={auction?.image_url} />
+      {policeExhibit && <div className="gbay-met-overlay"><div className="gbay-met-brand"><img src="/museum/met-police-badge.png" alt="" /><span>METROPOLITAN<br />POLICE</span></div><strong>HANDED TO THE<br />MET POLICE</strong></div>}</div>
+      {policeExhibit && <p className="gbay-photo-note">No drugs were present at the venue. Deeno used a theatrical prop containing white powder.</p>}
+      <div className={`gbay-item-meta${policeExhibit ? ' gbay-item-meta-empty' : ''}`}>{!openNow && !restricted(item) && <span>{loading ? 'Loading bids…' : loadError ? 'Bids unavailable' : auction?.status === 'cancelled' ? 'Withdrawn' : auction ? 'Bidding closed' : /^(Melon|Flowers|Bouquet of Flowers|Balloons|Balloon)$/.test(item.name) ? '' : 'Opening soon'}</span>}</div>
       <h3>{item.name}</h3><p className="gbay-owner">Used by <strong>{item.user}</strong></p><p className="gbay-battle">{item.battleTitle}</p>
-      <div className="gbay-item-price">{restricted(item) ? <strong className="gbay-archive-label">In the archive</strong> : <><strong>{money(auction?.current_pence ?? auction?.starting_pence ?? 99)}</strong><span>{auction?.current_pence != null ? `${auction.bid_count} ${auction.bid_count === 1 ? 'bid' : 'bids'}` : 'Starting bid'}</span></>}<ArrowRight size={18} /></div>
+      <div className="gbay-item-price">{restricted(item) ? null : <><strong>{money(auction?.current_pence ?? auction?.starting_pence ?? 99)}</strong><span>{auction?.current_pence != null ? `${auction.bid_count} ${auction.bid_count === 1 ? 'bid' : 'bids'}` : 'Starting bid'}</span></>}<ArrowRight size={18} /></div>
       {auction?.is_leading && <p className="gbay-leading"><Check size={13} /> {openNow ? 'You’re leading' : 'Your bid is highest'}</p>}
       {openNow && auction?.ends_at && <p className="gbay-ending">Ends {dateLabel(auction.ends_at)} UK</p>}
     </button>;
   }
   return <main className="gbay-page">
-    <Helmet><title>gingaBay — Gzone Museum BETA | The Gzone</title><meta name="description" content="The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." /></Helmet>
+    <Helmet><title>GZone Museum | The Gzone</title><meta name="description" content="The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." /></Helmet>
     <div className="gbay-shell">
       <header className="gbay-header">
-        <div className="gbay-brand"><h1>ginga<span>Bay</span><span className="gbay-dot">.</span></h1><span className="gbay-beta">BETA</span></div>
+        <div className="gbay-brand"><h1>GZone <span>Museum</span><span className="gbay-dot">.</span></h1><span className="gbay-beta">BETA</span></div>
         <div className="gbay-intro"><h2>FIND IT. BID ON IT. EXPLAIN IT LATER.</h2><p>Welcome to gingaBay — bid on authentic props used in Gzone battles. Fancy Tymeless’s fake beard, Btizz’s melon, or Gramz’s balloons and flowers? Get involved from <strong>99p</strong>, with bids rising just <strong>20p</strong> at a time. Sign in, pick your piece of Gzone history, and outbid your mates.</p></div>
       </header>
       <div className="gbay-members-strip"><Gavel size={19} /><p>{session ? 'Your bids are saved to your Gzone account.' : 'Bidding requires a Gzone membership. Join with Google; no payment details are collected.'}</p><Link to="/backstage/settings">{session ? 'View my bids' : 'Sign in / join Gzone'} <ArrowRight size={15} /></Link></div>
@@ -106,13 +109,13 @@ export default function LostProperty() {
       </section>
       {unavailableItems.length > 0 && <section aria-labelledby="gbay-unavailable-title" className="gbay-catalogue gbay-unavailable">
         <div className="gbay-section-title"><h2 id="gbay-unavailable-title">UNAVAILABLE</h2></div>
-        <p className="gbay-photo-note">These props are kept in the archive and cannot be bid on.</p>
         <div className="gbay-grid">{unavailableItems.map(renderItem)}</div>
       </section>}
     </div>
     <dialog ref={dialog} onClose={close} onClick={event => { if (event.target === event.currentTarget) close(); }} className="gbay-dialog" aria-labelledby="gbay-lot-title">
       <button className="gbay-close" aria-label="Close item" onClick={close}><X size={22} /></button>
-      {selected && <div className="gbay-detail"><div><MuseumArt item={selected} photo={activeAuction?.image_url} imageIndex={photoIndex} />{detailPhotos && !activeAuction?.image_url && <div className="gbay-sheet-gallery" role="group" aria-label={`${selected.name} photos`}>{detailPhotos.map((photo, index) => <button key={photo.src} type="button" className={index === photoIndex ? 'is-selected' : ''} aria-pressed={index === photoIndex} onClick={() => setPhotoIndex(index)}><img src={photo.src} alt="" /><span>{photo.label}</span></button>)}</div>}<p className="gbay-photo-note">{activeAuction?.image_url ? 'See the condition details before bidding.' : selected.name === 'Key Stage 2 English Revision Sheets' ? 'Battle photos showing the sheets in use. See condition details before bidding.' : selected.name === 'Mock headstone photograph bearing Btizz’s name' ? 'Battle and close-up views of the print. See condition details before bidding.' : getMuseumItemReference(selected, photoIndex)?.isBattlePhoto ? 'Battle photo showing the prop in use. See condition details before bidding.' : 'Illustration, not a photograph of the actual item.'}</p><Link className="gbay-watch" to={`/battle/${selected.battleSlug}`}>Watch the battle <ExternalLink size={14} /></Link></div><div className="gbay-detail-copy"><p className="gbay-kicker">GZONE MUSEUM BETA</p><h2 id="gbay-lot-title">{selected.name}</h2><p className="gbay-owner">Used by <strong>{selected.user}</strong></p><p className="gbay-battle">{selected.battleTitle}</p>
+      {selected && <div className="gbay-detail"><div><MuseumArt item={selected} photo={activeAuction?.image_url} imageIndex={photoIndex} />{detailPhotos && !activeAuction?.image_url && <div className="gbay-sheet-gallery" role="group" aria-label={`${selected.name} photos`}>{detailPhotos.map((photo, index) => <button key={photo.src} type="button" className={index === photoIndex ? 'is-selected' : ''} aria-pressed={index === photoIndex} onClick={() => setPhotoIndex(index)}><img src={photo.src} alt="" /><span>{photo.label}</span></button>)}</div>}<p className="gbay-photo-note">{activeAuction?.image_url ? 'See the condition details before bidding.' : selected.name === 'Key Stage 2 English Revision Sheets' ? 'Battle photos showing the sheets in use. See condition details before bidding.' : selected.name === 'Mock headstone photograph bearing Btizz’s name' ? 'Battle and close-up views of the print. See condition details before bidding.' : getMuseumItemReference(selected, photoIndex)?.isBattlePhoto ? 'Battle photo showing the prop in use. See condition details before bidding.' : 'Illustration, not a photograph of the actual item.'}</p><Link className="gbay-watch" to={`/battle/${selected.battleSlug}`}>Watch the battle <ExternalLink size={14} /></Link></div><div className="gbay-detail-copy"><h2 id="gbay-lot-title">{selected.name}</h2><p className="gbay-owner">Used by <strong>{selected.user}</strong></p><p className="gbay-battle">{selected.battleTitle}</p>
+        {restricted(selected) && <div className="gbay-police-handover"><div><strong>Handed to the Metropolitan Police.</strong><p>The image stays in the museum. The original was handed to the Met.</p></div></div>}
         <BidPanel key={`${selected.id}:${session?.user.id ?? 'guest'}`} item={selected} auction={activeAuction} session={session} checking={authChecking} unavailable={Boolean(loadError) || loading} now={now} onRefresh={() => setRetry(value => value + 1)} />
         {authError && <p role="alert" className="gbay-error">{authError}</p>}
         <dl className="gbay-facts"><div><dt>Condition</dt><dd>{activeAuction?.condition_note ?? 'Condition details to be confirmed by Gzone.'}</dd></div><div><dt>From the battle</dt><dd>{selected.battleDate ?? 'Season 1'}{selected.episode && ` · ${selected.episode}`}</dd></div></dl>
@@ -141,7 +144,7 @@ function BidPanel({ item, auction, session, checking, unavailable, now, onRefres
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Your bid couldn’t be confirmed. Please try again.'); onRefresh(); }
     finally { setBusy(false); }
   }
-  if (restricted(item)) return <div className="gbay-bid-panel"><strong>Archive only</strong><p>This exhibit is not offered for sale.</p></div>;
+  if (restricted(item)) return <div className="gbay-bid-panel"><strong>A prop. Part of the story.</strong><p>This theatrical prop contained white powder and was used by Deeno to bring his battle narrative to life. It contained no drugs.</p></div>;
   return <div className="gbay-bid-panel">
     <p>{auction?.current_pence != null ? 'Current bid' : 'Starting bid'}</p><div className="gbay-big-price">{money(auction?.current_pence ?? auction?.starting_pence ?? 99)}<span>{auction ? `${auction.bid_count} bids` : 'From 99p'}</span></div>
     {timingMessage && <p className="gbay-ending">{timingMessage}</p>}
