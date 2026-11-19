@@ -351,12 +351,12 @@ export default function BattleDetail() {
               </section>
             ) : !isUpcoming && battle.league !== "royal-rumble" ? (
               <section aria-label="Battle result" className="flex items-center justify-center gap-4 sm:gap-8 text-center">
-                <Link to={`/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className="inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">
+                <Link to={`/${mc1?.slug}`} aria-label={`View ${mc1?.name}'s profile`} className={`inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors ${battle.winner === mc1?.id ? 'text-brand' : 'text-white'}`}>
                   {mc1?.name}
                   {battle.winner === mc1?.id && <Trophy size={20} className="text-brand shrink-0" aria-label="Winner" />}
                 </Link>
                 <span className="text-zinc-500 font-display text-sm">VS</span>
-                <Link to={`/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className="inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors">
+                <Link to={`/${mc2?.slug}`} aria-label={`View ${mc2?.name}'s profile`} className={`inline-flex items-center justify-center gap-2 text-xl md:text-3xl font-display uppercase hover:text-brand transition-colors ${battle.winner === mc2?.id ? 'text-brand' : 'text-white'}`}>
                   {mc2?.name}
                   {battle.winner === mc2?.id && <Trophy size={20} className="text-brand shrink-0" aria-label="Winner" />}
                 </Link>
