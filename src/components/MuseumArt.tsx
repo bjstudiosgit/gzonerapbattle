@@ -18,6 +18,7 @@ export function getMuseumItemReference(item: MuseumItem, imageIndex = 0): { src:
   const user = item.user;
 
   // Multi-image exhibits
+  if (name === 'Mello word card') return { src: '/museum/ryno-mello-word-card.png', alt: 'Ryno pointing to the Mello word card during his battle with Mello', isBattlePhoto: true };
   if (name === 'Mock headstone photograph bearing Btizz’s name') {
     const photo = gravePhotos[imageIndex] ?? gravePhotos[0];
     return {
