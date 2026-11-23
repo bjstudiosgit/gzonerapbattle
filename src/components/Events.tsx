@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Calendar, MapPin, Star, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { flyerImage } from "../lib/images";
-import { novemberBattles } from "../data/battles";
+import { decemberBattles, decemberBattleDate, novemberBattles } from "../data/battles";
 
 const defaultEventImage = "/gzonebattlemay.png";
 const aprilShowdownEventImage = flyerImage("/flyers/26thAprilall.png", "event");
@@ -174,6 +174,20 @@ const events = [
       const [mc1, mc2] = battle.title.split(" vs ");
       return { episode: battle.episode, mc1, mc2, isMain: false };
     }),
+  },
+  {
+    id: 12,
+    title: "G ZONE: 18TH DECEMBER",
+    date: decemberBattleDate,
+    location: "Peacocks Boxing, Canning Town",
+    price: "TICKETS ON SALE SOON",
+    image: defaultEventImage,
+    description: "Six Season 1 battles, Deeno vs Trickyy in FX2, and Royal Rumble EP3: The Last Man Standing. Tickets on sale soon.",
+    isCompleted: false,
+    card: decemberBattles.map((battle) => {
+      const [mc1, mc2] = battle.title.split(" vs ");
+      return { episode: battle.episode, mc1, mc2, isMain: false };
+    }),
   }
 ];
 
@@ -289,7 +303,7 @@ function EventCard({ event, index, isCompleted = false }: { event: EventItem; in
               return (
                 <div key={i} className={`flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-wider ${match.isMain ? 'text-white' : 'text-zinc-400'}`}>
                   <span className={`${match.isMain || winner === match.mc1 ? 'text-brand' : ''} truncate`}>{match.mc1}</span>
-                  <span className="text-brand/40 mx-2 italic">VS</span>
+                  {match.mc2 && <span className="text-brand/40 mx-2 italic">VS</span>}
                   <span className={`${match.isMain || winner === match.mc2 ? 'text-brand' : ''} truncate ml-auto text-right`}>{match.mc2}</span>
                   {winner && <span className="ml-2 whitespace-nowrap rounded bg-brand px-1.5 py-0.5 text-[8px] font-black text-black">{winner} WON</span>}
                   {match.isMain && <span className="ml-2 text-[8px] bg-brand text-black px-1.5 py-0.5 rounded font-black">MAIN</span>}
@@ -385,7 +399,7 @@ export default function Events({ limit }: { limit?: number }) {
               ))}
             </div>
             <p className="text-zinc-400 text-sm md:text-lg max-w-3xl leading-relaxed tracking-tight font-medium opacity-80">
-              December battles coming soon. Details will be announced when confirmed.
+              The December card is set for 18 December 2026. Tickets on sale soon.
             </p>
           </motion.div>
         </div>

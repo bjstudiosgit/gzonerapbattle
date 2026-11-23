@@ -105,7 +105,14 @@ function BattlesTable({ orderedBattles, viewsById = {} }: { orderedBattles: Batt
       </div>
 
       <div className="hidden sm:block overflow-x-auto scrollbar-hide">
-        <table className="w-full text-left border-collapse min-w-[760px] lg:min-w-0">
+        <table className="w-full table-fixed text-left border-collapse min-w-[760px] lg:min-w-[950px]">
+          <colgroup>
+            <col className="w-24" />
+            <col />
+            <col className="hidden w-28 sm:table-column" />
+            <col className="hidden w-[20%] lg:table-column" />
+            <col className="w-[max(292px,26%)]" />
+          </colgroup>
           <thead>
             <tr className="border-b border-white/10 bg-black/40">
               <th className="px-6 py-6 md:px-8 md:py-8 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap w-24">ID</th>

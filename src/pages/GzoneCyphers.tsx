@@ -24,7 +24,7 @@ export const initialCypherEpisodes: CypherEpisode[] = [
     lineup: "Passive • Silva Rose • Uncle Dizz",
     videoId: "I4ieQV35pdk",
     videoUrl: "https://www.youtube.com/watch?v=I4ieQV35pdk",
-    views: "12.7K",
+    views: "12.8K",
   },
   {
     id: "dec-2025",
