@@ -52,23 +52,6 @@ export const decemberBattles: Battle[] = [
 
 export const novemberBattles: Battle[] = [
   {
-    "id": "34",
-    "slug": "deeno-vs-kime",
-    "mc1": "deeno",
-    "mc2": "kime",
-    "title": "Deeno vs K.I.M.E",
-    "date": "14 Nov 2026",
-    "winner": "deeno",
-    "resultLabel": "Official Result",
-    "isUnreleased": true,
-    "isInProduction": true,
-    "isPlaceholder": false,
-    "episode": "1x32",
-    "league": "season1",
-    "flyer": "/flyers/deenovskime.png",
-    "summary": "Deeno vs K.I.M.E took place in Season 1, episode 1x32, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
-  },
-  {
     "id": "35",
     "slug": "mello-vs-ryno",
     "mc1": "mello",
@@ -97,13 +80,31 @@ export const novemberBattles: Battle[] = [
     "date": "14 Nov 2026",
     "winner": "pr1nc3",
     "resultLabel": "Official Result",
+    "isUnreleased": false,
+    "isInProduction": false,
+    "isPlaceholder": false,
+    "videoUrl": "https://www.youtube-nocookie.com/embed/mEQhR5rYnbA",
+    "episode": "1x32",
+    "league": "season1",
+    "flyer": "/flyers/princvsdeluxx.png",
+    "summary": "Prince and Deluxx return to GZone for three rounds at Peacocks Boxing. Name flips, crowd reloads and a pair of prop gags set the pace before Prince takes the official win in episode 1x32."
+  },
+  {
+    "id": "34",
+    "slug": "deeno-vs-kime",
+    "mc1": "deeno",
+    "mc2": "kime",
+    "title": "Deeno vs K.I.M.E",
+    "date": "14 Nov 2026",
+    "winner": "deeno",
+    "resultLabel": "Official Result",
     "isUnreleased": true,
     "isInProduction": true,
     "isPlaceholder": false,
     "episode": "1x33",
     "league": "season1",
-    "flyer": "/flyers/princvsdeluxx.png",
-    "summary": "Prince vs Deluxx took place in Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
+    "flyer": "/flyers/deenovskime.png",
+    "summary": "Deeno vs K.I.M.E took place in Season 1, episode 1x33, on 14 November 2026 at Peacocks Boxing, Canning Town. The video is in production."
   },
   {
     "id": "37",

@@ -30,6 +30,7 @@ const SevenWxveVsZkResult = lazy(() =>
 const SevenWxveVsZkHighlights = lazy(() =>
   import("../components/SevenWxveVsZkSummary").then((module) => ({ default: module.SevenWxveVsZkHighlights }))
 );
+const PrinceVsDeluxxSummary = lazy(() => import("../components/PrinceVsDeluxxSummary"));
 const MelloVsRynoSummary = lazy(() => import("../components/MelloVsRynoSummary").then(module => ({ default: module.MelloVsRynoSummary })));
 const TymelessVsKimeSummary = lazy(() =>
   import("../components/TymelessVsKimeSummary").then((module) => ({ default: module.TymelessVsKimeSummary }))
@@ -364,6 +365,7 @@ export default function BattleDetail() {
             ) : null}
 
             <Suspense fallback={null}>
+              {battle.slug === 'prince-vs-deluxx' && <PrinceVsDeluxxSummary />}
               {battle.slug === 'mello-vs-ryno' && <MelloVsRynoSummary />}
               {battle.slug === 'tymeless-vs-kime' && <TymelessVsKimeSummary props={battle.props} />}
 
@@ -3394,7 +3396,7 @@ export default function BattleDetail() {
               </>
             )}
 
-            {!isUpcoming && battle.slug !== 'mello-vs-ryno' && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'marni-gramz-vs-btizz' && battle.slug !== 'btizz-vs-marni-gramz' && battle.slug !== 'royal-rumble' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
+            {!isUpcoming && battle.slug !== 'prince-vs-deluxx' && battle.slug !== 'mello-vs-ryno' && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'marni-gramz-vs-btizz' && battle.slug !== 'btizz-vs-marni-gramz' && battle.slug !== 'royal-rumble' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && (
               <>
                 {battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && battle.slug !== 'marni-gramz-vs-btizz' && battle.slug !== 'btizz-vs-marni-gramz' && battle.slug !== 'royal-rumble' && (
                   <section className="bg-zinc-900/30 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
@@ -5953,7 +5955,7 @@ export default function BattleDetail() {
               </div>
             )}
 
-            {!isUpcoming && battle.slug !== 'mello-vs-ryno' && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
+            {!isUpcoming && battle.slug !== 'prince-vs-deluxx' && battle.slug !== 'mello-vs-ryno' && battle.slug !== 'tymeless-vs-kime' && battle.slug !== 'royal-rumble-ep2' && battle.slug !== '7wxve-vs-zk' && battle.slug !== '1flaymah-vs-zk' && battle.slug !== 'badee-harz-vs-1-flaymah' && battle.slug !== 'deeno-vs-cj-zino' && battle.slug !== 'zk-vs-cj-zino' && battle.slug !== 'deeno-vs-afrodon' && battle.slug !== 'nattyebk-vs-zk' && battle.slug !== 'deeno-vs-tapped24' && battle.slug !== 'cj-zino-vs-1flaymr' && battle.slug !== 'tapped24-vs-roman' && battle.slug !== 'tapped24-vs-ajna' && battle.slug !== 'tapped24-vs-grams' && battle.slug !== 'ryno-vs-tymeless' && battle.slug !== 'pr1nc3-vs-nattyebk' && battle.slug !== 'btizz-vs-cj-zino' && battle.slug !== 'btizz-vs-1flaymr' && battle.slug !== 'cj-zino-vs-proty' && battle.slug !== 'renzo-vs-proty' && battle.slug !== 'ryno-vs-roman' && battle.slug !== 'deluxx-vs-btizz' && battle.slug !== '2mwad-vs-ryno' && battle.slug !== 'deeno-vs-grams' && battle.slug !== 'deeno-vs-badee-harz' && battle.slug !== 'pr1nc3-vs-roman' && battle.slug !== 'ldn-mikez-vs-deluxx' && battle.slug !== 'ldn-mikez-vs-2mwad' && battle.slug !== 'roman-vs-badee-harz' && (
               <div className="bg-zinc-900/50 p-6 rounded-3xl border border-white/5">
                 <h3 className="text-xl font-display uppercase mb-6 text-white">
                   Key Technical Highlights by MC
