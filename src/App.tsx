@@ -15,7 +15,6 @@ const Footer = lazy(() => import("./components/Footer"));
 const ArenaAtmosphere = lazy(() => import("./components/ArenaAtmosphere"));
 const IntroVideo = lazy(() => import("./components/IntroVideo"));
 const FeaturedVideo = lazy(() => import("./components/FeaturedVideo"));
-const MerchSection = lazy(() => import("./components/MerchSection"));
 const UpcomingEventLanding = lazy(() =>
   import("./components/UpcomingEventLanding").then((module) => ({ default: module.UpcomingEventLanding }))
 );
@@ -33,7 +32,6 @@ const MCsPage = lazy(() => import("./pages/MCsPage"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const BattlesPage = lazy(() => import("./pages/BattlesPage"));
 
-const MerchPage = lazy(() => import("./pages/MerchPage"));
 const PromoMaterialPage = lazy(() => import("./pages/PromoMaterialPage"));
 const EventsPage = lazy(() => import("./pages/EventsPage"));
 const PhotosPage = lazy(() => import("./pages/PhotosPage"));
@@ -126,7 +124,6 @@ function Home() {
         </div>
       </section>
       <RecentBattles />
-      <MerchSection showShopAll={false} />
       <MCBios />
       <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-6 py-8 md:py-10">
         <GlobalDisclaimer />
@@ -211,7 +208,6 @@ function Main() {
           <Route path="/battles" element={<BattlesPage />} />
           <Route path="/freestyle" element={<Navigate to="/battles#freestyle" replace />} />
           <Route path="/staff" element={<Navigate to="/whoswho" replace />} />
-          <Route path="/merch" element={<MerchPage />} />
           <Route path="/flyers" element={<PromoMaterialPage />} />
           <Route path="/promo" element={<Navigate to="/flyers" replace />} />
           <Route path="/events" element={<EventsPage />} />

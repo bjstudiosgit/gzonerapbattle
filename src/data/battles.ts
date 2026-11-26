@@ -36,12 +36,11 @@ export const decemberBattleDate = "18 Dec 2026";
 
 export const decemberBattles: Battle[] = [
   { id: "39", slug: "roman-vs-1flaymah", mc1: "roman", mc2: "1flaymr", title: "Roman vs 1FLAYMAH", episode: "1x36" },
-  { id: "40", slug: "cj-zino-vs-deluxx", mc1: "cj-zino", mc2: "deluxx", title: "CJ-Zino vs Deluxx", episode: "1x37" },
-  { id: "41", slug: "mj-vs-btizz", mc1: "mj", mc2: "btizz", title: "M.J vs Btizz", episode: "1x38" },
-  { id: "43", slug: "nattyebk-vs-ryno", mc1: "nattyebk", mc2: "ryno", title: "Natty EBK vs Ryno", episode: "1x40" },
-  { id: "44", slug: "afrodon-vs-zk", mc1: "afrodon", mc2: "zk", title: "Afrodon vs Z.K", episode: "1x41" },
-  { id: "45", slug: "prince-vs-yekim", mc1: "pr1nc3", mc2: "yekim", title: "Prince vs Yekim", episode: "1x42" },
-  { id: "december-fx2", slug: "deeno-vs-trickyy", mc1: "deeno", mc2: "tricky", title: "Deeno vs Trickyy", episode: "Fx2" },
+  { id: "40", slug: "cj-zino-vs-deluxx", mc1: "cj-zino", mc2: "deluxx", title: "CJ-Zino vs Deluxx", episode: "1x37", flyer: "/flyers/dec-cjzinovsdeluxx.webp" },
+  { id: "41", slug: "mj-vs-btizz", mc1: "mj", mc2: "btizz", title: "M.J vs Btizz", episode: "1x38", flyer: "/flyers/dec-btizzvsmj.webp" },
+  { id: "44", slug: "afrodon-vs-zk", mc1: "afrodon", mc2: "zk", title: "Afrodon vs Z.K", episode: "1x39", flyer: "/flyers/dec-afrodonvszk.webp" },
+  { id: "45", slug: "prince-vs-yekim", mc1: "pr1nc3", mc2: "yekim", title: "Prince vs Yekim", episode: "1x40", flyer: "/flyers/dec-princevsyekim.webp" },
+  { id: "december-fx2", slug: "deeno-vs-trickyy", mc1: "deeno", mc2: "tricky", title: "Deeno vs Trickyy", episode: "Fx2", flyer: "/flyers/dec-deenovstrickyyy.webp" },
   { id: "46", slug: "royal-rumble-ep3", mc1: "", mc2: "", title: "Royal Rumble EP3: The Last Man Standing", episode: "RR3" },
 ].map((battle) => ({
   ...battle,

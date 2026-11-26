@@ -181,8 +181,9 @@ const events = [
     date: decemberBattleDate,
     location: "Peacocks Boxing, Canning Town",
     price: "TICKETS ON SALE SOON",
-    image: defaultEventImage,
-    description: "Six Season 1 battles, Deeno vs Trickyy in FX2, and Royal Rumble EP3: The Last Man Standing. Tickets on sale soon.",
+    image: decemberBattles.find((battle) => battle.flyer)?.flyer ?? defaultEventImage,
+    images: decemberBattles.flatMap((battle) => battle.flyer ? [battle.flyer] : []),
+    description: "Five Season 1 battles, Deeno vs Trickyy in FX2, and Royal Rumble EP3: The Last Man Standing. Tickets on sale soon.",
     isCompleted: false,
     card: decemberBattles.map((battle) => {
       const [mc1, mc2] = battle.title.split(" vs ");

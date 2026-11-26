@@ -3,6 +3,7 @@
 -- Preserve catalogue prop order: item IDs are used by bids.
 begin;
 insert into public.museum_auctions(item_id,item_name,status,starting_pence,increment_pence) values
+('mello-vs-ryno-1', 'Mello word card', 'open', 99, 20),
 ('roman-vs-badee-harz-1', 'Trojan Condom', 'open', 99, 20),
 ('tymeless-vs-kime-1', 'Fake moustache', 'open', 99, 20),
 ('tymeless-vs-kime-2', 'Lime', 'open', 99, 20),

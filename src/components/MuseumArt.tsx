@@ -160,16 +160,16 @@ export function getMuseumItemReference(item: MuseumItem, imageIndex = 0): { src:
 
   // Other battle cutouts
   if (name === 'Melon') {
-    return { src: '/museum/btizz-melon-battle-cutout.webp', alt: 'Btizz holding the melon during the battle', isBattlePhoto: true };
+    return { src: '/museum/btizz-melon-battle.webp', alt: 'Btizz holding the melon during the battle', isBattlePhoto: true };
   }
   if (name === 'Flowers' || name === 'Bouquet of Flowers') {
-    return { src: '/museum/gramz-flowers-battle-cutout.webp', alt: 'Marni Gramz holding the funeral flowers during the battle', isBattlePhoto: true };
+    return { src: '/museum/marni-gramz-flowers-battle.webp', alt: 'A bouquet of flowers being held out during the Marni Gramz vs Btizz battle', isBattlePhoto: true };
   }
   if (name === 'Balloons' || name === 'Balloon') {
-    return { src: '/museum/gramz-balloon-battle-cutout.webp', alt: 'Marni Gramz holding the purple balloon during the battle', isBattlePhoto: true };
+    return { src: '/museum/marni-gramz-balloon-battle.webp', alt: 'Marni Gramz holding the purple balloon during the battle', isBattlePhoto: true };
   }
   if (name === 'Trojan Condom') {
-    return { src: '/museum/trojan-condom-battle-cutout.webp', alt: 'Performer holding the condom wrapper during the battle', isBattlePhoto: true };
+    return { src: '/museum/trojan-condom-battle.webp', alt: 'Performer holding the condom wrapper during the battle', isBattlePhoto: true };
   }
   if (name === 'Tymeless Lime') {
     return { src: '/museum/tymeless-lime-battle-duo.webp', alt: 'Two battle participants with the lime held up', isBattlePhoto: true };
@@ -181,7 +181,7 @@ export function getMuseumItemReference(item: MuseumItem, imageIndex = 0): { src:
     return { src: '/museum/key-stage-revision-sheets-kime-cutout.webp', alt: 'Performer holding the K.I.M.E sheet during the battle', isBattlePhoto: true };
   }
   if (name === 'Fake Beard') {
-    return { src: '/museum/fake-beard-cutout.webp', alt: 'Tymeless wearing the Fake Beard during the battle', isBattlePhoto: true };
+    return { src: '/museum/tymeless-fake-beard-battle.webp', alt: 'Tymeless wearing the Fake Beard during the battle', isBattlePhoto: true };
   }
   if (name === 'K.I.M.E baby shoes') {
     return { src: '/museum/kime-baby-shoes-battle-cutout.webp', alt: 'Performer holding the K.I.M.E baby shoes and box during the battle', isBattlePhoto: true };

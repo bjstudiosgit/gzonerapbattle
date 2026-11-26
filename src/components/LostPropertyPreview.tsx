@@ -48,12 +48,11 @@ export default function LostPropertyPreview() {
     <section aria-labelledby="museum-preview-heading" className="relative z-10 px-4 sm:px-6 lg:px-10 pt-0 pb-10 md:pb-16">
       <div className="museum-storefront mx-auto max-w-[1432px]">
         <div className="museum-storefront-intro">
-          <h2 id="museum-preview-heading">ginga<span>Bay.</span><small>BETA</small></h2>
+          <h2 id="museum-preview-heading">GZone <span>Museum</span></h2>
           <p className="museum-storefront-tagline">Props from the battle.<br />Bids from the crowd.</p>
           <p className="museum-storefront-description">Pick a piece of Gzone history and join the bidding. Browse the props, see the latest bids and choose your favourite.</p>
           <p className="museum-storefront-terms">Bids start at <strong>99p</strong> <span aria-hidden="true">·</span> go up by <strong>20p</strong></p>
           <Link to="/museum" className="museum-storefront-shop">Explore all props <ArrowRight size={18} /></Link>
-          <p className="museum-storefront-note">Virtual ownership, just for fun.</p>
         </div>
         <div className="museum-storefront-gallery">
           <div className="museum-storefront-toolbar">

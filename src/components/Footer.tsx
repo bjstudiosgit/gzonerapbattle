@@ -47,7 +47,6 @@ export default function Footer() {
                 <li><Link to="/outside" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Outside</Link></li>
                 <li><Link to="/events" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Next Event</Link></li>
                 <li><Link to="/whoswho" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Who's Who</Link></li>
-                <li><Link to="/merch" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Merch</Link></li>
                 <li><Link to="/map" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">The Gzone MC Map</Link></li>
                 <li><Link to="/flyers" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">Flyers</Link></li>
                 <li><Link to="/museum" className="text-zinc-300 hover:text-white transition-colors uppercase text-[10px] font-black tracking-[0.2em]">GZone Museum</Link></li>

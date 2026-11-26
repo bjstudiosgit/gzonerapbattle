@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "motion/react";
 import { Download, Eye, X, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { flyerImage } from "../lib/images";
-import { novemberBattles } from "../data/battles";
+import { decemberBattles, decemberBattleDate, novemberBattles } from "../data/battles";
 
 export type PromoFlyer = {
   id: string;
@@ -18,6 +18,18 @@ export type PromoFlyer = {
 };
 
 const allFlyers: PromoFlyer[] = [
+  ...decemberBattles.filter((battle) => battle.flyer).map<PromoFlyer>((battle) => ({
+    id: battle.slug,
+    title: `${battle.episode} · ${battle.title}`,
+    event: "18 December 2026",
+    date: decemberBattleDate,
+    category: "upcoming",
+    categoryLabel: "18 December",
+    src: battle.flyer!,
+    aspect: "aspect-[3/4]",
+    direct: true,
+  })),
+
   // 14th November 2026 (Completed)
   ...novemberBattles.map<PromoFlyer>((battle) => ({
     id: battle.slug,
@@ -208,10 +220,14 @@ const allFlyers: PromoFlyer[] = [
 const filterCategories = [
   { id: "all", label: "All Flyers", count: allFlyers.length },
   {
+    id: "upcoming",
+    label: decemberBattleDate,
+    count: allFlyers.filter((f) => f.category === "upcoming").length,
+  },
+  {
     id: "november-14",
     label: "14 Nov 2026",
-    count: allFlyers.filter((f) => f.category === "upcoming").length,
-    isUpcoming: false,
+    count: allFlyers.filter((f) => f.category === "november-14").length,
   },
   {
     id: "september-26",

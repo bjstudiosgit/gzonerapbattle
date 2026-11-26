@@ -14,7 +14,6 @@ export const staticPages: SitePage[] = [
   { path: "/photos", title: "Photos | Gzone", description: "Explore photos from Gzone rap battle events." },
   { path: "/map", title: "MC Map | Gzone", description: "Discover Gzone MCs on the map." },
   { path: "/flyers", title: "Flyers | Gzone Rap Battle League", description: "Browse and download official Gzone Rap Battle event flyers and clash posters." },
-  { path: "/merch", title: "Merch | Gzone", description: "Explore Gzone Rap Battle League merchandise." },
   { path: "/apply", title: "Apply | Gzone", description: "Apply to battle at Gzone." },
   { path: "/backstage", title: "Backstage | The Gzone", description: "The Gzone members’ area. Sign in for exclusive videos, behind-the-scenes footage and updates from the crew." },
   { path: "/museum", title: "GZone Museum | The Gzone", description: "The props. The punchlines. Bid on a piece of Gzone history from 99p. Sign in with your Gzone membership and track your bids in settings." },
