@@ -35,7 +35,7 @@ export const novemberTicketUrl = "https://www.eventbrite.co.uk/e/the-gzone-rap-b
 export const decemberBattleDate = "18 Dec 2026";
 
 export const decemberBattles: Battle[] = [
-  { id: "39", slug: "roman-vs-1flaymah", mc1: "roman", mc2: "1flaymr", title: "Roman vs 1FLAYMAH", episode: "1x36" },
+  { id: "39", slug: "roman-vs-1flaymah", mc1: "roman", mc2: "1flaymr", title: "Roman vs 1FLAYMAH", episode: "1x36", flyer: "/flyers/romanvs1flaymah.png" },
   { id: "40", slug: "cj-zino-vs-deluxx", mc1: "cj-zino", mc2: "deluxx", title: "CJ-Zino vs Deluxx", episode: "1x37", flyer: "/flyers/dec-cjzinovsdeluxx.webp" },
   { id: "41", slug: "mj-vs-btizz", mc1: "mj", mc2: "btizz", title: "M.J vs Btizz", episode: "1x38", flyer: "/flyers/dec-btizzvsmj.webp" },
   { id: "44", slug: "afrodon-vs-zk", mc1: "afrodon", mc2: "zk", title: "Afrodon vs Z.K", episode: "1x39", flyer: "/flyers/dec-afrodonvszk.webp" },
